@@ -1,0 +1,44 @@
+.right_side {
+  scrollbar-color: var(--scrollbar_color_global);
+  scrollbar-width: thin;
+  z-index: 2;
+  height: 100%;
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 5px;
+  min-width: 210px;
+  max-width: 210px;
+}
+
+@media (max-width: 1060px) {
+  .right_side {
+    min-width: auto;
+  }
+}
+
+.options_menu {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  padding: 6px 0;
+  background-color: var(--options_menu_background-color);
+  backdrop-filter: saturate(180%) blur(2px);
+  -webkit-backdrop-filter: saturate(180%) blur(2px);
+  z-index: 2;
+  min-height: 40px;
+}
+
+/* variables */
+/* theme colors */
+[data-right-side-dark-theme="true"] {
+  --options_menu_background-color: #0000009e;
+}
+
+[data-right-side-dark-theme="false"] {
+  --options_menu_background-color: rgb(255, 255, 255);
+}
+
+/* /theme colors */
+/* /variables */

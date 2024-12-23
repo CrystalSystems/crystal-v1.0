@@ -1,0 +1,18 @@
+.posts_wrap {
+  margin-bottom: 50px;
+}
+
+@media (max-width: 860px) {
+  .posts_wrap {
+    margin-bottom: 0px;
+    border-bottom: none;
+  }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 150px;
+}

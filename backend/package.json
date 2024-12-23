@@ -1,0 +1,29 @@
+{
+  "name": "crystal-backend",
+  "version": "1.0",
+  "main": "./src/server.js",
+  "type": "module",
+  "scripts": {
+    "start_dev": "node --watch --env-file=./env/.env.dev --env-file=./env/.env ./src/server.js",
+    "start_prod": "pm2 start ecosystem.config.cjs"
+  },
+  "author": "Andrew Shedov - https://shedov.top",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^8.9.0",
+    "multer": "^1.4.5-lts.1",
+    "nanoid": "^5.0.7",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/multer": "^1.4.12"
+  }
+}
