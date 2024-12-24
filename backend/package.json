@@ -4,8 +4,8 @@
   "main": "./src/server.js",
   "type": "module",
   "scripts": {
-    "start_dev": "node --watch --env-file=./env/.env.dev --env-file=./env/.env ./src/server.js",
-    "start_prod": "pm2 start ecosystem.config.cjs"
+    "startDev": "node --watch --env-file=./env/.env.dev --env-file=./env/.env ./src/server.js",
+    "startProd": "pm2 start ecosystem.config.cjs"
   },
   "author": "Andrew Shedov - https://shedov.top",
   "license": "MIT",
