@@ -1,5 +1,5 @@
 export { AccessModal } from "./accessModal";
-export { SideMenuMobileBackground } from "./SideMenuMobile";
-export { SideMenuMobile } from "./SideMenuMobile";
+export { SideMenuMobileBackground } from "./sideMenuMobile";
+export { SideMenuMobile } from "./sideMenuMobile";
 export { Authorization } from "./access";
 export { ThemeSwitcher } from "./theme";

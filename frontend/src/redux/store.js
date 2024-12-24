@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { themeReducer } from "../features/theme/theme-slice";
 import { logInStatusReducer } from "../features/access/logInStatusSlice";
 import { accessModalReducer } from "../features/accessModal/accessModalSlice";
-import { sideMenuMobileReducer } from "../features/SideMenuMobile/sideMenuMobileSlice";
+import { sideMenuMobileReducer } from "../features/sideMenuMobile/sideMenuMobileSlice";
 export const store = configureStore({
   reducer: {
     darkThemeStatus: themeReducer,

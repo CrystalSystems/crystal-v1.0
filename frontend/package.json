@@ -9,7 +9,7 @@
     "buildDomain": "vite build --mode prodDomain",
     "buildIP": "vite build --mode prodIP",
     "preview": "vite preview",
-    "lint": "eslint" 
+    "lint": "eslint"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
@@ -21,7 +21,6 @@
     "axios": "^1.7.2",
     "browser-image-compression": "^2.0.2",
     "clsx": "^1.1.1",
-    "easymde": "^2.16.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "i18next": "^23.10.0",

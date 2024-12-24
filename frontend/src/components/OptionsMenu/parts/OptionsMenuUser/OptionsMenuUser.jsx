@@ -32,7 +32,7 @@ import {
   setShowSideMenuMobile,
   setShowSideMenuMobileBackground,
   setSideMenuMobileFadeOut,
-} from "../../../../features/SideMenuMobile/sideMenuMobileSlice";
+} from "../../../../features/sideMenuMobile/sideMenuMobileSlice";
 import styles from "./OptionsMenuUser.module.css";
 export function OptionsMenuUser() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
