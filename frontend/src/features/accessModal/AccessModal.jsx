@@ -30,7 +30,6 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 // Recaptcha v3
 import { useRecaptchaV3 } from "../../hooks/useRecaptchaV3";
-// import useRecaptchaV3 from "../../hooks/reCaptchaV3/index";
 import { setlogInStatus } from "../access/logInStatusSlice";
 // /Recaptcha v3
 export function AccessModal() {
