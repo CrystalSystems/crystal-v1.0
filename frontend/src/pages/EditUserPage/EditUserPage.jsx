@@ -264,7 +264,9 @@ export function EditUserPage() {
         dispatch(setlogInStatus(false));
         window.localStorage.removeItem("authorizedUserData");
         window.localStorage.removeItem("logIn");
-        requestManager.get("/logout");
+        queryClient.invalidateQueries({ queryKey: ["Posts"] });
+        queryClient.invalidateQueries({ queryKey: ["Users"] });
+        requestManager.post("/logout");
       }
       else {
         queryClient.invalidateQueries({ queryKey: ["Posts"] });
