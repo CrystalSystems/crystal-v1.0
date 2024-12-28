@@ -30,7 +30,7 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 // -- Recaptcha v3
 // import { useRecaptchaV3 } from "../../hooks/useRecaptchaV3";
-// / -- Recaptcha v3
+// -- /Recaptcha v3
 import { setlogInStatus } from "../access/logInStatusSlice";
 export function AccessModal() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
@@ -41,7 +41,7 @@ export function AccessModal() {
   //   recaptchaV3PublicKey,
   //   "Registration"
   // );
-  // / -- Recaptcha v3
+  // -- /Recaptcha v3
   // yup validationSchema
   // Log In
   const validationSchemaLogIn = Yup.object().shape({
@@ -198,7 +198,7 @@ export function AccessModal() {
     // -- Recaptcha v3
     // const recaptchaV3Token = await recaptchaV3("Registration");
     // values["recaptchaV3Token"] = recaptchaV3Token;
-    // / -- Recaptcha v3
+    // -- /Recaptcha v3
     queryClient.invalidateQueries({
       queryKey: ["Authorization"],
     });
@@ -495,7 +495,7 @@ export function AccessModal() {
                           apply.
                         </p>
                       </div>
-                      {/* / -- Recaptcha v3 */}
+                      {/* -- /Recaptcha v3 */}
                     </div>
                     <button className={styles.enter} type="submit">
                       <EnterIcon />

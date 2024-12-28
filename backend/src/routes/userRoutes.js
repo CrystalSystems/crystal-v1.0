@@ -3,7 +3,7 @@ const router = express.Router();
 import {
   // -- Recaptcha v3
   // reCaptchaV3,
-  // / -- Recaptcha v3
+  // -- /Recaptcha v3
   upload,
   multerErrorMessages
 } from "../utils/index.js";
@@ -22,7 +22,7 @@ router.post(
   "/registration",
   // -- Recaptcha v3
   // reCaptchaV3,
-  // / -- Recaptcha v3
+  // -- /Recaptcha v3
   registrationValidation,
   handleValidationErrors,
   UserController.registration
