@@ -28,20 +28,20 @@ import { setShowAccessModal } from "./accessModalSlice";
 import { setSwitchAccessModal } from "./accessModalSlice";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-// -- Recaptcha v3
+// -- reCAPTCHA v3
 // import { useRecaptchaV3 } from "../../hooks/useRecaptchaV3";
-// -- /Recaptcha v3
+// -- /reCAPTCHA v3
 import { setlogInStatus } from "../access/logInStatusSlice";
 export function AccessModal() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const queryClient = useQueryClient();
-  // -- Recaptcha v3
+  // -- reCAPTCHA v3
   // const recaptchaV3PublicKey = import.meta.env.VITE_RECAPTCHA_V3_PUBLIC_KEY;
   // const recaptchaV3 = useRecaptchaV3(
   //   recaptchaV3PublicKey,
   //   "Registration"
   // );
-  // -- /Recaptcha v3
+  // -- /reCAPTCHA v3
   // yup validationSchema
   // Log In
   const validationSchemaLogIn = Yup.object().shape({
@@ -195,10 +195,10 @@ export function AccessModal() {
   });
   const [registrationServerErrors, setRegistrationServerErrors] = useState();
   const onSubmitRegistration = async (values) => {
-    // -- Recaptcha v3
+    // -- reCAPTCHA v3
     // const recaptchaV3Token = await recaptchaV3("Registration");
     // values["recaptchaV3Token"] = recaptchaV3Token;
-    // -- /Recaptcha v3
+    // -- /reCAPTCHA v3
     queryClient.invalidateQueries({
       queryKey: ["Authorization"],
     });
@@ -471,7 +471,7 @@ export function AccessModal() {
                           <p>{t(errorsRegistration.acceptTerms.message)}</p>
                         )}
                       </div>
-                      {/* -- Recaptcha v3 */}
+                      {/* -- reCAPTCHA v3 */}
                       <div className={styles.recaptcha_protected_message}>
                         <p>
                           This site is protected by reCAPTCHA and the Google
@@ -495,7 +495,7 @@ export function AccessModal() {
                           apply.
                         </p>
                       </div>
-                      {/* -- /Recaptcha v3 */}
+                      {/* -- /reCAPTCHA v3 */}
                     </div>
                     <button className={styles.enter} type="submit">
                       <EnterIcon />
