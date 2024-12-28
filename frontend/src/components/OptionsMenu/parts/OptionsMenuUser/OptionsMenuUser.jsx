@@ -25,7 +25,10 @@ import {
 } from "../../../../requestManagement";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useQueryClient } from "@tanstack/react-query";
+import {
+  useQueryClient,
+  useMutation
+} from "@tanstack/react-query";
 import { ThemeSwitcher } from "../../../../features/theme/ThemeSwitcher";
 import { setlogInStatus } from "../../../../features/access/logInStatusSlice";
 import {
@@ -92,23 +95,27 @@ export function OptionsMenuUser() {
   };
   const onClickLogout = async () => {
     if (window.confirm(t("OptionsMenuUser.LogOut"))) {
-      await requestManager
-        .get("/logout")
-        .then(() => {
-          dispatch(setlogInStatus(false));
-          window.localStorage.removeItem("logIn");
-          window.localStorage.removeItem("authorizedUserData");
-          setFadeOutUserMenuList(false);
-          setShowUserMenuList(false);
-          queryClient.invalidateQueries({ queryKey: ["Authorization"] });
-          queryClient.invalidateQueries({ queryKey: ["Posts"] });
-          queryClient.invalidateQueries({ queryKey: ["Users"] });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      Logout.mutate();
     };
   };
+  const Logout = useMutation({
+    mutationKey: ["Logout"],
+    mutationFn: () => {
+      return requestManager.post("/logout");
+    },
+    onSuccess: () => {
+      dispatch(setlogInStatus(false));
+      window.localStorage.removeItem("logIn");
+      window.localStorage.removeItem("authorizedUserData");
+      setFadeOutUserMenuList(false);
+      setShowUserMenuList(false);
+      queryClient.invalidateQueries({ queryKey: ["Posts"] });
+      queryClient.invalidateQueries({ queryKey: ["Users"] });
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
   // Closing a menu when clicking outside its field
   useEffect(() => {
     if (userMenuListRef.current) {
@@ -208,13 +215,13 @@ export function OptionsMenuUser() {
             onClick={() => setFadeOutUserMenuList(true)}
             className={styles.user_menu_list_user_name_user_custom_id_wrap}
           >
-           { userAuthorizedData?.name && (
-            <div className={styles.user_menu_list_user_name}>
-              <p>{userAuthorizedData?.name}</p>
-              {userAuthorizedData?.creator && <CrystalIcon />}
-            </div>
-           )
-}
+            {userAuthorizedData?.name && (
+              <div className={styles.user_menu_list_user_name}>
+                <p>{userAuthorizedData?.name}</p>
+                {userAuthorizedData?.creator && <CrystalIcon />}
+              </div>
+            )
+            }
             <div className={styles.user_menu_list_user_custom_id}>
               <p>@{userAuthorizedData?.customId}</p>
             </div>

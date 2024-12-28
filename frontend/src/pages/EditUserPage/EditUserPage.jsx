@@ -29,7 +29,6 @@ import { setlogInStatus } from "../../features/access/logInStatusSlice";
 import styles from "./EditUserPage.module.css";
 export function EditUserPage() {
   const [serverMessage, setServerMessage] = useState();
-  console.log(serverMessage)
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const userAuthorizedData = JSON.parse(
     window.localStorage.getItem("authorizedUserData"),
@@ -151,7 +150,7 @@ export function EditUserPage() {
     userAboutMeValueDatabase !== userAboutMe;
   const SaveUserChanges = useMutation({
     mutationKey: ["SaveUserChanges"],
-    mutationFn: async (fields) => {
+    mutationFn: (fields) => {
       return requestManager.patch("/user/edit/" + userId, fields);
     },
     onSuccess: (data) => {
@@ -195,9 +194,7 @@ export function EditUserPage() {
   const newPasswordInputRef = useRef();
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [newPassword, setNewPassword] = useState();
-  console.log(newPassword)
   const [validatingNewPassword, setValidatingNewPassword] = useState();
-  console.log(validatingNewPassword)
   const newPasswordValidationRule = /^[a-zA-Z\d!@#$%^&*[\]{}()?"\\/,><':;|_~`=+-]{8,35}$/;
   const onChangeNewPassword = (e) => {
     setNewPassword(e.target.value);
@@ -206,11 +203,10 @@ export function EditUserPage() {
   // /new password
   const ChangePassword = useMutation({
     mutationKey: ["ChangePassword"],
-    mutationFn: async (fields) => {
+    mutationFn: (fields) => {
       return requestManager.patch("/user/change/password/" + userId, fields);
     },
     onSuccess: (data) => {
-      console.log('ok--' + data);
       setServerMessage(data.data.message);
       setNewPassword('');
       setOldPassword('');
@@ -251,32 +247,35 @@ export function EditUserPage() {
         });
     }
   };
-  const onClickDeleteUserAccount = async (event) => {
-    event.preventDefault();
+  const onClickDeleteUserAccount = async () => {
     if (window.confirm(t("EditUserPage.deleteAccountQuestion"))) {
-      await requestManager
-        .delete("/user/delete/account/" + userId)
-        .then(() => {
-          if (authorizedUserCustomId === userId) {
-            dispatch(setlogInStatus(false));
-            window.localStorage.removeItem("authorizedUserData");
-            window.localStorage.removeItem("logIn");
-            requestManager
-              .get("/logout").catch((error) => {
-                console.log(error);
-              });
-          }
-          navigate("/");
-          dispatch(setlogInStatus(false));
-          queryClient.invalidateQueries({ queryKey: ["Posts"] });
-          queryClient.invalidateQueries({ queryKey: ["Users"] });
-          queryClient.invalidateQueries({ queryKey: ["Authorization"] });
-        })
-        .then(() => {
-          queryClient.invalidateQueries({ queryKey: ["Authorization"] });
-        });
+      DeleteUserAccount.mutate();
     }
   };
+  const DeleteUserAccount = useMutation({
+    mutationKey: ["DeleteUserAccount"],
+    mutationFn: () => {
+      return requestManager
+        .delete("/user/delete/account/" + userId);
+    },
+    onSuccess: () => {
+      navigate("/");
+      if (authorizedUserCustomId === userId) {
+        dispatch(setlogInStatus(false));
+        window.localStorage.removeItem("authorizedUserData");
+        window.localStorage.removeItem("logIn");
+        requestManager.get("/logout");
+      }
+      else {
+        queryClient.invalidateQueries({ queryKey: ["Posts"] });
+        queryClient.invalidateQueries({ queryKey: ["Users"] });
+        queryClient.invalidateQueries({ queryKey: ["Authorization"] });
+      }
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
   useEffect(() => {
     if (userNameValueDatabase === userName) {
       setNumberCharactersInUsername(null);

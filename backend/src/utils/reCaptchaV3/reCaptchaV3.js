@@ -6,6 +6,7 @@ const secretKey = process.env.RECAPTCHA_V3_SECRET_KEY;
 // /SecretKey
 export function reCaptchaV3 (req, res, next) {
   if (req.body.recaptchaV3Token === undefined || req.body.recaptchaV3Token === '' || req.body.recaptchaV3Token === null) {
+    console.log(recaptchaV3Token)
     const UserIpAddress = req.ip;
     const name = req.body.name;
     const recaptchaV3Token = req.body.recaptchaV3Token;
