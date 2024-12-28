@@ -1,9 +1,9 @@
 import express from "express";
 const router = express.Router();
 import {
-  // reCaptchaV3
-  reCaptchaV3,
-  // /reCaptchaV3
+  // -- Recaptcha v3
+  // reCaptchaV3,
+  // / -- Recaptcha v3
   upload,
   multerErrorMessages
 } from "../utils/index.js";
@@ -20,9 +20,9 @@ import { UserController } from "../controllers/index.js";
 // registration
 router.post(
   "/registration",
-  // reCaptchaV3
-  reCaptchaV3,
-  // /reCaptchaV3
+  // -- Recaptcha v3
+  // reCaptchaV3,
+  // / -- Recaptcha v3
   registrationValidation,
   handleValidationErrors,
   UserController.registration
