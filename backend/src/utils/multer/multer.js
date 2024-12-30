@@ -1,10 +1,6 @@
 import multer from "multer";
 import fs from "fs";
 import { nanoid } from 'nanoid';
-import { dirname } from 'node:path';
-const rootDir = dirname(process.argv[1]);
-console.log(rootDir)
-//  multer
 const storage = multer.diskStorage({
   destination: (req, _, cb) => {
     // Get folder name and file type, to create directory name
@@ -50,4 +46,3 @@ export const multerErrorMessages = (err, req, res, next) => {
     next();
   }
 };
-//   /multer
