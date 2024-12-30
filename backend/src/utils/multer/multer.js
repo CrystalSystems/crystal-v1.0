@@ -11,7 +11,6 @@ const storage = multer.diskStorage({
     const fileType = req.query.fileType;
     // /Get folder name and file type, to create directory name
     // Directory name
-    // const directory = `./uploads/${fileType}`;
     const directory = `uploads/${fileType}`;
     // /Directory name
     // Create a directory if it doesn't exist
