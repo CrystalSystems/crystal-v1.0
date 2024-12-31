@@ -38,8 +38,8 @@ export function RecommendedUsers() {
   });
   const { t } = useTranslation();
   const dataUsers = userIsAuthorizedСheck
-    ? usersQuery.data?.toReversed().filter((user) => user.customId !== userAuthorizedData?.customId).slice(0, 5)
-    : usersQuery.data?.toReversed().filter((user) => user.customId !== userAuthorizedData?.customId).slice(0, 7);
+    ? usersQuery.data?.filter((user) => user.customId !== userAuthorizedData?.customId).toReversed().slice(0, 5)
+    : usersQuery.data?.filter((user) => user.customId !== userAuthorizedData?.customId).toReversed().slice(0, 7);
 
   if (usersQuery.status === "pending") {
     return null;
