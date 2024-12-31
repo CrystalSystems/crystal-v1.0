@@ -71,6 +71,8 @@
 .crystal_icon svg {
   display: flex;
   fill: var(--fill_global);
+  stroke: var(--stroke_global);
+  stroke-width: 3;
   position: relative;
   width: 30px;
   height: 30px;

@@ -65,6 +65,8 @@
 
  .crystal svg {
    fill: var(--fill_global);
+   stroke: var(--stroke_global);
+  stroke-width: 3;
    width: 24px;
    height: 24px;
  }

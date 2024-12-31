@@ -314,6 +314,8 @@
 
 .crystal_icon svg {
   fill: var(--fill_global);
+  stroke: var(--stroke_global);
+  stroke-width: 3;
   margin-left: 4.7px;
   width: 15.5px;
   height: 15.5px;
