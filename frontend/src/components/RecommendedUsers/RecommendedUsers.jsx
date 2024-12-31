@@ -22,6 +22,11 @@ export function RecommendedUsers() {
   // Checking user authorization
   const userIsAuthorizedСheck = window.localStorage.getItem("logIn");
   // /Checking user authorization
+  // Authorized user data
+  const userAuthorizedData = JSON.parse(
+    window.localStorage.getItem("authorizedUserData"),
+  );
+  // /Authorized user data
   const usersQuery = useQuery({
     queryKey: ["Users", "RecommendedUsers"],
     refetchOnWindowFocus: true,
@@ -33,8 +38,9 @@ export function RecommendedUsers() {
   });
   const { t } = useTranslation();
   const dataUsers = userIsAuthorizedСheck
-    ? usersQuery.data?.toReversed().slice(0, 5)
-    : usersQuery.data?.toReversed().slice(0, 7);
+    ? usersQuery.data?.toReversed().filter((user) => user.customId !== userAuthorizedData?.customId).slice(0, 5)
+    : usersQuery.data?.toReversed().filter((user) => user.customId !== userAuthorizedData?.customId).slice(0, 7);
+
   if (usersQuery.status === "pending") {
     return null;
   }

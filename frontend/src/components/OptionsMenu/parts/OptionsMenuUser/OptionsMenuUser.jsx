@@ -68,9 +68,11 @@ export function OptionsMenuUser() {
   };
   const queryClient = useQueryClient();
   const userMenuListRef = useRef();
+  // Authorized user data
   const userAuthorizedData = JSON.parse(
     window.localStorage.getItem("authorizedUserData"),
   );
+  // /Authorized user data
   const Authorization = queryClient.getQueryState(['Authorization'])
   // Сhange avatar in another browser, if it is updated, in the current browser
   useEffect(() => {
