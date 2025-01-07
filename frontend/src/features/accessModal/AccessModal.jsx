@@ -29,18 +29,18 @@ import { setSwitchAccessModal } from "./accessModalSlice";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 // -- reCAPTCHA v3
-import { useRecaptchaV3 } from "../../hooks/useRecaptchaV3";
+// import { useRecaptchaV3 } from "../../hooks/useRecaptchaV3";
 // -- /reCAPTCHA v3
 import { setlogInStatus } from "../access/logInStatusSlice";
 export function AccessModal() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const queryClient = useQueryClient();
   // -- reCAPTCHA v3
-  const recaptchaV3PublicKey = import.meta.env.VITE_RECAPTCHA_V3_PUBLIC_KEY;
-  const recaptchaV3 = useRecaptchaV3(
-    recaptchaV3PublicKey,
-    "Registration"
-  );
+  // const recaptchaV3PublicKey = import.meta.env.VITE_RECAPTCHA_V3_PUBLIC_KEY;
+  // const recaptchaV3 = useRecaptchaV3(
+  //   recaptchaV3PublicKey,
+  //   "Registration"
+  // );
   // -- /reCAPTCHA v3
   // yup validationSchema
   // Log In
@@ -196,8 +196,8 @@ export function AccessModal() {
   const [registrationServerErrors, setRegistrationServerErrors] = useState();
   const onSubmitRegistration = async (values) => {
     // -- reCAPTCHA v3
-    const recaptchaV3Token = await recaptchaV3("Registration");
-    values["recaptchaV3Token"] = recaptchaV3Token;
+    // const recaptchaV3Token = await recaptchaV3("Registration");
+    // values["recaptchaV3Token"] = recaptchaV3Token;
     // -- /reCAPTCHA v3
     queryClient.invalidateQueries({
       queryKey: ["Authorization"],
@@ -472,7 +472,7 @@ export function AccessModal() {
                         )}
                       </div>
                       {/* -- reCAPTCHA v3 */}
-                      <div className={styles.recaptcha_protected_message}>
+                      {/* <div className={styles.recaptcha_protected_message}>
                         <p>
                           This site is protected by reCAPTCHA and the Google
                           <Link
@@ -494,7 +494,7 @@ export function AccessModal() {
                           </Link>{" "}
                           apply.
                         </p>
-                      </div>
+                      </div> */}
                       {/* -- /reCAPTCHA v3 */}
                     </div>
                     <button className={styles.enter} type="submit">
