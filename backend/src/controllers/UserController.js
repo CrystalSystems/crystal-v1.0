@@ -28,14 +28,14 @@ export const registration = async (req, res) => {
       passwordHash: hash,
     });
     const user = await doc.save();
-    // JWT token secret key
-    const jwtTokenSecretKey = process.env.JWT_TOKEN_SECRET_KEY;
-    // /JWT token secret key
+    // JWT secret key
+    const JWTSecretKey = process.env.JWT_SECRET_KEY;
+    // /JWT secret key
     const token = jwt.sign(
       {
         _id: user._id,
       },
-      jwtTokenSecretKey
+      JWTSecretKey
     );
     res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 365 * 10 }).json({
       _id: user._id,
@@ -66,14 +66,14 @@ export const logIn = async (req, res) => {
     if (!password) {
       return res.status(404).send({ error: 'invalid username or password' });
     }
-    // JWT token secret key
-    const jwtTokenSecretKey = process.env.JWT_TOKEN_SECRET_KEY;
-    // /JWT token secret key
+    // JWT secret key
+    const JWTSecretKey = process.env.JWT_SECRET_KEY;
+    // /JWT secret key
     const token = jwt.sign(
       {
         _id: user._id
       },
-      jwtTokenSecretKey
+      JWTSecretKey
     );
     const { passwordHash, aboutMe, email, ...userData } = user._doc;
     res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 365 * 10 }).json({
