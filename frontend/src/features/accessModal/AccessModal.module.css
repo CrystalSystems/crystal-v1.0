@@ -78,7 +78,7 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   display: flex;
-  gap: 3px;
+  gap: 2px;
   justify-content: center;
   align-items: center;
   background-color: var(--filling_background-color_global);
