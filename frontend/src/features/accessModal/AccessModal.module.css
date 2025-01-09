@@ -80,6 +80,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 5px;
   background-color: var(--filling_background-color_global);
 }
 
@@ -103,14 +104,13 @@
 .access_form_wrap {
   display: flex;
   justify-content: center;
-  padding: 13px;
+  padding: 17px;
   background-color: var(--filling_background-color_global);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
 .access_form_wrap form {
-  max-width: 245px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -201,13 +201,12 @@
   background-color: var(--enter_background-color);
   box-shadow: var(--enter_box-shadow);
   margin-top: 3px;
-  margin-bottom: 5px;
 }
 
 .enter svg {
   fill: var(--fill_global);
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
 }
 
 @media (min-width: 1000px) {
