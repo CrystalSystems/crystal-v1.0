@@ -99,7 +99,6 @@
 
 .switch_modal_active {
   border-bottom: var(--switch_modal_active_border-bottom) !important;
-  /* margin: 7px 15px 5px 15px; */
 }
 
 .access_form_wrap {
