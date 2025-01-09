@@ -134,7 +134,7 @@
 }
 
 .access_form_wrap form input::placeholder {
-  font-size: 14px;
+  font-size: 17px;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--access_form_wrap_form_input_placeholder_color);
 }
