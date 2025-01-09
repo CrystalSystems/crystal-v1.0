@@ -78,7 +78,7 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   display: flex;
-  gap: 2px;
+  gap: 1px;
   justify-content: center;
   align-items: center;
   background-color: var(--filling_background-color_global);
@@ -340,7 +340,7 @@
   --modal_background_background-color: rgba(0, 0, 0, 0.516);
   --enter_background-color: #1e1e1e;
   --enter_background-color_hover: #222222;
-  --switch_modal_active_border-bottom: 2.5px solid rgb(54, 54, 54);
+  --switch_modal_active_border-bottom: 2px solid rgb(54, 54, 54);
   --access_form_wrap_form_input_background-color: #1a1a1a;
   --access_form_wrap_form_input_border: 1.5px solid transparent;
   --access_form_wrap_form_input_placeholder_color: #656565;
@@ -356,7 +356,7 @@
   --access_form_wrap_form_input_placeholder_color: #989898;
   --access_form_wrap_form_input_border: 1.5px solid rgb(230, 230, 230);
   --access_form_wrap_form_input_background-color: #ffffff;
-  --switch_modal_active_border-bottom: 2.5px solid black;
+  --switch_modal_active_border-bottom: 2px solid black;
   --modal_border: 1.1px solid rgba(229, 229, 229, 0.776);
   --modal_background_background-color: rgba(248, 249, 250, 0.13);
   --enter_background-color: white;
