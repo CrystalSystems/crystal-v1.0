@@ -98,13 +98,13 @@
 
 .switch_modal_active {
   border-bottom: var(--switch_modal_active_border-bottom) !important;
-  margin: 7px 15px;
+  margin: 7px 15px 5px 15px;
 }
 
 .access_form_wrap {
   display: flex;
   justify-content: center;
-  padding: 17px;
+  padding: 16px;
   background-color: var(--filling_background-color_global);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
