@@ -10,7 +10,7 @@ export default (req, res, next) => {
     next();
   } catch (error) {
     return res.status(403).json({
-      message: 'No access',
+      message: error
     });
   }
 };

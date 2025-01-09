@@ -31,23 +31,25 @@ export const registration = async (req, res) => {
     // JWT secret key
     const JWTSecretKey = process.env.JWT_SECRET_KEY;
     // /JWT secret key
+    // Cookie secure status
+    const CookieSecureStatus = process.env.COOKIE_SECURE_STATUS === "true";
+    // /Cookie secure status
     const token = jwt.sign(
       {
         _id: user._id,
       },
       JWTSecretKey
     );
-    res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 365 * 10 }).json({
+    res.cookie('token', token, { httpOnly: true, secure: CookieSecureStatus, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 365 * 10 }).json({
       _id: user._id,
       name: user.name,
       customId: user.customId,
       aboutMe: user.aboutMe,
       creator: user.creator
     })
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
     res.status(500).json({
-      message: "Failed to register",
+      message: error
     });
   }
 };
@@ -69,6 +71,9 @@ export const logIn = async (req, res) => {
     // JWT secret key
     const JWTSecretKey = process.env.JWT_SECRET_KEY;
     // /JWT secret key
+    // Cookie secure status
+    const CookieSecureStatus = process.env.COOKIE_SECURE_STATUS === "true";
+    // /Cookie secure status
     const token = jwt.sign(
       {
         _id: user._id
@@ -76,11 +81,11 @@ export const logIn = async (req, res) => {
       JWTSecretKey
     );
     const { passwordHash, aboutMe, email, ...userData } = user._doc;
-    res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 365 * 10 }).json({
+    res.cookie('token', token, { httpOnly: true, secure: CookieSecureStatus, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 365 * 10 }).json({
       ...userData
     })
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 };
 // /log In
@@ -92,7 +97,7 @@ export const logOut = async (req, res) => {
       message: "log out OK",
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 };
 // log Out
@@ -107,10 +112,9 @@ export const Authorization = async (req, res) => {
     }
     const { passwordHash, email, ...userData } = user._doc;
     res.json(userData);
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
     res.status(500).json({
-      message: "No access",
+      message: error
     });
   }
 };
@@ -153,7 +157,7 @@ export const editUser = async (req, res) => {
       res.json(user)
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 };
 // /edit user
@@ -197,7 +201,7 @@ export const changeUserPassword = async (req, res) => {
       return res.status(200).json({ message: "Password successfully changed" });
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 };
 // /change user password
@@ -218,7 +222,7 @@ export const deleteUserAccount = (req, res) => {
       res.status(200).json('User deleted');
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 };
 // /delete user account
@@ -227,10 +231,9 @@ export const getAllUsers = async (req, res) => {
   try {
     const users = await UserModel.find({}, "-email -passwordHash");
     res.json(users);
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
     res.status(500).json({
-      message: "Failed to get users",
+      message: error
     });
   }
 };
@@ -244,7 +247,7 @@ export const getOneUser = async (req, res) => {
     }
     return res.status(200).json(user);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 };
 // /Get one user
@@ -258,7 +261,7 @@ export const getOneUserFromUserEditPage = async (req, res) => {
     }
     return res.status(200).json(user);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 };
 // /Get one user, from user edit page

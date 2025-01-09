@@ -1,7 +1,13 @@
 module.exports = {
   apps: [{
-    name: "server",
+    name: "prodDomain",
     script: "./src/server.js",
-    node_args: '--env-file=./env/.env.prod --env-file=./env/.env',
-  }]
+    node_args: '--env-file=./env/.env.prodDomain --env-file=./env/.env',
+  },
+  {
+    name: "prodIP",
+    script: "./src/server.js",
+    node_args: '--env-file=./env/.env.prodIP --env-file=./env/.env',
+  }
+  ]
 }

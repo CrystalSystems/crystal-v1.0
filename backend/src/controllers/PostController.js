@@ -20,7 +20,7 @@ export const addPost = async (req, res) => {
     const post = await doc.save();
     res.json(post);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 };
 //add post
@@ -54,7 +54,7 @@ export const editPost = async (req, res) => {
       postId: req.params.postId,
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 };
 // /edit post
@@ -85,7 +85,7 @@ export const getOnePost = (req, res) => {
       });
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 }
 // /get one post 
@@ -102,7 +102,7 @@ export const getOnePostFromPostEditPage = async (req, res) => {
     }
     return res.status(200).json(post);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 };
 // /get one post, from post edit page 
@@ -115,7 +115,7 @@ export const getAllPosts = async (req, res) => {
   try {
     return res.status(200).json(result);
   } catch (error) {
-    res.status(500).json({ message: error.message })
+    res.status(500).json({ message: error })
   }
 };
 // /get all posts
@@ -134,7 +134,7 @@ export const getAllPostsBySpecificUserId = async (req, res) => {
   try {
     return res.status(200).json(result);
   } catch (error) {
-    res.status(500).json({ message: error.message })
+    res.status(500).json({ message: error })
   }
 };
 //  /get all posts by a specific user id
@@ -173,7 +173,7 @@ export const getAllHashtags = async (_, res) => {
   try {
     return res.status(200).json(result);
   } catch (error) {
-    res.status(500).json({ message: error.message })
+    res.status(500).json({ message: error })
   }
 };
 // /get all hashtags
@@ -187,7 +187,7 @@ export const getPostsWithSpecificHashtag = async (req, res) => {
   try {
     return res.status(200).json(result);
   } catch (error) {
-    res.status(500).json({ message: error.message })
+    res.status(500).json({ message: error })
   }
 };
 // /get posts with a specific hashtag
@@ -212,7 +212,7 @@ export const deletePost = async (req, res) => {
       });
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 };
 // /delete post
@@ -239,7 +239,7 @@ export const deleteAllPostsCurrentUser = async (req, res) => {
       });
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 };
 // /delete all posts of the current user
@@ -265,7 +265,7 @@ export const addLike = async (req, res) => {
       postId: req.params.postId,
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 };
 // /add like
@@ -284,7 +284,7 @@ export const getLikedPostsWithSpecificUser = async (req, res) => {
     const result = await PostModel.find({ "liked": userId._id.toString() }).sort({ createdAt: -1 }).populate({ path: "user", select: ["name", "customId", 'aboutMe', "creator", "avatarUrl", "createdAt", "updatedAt"] }).skip(offset).limit(limit).exec();
     return res.json(result);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 }
 // /get liked posts with a specific user

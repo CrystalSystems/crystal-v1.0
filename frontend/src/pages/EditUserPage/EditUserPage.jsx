@@ -73,12 +73,7 @@ export function EditUserPage() {
     if (serverPostsDeletedMessage) {
       setTimeout(() => {
         setServerPostsDeletedMessage(false);
-      }, "3500");
-    }
-    if (serverMessage) {
-      setTimeout(() => {
-        setServerMessage(false);
-      }, "3500");
+      }, "7500");
     }
   }, [serverPostsDeletedMessage, serverMessage]);
   // userAboutMe
@@ -188,6 +183,7 @@ export function EditUserPage() {
   const [oldPassword, setOldPassword] = useState();
   const onChangeOldPassword = (e) => {
     setOldPassword(e.target.value);
+    setServerMessage(e.target.value);
   };
   // /old password
   // new password
@@ -197,6 +193,7 @@ export function EditUserPage() {
   const [validatingNewPassword, setValidatingNewPassword] = useState();
   const newPasswordValidationRule = /^[a-zA-Z\d!@#$%^&*[\]{}()?"\\/,><':;|_~`=+-]{8,35}$/;
   const onChangeNewPassword = (e) => {
+    setServerMessage(e.target.value);
     setNewPassword(e.target.value);
     e.target.value?.match(newPasswordValidationRule) ? setValidatingNewPassword(true) : setValidatingNewPassword(false);
   };
@@ -210,7 +207,7 @@ export function EditUserPage() {
       setServerMessage(data.data.message);
       setNewPassword('');
       setOldPassword('');
-      setValidatingNewPassword(false)
+      setValidatingNewPassword(false);
       newPasswordInputRef.current.value = '';
       oldPasswordInputRef.current.value = '';
     },

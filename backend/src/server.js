@@ -18,20 +18,17 @@ const app = express();
 // cookie
 // add cookie settings
 // /application mode
-productionStatus ?
-  app.use(cors())
-  :
-  app.use(cors({ credentials: true, origin: "http://localhost:8200" }));
+app.use(cors(!productionStatus && { credentials: true, origin: "http://localhost:8200" }))
 // /application mode
 // /add cookie settings
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(cookieParser())
-// /cookie
+// /cookie 
 app.use(express.json());
-app.listen(port, (err) => {
-  err ?
-    console.log("Server error -", err) :
+app.listen(port, (error) => {
+  error ?
+    console.log("Server error -", error) :
     console.log("Server is running");
 });
 app.use(
@@ -48,5 +45,5 @@ mongoose
     "mongodb://127.0.0.1:27017/crystal"
   )
   .then(() => console.log("DB connected"))
-  .catch((err) => console.log("DB error -", err));
+  .catch((error) => console.log("DB error -", error));
 // /database Connection
