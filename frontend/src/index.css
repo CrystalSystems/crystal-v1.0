@@ -93,14 +93,12 @@ ul {
 
 /* Dark theme*/
 .dark-mode {
-  /* --scrollbar_color_global: #202020 #151515; */
   --scrollbar_color_global: #262626 #191919;
 }
 
 [data-dark-theme="true"] {
   --fill_global: #a1a1a1;
   --stroke_global: #a1a1a1;
-  /* --scrollbar_color_global: #202020 #151515; */
   --scrollbar_color_global: #262626 #191919;
   --background-color_global: black;
   --filling_background-color_global: #121212;
