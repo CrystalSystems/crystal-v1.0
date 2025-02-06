@@ -17,8 +17,9 @@ import cookieParser from 'cookie-parser'
 const app = express();
 // cookie
 // add cookie settings
-// /application mode
-app.use(cors(!productionStatus && {
+// application mode
+app.use(
+  cors(!productionStatus && {
   origin: true,
   credentials: true,
 }))
