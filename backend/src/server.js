@@ -15,8 +15,6 @@ import {
 import bodyParser from "body-parser";
 import cookieParser from 'cookie-parser'
 const app = express();
-// cookie
-// add cookie settings
 // application mode
 app.use(
   cors({
@@ -24,7 +22,7 @@ app.use(
     credentials: !productionStatus,
   }))
 // /application mode
-// /add cookie settings
+// cookie
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(cookieParser())
