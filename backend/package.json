@@ -1,10 +1,10 @@
 {
   "name": "crystal-backend",
   "version": "1.0",
-  "main": "./src/server.js",
   "author": "Andrew Shedov - https://shedov.top",
   "license": "MIT",
   "type": "module",
+  "main": "./src/server.js",
   "scripts": {
     "startDev": "node --watch --env-file=./env/.env.dev --env-file=./env/.env ./src/server.js",
     "startProdDomain": "pm2 start ecosystem.config.cjs --only prodDomain",
