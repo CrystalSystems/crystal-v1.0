@@ -19,10 +19,10 @@ const app = express();
 // add cookie settings
 // application mode
 app.use(
-  cors(!productionStatus && {
-  origin: true,
-  credentials: true,
-}))
+  cors({
+    origin: true,
+    credentials: !productionStatus,
+  }))
 // /application mode
 // /add cookie settings
 app.use(bodyParser.urlencoded({ extended: true }))
