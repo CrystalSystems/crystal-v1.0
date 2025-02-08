@@ -2,14 +2,14 @@
   "name": "crystal-backend",
   "version": "1.0",
   "main": "./src/server.js",
+  "author": "Andrew Shedov - https://shedov.top",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "startDev": "node --watch --env-file=./env/.env.dev --env-file=./env/.env ./src/server.js",
     "startProdDomain": "pm2 start ecosystem.config.cjs --only prodDomain",
     "startProdIP": "pm2 start ecosystem.config.cjs --only prodIP"
   },
-  "author": "Andrew Shedov - https://shedov.top",
-  "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.7",
