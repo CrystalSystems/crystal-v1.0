@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 mongoose.set('strictQuery', true);
-const port = 4444;
+const port = 3000;
 import {
   postRoutes,
   userRoutes,
