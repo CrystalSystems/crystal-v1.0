@@ -355,8 +355,7 @@ export function AccessModal() {
                       </div>
                     </div>
                     <div className={styles.access_input_errors_wrap}>
-                      <input
-                        autoComplete="off"
+                    <input
                         key='idRegistration'
                         {...registration("customId")}
                         label="Id"
