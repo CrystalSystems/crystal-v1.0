@@ -356,11 +356,12 @@ export function AccessModal() {
                     </div>
                     <div className={styles.access_input_errors_wrap}>
                       <input
+                        autoComplete="off"
                         key='idRegistration'
                         {...registration("customId")}
-                        label={"Id"}
+                        label="Id"
                         type="text"
-                        placeholder={"Id"}
+                        placeholder="Id"
                       />
                       <div className={styles.access_input_errors}>
                         {errorsRegistration.customId && (
