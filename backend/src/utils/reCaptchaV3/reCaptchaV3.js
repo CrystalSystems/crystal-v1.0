@@ -18,10 +18,10 @@ export function reCaptchaV3 (req, res, next) {
     if (err) { console.log(err); }
     body = JSON.parse(body);
     if (!body.success && body.success === undefined) {
-      return res.json({ "success": false, "msg": "Failed reCAPTCHA v3 verification" });
+      return res.status(403).json({ "success": false, "msg": "Failed reCAPTCHA v3 verification" });
     }
     else if (body.score < 0.5) {
-      return res.json({ "success": false, "msg": "Registration error, possibly a bot detected", "score": body.score });
+      return res.status(403).json({ "success": false, "msg": "Registration error, possibly a bot detected", "score": body.score });
     }
     next();
   })
