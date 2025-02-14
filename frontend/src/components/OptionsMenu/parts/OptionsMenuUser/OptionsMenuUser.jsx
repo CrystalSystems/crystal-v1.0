@@ -113,6 +113,8 @@ export function OptionsMenuUser() {
       setShowUserMenuList(false);
       queryClient.invalidateQueries({ queryKey: ["Posts"] });
       queryClient.invalidateQueries({ queryKey: ["Users"] });
+      queryClient.removeQueries({ queryKey: ["Posts"] });
+      queryClient.removeQueries({ queryKey: ["Users"] });
     },
     onError: (error) => {
       console.log(error);

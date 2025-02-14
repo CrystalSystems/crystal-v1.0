@@ -195,15 +195,6 @@ export function EditPostPage() {
     titleValueDatabase !== title ||
     textValueDatabase !== text ||
     changeImageCheck;
-  // useEffect(() => {
-  //   // postDataQuery.refetch();
-  //   // dispatch(updateAllRequestCounter());
-  //   // setDatabaseImageUrl(null)
-  //   // setDatabaseImageUrlEditing(null)
-  //   // setFileImagePreviewUrl(null)
-  //   // setText(undefined)
-  //   // setTitle(undefined)
-  // }, [postId]);
   if (postDataQuery.error?.response.data.message === "No access") {
     return <Navigate to="/" />;
   }
@@ -220,17 +211,17 @@ export function EditPostPage() {
       {postDataQuery.status === "success" && (
         <>
           {(databaseImageUrl || fileImagePreviewUrl) && (
-              <div className={styles.image_preview}>
-                <img alt="" src={fileImagePreviewUrl || databaseImageUrl} />
-              </div>
+            <div className={styles.image_preview}>
+              <img alt="" src={fileImagePreviewUrl || databaseImageUrl} />
+            </div>
           )}
           {imagePreviewLoadingStatus && (
-        <div className={styles.image_preview_loading_bar_wrap}>
-          <div className={styles.image_preview_loading_bar}>
-            <LoadingBar value={imagePreviewLoadingStatus} />
-          </div>
-        </div>
-      )}
+            <div className={styles.image_preview_loading_bar_wrap}>
+              <div className={styles.image_preview_loading_bar}>
+                <LoadingBar value={imagePreviewLoadingStatus} />
+              </div>
+            </div>
+          )}
           {imagePreviewLoadingStatusError && (
             <div
               className={styles.image_preview_loading_status_error_wrap}
