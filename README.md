@@ -19,6 +19,5 @@ This version has basic social networking features and you can deploy and test it
 
 https://github.com/user-attachments/assets/7d5421db-4af1-48b0-8819-6120c2a55e6b
 
-[CRYSTAL](https://crysty.ru/) | [shedov.top](https://shedov.top/) | [Discord](https://discord.gg/ENB7RbxVZE)
-
+[shedov.top](https://shedov.top/) | [CRYSTAL](https://crysty.ru/) | [Discord](https://discord.gg/ENB7RbxVZE) | [Telegram](https://t.me/ShedovChannel) | [X](https://x.com/AndrewShedov) | [YouTube](https://www.youtube.com/@AndrewShedov) | [VK](https://vk.com/shedovclub) | [VK Video](https://vkvideo.ru/@shedovclub)
 
