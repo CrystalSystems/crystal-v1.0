@@ -1,5 +1,4 @@
-![Screenshot 2025-03-01 031101](https://github.com/user-attachments/assets/23a13658-5c36-4fec-81f0-efe0a9264764)
-
+[<img src="https://shedov.top/ru/wp-content/images/logo_crystal-v1.0_github.webp">](https://shedov.top/description-and-capabilities-of-crystal-v1-0/)
 [![Discord](https://img.shields.io/discord/1006372235172384849?style=for-the-badge&logo=5865F2&logoColor=black&labelColor=black&color=%23f3f3f3
 )](https://discord.gg/ENB7RbxVZE)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge&logo=5865F2&logoColor=black&labelColor=black&color=%23f3f3f3)](https://github.com/CrystalSystems/crystal-v1.0/blob/main/LICENSE)
