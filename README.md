@@ -7,7 +7,7 @@
 
 This is a fully functional and complete code - [CRYSTAL v1.0](https://shedov.top/description-and-capabilities-of-crystal-v1-0/), in the stack - MERN.<br/>
 This version has basic social networking features and you can deploy and test it on your [local PC](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-a-local-pc/) or on [VPC](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-vpc-and-setting-up-access-to-the-site-via-public-ip/) by following the relevant instructions from the documentation.<br/>
-[More about the CRYSTAL project.](https://shedov.top/about-the-crystal-project/)<br/>
+[More about](https://shedov.top/about-the-crystal-project/) the CRYSTAL project.<br/>
 Structure of the CRYSTAL v1.0 project:<br/>
 MongoDB v8.0.4.<br/>
 Express.js v4.21.2.<br/>
