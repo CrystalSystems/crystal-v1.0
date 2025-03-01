@@ -16,7 +16,7 @@ Node.js v23.6.1.<br/>
 Yarn v1.22.22<br/>
 Vite v6.1.0.<br/>
 
-[Documentation:](https://shedov.top/documentation-crystal/)<br/>
+[Documentation:](https://shedov.top/documentation-crystal/)
 1. [Description and capabilities.](https://shedov.top/description-and-capabilities-of-crystal-v1-0/)<br/>
 2. [Instructions for deployment on a local PC.](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-a-local-pc/)<br/>
 3. [Instructions for deployment on VPC and setting up access to the site via public IP.](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-vpc-and-setting-up-access-to-the-site-via-public-ip/)<br/>
