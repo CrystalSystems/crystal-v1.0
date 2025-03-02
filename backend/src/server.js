@@ -44,7 +44,7 @@ app.use("/uploads/", express.static("uploads/"));
 // database Connection
 mongoose
   .connect(
-    "mongodb://127.0.0.1:27017/crystal"
+    "mongodb://127.0.0.1:27017/crystal2"
   )
   .then(() => console.log("DB connected"))
   .catch((error) => console.log("DB error -", error));

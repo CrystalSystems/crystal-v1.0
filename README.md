@@ -13,7 +13,7 @@ MongoDB v8.0.4.<br/>
 Express.js v4.21.2.<br/>
 React v19.0.0.<br/>
 Node.js v23.6.1.<br/>
-Yarn v1.22.22<br/>
+PNPM v10.5.2.<br/>
 Vite v6.1.0.<br/>
 
 [Documentation:](https://shedov.top/documentation-crystal/)<br/>

@@ -9,7 +9,7 @@ export function AboutCrystal() {
         <>
           <h1>О CRYSTAL</h1>
           <p>
-            CRYSTAL - это социальная сеть с <a href="https://github.com/CrystalSystems" target="_blank" rel="noopener" aria-label="ссылка на исходный код CRYSTAL">открытым</a> исходным кодом, находящаяся в стадии разработки. Постепенно будут появляться новые функции: личные сообщения, комментарии, фото/видео альбомы, поиск и т.д. На заключительных этапах разработки, будут добавлены уникальные возможности, которых нет в других социальных сетях.
+            CRYSTAL - это социальная сеть с <a href="https://github.com/CrystalSystems" target="_blank" rel="noreferrer" aria-label="ссылка на исходный код CRYSTAL">открытым</a> исходным кодом, находящаяся в стадии разработки. Постепенно будут появляться новые функции: личные сообщения, комментарии, фото/видео альбомы, поиск и т.д. На заключительных этапах разработки, будут добавлены уникальные возможности, которых нет в других социальных сетях.
           </p>
           <p>
             Следите за проектом и оставляйте коммментарии в <Link
@@ -27,7 +27,7 @@ export function AboutCrystal() {
         <>
           <h1>About CRYSTAL</h1>
           <p>
-            CRYSTAL - is an <a href="https://github.com/CrystalSystems" target="_blank" rel="noopener" aria-label="link to crystal source code">open</a> source social network under development. New functions will gradually appear: personal messages, comments, photo/video albums, search, etc. At the final stages of development, unique features that are not available in other social networks will be added.
+            CRYSTAL - is an <a href="https://github.com/CrystalSystems" target="_blank" rel="noreferrer" aria-label="link to crystal source code">open</a> source social network under development. New functions will gradually appear: personal messages, comments, photo/video albums, search, etc. At the final stages of development, unique features that are not available in other social networks will be added.
           </p>
           <p>
             Follow the project and leave comments on <Link
