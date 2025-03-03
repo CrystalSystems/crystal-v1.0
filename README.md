@@ -18,13 +18,13 @@ PNPM v10.5.2.<br/>
 Vite v6.1.0.<br/>
 
 [Documentation:](https://shedov.top/documentation-crystal/)<br/>
-1. [Description and capabilities.](https://shedov.top/description-and-capabilities-of-crystal-v1-0/)<br/>
-2. [Instructions for deployment on a local PC.](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-a-local-pc/)<br/>
-3. [Instructions for deployment on VPC and setting up access to the site via public IP.](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-vpc-and-setting-up-access-to-the-site-via-public-ip/)<br/>
-4. [Connecting a domain.](https://shedov.top/connecting-a-domain-to-the-crystal-v1-0-project/)<br/>
-5. [Installation and configuration of automatic renewal, free SSL certificate – Let’s Encrypt.](https://shedov.top/installation-and-configuration-of-automatic-renewal-free-lets-encrypt-ssl-certificate-for-a-domain-on-the-crystal-v1-0-project/)<br/>
-6. [Configuring Nginx with security in mind.](https://shedov.top/configuring-nginx-server-with-security-in-mind-on-the-crystal-v1-0-project//)<br/>
-7. [Installing reCAPTCHA v3.](https://shedov.top/installing-recaptcha-v3-on-the-crystal-v1-0-project/)<br/>
+[1. Description and capabilities.](https://shedov.top/description-and-capabilities-of-crystal-v1-0/)<br/>
+[2. Instructions for deployment on a local PC.](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-a-local-pc/)<br/>
+[3. Instructions for deployment on VPC and setting up access to the site via public IP.](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-vpc-and-setting-up-access-to-the-site-via-public-ip/)<br/>
+[4. Connecting a domain.](https://shedov.top/connecting-a-domain-to-the-crystal-v1-0-project/)<br/>
+[5. Installation and configuration of automatic renewal, free SSL certificate – Let’s Encrypt.](https://shedov.top/installation-and-configuration-of-automatic-renewal-free-lets-encrypt-ssl-certificate-for-a-domain-on-the-crystal-v1-0-project/)<br/>
+[6. Configuring Nginx with security in mind.](https://shedov.top/configuring-nginx-server-with-security-in-mind-on-the-crystal-v1-0-project//)<br/>
+[7. Installing reCAPTCHA v3.](https://shedov.top/installing-recaptcha-v3-on-the-crystal-v1-0-project/)<br/>
 
 
 https://github.com/user-attachments/assets/7d5421db-4af1-48b0-8819-6120c2a55e6b
@@ -32,4 +32,3 @@ https://github.com/user-attachments/assets/7d5421db-4af1-48b0-8819-6120c2a55e6b
 [More](https://shedov.top/about-the-crystal-project/) about the CRYSTAL project.<br/>
 
 [CRYSTAL](https://crysty.ru/) | [Shedov.top](https://shedov.top/) | [Discord](https://discord.gg/ENB7RbxVZE) | [Telegram](https://t.me/ShedovChannel) | [X](https://x.com/AndrewShedov) | [VK](https://vk.com/shedovclub) | [VK Video](https://vkvideo.ru/@shedovclub) | [YouTube](https://www.youtube.com/@AndrewShedov)
-
