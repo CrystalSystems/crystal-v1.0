@@ -74,7 +74,7 @@ ul {
   font-family: "OpenSans";
   src:
     local("OpenSans"),
-    url("./fonts/OpenSans/OpenSans-Light.ttf") format("truetype");
+    url("/fonts/OpenSans/OpenSans-Light.ttf") format("truetype");
 }
 
 .grecaptcha-badge {
