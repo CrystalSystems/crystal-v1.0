@@ -539,7 +539,7 @@ export function UserInformation() {
                     return <Link key={index} to={`/hashtag/${str.slice(1)}`}>{str} </Link>;
                   }
                   if (str.startsWith('http')) {
-                    return <Link key={index} to={`${str.slice(0)}`} target="_blank">{str.slice(8).replace("/", "") + ' '}</Link>;
+                    return <Link key={index} to={`${str.slice(0)}`} target="_blank" rel="noreferrer noopener">{str.slice(8).replace("/", "") + ' '}</Link>;
                   }
                   return str + " ";
                 })}</p>

@@ -260,7 +260,7 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
                 }
                 if (str.startsWith('http')) {
                   return (
-                    <Link key={index} to={`${str.slice(0)}`} target="_blank">
+                    <Link key={index} to={`${str.slice(0)}`} target="_blank" rel="noreferrer noopener">
                       {str.slice(8) + ' '}
                     </Link>
                   );
@@ -284,7 +284,7 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
                 }
                 if (str.startsWith('http')) {
                   return (
-                    <Link key={index} to={`${str.slice(0)}`} target="_blank">
+                    <Link key={index} to={`${str.slice(0)}`} target="_blank" rel="noreferrer noopener">
                       {str.slice(8) + ' '}
                     </Link>
                   );

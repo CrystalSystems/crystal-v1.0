@@ -28,7 +28,7 @@ export function CurrentTopics() {
       }),
     retry: false,
   });
-  const hashtagsData = userIsAuthorizedСheck ? topicsQuery.data?.slice(0, 7) : topicsQuery.data?.slice(0, 10);
+  const hashtagsData = userIsAuthorizedСheck ? topicsQuery.data?.slice(0, 5) : topicsQuery.data?.slice(0, 5);
   const { t } = useTranslation();
   // Formatting a long number
   const formattingLongNumber = Intl.NumberFormat('en', {
