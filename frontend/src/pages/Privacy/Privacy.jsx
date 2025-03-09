@@ -353,12 +353,13 @@ export function Privacy() {
           </p>
           <h2>
             8. Порядок сбора, хранения, передачи и других видов обработки
-            персональных данных Безопасность персональных данных, которые
+            персональных данных.</h2>
+            <p>Безопасность персональных данных, которые
             обрабатываются Оператором, обеспечивается путем реализации
             правовых, организационных и технических мер, необходимых для
             выполнения в полном объеме требований действующего
             законодательства в области защиты персональных данных.
-          </h2>
+            </p>
           <p>
             8.1. Оператор обеспечивает сохранность персональных данных и
             принимает все возможные меры, исключающие доступ к персональным
@@ -462,12 +463,12 @@ export function Privacy() {
             сведения.
           </p>
           <h2>
-            11. Конфиденциальность персональных данных Оператор и иные лица,
+            11. Конфиденциальность персональных данных.</h2>
+            <p>Оператор и иные лица,
             получившие доступ к персональным данным, обязаны не раскрывать
             третьим лицам и не распространять персональные данные без
             согласия субъекта персональных данных, если иное не
-            предусмотрено федеральным законом.
-          </h2>
+            предусмотрено федеральным законом.</p>   
           <h2>12. Заключительные положения</h2>
           <p>
             12.1. Пользователь может получить любые разъяснения по
@@ -926,12 +927,12 @@ export function Privacy() {
             whom cross-border transfer of personal data is planned.
           </p>
           <h2>
-            11. Confidentiality of personal data The operator and other
+            11. Confidentiality of personal data.</h2>
+            <p>The operator and other
             persons who have access to personal data are obliged not to
             disclose to third parties or distribute personal data without
             the consent of the subject of personal data, unless otherwise
-            provided by federal law.
-          </h2>
+            provided by federal law.</p>
           <h2>12. Final provisions</h2>
           <p>
             12.1. The User can receive any clarification on issues of
