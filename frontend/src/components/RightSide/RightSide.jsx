@@ -8,7 +8,7 @@ import styles from "./RightSide.module.css";
 export function RightSide() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   // Checking user authorization
-  const userIsAuthorizedСheck = window.localStorage.getItem("logIn");
+  const userIsAuthorizedСheck = useSelector((state) => state.logInStatus)
   // /Checking user authorization
   return (
     <div

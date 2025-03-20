@@ -13,10 +13,10 @@ import { useQuery } from "@tanstack/react-query";
 import { setShowAccessModal } from '../../features/accessModal/accessModalSlice';
 import styles from "./CurrentTopics.module.css";
 export function CurrentTopics() {
-  const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const dispatch = useDispatch();
+  const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   // Checking user authorization
-  const userIsAuthorizedСheck = window.localStorage.getItem("logIn");
+  const userIsAuthorizedСheck = useSelector((state) => state.logInStatus)
   // /Checking user authorization
   const { changesAddressBar } = useParams();
   const topicsQuery = useQuery({

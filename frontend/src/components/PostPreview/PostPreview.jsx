@@ -33,9 +33,13 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
   const postImage = baseURL + postData.imageUrl;
   const queryClient = useQueryClient();
   // Checking user authorization
-  const userIsAuthorizedСheck = window.localStorage.getItem("logIn");
+  const userIsAuthorizedСheck = useSelector((state) => state.logInStatus)
   // /Checking user authorization
-  const authorizedUserData = JSON.parse(window.localStorage.getItem('authorizedUserData'));
+
+  // AuthorizedUser
+  const AuthorizedUser = queryClient.getQueryState(['Authorization'])
+  // /AuthorizedUser
+
   // Menu - post options
   const menuPostOptions = useRef();
   const [showMenuPostOptions, setShowMenuPostOptions] = useState(false);
@@ -117,13 +121,13 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
   const [userLikedStatus, setUserLikedStatus] = useState();
   useEffect(() => {
     setNumberLiked(postData.post?.liked?.length);
-    setUserLiked(postData.post?.liked?.find((like) => like === authorizedUserData?._id));
+    setUserLiked(postData.post?.liked?.find((like) => like === AuthorizedUser?.data?._id));
     setUserLikedStatus(true);
-    if (!authorizedUserData?._id) {
+    if (!AuthorizedUser?.data?._id) {
       setUserLikedStatus(true);
       setUserLiked(false);
     }
-  }, [postData.post, authorizedUserData?._id]);
+  }, [postData.post, AuthorizedUser?.data?._id]);
   const onClickAddLike = async () => {
     if (userLiked) {
       setNumberLiked(numberLiked - 1);
@@ -133,7 +137,7 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
       setUserLiked(true);
     }
     const fields = {
-      userId: authorizedUserData?._id,
+      userId: AuthorizedUser?.data?._id,
     };
     await requestManager.patch(`/post/add/like/${postData.postId}`, fields);
   };
@@ -222,17 +226,17 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
               }}
             >
               <ul>
-                {((postData.post.user?._id === authorizedUserData?._id && postData.post?.user?._id !== undefined) ||
-                  authorizedUserData?.creator) && (
+                {((postData.post.user?._id === AuthorizedUser?.data?._id && postData.post?.user?._id !== undefined) ||
+                  AuthorizedUser?.data?.creator) && (
                     <>
                       <li>
-                      {t('PostPreview.EditPost')}
+                        {t('PostPreview.EditPost')}
                         <Link to={'/post/edit/' + postData.postId}></Link>
                       </li>
                       <li onClick={onClickDeletePost}>{t('PostPreview.DeletePost')}</li>
                     </>
                   )}
-                {(postData.post.user?._id !== authorizedUserData?._id && authorizedUserData?.creator) && (
+                {(postData.post.user?._id !== AuthorizedUser?.data?._id && AuthorizedUser?.data?.creator) && (
                   <>
                     <li onClick={onClickDeleteAllPosts}>
                       {t('PostPreview.DeleteAllUserPosts')}
@@ -330,7 +334,7 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
                 </button>
                 <div className={styles.like_wrap}>
                   <button
-                    onClick={authorizedUserData ?
+                    onClick={AuthorizedUser?.data ?
                       onClickAddLike
                       :
                       null}

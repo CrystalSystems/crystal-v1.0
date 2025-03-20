@@ -2,13 +2,16 @@ import {
   useState,
   useEffect
 } from "react";
+import {
+  useSelector
+} from 'react-redux';
 import { Link } from "react-router-dom";
 import { CrystalIcon } from "../SvgIcons";
 import styles from "./HeaderMobile.module.css";
 import { OptionsMenu } from "../";
 export function HeaderMobile() {
   // Checking user authorization
-  const userIsAuthorizedСheck = window.localStorage.getItem("logIn");
+  const userIsAuthorizedСheck = useSelector((state) => state.logInStatus)
   // /Checking user authorization
   const [showLogo, setShowLogo] = useState(true);
   useEffect(() => {

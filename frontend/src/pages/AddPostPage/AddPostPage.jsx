@@ -19,7 +19,7 @@ import styles from "./AddPostPage.module.css";
 export function AddPostPage() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   // Checking user authorization
-  const userIsAuthorizedСheck = window.localStorage.getItem("logIn");
+  const userIsAuthorizedСheck = useSelector((state) => state.logInStatus)
   // /Checking user authorization
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ export function AddPostPage() {
   // Compressed post image preview
   // Preview image loading and error status
   const [imagePreviewLoadingStatus, setImagePreviewLoadingStatus] =
-    useState(false);  
+    useState(false);
   const [imagePreviewLoadingStatusError, setImagePreviewLoadingStatusError] =
     useState(false);
   useEffect(() => {

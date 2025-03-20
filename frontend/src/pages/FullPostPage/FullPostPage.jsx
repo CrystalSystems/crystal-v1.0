@@ -33,10 +33,14 @@ import styles from './FullPostPage.module.css';
 export function FullPostPage() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   // Checking user authorization
-  const userIsAuthorizedСheck = window.localStorage.getItem("logIn");
+  const userIsAuthorizedСheck = useSelector((state) => state.logInStatus)
   // /Checking user authorization
-  const authorizedUserData = JSON.parse(window.localStorage.getItem('authorizedUserData'));
   const queryClient = useQueryClient();
+
+  // AuthorizedUser
+  const AuthorizedUser = queryClient.getQueryState(['Authorization'])
+  // /AuthorizedUser
+
   const navigateTo = useNavigate();
   const dispatch = useDispatch();
   const [userId, setUserId] = useState();
@@ -67,14 +71,14 @@ export function FullPostPage() {
     setUserId(Post?.data?.user?.customId);
     if (Post.status === 'success') {
       setNumberLiked(Post?.data?.liked?.length);
-      setUserLiked(Post?.data?.liked?.find((like) => like === authorizedUserData?._id));
+      setUserLiked(Post?.data?.liked?.find((like) => like === AuthorizedUser?.data?._id));
       setUserLikedStatus(true);
     }
-    if (!authorizedUserData?._id) {
+    if (!AuthorizedUser?.data?._id) {
       setUserLikedStatus(true);
       setUserLiked(false);
     }
-  }, [Post.data, Post.status, authorizedUserData?._id]);
+  }, [Post.data, Post.status, AuthorizedUser?.data?._id]);
   const onClickAddLike = async () => {
     if (userLiked) {
       setNumberLiked(numberLiked - 1);
@@ -84,7 +88,7 @@ export function FullPostPage() {
       setUserLiked(true);
     }
     const fields = {
-      userId: authorizedUserData?._id,
+      userId: AuthorizedUser?.data?._id,
     };
     await requestManager.patch(`/post/add/like/${postId}`, fields);
   };
@@ -156,6 +160,7 @@ export function FullPostPage() {
   if (Post.status === 'pending') {
     return null;
   }
+
   return (
     <>
       {Post.status === 'error' && <NotFoundPage />}
@@ -243,8 +248,8 @@ export function FullPostPage() {
                 }}
               >
                 <ul>
-                  {((Post?.data.user?._id === authorizedUserData?._id && Post?.data?.user?._id !== undefined) ||
-                    authorizedUserData?.creator) && (
+                  {((Post?.data.user?._id === AuthorizedUser.data._id && Post?.data?.user?._id !== undefined) ||
+                    AuthorizedUser.data.creator) && (
                       <>
                         <li>
                           {t('FullPostPage.EditPost')}
@@ -253,7 +258,7 @@ export function FullPostPage() {
                         <li onClick={onClickDeletePost}>{t('FullPostPage.DeletePost')}</li>
                       </>
                     )}
-                  {Post?.data?.user?._id !== authorizedUserData?._id && authorizedUserData?.creator && (
+                  {Post?.data?.user?._id !== AuthorizedUser.data._id && AuthorizedUser.data.creator && (
                     <>
                       <li onClick={onClickDeleteAllPosts}>
                         {t('FullPostPage.DeleteAllUserPosts')}
@@ -354,7 +359,7 @@ export function FullPostPage() {
                   </button>
                   <div className={styles.like_wrap}>
                     <button
-                      onClick={authorizedUserData ?
+                      onClick={AuthorizedUser.data ?
                         onClickAddLike
                         :
                         null}

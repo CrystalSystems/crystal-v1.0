@@ -68,22 +68,17 @@ export function OptionsMenuUser() {
   };
   const queryClient = useQueryClient();
   const userMenuListRef = useRef();
-  // Authorized user data
-  const userAuthorizedData = JSON.parse(
-    window.localStorage.getItem("authorizedUserData"),
-  );
-  // /Authorized user data
-  const Authorization = queryClient.getQueryState(['Authorization'])
+
+  // AuthorizedUser
+  const AuthorizedUser = queryClient.getQueryState(['Authorization'])
+  // /AuthorizedUser
+
   // Сhange avatar in another browser, if it is updated, in the current browser
   useEffect(() => {
-    if (Authorization.status === 'success') {
-      window.localStorage.setItem(
-        "authorizedUserData",
-        JSON.stringify(Authorization?.data)
-      );
-      queryClient.invalidateQueries({ queryKey: ['Authorization'] });
+    if (AuthorizedUser.status === 'success') {
+      queryClient.invalidateQueries({ queryKey: ['AuthorizedUser'] });
     }
-  }, [queryClient, Authorization?.data, Authorization.status]);
+  }, [queryClient, AuthorizedUser?.data, AuthorizedUser.status]);
   // /Сhange avatar in another browser, if it is updated, in the current browser
   const [showSearchIcon, setShowSearchIcon] = useState(false);
   const [fadeOutUserMenuList, setFadeOutUserMenuList] = useState(false);
@@ -108,7 +103,6 @@ export function OptionsMenuUser() {
     onSuccess: () => {
       dispatch(setlogInStatus(false));
       window.localStorage.removeItem("logIn");
-      window.localStorage.removeItem("authorizedUserData");
       setFadeOutUserMenuList(false);
       setShowUserMenuList(false);
       queryClient.invalidateQueries({ queryKey: ["Posts"] });
@@ -152,6 +146,11 @@ export function OptionsMenuUser() {
       dispatch(setShowSideMenuMobileBackground(true));
     }
   };
+
+  if (!AuthorizedUser.data) {
+    return null
+  }
+
   return (
     <div
       className={styles.options_menu_user} data-options-menu-user-dark-theme={darkThemeStatus}>
@@ -187,10 +186,12 @@ export function OptionsMenuUser() {
       <button className={styles.user_menu}
         onClick={() => onClickShowUserMenuList(!showUserMenuList)}
       >
-        {userAuthorizedData?.avatarUrl ? (
+        {AuthorizedUser.data.
+          avatarUrl ? (
           <div className={styles.user_avatar}>
             <img
-              src={baseURL + userAuthorizedData?.avatarUrl}
+              src={baseURL + AuthorizedUser.data.
+                avatarUrl}
               alt="user avatar"
             />
           </div>
@@ -219,17 +220,17 @@ export function OptionsMenuUser() {
             onClick={() => setFadeOutUserMenuList(true)}
             className={styles.user_menu_list_user_name_user_custom_id_wrap}
           >
-            {userAuthorizedData?.name && (
+            {AuthorizedUser.data.name && (
               <div className={styles.user_menu_list_user_name}>
-                <p>{userAuthorizedData?.name}</p>
-                {userAuthorizedData?.creator && <CrystalIcon />}
+                <p>{AuthorizedUser.data.name}</p>
+                {AuthorizedUser.data.creator && <CrystalIcon />}
               </div>
             )
             }
             <div className={styles.user_menu_list_user_custom_id}>
-              <p>@{userAuthorizedData?.customId}</p>
+              <p>@{AuthorizedUser.data.customId}</p>
             </div>
-            <Link to={`/${userAuthorizedData?.customId}`}></Link>
+            <Link to={`/${AuthorizedUser.data.customId}`}></Link>
           </div>
           <nav>
             <ul>
@@ -240,7 +241,7 @@ export function OptionsMenuUser() {
               >
                 <UserIcon />
                 {t("OptionsMenuUser.MyProfile")}
-                <Link to={`/${userAuthorizedData?.customId}`}></Link>
+                <Link to={`/${AuthorizedUser.data.customId}`}></Link>
               </li>
               <li className={styles.user_menu_list_item_lang} onClick={() => changeLang()}>
                 <LanguageIcon />

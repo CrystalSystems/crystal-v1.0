@@ -7,6 +7,9 @@ import {
   useDispatch,
   useSelector
 } from "react-redux";
+import {
+  useQueryClient
+} from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import {
   setShowSideMenuMobile,
@@ -28,9 +31,12 @@ import {
   DocumentationIcon,
 } from "../../components/SvgIcons";
 export function SideMenuMobile() {
-  const authorizedUserData = JSON.parse(
-    window.localStorage.getItem("authorizedUserData"),
-  );
+  const queryClient = useQueryClient();
+
+  // AuthorizedUser
+  const AuthorizedUser = queryClient.getQueryState(['Authorization'])
+  // /AuthorizedUser
+
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { showSideMenuMobile, sideMenuMobileFadeOut } = useSelector(
@@ -58,6 +64,9 @@ export function SideMenuMobile() {
       : (document.body.style.overflow = "auto");
   }, [showSideMenuMobile]);
   // /hide body scroll when opening menu
+  if (!AuthorizedUser.data) {
+    return null
+  }
   return (
     <>
       {showSideMenuMobile && (
@@ -84,42 +93,42 @@ export function SideMenuMobile() {
               <li className={styles.user}>
                 <UserIcon />
                 {t("SideMenuMobile.MyProfile")}
-                <Link to={"/" + authorizedUserData?.customId}></Link>
+                <Link to={"/" + AuthorizedUser.data.customId}></Link>
               </li>
               <li className={styles.messages}>
                 <MessagesIcon />
                 {t("SideMenuMobile.Messages")}
-                <Link to={"/" + authorizedUserData?.customId}></Link>
+                <Link to={"/" + AuthorizedUser.data.customId}></Link>
               </li>
               <li className={styles.friends}>
                 <FriendsIcon />
                 {t("SideMenuMobile.Friends")}
-                <Link to={"/" + authorizedUserData?.customId}></Link>
+                <Link to={"/" + AuthorizedUser.data.customId}></Link>
               </li>
               <li className={styles.groups}>
                 <GroupsIcon />
                 {t("SideMenuMobile.Communities")}
-                <Link to={"/" + authorizedUserData?.customId}></Link>
+                <Link to={"/" + AuthorizedUser.data.customId}></Link>
               </li>
               <li className={styles.photo}>
                 <PhotosIcon />
                 {t("SideMenuMobile.Photo")}
-                <Link to={"/" + authorizedUserData?.customId}></Link>
+                <Link to={"/" + AuthorizedUser.data.customId}></Link>
               </li>
               <li className={styles.video}>
                 <VideosIcon />
                 {t("SideMenuMobile.Video")}
-                <Link to={"/" + authorizedUserData?.customId}></Link>
+                <Link to={"/" + AuthorizedUser.data.customId}></Link>
               </li>
               <li className={styles.like}>
                 <LikeIcon />
                 {t("SideMenuMobile.Liked")}
-                <Link to={"/liked/" + authorizedUserData?.customId}></Link>
+                <Link to={"/liked/" + AuthorizedUser.data.customId}></Link>
               </li>
               <li className={styles.bookmark}>
                 <BookmarkIcon />
                 {t("SideMenuMobile.Bookmarks")}
-                <Link to={"/" + authorizedUserData?.customId}></Link>
+                <Link to={"/" + AuthorizedUser.data.customId}></Link>
               </li>
               <li className={styles.crystal}>
                 <CrystalIcon />

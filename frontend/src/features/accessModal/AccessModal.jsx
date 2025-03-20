@@ -128,14 +128,10 @@ export function AccessModal() {
     mutationFn: async (values) => {
       return requestManager.post("/login", values);
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       dispatch(setShowAccessModal(false));
       dispatch(setlogInStatus(true));
       window.localStorage.setItem("logIn", true);
-      window.localStorage.setItem(
-        "authorizedUserData",
-        JSON.stringify(data.data)
-      );
       logInFormReset();
       queryClient.invalidateQueries({
         queryKey: ["Authorization"],
@@ -172,16 +168,12 @@ export function AccessModal() {
     mutationFn: async (values) => {
       return requestManager.post("/registration", values);
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       dispatch(setShowAccessModal(false));
       dispatch(setSwitchAccessModal(true));
       registrationFormReset();
       dispatch(setlogInStatus(true));
       window.localStorage.setItem("logIn", true);
-      window.localStorage.setItem(
-        "authorizedUserData",
-        JSON.stringify(data.data)
-      );
       queryClient.invalidateQueries({
         queryKey: ["Users"],
       });
@@ -355,7 +347,7 @@ export function AccessModal() {
                       </div>
                     </div>
                     <div className={styles.access_input_errors_wrap}>
-                    <input
+                      <input
                         key='idRegistration'
                         {...registration("customId")}
                         label="Id"

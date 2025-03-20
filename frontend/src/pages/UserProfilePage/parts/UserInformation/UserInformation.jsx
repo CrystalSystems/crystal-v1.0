@@ -35,10 +35,14 @@ import styles from "./UserInformation.module.css";
 export function UserInformation() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   // Checking user authorization
-  const userIsAuthorizedСheck = window.localStorage.getItem("logIn");
+  const userIsAuthorizedСheck = useSelector((state) => state.logInStatus)
   // /Checking user authorization
-  const userAuthorizedData = JSON.parse(window.localStorage.getItem("authorizedUserData"))
   const queryClient = useQueryClient();
+
+  // AuthorizedUser
+  const AuthorizedUser = queryClient.getQueryState(['Authorization'])
+  // /AuthorizedUser
+
   const { t } = useTranslation();
   // user options, menu 
   const menuUserOptions = useRef();
@@ -71,9 +75,8 @@ export function UserInformation() {
   // /Closing a menu when clicking outside its field
   // /user options, menu
   const { userId } = useParams();
-  const authorizedUserData = JSON.parse(window.localStorage.getItem('authorizedUserData'));
   // Checking the access rights of an authorized user
-  const authorizedUserAccessCheck = (authorizedUserData?.creator || (authorizedUserData?.customId === userId));
+  const authorizedUserAccessCheck = (AuthorizedUser?.data?.creator || (AuthorizedUser?.data?.customId === userId));
   // /Checking the access rights of an authorized user
   // Checking whether the user has posts
   const [userHavePosts, setUserHavePost] = useState(false);
@@ -166,12 +169,12 @@ export function UserInformation() {
     const file = fileAvatar;
     const fileType = `users/images`;
     formData.append("image", file);
-    (!databaseHaveAvatar && !fileAvatar) ? await requestManager.patch('/user/edit/' + userId, fields).then((response) => {
+    (!databaseHaveAvatar && !fileAvatar) ? await requestManager.patch('/user/edit/' + userId, fields).then(() => {
       queryClient.invalidateQueries({ queryKey: ['Users'] });
       queryClient.invalidateQueries({ queryKey: ['Posts'] });
       queryClient.invalidateQueries({ queryKey: ['Authorization'] });
-      if (userId === userAuthorizedData.customId) {
-        window.localStorage.setItem('authorizedUserData', JSON.stringify(response.data));
+      if (userId === AuthorizedUser?.data?.customId) {
+        queryClient.invalidateQueries({ queryKey: ['AuthorizedUser'] });
       }
     }) : await requestManager.post('/user/add/image/' + userId, formData, {
       params: {
@@ -182,15 +185,15 @@ export function UserInformation() {
         avatarUrl: response.data.imageUrl,
       };
       return requestManager.patch(`/user/edit/${userId}`, fields);
-    }).then(response => {
+    }).then(() => {
       setFileAvatarUrl("");
       setFileAvatar("");
       if (inputAddFileAvatarRef.current?.value) { inputAddFileAvatarRef.current.value = "" };
       queryClient.invalidateQueries({ queryKey: ['Users'] });
       queryClient.invalidateQueries({ queryKey: ['Posts'] });
       queryClient.invalidateQueries({ queryKey: ['Authorization'] });
-      if (userId === userAuthorizedData.customId) {
-        window.localStorage.setItem('authorizedUserData', JSON.stringify(response.data));
+      if (userId === AuthorizedUser?.data?.customId) {
+        queryClient.invalidateQueries({ queryKey: ['AuthorizedUser'] });
       }
     });
   };

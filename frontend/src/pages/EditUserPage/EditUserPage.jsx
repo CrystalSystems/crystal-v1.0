@@ -30,15 +30,13 @@ import styles from "./EditUserPage.module.css";
 export function EditUserPage() {
   const [serverMessage, setServerMessage] = useState();
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
-  const userAuthorizedData = JSON.parse(
-    window.localStorage.getItem("authorizedUserData"),
-  );
-  const authorizedUserCustomId = JSON.parse(
-    window.localStorage.getItem("authorizedUserData"),
-  )?.customId;
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
-  const Authorization = queryClient.getQueryState(["Authorization"]);
+
+  // AuthorizedUser
+  const AuthorizedUser = queryClient.getQueryState(['Authorization'])
+  // /AuthorizedUser
+
   const navigate = useNavigate();
   const { userId } = useParams();
   const [userIdUseParams, setUserIdUseParams] = useState(userId);
@@ -134,9 +132,9 @@ export function EditUserPage() {
   }, [userData]);
   // user authorization check
   const userAuthorizationСheck =
-    (Authorization?.data?.creator && userId) !== Authorization?.data?.customId;
+    (AuthorizedUser?.data?.creator && userId) !== AuthorizedUser?.data?.customId;
   const userAuthorizationСheckToChangePassword =
-    Authorization?.data?.customId === userId;
+    AuthorizedUser?.data?.customId === userId;
   // /user authorization check
   const { t } = useTranslation();
   const checkingUserChanges =
@@ -148,12 +146,9 @@ export function EditUserPage() {
     mutationFn: (fields) => {
       return requestManager.patch("/user/edit/" + userId, fields);
     },
-    onSuccess: (data) => {
-      if (userId === userAuthorizedData.customId) {
-        window.localStorage.setItem(
-          "authorizedUserData",
-          JSON.stringify(data.data),
-        );
+    onSuccess: () => {
+      if (userId === AuthorizedUser?.data.customId) {
+        queryClient.invalidateQueries({ queryKey: ['AuthorizedUser'] });
       }
       navigate("/user/edit/" + userIdValue);
       queryClient.invalidateQueries({ queryKey: ["Users"] });
@@ -257,9 +252,8 @@ export function EditUserPage() {
     },
     onSuccess: () => {
       navigate("/");
-      if (authorizedUserCustomId === userId) {
+      if (AuthorizedUser?.data?.customId === userId) {
         dispatch(setlogInStatus(false));
-        window.localStorage.removeItem("authorizedUserData");
         window.localStorage.removeItem("logIn");
         queryClient.invalidateQueries({ queryKey: ["Posts"] });
         queryClient.invalidateQueries({ queryKey: ["Users"] });

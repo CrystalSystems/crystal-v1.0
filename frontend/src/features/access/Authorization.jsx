@@ -14,8 +14,6 @@ export function Authorization() {
   const queryClient = useQueryClient();
   const AuthorizationQuery = queryClient.getQueryState(["Authorization"]);
   const logInStatus = useSelector((state) => state.logInStatus);
-  const userIsAuthorizedСheck = window.localStorage.getItem("logIn");
-  const authorizedUserDataCheck = window.localStorage.getItem("authorizedUserData");
   // Authorization query
   useQuery({
     queryKey: ["Authorization"],
@@ -30,15 +28,13 @@ export function Authorization() {
   // /Authorization query
   // Checking for loss, required login data and logging out if lost
   useEffect(() => {
-    if (!authorizedUserDataCheck
-      || !userIsAuthorizedСheck
+    if (!logInStatus
       || AuthorizationQuery?.status === "error"
     ) {
-      window.localStorage.removeItem("authorizedUserData");
       window.localStorage.removeItem("logIn");
       queryClient.resetQueries({ queryKey: ["Authorization"], exact: true });
       dispatch(setlogInStatus(false));
     }
-  }, [AuthorizationQuery, authorizedUserDataCheck, dispatch, queryClient, userIsAuthorizedСheck]);
+  }, [AuthorizationQuery, dispatch, queryClient, logInStatus]);
   // //Checking for loss, required login data and logging out if lost
 }
