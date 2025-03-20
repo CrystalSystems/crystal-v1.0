@@ -26,7 +26,7 @@ export function Authorization() {
       }),
   });
   // /Authorization query
-  // Check for data loss from localStorage, and log out if data is lost
+  // Check for loss of localStorage and cookie data, and log out if data is lost
   useEffect(() => {
     if (!logInStatus
       || AuthorizationQuery?.status === "error"
@@ -36,5 +36,5 @@ export function Authorization() {
       dispatch(setlogInStatus(false));
     }
   }, [AuthorizationQuery, dispatch, queryClient, logInStatus]);
-  // //Check for data loss from localStorage, and log out if data is lost
+  // /Check for loss of localStorage and cookie data, and log out if data is lost
 }
