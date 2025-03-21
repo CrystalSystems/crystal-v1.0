@@ -10,9 +10,9 @@ import { CrystalIcon } from "../SvgIcons";
 import styles from "./HeaderMobile.module.css";
 import { OptionsMenu } from "../";
 export function HeaderMobile() {
-  // Checking user authorization
-  const userIsAuthorizedСheck = useSelector((state) => state.logInStatus)
-  // /Checking user authorization
+  // Checking user log in
+  const logInStatus = useSelector((state) => state.logInStatus)
+  // /Checking user log in
   const [showLogo, setShowLogo] = useState(true);
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -27,7 +27,7 @@ export function HeaderMobile() {
     <div className={styles.header_mobile}>
       <Link className={styles.logo} to="/">
         <CrystalIcon />
-        {(!userIsAuthorizedСheck && showLogo) && <p>Crystal</p>}
+        {(!logInStatus && showLogo) && <p>Crystal</p>}
       </Link>
       <OptionsMenu />
     </div>

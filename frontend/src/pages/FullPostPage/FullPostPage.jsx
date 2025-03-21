@@ -32,14 +32,14 @@ import { setShowAccessModal } from '../../features/accessModal/accessModalSlice'
 import styles from './FullPostPage.module.css';
 export function FullPostPage() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
-  // Checking user authorization
-  const userIsAuthorizedСheck = useSelector((state) => state.logInStatus)
-  // /Checking user authorization
+  // Checking user log in
+  const logInStatus = useSelector((state) => state.logInStatus)
+  // /Checking user log in
   const queryClient = useQueryClient();
 
-  // AuthorizedUser
-  const AuthorizedUser = queryClient.getQueryState(['Authorization'])
-  // /AuthorizedUser
+  // Authorized user
+  const authorizedUser = queryClient.getQueryState(['Authorization'])
+  // /Authorized user
 
   const navigateTo = useNavigate();
   const dispatch = useDispatch();
@@ -71,14 +71,14 @@ export function FullPostPage() {
     setUserId(Post?.data?.user?.customId);
     if (Post.status === 'success') {
       setNumberLiked(Post?.data?.liked?.length);
-      setUserLiked(Post?.data?.liked?.find((like) => like === AuthorizedUser?.data?._id));
+      setUserLiked(Post?.data?.liked?.find((like) => like === authorizedUser?.data?._id));
       setUserLikedStatus(true);
     }
-    if (!AuthorizedUser?.data?._id) {
+    if (!authorizedUser?.data?._id) {
       setUserLikedStatus(true);
       setUserLiked(false);
     }
-  }, [Post.data, Post.status, AuthorizedUser?.data?._id]);
+  }, [Post.data, Post.status, authorizedUser?.data?._id]);
   const onClickAddLike = async () => {
     if (userLiked) {
       setNumberLiked(numberLiked - 1);
@@ -88,7 +88,7 @@ export function FullPostPage() {
       setUserLiked(true);
     }
     const fields = {
-      userId: AuthorizedUser?.data?._id,
+      userId: authorizedUser?.data?._id,
     };
     await requestManager.patch(`/post/add/like/${postId}`, fields);
   };
@@ -224,7 +224,7 @@ export function FullPostPage() {
             <button
               className={styles.options}
               onClick={() =>
-                userIsAuthorizedСheck ?
+                logInStatus ?
                   buttonShowMenuPostOptions(!showMenuPostOptions)
                   :
                   dispatch(setShowAccessModal(true))
@@ -248,8 +248,8 @@ export function FullPostPage() {
                 }}
               >
                 <ul>
-                  {((Post?.data.user?._id === AuthorizedUser.data._id && Post?.data?.user?._id !== undefined) ||
-                    AuthorizedUser.data.creator) && (
+                  {((Post?.data.user?._id === authorizedUser.data._id && Post?.data?.user?._id !== undefined) ||
+                    authorizedUser.data.creator) && (
                       <>
                         <li>
                           {t('FullPostPage.EditPost')}
@@ -258,7 +258,7 @@ export function FullPostPage() {
                         <li onClick={onClickDeletePost}>{t('FullPostPage.DeletePost')}</li>
                       </>
                     )}
-                  {Post?.data?.user?._id !== AuthorizedUser.data._id && AuthorizedUser.data.creator && (
+                  {Post?.data?.user?._id !== authorizedUser.data._id && authorizedUser.data.creator && (
                     <>
                       <li onClick={onClickDeleteAllPosts}>
                         {t('FullPostPage.DeleteAllUserPosts')}
@@ -340,7 +340,7 @@ export function FullPostPage() {
               {userLikedStatus ? (
                 <div
                   onClick={() =>
-                    !userIsAuthorizedСheck &&
+                    !logInStatus &&
                     dispatch(setShowAccessModal(true)
                     )}
                   className={styles.post_info_bottom_part_1_2}
@@ -359,7 +359,7 @@ export function FullPostPage() {
                   </button>
                   <div className={styles.like_wrap}>
                     <button
-                      onClick={AuthorizedUser.data ?
+                      onClick={authorizedUser.data ?
                         onClickAddLike
                         :
                         null}

@@ -33,9 +33,9 @@ import {
 export function SideMenuMobile() {
   const queryClient = useQueryClient();
 
-  // AuthorizedUser
-  const AuthorizedUser = queryClient.getQueryState(['Authorization'])
-  // /AuthorizedUser
+  // Authorized user
+  const authorizedUser = queryClient.getQueryState(['Authorization'])
+  // /Authorized user
 
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -64,7 +64,7 @@ export function SideMenuMobile() {
       : (document.body.style.overflow = "auto");
   }, [showSideMenuMobile]);
   // /hide body scroll when opening menu
-  if (!AuthorizedUser.data) {
+  if (!authorizedUser.data) {
     return null
   }
   return (
@@ -93,42 +93,42 @@ export function SideMenuMobile() {
               <li className={styles.user}>
                 <UserIcon />
                 {t("SideMenuMobile.MyProfile")}
-                <Link to={"/" + AuthorizedUser.data.customId}></Link>
+                <Link to={"/" + authorizedUser.data.customId}></Link>
               </li>
               <li className={styles.messages}>
                 <MessagesIcon />
                 {t("SideMenuMobile.Messages")}
-                <Link to={"/" + AuthorizedUser.data.customId}></Link>
+                <Link to={"/" + authorizedUser.data.customId}></Link>
               </li>
               <li className={styles.friends}>
                 <FriendsIcon />
                 {t("SideMenuMobile.Friends")}
-                <Link to={"/" + AuthorizedUser.data.customId}></Link>
+                <Link to={"/" + authorizedUser.data.customId}></Link>
               </li>
               <li className={styles.groups}>
                 <GroupsIcon />
                 {t("SideMenuMobile.Communities")}
-                <Link to={"/" + AuthorizedUser.data.customId}></Link>
+                <Link to={"/" + authorizedUser.data.customId}></Link>
               </li>
               <li className={styles.photo}>
                 <PhotosIcon />
                 {t("SideMenuMobile.Photo")}
-                <Link to={"/" + AuthorizedUser.data.customId}></Link>
+                <Link to={"/" + authorizedUser.data.customId}></Link>
               </li>
               <li className={styles.video}>
                 <VideosIcon />
                 {t("SideMenuMobile.Video")}
-                <Link to={"/" + AuthorizedUser.data.customId}></Link>
+                <Link to={"/" + authorizedUser.data.customId}></Link>
               </li>
               <li className={styles.like}>
                 <LikeIcon />
                 {t("SideMenuMobile.Liked")}
-                <Link to={"/liked/" + AuthorizedUser.data.customId}></Link>
+                <Link to={"/liked/" + authorizedUser.data.customId}></Link>
               </li>
               <li className={styles.bookmark}>
                 <BookmarkIcon />
                 {t("SideMenuMobile.Bookmarks")}
-                <Link to={"/" + AuthorizedUser.data.customId}></Link>
+                <Link to={"/" + authorizedUser.data.customId}></Link>
               </li>
               <li className={styles.crystal}>
                 <CrystalIcon />

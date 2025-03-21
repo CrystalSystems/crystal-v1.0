@@ -32,13 +32,13 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
   const userAvatar = baseURL + postData.userAvatarUrl;
   const postImage = baseURL + postData.imageUrl;
   const queryClient = useQueryClient();
-  // Checking user authorization
-  const userIsAuthorizedСheck = useSelector((state) => state.logInStatus)
-  // /Checking user authorization
+  // Checking user log in
+  const logInStatus = useSelector((state) => state.logInStatus)
+  // /Checking user log in
 
-  // AuthorizedUser
-  const AuthorizedUser = queryClient.getQueryState(['Authorization'])
-  // /AuthorizedUser
+  // Authorized user
+  const authorizedUser = queryClient.getQueryState(['Authorization'])
+  // /Authorized user
 
   // Menu - post options
   const menuPostOptions = useRef();
@@ -121,13 +121,13 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
   const [userLikedStatus, setUserLikedStatus] = useState();
   useEffect(() => {
     setNumberLiked(postData.post?.liked?.length);
-    setUserLiked(postData.post?.liked?.find((like) => like === AuthorizedUser?.data?._id));
+    setUserLiked(postData.post?.liked?.find((like) => like === authorizedUser?.data?._id));
     setUserLikedStatus(true);
-    if (!AuthorizedUser?.data?._id) {
+    if (!authorizedUser?.data?._id) {
       setUserLikedStatus(true);
       setUserLiked(false);
     }
-  }, [postData.post, AuthorizedUser?.data?._id]);
+  }, [postData.post, authorizedUser?.data?._id]);
   const onClickAddLike = async () => {
     if (userLiked) {
       setNumberLiked(numberLiked - 1);
@@ -137,7 +137,7 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
       setUserLiked(true);
     }
     const fields = {
-      userId: AuthorizedUser?.data?._id,
+      userId: authorizedUser?.data?._id,
     };
     await requestManager.patch(`/post/add/like/${postData.postId}`, fields);
   };
@@ -202,7 +202,7 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
           <button
             className={styles.options}
             onClick={() =>
-              userIsAuthorizedСheck ?
+              logInStatus ?
                 buttonShowMenuPostOptions(!showMenuPostOptions)
                 :
                 dispatch(setShowAccessModal(true))
@@ -226,8 +226,8 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
               }}
             >
               <ul>
-                {((postData.post.user?._id === AuthorizedUser?.data?._id && postData.post?.user?._id !== undefined) ||
-                  AuthorizedUser?.data?.creator) && (
+                {((postData.post.user?._id === authorizedUser?.data?._id && postData.post?.user?._id !== undefined) ||
+                  authorizedUser?.data?.creator) && (
                     <>
                       <li>
                         {t('PostPreview.EditPost')}
@@ -236,7 +236,7 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
                       <li onClick={onClickDeletePost}>{t('PostPreview.DeletePost')}</li>
                     </>
                   )}
-                {(postData.post.user?._id !== AuthorizedUser?.data?._id && AuthorizedUser?.data?.creator) && (
+                {(postData.post.user?._id !== authorizedUser?.data?._id && authorizedUser?.data?.creator) && (
                   <>
                     <li onClick={onClickDeleteAllPosts}>
                       {t('PostPreview.DeleteAllUserPosts')}
@@ -315,7 +315,7 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
             {userLikedStatus ? (
               <div
                 onClick={() =>
-                  !userIsAuthorizedСheck &&
+                  !logInStatus &&
                   dispatch(setShowAccessModal(true)
                   )}
                 className={styles.post_info_bottom_part_1_2}
@@ -334,7 +334,7 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
                 </button>
                 <div className={styles.like_wrap}>
                   <button
-                    onClick={AuthorizedUser?.data ?
+                    onClick={authorizedUser?.data ?
                       onClickAddLike
                       :
                       null}

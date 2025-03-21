@@ -8,12 +8,12 @@ import { CrystalIcon } from "../../components/SvgIcons";
 import styles from "./LeftSide.module.css";
 export function LeftSide() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
-  // Checking user authorization
-  const userIsAuthorizedСheck = window.localStorage.getItem("logIn");
-  // /Checking user authorization
+  // Checking user log in
+  const logInStatus = window.localStorage.getItem("logIn");
+  // /Checking user log in
   return (
     <div className={
-      userIsAuthorizedСheck
+      logInStatus
         ? styles.left_side
         : `${styles.left_side} ${styles.left_side_not_authorized_user}`
     }
@@ -21,14 +21,14 @@ export function LeftSide() {
     >
       <div
         className={
-          userIsAuthorizedСheck ?
+          logInStatus ?
             styles.logo_wrap
             :
             `${styles.logo_wrap} ${styles.logo_wrap_user_not_authorized}`
         }>
         <div
           className={
-            userIsAuthorizedСheck ?
+            logInStatus ?
               styles.logo
               :
               `${styles.logo} ${styles.logo_user_not_authorized}`
@@ -41,7 +41,7 @@ export function LeftSide() {
         </div>
         <Link to="/"></Link>
       </div>
-      {userIsAuthorizedСheck ?
+      {logInStatus ?
         <SideMenuDesktop />
         :
         <CurrentTopics />}

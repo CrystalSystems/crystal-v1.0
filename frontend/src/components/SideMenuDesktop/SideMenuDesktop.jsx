@@ -21,14 +21,14 @@ import styles from "./SideMenuDesktop.module.css";
 export function SideMenuDesktop() {
   const queryClient = useQueryClient();
 
-  // AuthorizedUser
-  const AuthorizedUser = queryClient.getQueryState(['Authorization'])
-  // /AuthorizedUser
+  // Authorized user
+  const authorizedUser = queryClient.getQueryState(['Authorization'])
+  // /Authorized user
 
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const { t } = useTranslation();
 
-  if (!AuthorizedUser.data) {
+  if (!authorizedUser.data) {
     return null
   }
 
@@ -41,42 +41,42 @@ export function SideMenuDesktop() {
         <li className={styles.user}>
           <UserIcon />
           <p>{t("DesktopSideMenu.MyProfile")}</p>
-          <Link to={"/" + AuthorizedUser.data.customId}></Link>
+          <Link to={"/" + authorizedUser.data.customId}></Link>
         </li>
         <li className={styles.messages}>
           <MessagesIcon />
           <p>{t("DesktopSideMenu.Messages")}</p>
-          <Link to={`/${AuthorizedUser.data.customId}`}></Link>
+          <Link to={`/${authorizedUser.data.customId}`}></Link>
         </li>
         <li className={styles.friends}>
           <FriendsIcon />
           <p>{t("DesktopSideMenu.Friends")}</p>
-          <Link to={`/${AuthorizedUser.data.customId}`}></Link>
+          <Link to={`/${authorizedUser.data.customId}`}></Link>
         </li>
         <li className={styles.groups}>
           <GroupsIcon />
           <p>{t("DesktopSideMenu.Communities")}</p>
-          <Link to={`/${AuthorizedUser.data.customId}`}></Link>
+          <Link to={`/${authorizedUser.data.customId}`}></Link>
         </li>
         <li className={styles.photo}>
           <PhotosIcon />
           <p>{t("DesktopSideMenu.Photo")}</p>
-          <Link to={`/${AuthorizedUser.data.customId}`}></Link>
+          <Link to={`/${authorizedUser.data.customId}`}></Link>
         </li>
         <li className={styles.video}>
           <VideosIcon />
           <p>{t("DesktopSideMenu.Video")}</p>
-          <Link to={`/${AuthorizedUser.data.customId}`}></Link>
+          <Link to={`/${authorizedUser.data.customId}`}></Link>
         </li>
         <li className={styles.like}>
           <LikeIcon />
           <p>{t("DesktopSideMenu.Liked")}</p>
-          <Link to={"/liked/" + AuthorizedUser.data.customId}></Link>
+          <Link to={"/liked/" + authorizedUser.data.customId}></Link>
         </li>
         <li className={styles.bookmark}>
           <BookmarkIcon />
           <p>{t("DesktopSideMenu.Bookmarks")}</p>
-          <Link to={`/${AuthorizedUser.data.customId}`}></Link>
+          <Link to={`/${authorizedUser.data.customId}`}></Link>
         </li>
         <li className={styles.crystal}>
           <CrystalIcon />

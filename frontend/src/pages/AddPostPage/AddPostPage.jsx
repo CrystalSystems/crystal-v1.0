@@ -18,9 +18,9 @@ import { LoadingBar } from "../../components";
 import styles from "./AddPostPage.module.css";
 export function AddPostPage() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
-  // Checking user authorization
-  const userIsAuthorizedСheck = useSelector((state) => state.logInStatus)
-  // /Checking user authorization
+  // Checking user log in
+  const logInStatus = useSelector((state) => state.logInStatus)
+  // /Checking user log in
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -159,7 +159,7 @@ export function AddPostPage() {
   return (
     <div
       onClick={() =>
-        !userIsAuthorizedСheck &&
+        !logInStatus &&
         dispatch(setShowAccessModal(!accessModalStatus.showAccessModal))
       }
       className={styles.add_post}
@@ -189,7 +189,7 @@ export function AddPostPage() {
       )}
       <div className={styles.add_delete_preview_buttons_wrap}>
         <button
-          disabled={!userIsAuthorizedСheck && true}
+          disabled={!logInStatus && true}
           onClick={() => fileImagePreviewRef.current.click()}
         >
           {fileImagePreviewUrl
@@ -198,7 +198,7 @@ export function AddPostPage() {
         </button>
         {fileImagePreviewUrl && (
           <button
-            disabled={!userIsAuthorizedСheck && true}
+            disabled={!logInStatus && true}
             onClick={onClickRemoveFileImagePreview}
           >
             {t("AddPostPage.DeletePreviewButton")}

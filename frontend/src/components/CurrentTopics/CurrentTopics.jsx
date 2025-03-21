@@ -15,9 +15,9 @@ import styles from "./CurrentTopics.module.css";
 export function CurrentTopics() {
   const dispatch = useDispatch();
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
-  // Checking user authorization
-  const userIsAuthorizedСheck = useSelector((state) => state.logInStatus)
-  // /Checking user authorization
+  // Checking user log in
+  const logInStatus = useSelector((state) => state.logInStatus)
+  // /Checking user log in
   const { changesAddressBar } = useParams();
   const topicsQuery = useQuery({
     queryKey: ["Posts", "CurrentTopics", changesAddressBar],
@@ -28,7 +28,7 @@ export function CurrentTopics() {
       }),
     retry: false,
   });
-  const hashtagsData = userIsAuthorizedСheck ? topicsQuery.data?.slice(0, 6) : topicsQuery.data?.slice(0, 6);
+  const hashtagsData = logInStatus ? topicsQuery.data?.slice(0, 6) : topicsQuery.data?.slice(0, 6);
   const { t } = useTranslation();
   // Formatting a long number
   const formattingLongNumber = Intl.NumberFormat('en', {
@@ -66,7 +66,7 @@ export function CurrentTopics() {
             </div>
             <button className={styles.options}
               onClick={() =>
-                !userIsAuthorizedСheck &&
+                !logInStatus &&
                 dispatch(setShowAccessModal(true)
                 )}
             >

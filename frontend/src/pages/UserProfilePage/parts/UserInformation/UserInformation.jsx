@@ -34,14 +34,14 @@ import imageCompression from 'browser-image-compression';
 import styles from "./UserInformation.module.css";
 export function UserInformation() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
-  // Checking user authorization
-  const userIsAuthorizedСheck = useSelector((state) => state.logInStatus)
-  // /Checking user authorization
+  // Checking user log in
+  const logInStatus = useSelector((state) => state.logInStatus)
+  // /Checking user log in
   const queryClient = useQueryClient();
 
-  // AuthorizedUser
-  const AuthorizedUser = queryClient.getQueryState(['Authorization'])
-  // /AuthorizedUser
+  // Authorized user
+  const authorizedUser = queryClient.getQueryState(['Authorization'])
+  // /Authorized user
 
   const { t } = useTranslation();
   // user options, menu 
@@ -76,7 +76,7 @@ export function UserInformation() {
   // /user options, menu
   const { userId } = useParams();
   // Checking the access rights of an authorized user
-  const authorizedUserAccessCheck = (AuthorizedUser?.data?.creator || (AuthorizedUser?.data?.customId === userId));
+  const authorizedUserAccessCheck = (authorizedUser?.data?.creator || (authorizedUser?.data?.customId === userId));
   // /Checking the access rights of an authorized user
   // Checking whether the user has posts
   const [userHavePosts, setUserHavePost] = useState(false);
@@ -173,8 +173,8 @@ export function UserInformation() {
       queryClient.invalidateQueries({ queryKey: ['Users'] });
       queryClient.invalidateQueries({ queryKey: ['Posts'] });
       queryClient.invalidateQueries({ queryKey: ['Authorization'] });
-      if (userId === AuthorizedUser?.data?.customId) {
-        queryClient.invalidateQueries({ queryKey: ['AuthorizedUser'] });
+      if (userId === authorizedUser?.data?.customId) {
+        queryClient.invalidateQueries({ queryKey: ['authorizedUser'] });
       }
     }) : await requestManager.post('/user/add/image/' + userId, formData, {
       params: {
@@ -192,8 +192,8 @@ export function UserInformation() {
       queryClient.invalidateQueries({ queryKey: ['Users'] });
       queryClient.invalidateQueries({ queryKey: ['Posts'] });
       queryClient.invalidateQueries({ queryKey: ['Authorization'] });
-      if (userId === AuthorizedUser?.data?.customId) {
-        queryClient.invalidateQueries({ queryKey: ['AuthorizedUser'] });
+      if (userId === authorizedUser?.data?.customId) {
+        queryClient.invalidateQueries({ queryKey: ['authorizedUser'] });
       }
     });
   };
@@ -375,7 +375,7 @@ export function UserInformation() {
           <div className={styles.user_options}>
             <button
               onClick={() =>
-                userIsAuthorizedСheck ?
+                logInStatus ?
                   buttonShowMenuPostOptions(!showMenuUserOptions)
                   :
                   dispatch(setShowAccessModal(true))

@@ -7,9 +7,9 @@ import {
 import styles from "./RightSide.module.css";
 export function RightSide() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
-  // Checking user authorization
-  const userIsAuthorizedСheck = useSelector((state) => state.logInStatus)
-  // /Checking user authorization
+  // Checking user log in
+  const logInStatus = useSelector((state) => state.logInStatus)
+  // /Checking user log in
   return (
     <div
       className={styles.right_side}
@@ -19,7 +19,7 @@ export function RightSide() {
         <OptionsMenu />
       </div>
       <RecommendedUsers />
-      {userIsAuthorizedСheck && <CurrentTopics />}
+      {logInStatus && <CurrentTopics />}
     </div>
   );
 }

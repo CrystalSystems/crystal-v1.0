@@ -3,12 +3,12 @@ import styles from "./PostSourceMenu.module.css";
 import { useTranslation } from "react-i18next";
 export function PostSourceMenu() {
   const { t } = useTranslation();
-  // Checking user authorization
-  const userIsAuthorizedСheck = useSelector((state) => state.logInStatus)
-  // /Checking user authorization
+  // Checking user log in
+  const logInStatus = useSelector((state) => state.logInStatus)
+  // /Checking user log in
   return (
     <>
-      {userIsAuthorizedСheck && (
+      {logInStatus && (
         <nav className={styles.post_source_menu}>
           <ul>
             <li>{t("PostSourceMenu.Subscriptions")}</li>

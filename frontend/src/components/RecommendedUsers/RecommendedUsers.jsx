@@ -20,13 +20,13 @@ export function RecommendedUsers() {
   const queryClient = useQueryClient();
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const dispatch = useDispatch();
-  // Checking user authorization
-  const userIsAuthorizedСheck = useSelector((state) => state.logInStatus)
-  // /Checking user authorization
+  // Checking user log in
+  const logInStatus = useSelector((state) => state.logInStatus)
+  // /Checking user log in
 
-  // AuthorizedUser
-  const AuthorizedUser = queryClient.getQueryState(['Authorization'])
-  // /AuthorizedUser
+  // Authorized user
+  const authorizedUser = queryClient.getQueryState(['Authorization'])
+  // /Authorized user
 
   const usersQuery = useQuery({
     queryKey: ["Users", "RecommendedUsers"],
@@ -38,16 +38,16 @@ export function RecommendedUsers() {
     retry: false,
   });
   const { t } = useTranslation();
-  const dataUsers = userIsAuthorizedСheck
-    ? usersQuery.data?.filter((user) => user.customId !== AuthorizedUser?.data?.customId).toReversed().slice(0, 4)
-    : usersQuery.data?.filter((user) => user.customId !== AuthorizedUser?.data?.customId).toReversed().slice(0, 4);
+  const dataUsers = logInStatus
+    ? usersQuery.data?.filter((user) => user.customId !== authorizedUser?.data?.customId).toReversed().slice(0, 4)
+    : usersQuery.data?.filter((user) => user.customId !== authorizedUser?.data?.customId).toReversed().slice(0, 4);
 
   if (usersQuery.status === "pending") {
     return null;
   }
   return (
     <div className={
-      userIsAuthorizedСheck
+      logInStatus
         ? styles.recommended_users
         : `${styles.recommended_users} ${styles.recommended_users_not_authorized_user}`
     } data-recommended-users-dark-theme={darkThemeStatus}>
@@ -116,14 +116,14 @@ export function RecommendedUsers() {
                 </div>
                 <button className={styles.options}
                   onClick={() =>
-                    !userIsAuthorizedСheck &&
+                    !logInStatus &&
                     dispatch(setShowAccessModal(true)
                     )}>
                   <ThreeDotsIcon />
                 </button>
                 <button className={styles.subscribe}
                   onClick={() =>
-                    !userIsAuthorizedСheck &&
+                    !logInStatus &&
                     dispatch(setShowAccessModal(true)
                     )}>
                   {t("RecommendedUsers.Subscribe")}

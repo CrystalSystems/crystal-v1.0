@@ -33,9 +33,9 @@ export function EditUserPage() {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
 
-  // AuthorizedUser
-  const AuthorizedUser = queryClient.getQueryState(['Authorization'])
-  // /AuthorizedUser
+  // Authorized user
+  const authorizedUser = queryClient.getQueryState(['Authorization'])
+  // /Authorized user
 
   const navigate = useNavigate();
   const { userId } = useParams();
@@ -132,9 +132,9 @@ export function EditUserPage() {
   }, [userData]);
   // user authorization check
   const userAuthorizationСheck =
-    (AuthorizedUser?.data?.creator && userId) !== AuthorizedUser?.data?.customId;
+    (authorizedUser?.data?.creator && userId) !== authorizedUser?.data?.customId;
   const userAuthorizationСheckToChangePassword =
-    AuthorizedUser?.data?.customId === userId;
+    authorizedUser?.data?.customId === userId;
   // /user authorization check
   const { t } = useTranslation();
   const checkingUserChanges =
@@ -147,8 +147,8 @@ export function EditUserPage() {
       return requestManager.patch("/user/edit/" + userId, fields);
     },
     onSuccess: () => {
-      if (userId === AuthorizedUser?.data.customId) {
-        queryClient.invalidateQueries({ queryKey: ['AuthorizedUser'] });
+      if (userId === authorizedUser?.data.customId) {
+        queryClient.invalidateQueries({ queryKey: ['authorizedUser'] });
       }
       navigate("/user/edit/" + userIdValue);
       queryClient.invalidateQueries({ queryKey: ["Users"] });
@@ -252,7 +252,7 @@ export function EditUserPage() {
     },
     onSuccess: () => {
       navigate("/");
-      if (AuthorizedUser?.data?.customId === userId) {
+      if (authorizedUser?.data?.customId === userId) {
         dispatch(setlogInStatus(false));
         window.localStorage.removeItem("logIn");
         queryClient.invalidateQueries({ queryKey: ["Posts"] });

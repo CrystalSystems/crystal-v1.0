@@ -4,13 +4,13 @@ import {
   OptionsMenuGuest
 } from "./parts";
 export function OptionsMenu() {
-  // Checking user authorization
-  const userIsAuthorizedСheck = useSelector((state) => state.logInStatus)
-  // /Checking user authorization
+  // Checking user log in
+  const logInStatus = useSelector((state) => state.logInStatus)
+  // /Checking user log in
   return (
     <>
-      {userIsAuthorizedСheck && <OptionsMenuUser />}
-      {!userIsAuthorizedСheck && <OptionsMenuGuest />}
+      {logInStatus && <OptionsMenuUser />}
+      {!logInStatus && <OptionsMenuGuest />}
     </>
   );
 }
