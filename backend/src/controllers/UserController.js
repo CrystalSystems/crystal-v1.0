@@ -102,7 +102,7 @@ export const logOut = async (req, res) => {
 };
 // log Out
 // authorization
-export const Authorization = async (req, res) => {
+export const authorization = async (req, res) => {
   try {
     const user = await UserModel.findById(req.userId._id);
     if (!user) {

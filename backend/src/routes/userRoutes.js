@@ -45,7 +45,7 @@ router.post(
 // authorization
 router.get("/authorization",
   authorizationСheck,
-  UserController.Authorization);
+  UserController.authorization);
 // /authorization
 // get one user, from user edit page 
 router.get("/user/get/one/from/user/edit/page/:userId",
