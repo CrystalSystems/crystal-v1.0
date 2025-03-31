@@ -43,7 +43,7 @@ export function AccessModal() {
   // );
   // -- /reCAPTCHA v3
   // yup validationSchema
-  // Log In
+  // Log in
   const validationSchemaLogIn = Yup.object().shape({
     email: Yup.string()
       .email("AccessModal.InputErrorEmailEmpty")
@@ -56,7 +56,7 @@ export function AccessModal() {
         "AccessModal.InputErrorPasswordMinimumMaximumLengthSymbols"
       ),
   });
-  // /Log In
+  // /Log in
   // Registration
   const validationSchemaRegistration = Yup.object().shape({
     name: Yup.string().max(
