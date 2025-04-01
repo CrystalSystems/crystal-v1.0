@@ -12,10 +12,10 @@ export const registration = async (req, res) => {
     const сustomId = req.body.customId;
     const CheckCustomId = await UserModel.findOne({ customId: req.body.customId }).collation({ locale: "en", strength: 2 });
     if (CheckCustomId) {
-      return res.status(404).send({ error: 'This Id already exists' });
+      return res.status(409).send({ error: 'This Id already exists' });
     }
     if (email) {
-      return res.status(404).send({ error: 'This email already exists' });
+      return res.status(409).send({ error: 'This email already exists' });
     }
     // Сreator's email
     const creatorEmail = process.env.CREATOR_EMAIL;
@@ -59,14 +59,14 @@ export const logIn = async (req, res) => {
   try {
     const user = await UserModel.findOne({ email: req.body.email }, { email: 0 }).collation({ locale: "en", strength: 2 });
     if (!user) {
-      return res.status(404).send({ error: 'invalid username or password' });
+      return res.status(401).send({ error: 'invalid username or password' });
     }
     const password = await bcrypt.compare(
       req.body.password,
       user._doc.passwordHash
     );
     if (!password) {
-      return res.status(404).send({ error: 'invalid username or password' });
+      return res.status(401).send({ error: 'invalid username or password' });
     }
     // JWT secret key
     const JWTSecretKey = process.env.JWT_SECRET_KEY;
@@ -133,10 +133,10 @@ export const editUser = async (req, res) => {
     }
     if ((userId.toUpperCase() === customId.toUpperCase()) ?
       !searchIdenticalUserCustomId : searchIdenticalUserCustomId) {
-      return res.status(403).json({ message: "This Id already exists" });
+      return res.status(409).json({ message: "This Id already exists" });
     }
     if (!validationCustomId) {
-      return res.status(403).json({ message: "Minimum length of id is 1 character, maximum 35, Latin letters, numbers, underscores and dashes are allowed" });
+      return res.status(401).json({ message: "Minimum length of id is 1 character, maximum 35, Latin letters, numbers, underscores and dashes are allowed" });
     }
     UserModel.findOneAndUpdate(
       {
@@ -169,7 +169,7 @@ export const changeUserPassword = async (req, res) => {
     const newPasswordValidationRule = /^[a-zA-Z\d!@#$%^&*[\]{}()?"\\/,><':;|_~`=+-]{8,35}$/;
     const validationNewPassword = newPasswordValidationRule.test(newPassword);
     if (!validationNewPassword) {
-      return res.status(403).json({ message: "The minimum password length is 8 characters, the maximum is 30, Latin letters, numbers and special characters are allowed." });
+      return res.status(401).json({ message: "The minimum password length is 8 characters, the maximum is 30, Latin letters, numbers and special characters are allowed." });
     }
     const userId = await req.params.userId;
     const user = await UserModel.findOne({ customId: userId });
