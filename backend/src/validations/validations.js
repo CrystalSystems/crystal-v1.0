@@ -11,4 +11,5 @@ export const registrationValidation = [
 ];
 export const postCreateValidation = [
   body('title', 'Maximum title size 220 characters').isLength({ min: 0, max: 220 }).isString(),
+  body('text', 'Maximum text size 75000 characters').isLength({ min: 0, max: 75000 }).isString(),
 ];
