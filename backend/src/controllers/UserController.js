@@ -41,11 +41,7 @@ export const registration = async (req, res) => {
       JWTSecretKey
     );
     res.cookie('token', token, { httpOnly: true, secure: CookieSecureStatus, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 365 * 10 }).json({
-      _id: user._id,
-      name: user.name,
-      customId: user.customId,
-      aboutMe: user.aboutMe,
-      creator: user.creator
+      message: 'Registration OK'
     })
   } catch (error) {
     res.status(500).json({
@@ -54,7 +50,7 @@ export const registration = async (req, res) => {
   }
 };
 // /Registration  
-// log In
+// log in
 export const logIn = async (req, res) => {
   try {
     const user = await UserModel.findOne({ email: req.body.email }, { email: 0 }).collation({ locale: "en", strength: 2 });
@@ -80,16 +76,15 @@ export const logIn = async (req, res) => {
       },
       JWTSecretKey
     );
-    const { passwordHash, aboutMe, email, ...userData } = user._doc;
-    res.cookie('token', token, { httpOnly: true, secure: CookieSecureStatus, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 365 * 10 }).json({
-      ...userData
+    res.cookie('token', token, { httpOnly: true, secure: CookieSecureStatus, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 365 * 10 }).status(200).json({
+      message: 'log in OK'
     })
   } catch (error) {
     res.status(500).json({ message: error });
   }
 };
-// /log In
-// log Out
+// /log in
+// log out
 export const logOut = async (req, res) => {
   try {
     res.cookie('token', null)
@@ -100,7 +95,7 @@ export const logOut = async (req, res) => {
     res.status(500).json({ message: error });
   }
 };
-// log Out
+// log out
 // authorization
 export const authorization = async (req, res) => {
   try {
