@@ -146,7 +146,7 @@ export function UserInformation() {
       };
       return requestManager.patch(`/user/edit/${userId}`, fields);
     }).then(() => {
-      setFileBannerUrl("");
+      setFileBannerUrl();
       setFileBanner("");
       if (inputAddFileBannerRef.current?.value) { inputAddFileBannerRef.current.value = "" }
       queryClient.invalidateQueries({ queryKey: ['Users'] });
@@ -186,7 +186,7 @@ export function UserInformation() {
       };
       return requestManager.patch(`/user/edit/${userId}`, fields);
     }).then(() => {
-      setFileAvatarUrl("");
+      setFileAvatarUrl();
       setFileAvatar("");
       if (inputAddFileAvatarRef.current?.value) { inputAddFileAvatarRef.current.value = "" };
       queryClient.invalidateQueries({ queryKey: ['Users'] });

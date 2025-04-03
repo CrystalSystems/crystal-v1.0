@@ -1,11 +1,9 @@
 import jwt from 'jsonwebtoken';
+import { JWT_SECRET_KEY } from "../variables/index.js";
 export default (req, res, next) => {
   const token = (req.cookies?.token)?.replace(/Bearer\s?/, '');
-  // JWT secret key
-  const JWTSecretKey = process.env.JWT_SECRET_KEY;
-  // /JWT secret key
   try {
-    const decoded = jwt.verify(token, JWTSecretKey);
+    const decoded = jwt.verify(token, JWT_SECRET_KEY);
     req.userId = decoded;
     next();
   } catch (error) {

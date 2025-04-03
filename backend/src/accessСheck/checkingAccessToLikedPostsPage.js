@@ -13,6 +13,6 @@ export default async (req, res, next) => {
     };
     next();
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).send(error);
   }
 };

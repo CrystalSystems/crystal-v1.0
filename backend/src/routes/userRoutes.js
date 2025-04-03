@@ -78,7 +78,7 @@ router.patch(
 );
 // /edit user
 // change user password
-router.patch(
+router.post(
   "/user/change/password/:userId",
   authorizationСheck,
   checkingAccessToUserEdit,

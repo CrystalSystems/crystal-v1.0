@@ -2,6 +2,11 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { nanoid } from 'nanoid';
 import UserModel from "../models/User.js";
+import {
+  JWT_SECRET_KEY,
+  COOKIE_SECURE_STATUS,
+  CREATOR_EMAIL
+} from "../variables/index.js";
 // Registration
 export const registration = async (req, res) => {
   try {
@@ -17,36 +22,24 @@ export const registration = async (req, res) => {
     if (email) {
       return res.status(409).send({ error: 'This email already exists' });
     }
-    // Сreator's email
-    const creatorEmail = process.env.CREATOR_EMAIL;
-    // /Сreator's email
     const doc = new UserModel({
       email: req.body.email,
       name: req.body.name,
       customId: сustomId ? сustomId : nanoid(),
-      creator: (req.body.email === creatorEmail) && true,
+      creator: (req.body.email === CREATOR_EMAIL) && true,
       passwordHash: hash,
     });
     const user = await doc.save();
-    // JWT secret key
-    const JWTSecretKey = process.env.JWT_SECRET_KEY;
-    // /JWT secret key
-    // Cookie secure status
-    const CookieSecureStatus = process.env.COOKIE_SECURE_STATUS === "true";
-    // /Cookie secure status
     const token = jwt.sign(
       {
         _id: user._id,
       },
-      JWTSecretKey
+      JWT_SECRET_KEY
     );
-    res.cookie('token', token, { httpOnly: true, secure: CookieSecureStatus, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 365 * 10 }).json({
-      message: 'Registration OK'
-    })
+    res.cookie('token', token, { httpOnly: true, secure: COOKIE_SECURE_STATUS, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 365 * 10 });
+    res.status(200).send('Registration OK');
   } catch (error) {
-    res.status(500).json({
-      message: error
-    });
+    res.status(500).send(error);
   }
 };
 // /Registration  
@@ -64,35 +57,26 @@ export const logIn = async (req, res) => {
     if (!password) {
       return res.status(401).send({ error: 'invalid username or password' });
     }
-    // JWT secret key
-    const JWTSecretKey = process.env.JWT_SECRET_KEY;
-    // /JWT secret key
-    // Cookie secure status
-    const CookieSecureStatus = process.env.COOKIE_SECURE_STATUS === "true";
-    // /Cookie secure status
     const token = jwt.sign(
       {
         _id: user._id
       },
-      JWTSecretKey
+      JWT_SECRET_KEY
     );
-    res.cookie('token', token, { httpOnly: true, secure: CookieSecureStatus, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 365 * 10 }).status(200).json({
-      message: 'log in OK'
-    })
+    res.cookie('token', token, { httpOnly: true, secure: COOKIE_SECURE_STATUS, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 365 * 10 });
+    res.status(200).send('log in OK');
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).send(error);
   }
 };
 // /log in
 // log out
-export const logOut = async (req, res) => {
+export const logOut = async (_, res) => {
   try {
-    res.cookie('token', null)
-    res.status(200).json({
-      message: "log out OK",
-    });
+    res.clearCookie('token', { httpOnly: true, secure: COOKIE_SECURE_STATUS });
+    res.status(200).send('log out OK');
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).send(error);
   }
 };
 // log out
@@ -101,16 +85,12 @@ export const authorization = async (req, res) => {
   try {
     const user = await UserModel.findById(req.userId._id);
     if (!user) {
-      return res.status(404).json({
-        message: "User is not found",
-      });
+      return res.status(404).send('User not found');
     }
     const { passwordHash, email, ...userData } = user._doc;
-    res.json(userData);
+    res.status(200).json(userData);
   } catch (error) {
-    res.status(500).json({
-      message: error
-    });
+    res.status(500).send(error);
   }
 };
 // /authorization
@@ -139,20 +119,14 @@ export const editUser = async (req, res) => {
       },
       {
         $set: req.body,
-      },
-      {
-        returnDocument: 'after',
-      },
-    ).select(["name", '_id', 'customId', 'creator', "avatarUrl", "createdAt", "updatedAt"]).then((user) => {
-      if (!user) {
-        return res.status(404).json({
-          message: 'User not found',
-        })
       }
-      res.json(user)
+    ).then(() => {
+      res.status(200).send('User changed');
+    }).catch(() => {
+      return res.status(500).send('Error changing user');
     });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).send(error);
   }
 };
 // /edit user
@@ -187,16 +161,13 @@ export const changeUserPassword = async (req, res) => {
       {
         passwordHash: bcryptHash
       }
-    ).then((user) => {
-      if (!user) {
-        return res.status(404).json({
-          message: 'User not found',
-        })
-      }
-      return res.status(200).json({ message: "Password successfully changed" });
+    ).then(() => {
+      res.status(200).json({ message: "Password successfully changed" });
+    }).catch(() => {
+      return res.status(500).send('Error changing password');
     });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).send(error);
   }
 };
 // /change user password
@@ -214,22 +185,22 @@ export const deleteUserAccount = (req, res) => {
           message: 'User not found',
         })
       }
-      res.status(200).json('User deleted');
+      res.status(200).send('User deleted');
+    }).catch(() => {
+      return res.status(500).send('Error deleting user');
     });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).send(error);
   }
 };
 // /delete user account
 //Get all users
-export const getAllUsers = async (req, res) => {
+export const getAllUsers = async (_, res) => {
   try {
     const users = await UserModel.find({}, "-email -passwordHash");
-    res.json(users);
+    res.status(200).json(users);
   } catch (error) {
-    res.status(500).json({
-      message: error
-    });
+    res.status(500).send(error);
   }
 };
 // Get one user
@@ -242,7 +213,7 @@ export const getOneUser = async (req, res) => {
     }
     return res.status(200).json(user);
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).send(error);
   }
 };
 // /Get one user
@@ -256,7 +227,7 @@ export const getOneUserFromUserEditPage = async (req, res) => {
     }
     return res.status(200).json(user);
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).send(error);
   }
 };
 // /Get one user, from user edit page

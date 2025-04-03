@@ -32,11 +32,9 @@ export function EditUserPage() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
-
   // Authorized user
   const authorizedUser = queryClient.getQueryState(['Authorization'])
   // /Authorized user
-
   const navigate = useNavigate();
   const { userId } = useParams();
   const [userIdUseParams, setUserIdUseParams] = useState(userId);
@@ -196,7 +194,7 @@ export function EditUserPage() {
   const ChangePassword = useMutation({
     mutationKey: ["ChangePassword"],
     mutationFn: (fields) => {
-      return requestManager.patch("/user/change/password/" + userId, fields);
+      return requestManager.post("/user/change/password/" + userId, fields);
     },
     onSuccess: (data) => {
       setServerMessage(data.data.message);

@@ -18,9 +18,9 @@ export const addPost = async (req, res) => {
       return res.status(400).json({ message: "Post should not be empty" });
     }
     const post = await doc.save();
-    res.json(post);
+    res.status(200).json(post);
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).send(error);
   }
 };
 //add post
@@ -50,11 +50,11 @@ export const editPost = async (req, res) => {
         hashtags: getHashtags
       },
     );
-    res.json({
+    res.status(200).json({
       postId: req.params.postId,
     });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).send(error);
   }
 };
 // /edit post
@@ -78,14 +78,14 @@ export const getOnePost = (req, res) => {
           message: 'Post not found',
         })
       }
-      res.json(post)
+      res.status(200).json(post)
     }).catch(() => {
       return res.status(500).json({
         message: 'Error receiving post',
       });
     });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).send(error);
   }
 }
 // /get one post 
@@ -102,7 +102,7 @@ export const getOnePostFromPostEditPage = async (req, res) => {
     }
     return res.status(200).json(post);
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).send(error);
   }
 };
 // /get one post, from post edit page 
@@ -115,7 +115,7 @@ export const getAllPosts = async (req, res) => {
   try {
     return res.status(200).json(result);
   } catch (error) {
-    res.status(500).json({ message: error })
+    res.status(500).send(error);
   }
 };
 // /get all posts
@@ -134,7 +134,7 @@ export const getAllPostsBySpecificUserId = async (req, res) => {
   try {
     return res.status(200).json(result);
   } catch (error) {
-    res.status(500).json({ message: error })
+    res.status(500).send(error);
   }
 };
 //  /get all posts by a specific user id
@@ -173,7 +173,7 @@ export const getAllHashtags = async (_, res) => {
   try {
     return res.status(200).json(result);
   } catch (error) {
-    res.status(500).json({ message: error })
+    res.status(500).send(error);
   }
 };
 // /get all hashtags
@@ -187,7 +187,7 @@ export const getPostsWithSpecificHashtag = async (req, res) => {
   try {
     return res.status(200).json(result);
   } catch (error) {
-    res.status(500).json({ message: error })
+    res.status(500).send(error);
   }
 };
 // /get posts with a specific hashtag
@@ -208,11 +208,11 @@ export const deletePost = async (req, res) => {
       res.status(200).json('Post deleted');
     }).catch(() => {
       return res.status(500).json({
-        message: 'Failed to delete post',
+        message: 'Error deleting post',
       });
     });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).send(error);
   }
 };
 // /delete post
@@ -239,7 +239,7 @@ export const deleteAllPostsCurrentUser = async (req, res) => {
       });
     });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).send(error);
   }
 };
 // /delete all posts of the current user
@@ -261,11 +261,11 @@ export const addLike = async (req, res) => {
         { $pull: { liked: likeUserId } } :
         { $addToSet: { liked: likeUserId } },
     );
-    res.json({
+    res.status(200).json({
       postId: req.params.postId,
     });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).send(error);
   }
 };
 // /add like
@@ -284,7 +284,7 @@ export const getLikedPostsWithSpecificUser = async (req, res) => {
     const result = await PostModel.find({ "liked": userId._id.toString() }).sort({ createdAt: -1 }).populate({ path: "user", select: ["name", "customId", 'aboutMe', "creator", "avatarUrl", "createdAt", "updatedAt"] }).skip(offset).limit(limit).exec();
     return res.json(result);
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).send(error);
   }
 }
 // /get liked posts with a specific user
