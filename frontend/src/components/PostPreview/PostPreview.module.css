@@ -126,7 +126,7 @@
 
 .post_image img {
   width: 100%;
-  max-height: 290px;
+  max-height: 320px;
 }
 
 .post_image img[alt] {
@@ -502,6 +502,14 @@
   .post_wrap:last-child {
     margin-bottom: 60px;
   }
+
+}
+
+@media (max-width: 600px) {
+.post_image img {
+  width: 100%;
+  max-height: 520px;
+}
 }
 
 @media (max-width: 500px) {
