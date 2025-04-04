@@ -10,12 +10,6 @@
   padding: 0 15px;
 }
 
-@media (max-width: 860px) {
-  .left_center_right_parts_wrap {
-    padding: 0 0px;
-  }
-}
-
 .left_center_right_parts {
   display: flex;
   width: 100%;
@@ -25,68 +19,99 @@
   gap: 20px;
 }
 
+.left_side_wrap {
+  width: 18%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.center {
+  width: 64%;
+  position: relative;
+  overflow-x: clip;
+}
+
+.center_full {
+  width: 140%;
+}
+
+.right_side_wrap {
+  width: 18%;
+}
+
+.header_mobile_wrap {
+  display: none;
+  position: sticky;
+  top: 0px;
+  z-index: 5;
+}
+
+/* @media */
+@media (max-width: 1330px) {
+  .center_full {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1250px) {
+  .center_full {
+    width: 80%;
+  }
+}
+
+@media (max-width: 1190px) {
+  .center_full {
+    width: 65%;
+  }
+}
+
+@media (max-width: 1170px) {
+  .left_side_wrap {
+    width: 15%;
+  }
+
+  .center {
+    width: 54%;
+  }
+
+  .right_side_wrap {
+    width: 15%;
+  }
+}
+
+@media (max-width: 1120px) {
+  .center_full {
+    width: 54%;
+  }
+}
+
 @media (max-width: 1000px) {
   .left_center_right_parts {
     gap: 5px;
   }
 }
 
-.left_side_wrap {
-  width: 21%;
-  display: flex;
-  justify-content: flex-end;
-}
-
-@media (max-width: 980px) {
-  .left_side_wrap {
-    width: 18%;
-  }
-}
 
 @media (max-width: 860px) {
+  .left_center_right_parts_wrap {
+    padding: 0 0px;
+  }
+
   .left_side_wrap {
     display: none;
   }
-}
 
-.center {
-  width: 58%;
-  position: relative;
-  overflow-x: clip;
-}
-
-@media (max-width: 980px) {
-  .center {
-    width: 54%;
-  }
-}
-
-@media (max-width: 860px) {
   .center {
     width: 100%;
     border: none;
   }
-}
 
-@media screen and (max-width: 550px) {
-  .center {
-    border: none;
-  }
-}
-
-.right_side_wrap {
-  width: 21%;
-}
-
-@media (max-width: 980px) {
-  .right_side_wrap {
-    width: 18%;
-  }
-}
-
-@media (max-width: 860px) {
   .right_side_wrap {
     display: none;
+  }
+
+  .header_mobile_wrap {
+    display: block;
   }
 }
 
@@ -100,15 +125,10 @@
   }
 }
 
-.header_mobile_wrap {
-  display: none;
-  position: sticky;
-  top: 0px;
-  z-index: 5;
-}
-
-@media (max-width: 860px) {
-  .header_mobile_wrap {
-    display: block;
+@media screen and (max-width: 550px) {
+  .center {
+    border: none;
   }
 }
+
+/* /@media */

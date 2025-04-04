@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import {
   Routes,
-  Route
+  Route,
+  useLocation
 } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styles from "./App.module.css";
@@ -37,6 +38,8 @@ import {
   UpButton
 } from "./components";
 export default function App() {
+  const location = useLocation()
+  const defineFullPostPage = location.pathname.includes('/post/')
   Authorization();
   // Dark theme
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
@@ -55,7 +58,11 @@ export default function App() {
           <div className={styles.left_side_wrap}>
             <LeftSide />
           </div>
-          <div className={styles.center}>
+          <div className={
+            defineFullPostPage
+              ? `${styles.center} ${styles.center_full}`
+              : styles.center
+          }>
             <div className={styles.header_mobile_wrap}>
               <HeaderMobile />
               <SideMenuMobile />

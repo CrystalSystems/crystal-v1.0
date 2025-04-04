@@ -60,8 +60,8 @@
 }
 
 .avatar img {
-  width: 39px;
-  height: 39px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -69,8 +69,8 @@
 .no_avatar svg {
   display: flex;
   fill: var(--fill_global);
-  width: 39px;
-  height: 39px;
+  width: 44px;
+  height: 44px;
 }
 
 .user_name_user_custom_id_wrap {
@@ -93,7 +93,7 @@
 }
 
 .user_name p {
-  font-size: 16px;
+  font-size: 17.5px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
 }
@@ -109,7 +109,7 @@
 }
 
 .user_custom_id p {
-  font-size: 16px;
+  font-size: 17.5px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 400;
 }
@@ -158,9 +158,9 @@
 
 .post_title h2 {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 18.5px;
+  font-size: 20px;
   font-weight: bold;
-  line-height: 26px;
+  line-height: 31px;
   white-space: pre-line;
   word-wrap: break-word;
   word-break: break-word;
@@ -194,8 +194,8 @@
 
 .post_text_preview p {
   white-space: pre-line;
-  line-height: 29px;
-  font-size: 18px;
+  line-height: 31px;
+  font-size: 19px;
   font-family: Arial, Helvetica, sans-serif;
   word-wrap: break-word;
   word-break: break-word;
@@ -212,8 +212,8 @@
 
 .post_text_long p {
   white-space: pre-line;
-  line-height: 29px;
-  font-size: 18px;
+  line-height: 31px;
+  font-size: 19px;
   font-family: Arial, Helvetica, sans-serif;
   word-wrap: break-word;
   word-break: break-word;
