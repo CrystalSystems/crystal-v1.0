@@ -25,7 +25,7 @@
 .title p {
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: bold;
   line-height: 22px;
 }
@@ -48,7 +48,7 @@
 }
 
 .name p {
-  font-size: 14px;
+  font-size: 15.5px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
   text-wrap: nowrap;
@@ -65,12 +65,12 @@
 }
 
 .number p {
-  font-size: 13px;
+  font-size: 14px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .post p {
-  font-size: 13px;
+  font-size: 14px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -80,8 +80,8 @@
   justify-content: center;
   z-index: 1;
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
+  width: 27px;
+  height: 27px;
   cursor: pointer;
   position: absolute;
   right: 12px;
@@ -103,8 +103,8 @@
 }
 
 .options svg {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   fill: var(--fill_global);
 }
 
@@ -114,7 +114,7 @@
   background-color: var(--show_more_background-color);
   width: 100%;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 22px;
   color: var(--color_global);
   font-weight: 600;

@@ -523,16 +523,24 @@ export function EditUserPage() {
                 </button>
               </div>
             </>
-          )
-          }
-          {(checkingUserChanges && !validationUserIdErrorStatus) && (
-            <div className={styles.save_user_changes}>
-              <button onClick={onClickSaveUserChanges}>
-                {t("EditUserPage.Save")}
-              </button>
+          )}
+          <div className={styles.save_user_changes_back_buttons_wrap}>
+            <div className={styles.save_user_changes_back_buttons}>
+              <div className={styles.back}>
+                <button onClick={() => navigate("/" + userId)}>
+                  {t("AddPostPage.Back")}
+                </button>
+              </div>
+              {(checkingUserChanges && !validationUserIdErrorStatus) && (
+                <div className={styles.save_user_changes}>
+                  <button onClick={onClickSaveUserChanges}>
+                    {t("EditUserPage.Save")}
+                  </button>
+                </div>
+              )
+              }
             </div>
-          )
-          }
+          </div>
         </div >
       )
       }

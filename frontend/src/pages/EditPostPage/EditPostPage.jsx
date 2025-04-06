@@ -33,6 +33,7 @@ export function EditPostPage() {
   const [databaseImageUrl, setDatabaseImageUrl] = useState();
   const [databaseImageUrlEditing, setDatabaseImageUrlEditing] = useState();
   const fileImagePreviewRef = useRef();
+  const [imagePreviewUrl, setImagePreviewUrl] = useState();
   const [fileImagePreviewUrl, setFileImagePreviewUrl] = useState();
   const [fileImagePreview, setFileImagePreview] = useState();
   const [changeImageCheck, setChangeImageCheck] = useState(false);
@@ -74,8 +75,8 @@ export function EditPostPage() {
       });
       setFileImagePreview(convertingBlobToFile);
       setFileImagePreviewUrl(URL.createObjectURL(compressedFile));
-      // setFileImagePreviewUrl(URL.createObjectURL(compressedFile)+'.webp')
-      setChangeImageCheck(true);
+      setChangeImageCheck(true)
+      setImagePreviewUrl(null)
       setImagePreviewLoadingStatusError(false);
     } catch (error) {
       console.log(error);
@@ -92,31 +93,59 @@ export function EditPostPage() {
   // Title
   const titleRef = useRef();
   const [title, setTitle] = useState("");
+  const [enteredTitle, setEnteredTitle] = useState("");
   const [titleValueDatabase, setTitleValueDatabase] = useState();
   const [numberCharactersInTitle, setNumberCharactersInTitle] = useState();
   const onChangeTitle = (event) => {
     setNumberCharactersInTitle(event.target.value.length);
     setTitle(event.target.value);
+    setEnteredTitle(event.target.value);
+    setChangeTitleCheck(true)
   };
   // /Title
   // Text
   const textRef = useRef();
   const [text, setText] = useState("");
+  const [enteredText, setEnteredText] = useState("");
   const [textValueDatabase, setTextValueDatabase] = useState();
   const [numberCharactersInText, setNumberCharactersInText] = useState();
   const onChangeText = (event) => {
     setNumberCharactersInText(event.target.value.length);
     setText(event.target.value);
+    setEnteredText(event.target.value);
+    setChangeTextCheck(true)
   };
   // /Text
+  const [changeTitleCheck, setChangeTitleCheck] = useState(false);
+  const [changeTextCheck, setChangeTextCheck] = useState(false);
   useEffect(() => {
+    if (title !== enteredTitle) {
+      setChangeTitleCheck(false);
+    }
+    if (text !== enteredText) {
+      setChangeTextCheck(false);
+    }
+    if (!imagePreviewUrl &&
+      !fileImagePreviewUrl &&
+      !databaseImageUrl &&
+      !enteredTitle &&
+      !enteredText
+    ) {
+      setChangeImageCheck(false)
+    }
+    if (titleValueDatabase === enteredTitle) {
+      setEnteredTitle(null);
+    }
+    if (textValueDatabase === enteredText) {
+      setEnteredText(null);
+    }
     if (titleValueDatabase === title) {
-      setNumberCharactersInTitle(undefined);
+      setNumberCharactersInTitle(null);
     }
     if (textValueDatabase === text) {
-      setNumberCharactersInText(undefined);
+      setNumberCharactersInText(null);
     }
-  }, [titleValueDatabase, title, textValueDatabase, text]);
+  }, [titleValueDatabase, title, textValueDatabase, text, enteredTitle, enteredText, databaseImageUrl, fileImagePreviewUrl, imagePreviewUrl, changeImageCheck, changeTitleCheck, changeTextCheck]);
   const onClickChangePost = async () => {
     try {
       const fields = {
@@ -178,23 +207,25 @@ export function EditPostPage() {
     setDatabaseImageUrl(
       postDataQuery.data?.imageUrl && baseURL + postDataQuery.data.imageUrl,
     );
-    setFileImagePreviewUrl(
+    setImagePreviewUrl(
       postDataQuery.data?.imageUrl && baseURL + postDataQuery.data.imageUrl,
     );
     setDatabaseImageUrlEditing(postDataQuery.data?.imageUrl);
   }, [postDataQuery.data]);
   const onClickRemoveImage = () => {
-    setDatabaseImageUrl(null);
     setDatabaseImageUrlEditing(null);
     setFileImagePreviewUrl(null);
+    setImagePreviewUrl(null);
     setFileImagePreview(null);
+    (enteredTitle ||
+      enteredText ||
+      titleValueDatabase ||
+      textValueDatabase
+    ) ?
+      setChangeImageCheck(true) :
+      setChangeImageCheck(false)
     fileImagePreviewRef.current.value = null;
-    setChangeImageCheck(true);
   };
-  const checkingPostChanges =
-    titleValueDatabase !== title ||
-    textValueDatabase !== text ||
-    changeImageCheck;
   if (postDataQuery.error?.response.data.message === "No access") {
     return <Navigate to="/" />;
   }
@@ -210,9 +241,9 @@ export function EditPostPage() {
         postDataQuery.error) && <NotFoundPage />}
       {postDataQuery.status === "success" && (
         <>
-          {(databaseImageUrl || fileImagePreviewUrl) && (
+          {(imagePreviewUrl || fileImagePreview) && (
             <div className={styles.image_preview}>
-              <img alt="" src={fileImagePreviewUrl || databaseImageUrl} />
+              <img alt="" src={imagePreviewUrl || fileImagePreviewUrl} />
             </div>
           )}
           {imagePreviewLoadingStatus && (
@@ -237,7 +268,7 @@ export function EditPostPage() {
                 ? t("EditPostPage.Change")
                 : t("EditPostPage.AddPreview")}
             </button>
-            {(databaseImageUrl || fileImagePreview) && (
+            {(imagePreviewUrl || fileImagePreview) && (
               <button onClick={onClickRemoveImage}>{t("EditPostPage.Delete")}</button>
             )}
           </div>
@@ -268,8 +299,8 @@ export function EditPostPage() {
               onChange={onChangeText}
               variant="standard"
               placeholder={
-                (fileImagePreviewUrl || databaseImageUrl ? "" : "* ") +
-                t("AddPostPage.Text")
+                (imagePreviewUrl || fileImagePreviewUrl ? "" : "* ") +
+                t("EditPostPage.Text")
               }
             />
           </div>
@@ -278,13 +309,22 @@ export function EditPostPage() {
               <p>{numberCharactersInText}/75000</p>
             </div>
           )}
-          {checkingPostChanges && (
-            <div className={styles.publish_post}>
-              <button onClick={onClickChangePost}>
-                {t("AddPostPage.PublishButton")}
-              </button>
+          <div className={styles.publish_post_back_buttons_wrap}>
+            <div className={styles.publish_post_back_buttons}>
+              <div className={styles.back}>
+                <button onClick={() => navigate(-1)}>
+                  {t("EditPostPage.Back")}
+                </button>
+              </div>
+              {(changeTitleCheck || changeTextCheck || changeImageCheck) && (
+                <div className={styles.publish_post}>
+                  <button onClick={onClickChangePost}>
+                    {t("EditPostPage.Publish")}
+                  </button>
+                </div>
+              )}
             </div>
-          )}
+          </div>
           <input
             ref={fileImagePreviewRef}
             type="file"

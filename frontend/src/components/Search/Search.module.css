@@ -32,8 +32,8 @@
 .search input {
   width: 100%;
   border: none;
-  padding: 3px 2px 3px 10px;
-  font-size: 18px;
+  padding: 3px 2px 3px 12px;
+  font-size: 19px;
   color: var(--color_global);
   font-family: Arial, Helvetica, sans-serif;
   height: 29px;

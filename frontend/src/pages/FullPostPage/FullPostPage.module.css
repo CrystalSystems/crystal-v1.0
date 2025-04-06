@@ -43,8 +43,8 @@
 }
 
 .avatar img {
-  width: 44px;
-  height: 44px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -54,8 +54,8 @@
   align-items: center;
   justify-content: center;
   fill: var(--fill_global);
-  width: 39px;
-  height: 39px;
+  width: 55px;
+  height: 55px;
 }
 
 .user_name_user_custom_id_wrap {
@@ -78,7 +78,7 @@
 }
 
 .user_name p {
-  font-size: 17.5px;
+  font-size: 19px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
 }
@@ -94,7 +94,7 @@
 }
 
 .user_id p {
-  font-size: 16.5px;
+  font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 400;
 }
@@ -145,7 +145,7 @@
 
 .post_title h1 {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 31px;
   white-space: pre-line;
   word-wrap: break-word;
@@ -205,14 +205,19 @@
   align-items: center;
 }
 
+.link_bookmark_repost_like_wrap {
+  display: flex;
+  gap: 13px;
+}
+
 .post_info_bottom_part_1_2 button {
   cursor: pointer;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 32px;
-  width: 32px;
+  height: 45px;
+  width: 45px;
   z-index: 1;
   border: none;
   background-color: transparent;
@@ -228,25 +233,25 @@
 }
 
 .messages svg {
-  width: 18px;
-  height: 18px;
+  width: 26px;
+  height: 26px;
 }
 
 .link svg {
-  width: 15px;
-  height: 15px;
+  width: 25px;
+  height: 25px;
   stroke: var(--stroke_global);
 }
 
 .bookmark svg {
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   stroke: var(--stroke_global);
 }
 
 .repost svg {
-  width: 16px;
-  height: 16px;
+  width: 28px;
+  height: 28px;
   stroke: var(--stroke_global);
 }
 
@@ -257,68 +262,97 @@
 }
 
 .like_wrap p {
-  font-size: 14px;
+  font-size: 17px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .like svg {
-  width: 17px;
-  height: 17px;
+  width: 26px;
+  height: 26px;
   stroke: var(--stroke_global);
   fill: none;
 }
 
 .like_liked svg {
-  width: 17px;
-  height: 17px;
+  width: 26px;
+  height: 26px;
   fill: var(--like_liked_svg_fill);
   stroke: var(--like_liked_svg_stroke);
 }
 
-.eye {
+.eye_top {
+  display: none;
+  justify-content: flex-start;
+  gap: 10px;
+  align-items: center;
+}
+
+.eye_top svg {
+  width: 18px;
+  height: 18px;
+  fill: #6f6d6d;
+}
+
+.eye_top p {
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.post_creation_date_eye_top_wrap {
+  margin-top: 6px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.post_creation_date_eye_top {
+  display: flex;
+  justify-content: center;
   width: 100%;
+}
+
+.eye {
   display: flex;
   justify-content: flex-start;
+  gap: 10px;
   align-items: center;
-  margin-right: 10px;
 }
 
 .eye svg {
-  width: 13px;
-  height: 13px;
+  width: 18px;
+  height: 18px;
   fill: #6f6d6d;
 }
 
 .eye p {
-  font-size: 13px;
-  margin-left: 5px;
+  font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .post_creation_date {
   display: flex;
   justify-content: center;
-  margin-top: 6px;
 }
 
 .post_creation_date p {
   text-align: end;
-  font-size: 15px;
+  font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .crystal_icon {
   display: flex;
   align-items: center;
+  position: relative;
+  bottom: 1px;
 }
 
 .crystal_icon svg {
   fill: var(--fill_global);
   stroke: var(--stroke_global);
   stroke-width: 3;
-  margin-left: 4.7px;
-  width: 15.5px;
-  height: 15.5px;
+  margin-left: 5px;
+  width: 18.5px;
+  height: 18.5px;
 }
 
 .options {
@@ -327,8 +361,8 @@
   justify-content: center;
   z-index: 1;
   border-radius: 50%;
-  width: 35px;
-  height: 35px;
+  width: 42px;
+  height: 42px;
   cursor: pointer;
   border: none;
   background-color: transparent;
@@ -342,8 +376,8 @@
 }
 
 .options svg {
-  width: 22px;
-  height: 22px;
+  width: 33px;
+  height: 33px;
   fill: var(--fill_global);
 }
 
@@ -371,7 +405,7 @@
 /* Menu - post options */
 .options_menu {
   right: 15px;
-  top: 62px;
+  top: 74px;
   border: var(--options_menu_border);
   margin-left: 15px;
   border-radius: 8px;
@@ -387,7 +421,7 @@
 .options_menu ul li {
   padding: 9px 14px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
   cursor: pointer;
   line-height: 21px;
@@ -445,7 +479,7 @@
 }
 
 @media (max-width: 860px) {
-  .post_creation_date {
+  .post_creation_date_eye_wrap {
     margin-top: 11px;
   }
 
@@ -463,6 +497,43 @@
 
   .user_id {
     max-width: 190px;
+  }
+}
+
+@media (max-width: 450px) {
+  .post_info_bottom_part_1_2 {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .post_creation_date_eye_top {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+  }
+
+  .eye_top {
+    display: flex;
+  }
+
+  .eye {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .post_creation_date_eye_top {
+    display: flex;
+    justify-content: space-between;
+    width: 63%;
+  }
+}
+
+@media (max-width: 350px) {
+  .post_creation_date_eye_top {
+    display: flex;
+    justify-content: space-between;
+    width: 67%;
   }
 }
 

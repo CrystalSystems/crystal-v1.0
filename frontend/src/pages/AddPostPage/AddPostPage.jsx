@@ -193,15 +193,15 @@ export function AddPostPage() {
           onClick={() => fileImagePreviewRef.current.click()}
         >
           {fileImagePreviewUrl
-            ? t("AddPostPage.ChangePreviewButton")
-            : t("AddPostPage.AddPreviewButton")}
+            ? t("AddPostPage.ChangePreview")
+            : t("AddPostPage.AddPreview")}
         </button>
         {fileImagePreviewUrl && (
           <button
             disabled={!logInStatus && true}
             onClick={onClickRemoveFileImagePreview}
           >
-            {t("AddPostPage.DeletePreviewButton")}
+            {t("AddPostPage.DeletePreview")}
           </button>
         )}
       </div>
@@ -239,13 +239,22 @@ export function AddPostPage() {
           </div>
         )}
       </div>
-      {(fileImagePreview || textСharacterСounter >= 1) && (
-        <div className={styles.publish_post}>
-          <button onClick={onClickAddPost}>
-            {t("AddPostPage.PublishButton")}
-          </button>
+      <div className={styles.publish_post_back_buttons_wrap}>
+        <div className={styles.publish_post_back_buttons}>
+          <div className={styles.back}>
+            <button onClick={() => navigate(-1)}>
+              {t("AddPostPage.Back")}
+            </button>
+          </div>
+          {(fileImagePreview || textСharacterСounter >= 1) && (
+            <div className={styles.publish_post}>
+              <button onClick={onClickAddPost}>
+                {t("AddPostPage.Publish")}
+              </button>
+            </div>
+          )}
         </div>
-      )}
+      </div>
       <input
         ref={fileImagePreviewRef}
         type="file"

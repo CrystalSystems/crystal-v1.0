@@ -1,7 +1,6 @@
 .header_mobile {
   background-color: var(--filling_background-color_global);
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   z-index: 10;

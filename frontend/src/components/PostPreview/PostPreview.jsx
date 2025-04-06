@@ -35,11 +35,9 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
   // Checking user log in
   const logInStatus = useSelector((state) => state.logInStatus)
   // /Checking user log in
-
   // Authorized user
   const authorizedUser = queryClient.getQueryState(['Authorization'])
   // /Authorized user
-
   // Menu - post options
   const menuPostOptions = useRef();
   const [showMenuPostOptions, setShowMenuPostOptions] = useState(false);
@@ -320,42 +318,55 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
                   )}
                 className={styles.post_info_bottom_part_1_2}
               >
-                <button className={styles.messages}>
-                  <MessagesIcon />
-                </button>
-                <button className={styles.link}>
-                  <LinkIcon />
-                </button>
-                <button className={styles.bookmark}>
-                  <BookmarkIcon />
-                </button>
-                <button className={styles.repost}>
-                  <RepostIcon />
-                </button>
-                <div className={styles.like_wrap}>
-                  <button
-                    onClick={authorizedUser?.data ?
-                      onClickAddLike
-                      :
-                      null}
-                    className={
-                      userLiked ?
-                        styles.like_liked
-                        :
-                        styles.like
-                    }
-                  >
-                    <LikeIcon />
+                <div className={styles.link_wrap}>
+                  <button className={styles.link}>
+                    <LinkIcon />
                   </button>
-                  {numberLiked > 0 && <p>{formattingLongNumber.format(numberLiked)}</p>}
+                </div>
+                <div className={styles.link_bookmark_repost_like_wrap}>
+                  <button className={styles.repost}>
+                    <RepostIcon />
+                  </button>
+                  <button className={styles.bookmark}>
+                    <BookmarkIcon />
+                  </button>
+                  <button className={styles.messages}>
+                    <MessagesIcon />
+                  </button>
+                  <div className={styles.like_wrap}>
+                    <button
+                      onClick={authorizedUser?.data ?
+                        onClickAddLike
+                        :
+                        null}
+                      className={
+                        userLiked ?
+                          styles.like_liked
+                          :
+                          styles.like
+                      }
+                    >
+                      <LikeIcon />
+                    </button>
+                    {numberLiked > 0 && <p>{formattingLongNumber.format(numberLiked)}</p>}
+                  </div>
                 </div>
               </div>
             ) : (
               <div className={styles.post_info_bottom_part_1_2_loader}></div>
             )}
           </div>
-          <div className={styles.post_creation_date}>
-            <p>{postData.post?.createdAt?.replace(/[.-]/g, '.').slice(0, -14)}</p>
+          <div className={styles.post_creation_date_eye_bottom_wrap}>
+            <div className={styles.post_creation_date_eye_bottom}>
+              <div className={styles.eye_bottom}>
+                <EyeIcon />
+                {postData.post?.viewsCount > 0 &&
+                  <p>{formattingLongNumber.format(postData.post?.viewsCount)}</p>}
+              </div>
+              <div className={styles.post_creation_date}>
+                <p>{postData.post?.createdAt?.replace(/[.-]/g, '.').slice(0, -14)}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

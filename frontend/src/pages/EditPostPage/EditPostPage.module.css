@@ -96,7 +96,7 @@
    cursor: pointer;
    font-family: Arial, Helvetica, sans-serif;
    font-weight: 500;
-   font-size: 16px;
+   font-size: 17px;
    color: var(--button_color);
    letter-spacing: 0.5px;
    transition-property: border, background-color;
@@ -115,7 +115,7 @@
    padding: 9px 10px;
    box-sizing: border-box;
    overflow: hidden;
-   font-size: 19px;
+   font-size: 22px;
    background-color: var(--filling_background-color_global);
    transition-property: color, border, background-color;
    font-family: Arial, Helvetica, sans-serif;
@@ -126,7 +126,7 @@
  .post_title textarea::placeholder {
    color: rgba(116, 116, 116, 0.806);
    font-weight: 400;
-   font-size: 19px;
+   font-size: 22px;
    font-family: Arial, Helvetica, sans-serif;
  }
 
@@ -177,10 +177,31 @@
    font-family: Arial, Helvetica, sans-serif;
  }
 
- .publish_post {
+ .publish_post_back_buttons_wrap {
    display: flex;
-   margin-top: 25px;
    justify-content: flex-end;
+   margin-top: 25px;
+ }
+
+ .publish_post_back_buttons {
+   display: flex;
+   gap: 17px;
+ }
+
+ .back button {
+   background-color: var(--button_background-color);
+   border: var(--button_border);
+   box-shadow:
+     var(--button_box-shadow);
+   padding: 11px;
+   border-radius: 12px;
+   cursor: pointer;
+   font-family: Arial, Helvetica, sans-serif;
+   font-weight: 600;
+   font-size: 18px;
+   color: var(--button_color);
+   letter-spacing: 0.5px;
+   transition-property: border, background-color;
  }
 
  .publish_post button {
@@ -193,7 +214,7 @@
    cursor: pointer;
    font-family: Arial, Helvetica, sans-serif;
    font-weight: 600;
-   font-size: 16px;
+   font-size: 18px;
    color: var(--button_color);
    letter-spacing: 0.5px;
    transition-property: border, background-color;

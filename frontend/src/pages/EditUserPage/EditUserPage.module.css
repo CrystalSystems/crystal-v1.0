@@ -419,10 +419,15 @@
   margin-top: 22px;
 }
 
-.save_user_changes {
+.save_user_changes_back_buttons_wrap {
   display: flex;
-  margin-top: 25px;
   justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.save_user_changes_back_buttons {
+  display: flex;
+  gap: 17px;
 }
 
 .user_info:active {

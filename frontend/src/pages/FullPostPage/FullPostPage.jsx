@@ -36,11 +36,9 @@ export function FullPostPage() {
   const logInStatus = useSelector((state) => state.logInStatus)
   // /Checking user log in
   const queryClient = useQueryClient();
-
   // Authorized user
   const authorizedUser = queryClient.getQueryState(['Authorization'])
   // /Authorized user
-
   const navigateTo = useNavigate();
   const dispatch = useDispatch();
   const [userId, setUserId] = useState();
@@ -160,7 +158,6 @@ export function FullPostPage() {
   if (Post.status === 'pending') {
     return null;
   }
-
   return (
     <>
       {Post.status === 'error' && <NotFoundPage />}
@@ -272,8 +269,17 @@ export function FullPostPage() {
               </div>
             )}
           </div>
-          <div className={styles.post_creation_date}>
-            <p>{Post?.data?.createdAt?.replace(/[.-]/g, '.').slice(0, -14)}</p>
+          <div className={styles.post_creation_date_eye_top_wrap}>
+            <div className={styles.post_creation_date_eye_top}>
+              <div className={styles.post_creation_date}>
+                <p>{Post?.data?.createdAt?.replace(/[.-]/g, '.').slice(0, -14)}</p>
+              </div>
+              <div className={styles.eye_top}>
+                <EyeIcon />
+                {Post?.data?.viewsCount > 0 &&
+                  <p>{formattingLongNumber.format(Post?.data?.viewsCount)}</p>}
+              </div>
+            </div>
           </div>
           {Post?.data?.title && (
             <div className={styles.post_title}>
@@ -345,34 +351,38 @@ export function FullPostPage() {
                     )}
                   className={styles.post_info_bottom_part_1_2}
                 >
-                  <button className={styles.messages}>
-                    <MessagesIcon />
-                  </button>
-                  <button className={styles.link}>
-                    <LinkIcon />
-                  </button>
-                  <button className={styles.bookmark}>
-                    <BookmarkIcon />
-                  </button>
-                  <button className={styles.repost}>
-                    <RepostIcon />
-                  </button>
-                  <div className={styles.like_wrap}>
-                    <button
-                      onClick={authorizedUser.data ?
-                        onClickAddLike
-                        :
-                        null}
-                      className={
-                        userLiked ?
-                          styles.like_liked
-                          :
-                          styles.like
-                      }
-                    >
-                      <LikeIcon />
+                  <div className={styles.link_wrap}>
+                    <button className={styles.link}>
+                      <LinkIcon />
                     </button>
-                    {numberLiked > 0 && <p>{formattingLongNumber.format(numberLiked)}</p>}
+                  </div>
+                  <div className={styles.link_bookmark_repost_like_wrap}>
+                    <button className={styles.repost}>
+                      <RepostIcon />
+                    </button>
+                    <button className={styles.bookmark}>
+                      <BookmarkIcon />
+                    </button>
+                    <button className={styles.messages}>
+                      <MessagesIcon />
+                    </button>
+                    <div className={styles.like_wrap}>
+                      <button
+                        onClick={authorizedUser.data ?
+                          onClickAddLike
+                          :
+                          null}
+                        className={
+                          userLiked ?
+                            styles.like_liked
+                            :
+                            styles.like
+                        }
+                      >
+                        <LikeIcon />
+                      </button>
+                      {numberLiked > 0 && <p>{formattingLongNumber.format(numberLiked)}</p>}
+                    </div>
                   </div>
                 </div>
               ) : (

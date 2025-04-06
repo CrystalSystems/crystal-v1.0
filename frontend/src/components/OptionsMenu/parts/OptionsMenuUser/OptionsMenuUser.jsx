@@ -68,11 +68,9 @@ export function OptionsMenuUser() {
   };
   const queryClient = useQueryClient();
   const userMenuListRef = useRef();
-
   // Authorized user
   const authorizedUser = queryClient.getQueryState(['Authorization'])
   // /Authorized user
-
   // Сhange avatar in another browser, if it is updated, in the current browser
   useEffect(() => {
     if (authorizedUser.status === 'success') {
@@ -146,11 +144,9 @@ export function OptionsMenuUser() {
       dispatch(setShowSideMenuMobileBackground(true));
     }
   };
-
   if (!authorizedUser.data) {
     return null
   }
-
   return (
     <div
       className={styles.options_menu_user} data-options-menu-user-dark-theme={darkThemeStatus}>

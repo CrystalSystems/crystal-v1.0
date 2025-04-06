@@ -72,18 +72,18 @@
 }
 
 .add_banner_button svg {
-  width: 21px;
-  height: 21px;
+  width: 23px;
+  height: 23px;
 }
 
 .save_banner_button svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 }
 
 .delete_banner_button svg {
-  width: 18.5px;
-  height: 18.5px;
+  width: 20px;
+  height: 20px;
 }
 
 /* user options - menu */
@@ -101,8 +101,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  width: 35px;
-  height: 35px;
+  width: 37px;
+  height: 37px;
   cursor: pointer;
   border: none;
   background-color: transparent;
@@ -117,13 +117,13 @@
 }
 
 .user_options button svg {
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   fill: var(--fill_global);
 }
 
 .user_options_menu {
-  top: 47px;
+  top: 49px;
   margin-left: 15px;
   border-radius: 8px;
   position: absolute;
@@ -140,20 +140,13 @@
   transition: var(--transition_background-color_active_global);
 }
 
-.user_options_menu li {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 22px;
-}
-
 .user_options_menu ul li a {
   display: flex;
-  padding: 9px 14px;
+  padding: 10px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
+  font-size: 15.5px;
   font-weight: 600;
-  line-height: 22px;
+  line-height: 23px;
   text-decoration: none;
   color: var(--color_global);
 }
@@ -335,18 +328,18 @@
 }
 
 .add_avatar_button svg {
-  width: 21px;
-  height: 21px;
+  width: 23px;
+  height: 23px;
 }
 
 .save_avatar_button svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 }
 
 .delete_avatar_button svg {
-  width: 18.5px;
-  height: 18.5px;
+  width: 20px;
+  height: 20px;
 }
 
 .name_id_wrap {
@@ -358,7 +351,7 @@
   overflow: hidden;
   justify-content: flex-start;
   position: relative;
-  gap: 3px;
+  gap: 2px;
 }
 
 .name {
@@ -398,12 +391,12 @@
 }
 
 .about_wrap p {
-  font-size: 18px;
+  font-size: 19px;
   font-family: Arial, Helvetica, sans-serif;
   word-wrap: break-word;
   word-break: break-word;
   white-space: pre-line;
-  line-height: 27px;
+  line-height: 29px;
 }
 
 .about_wrap a {
@@ -420,6 +413,8 @@
 .crystal_icon {
   display: flex;
   align-items: center;
+  position: relative;
+  bottom: 1px;
 }
 
 .crystal_icon svg {
@@ -428,8 +423,8 @@
   stroke: var(--stroke_global);
   stroke-width: 3;
   margin-left: 5px;
-  width: 17.2px;
-  height: 17.2px;
+  width: 18px;
+  height: 18px;
 }
 
 @media (max-width: 1080px) {
