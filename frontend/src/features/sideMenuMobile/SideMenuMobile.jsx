@@ -120,15 +120,15 @@ export function SideMenuMobile() {
                 {t("SideMenuMobile.Video")}
                 <Link to={"/" + authorizedUser.data.customId}></Link>
               </li>
-              <li className={styles.like}>
-                <LikeIcon />
-                {t("SideMenuMobile.Liked")}
-                <Link to={"/liked/" + authorizedUser.data.customId}></Link>
-              </li>
               <li className={styles.bookmark}>
                 <BookmarkIcon />
                 {t("SideMenuMobile.Bookmarks")}
                 <Link to={"/" + authorizedUser.data.customId}></Link>
+              </li>
+              <li className={styles.like}>
+                <LikeIcon />
+                {t("SideMenuMobile.Liked")}
+                <Link to={"/liked/" + authorizedUser.data.customId}></Link>
               </li>
               <li className={styles.crystal}>
                 <CrystalIcon />

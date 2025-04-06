@@ -228,7 +228,6 @@
 }
 
 .messages {
-  margin-right: 10px;
   stroke: var(--stroke_global);
 }
 
@@ -244,6 +243,7 @@
 }
 
 .bookmark svg {
+  margin-right: 10px;
   width: 24px;
   height: 24px;
   stroke: var(--stroke_global);
@@ -283,13 +283,13 @@
 .eye_top {
   display: none;
   justify-content: flex-start;
-  gap: 10px;
+  gap: 9px;
   align-items: center;
 }
 
 .eye_top svg {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
   fill: #6f6d6d;
 }
 
@@ -313,13 +313,13 @@
 .eye {
   display: flex;
   justify-content: flex-start;
-  gap: 10px;
+  gap: 9px;
   align-items: center;
 }
 
 .eye svg {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
   fill: #6f6d6d;
 }
 

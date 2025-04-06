@@ -68,15 +68,15 @@ export function SideMenuDesktop() {
           <p>{t("DesktopSideMenu.Video")}</p>
           <Link to={`/${authorizedUser.data.customId}`}></Link>
         </li>
-        <li className={styles.like}>
-          <LikeIcon />
-          <p>{t("DesktopSideMenu.Liked")}</p>
-          <Link to={"/liked/" + authorizedUser.data.customId}></Link>
-        </li>
         <li className={styles.bookmark}>
           <BookmarkIcon />
           <p>{t("DesktopSideMenu.Bookmarks")}</p>
           <Link to={`/${authorizedUser.data.customId}`}></Link>
+        </li>
+        <li className={styles.like}>
+          <LikeIcon />
+          <p>{t("DesktopSideMenu.Liked")}</p>
+          <Link to={"/liked/" + authorizedUser.data.customId}></Link>
         </li>
         <li className={styles.crystal}>
           <CrystalIcon />

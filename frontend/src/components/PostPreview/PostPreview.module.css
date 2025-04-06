@@ -340,7 +340,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
 }
 
 .eye svg {
@@ -350,19 +350,19 @@
 }
 
 .eye p {
-  font-size: 18px;
+  font-size: 17px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .post_creation_date_eye_bottom_wrap {
   margin-top: 5px;
 }
- 
+
 .eye_bottom {
   display: none;
   justify-content: flex-start;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
 }
 
 .eye_bottom svg {
@@ -372,12 +372,12 @@
 }
 
 .eye_bottom p {
-  font-size: 18px;
+  font-size: 17px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .post_creation_date p {
-  font-size: 18px;
+  font-size: 17px;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
 }
