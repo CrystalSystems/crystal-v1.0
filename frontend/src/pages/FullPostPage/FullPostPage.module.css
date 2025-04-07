@@ -342,8 +342,6 @@
 .crystal_icon {
   display: flex;
   align-items: center;
-  position: relative;
-  bottom: 1px;
 }
 
 .crystal_icon svg {
