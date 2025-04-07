@@ -8,14 +8,15 @@
 This is a fully functional and complete code - [CRYSTAL v1.0](https://shedov.top/description-and-capabilities-of-crystal-v1-0/), in the stack - MERN.<br/>
 This version has basic social networking features and you can deploy and test it on your [local PC](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-a-local-pc/) or on [VPC](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-vpc-and-setting-up-access-to-the-site-via-public-ip/) by following the relevant instructions from the documentation.<br/>
 
-#### Architecture: SPA, REST API. <br/>
+#### Architecture:<br/>
+SPA, REST API.
 
 #### Building:<br/>
-#### MERN stack (MongoDB, Express.js, React, Node.js).<br/>
+MERN stack (MongoDB, Express.js, React, Node.js).<br/>
 
 #### [Full code](https://github.com/CrystalSystems/crystal-v1.0/) | Package.json – [Frontend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/frontend/package.json) | [Backend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/backend/package.json)<br/>
 
-#### Project structure:<br/>
+#### Structure:<br/>
 MongoDB v8.0.4.<br/>
 Express.js v4.21.2.<br/>
 React v19.0.0.<br/>
