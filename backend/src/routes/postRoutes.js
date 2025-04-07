@@ -32,7 +32,6 @@ router.post(
   multerErrorMessages,
   async (req, res) => {
     res.json({
-      // url: `/uploads/posts/images/${req.file?.filename}`,
       url: `/uploads/posts/images/${req.file?.filename}`,
       postId: req.params.postId
     });
