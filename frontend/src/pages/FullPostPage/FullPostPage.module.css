@@ -140,7 +140,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  margin-top: 12px;
+  margin-top: 15px;
 }
 
 .post_title h1 {
@@ -298,7 +298,7 @@
 }
 
 .post_creation_date_eye_top_wrap {
-  margin-top: 6px;
+  margin-top: 8px;
   display: flex;
   justify-content: flex-end;
 }
