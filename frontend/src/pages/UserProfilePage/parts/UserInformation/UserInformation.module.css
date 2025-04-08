@@ -72,18 +72,18 @@
 }
 
 .add_banner_button svg {
-  width: 23px;
-  height: 23px;
+  width: 27px;
+  height: 27px;
 }
 
 .save_banner_button svg {
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
 }
 
 .delete_banner_button svg {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 
 /* user options - menu */
@@ -328,18 +328,18 @@
 }
 
 .add_avatar_button svg {
-  width: 23px;
-  height: 23px;
+  width: 27px;
+  height: 27px;
 }
 
 .save_avatar_button svg {
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
 }
 
 .delete_avatar_button svg {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 
 .name_id_wrap {
