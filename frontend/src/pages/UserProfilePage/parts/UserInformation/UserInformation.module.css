@@ -46,7 +46,7 @@
 
 .banner_buttons_wrap {
   display: flex;
-  gap: 6px;
+  gap: 7px;
   position: absolute;
   -webkit-backdrop-filter: saturate(180%) blur(0.5px);
   backdrop-filter: saturate(180%) blur(0.5px);
@@ -295,7 +295,7 @@
 
 .avatar_buttons_wrap {
   display: flex;
-  gap: 6px;
+  gap: 7px;
   position: absolute;
   -webkit-backdrop-filter: saturate(180%) blur(0.5px);
   backdrop-filter: saturate(180%) blur(0.5px);
