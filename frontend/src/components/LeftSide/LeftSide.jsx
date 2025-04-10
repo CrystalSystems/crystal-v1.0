@@ -9,7 +9,7 @@ import styles from "./LeftSide.module.css";
 export function LeftSide() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   // Checking user log in
-  const logInStatus = window.localStorage.getItem("logIn");
+  const logInStatus = useSelector((state) => state.logInStatus)
   // /Checking user log in
   return (
     <div className={
