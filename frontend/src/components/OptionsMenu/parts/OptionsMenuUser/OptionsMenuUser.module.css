@@ -14,8 +14,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 36px;
-  height: 36px;
+  width: 37px;
+  height: 37px;
   position: relative;
 }
 
@@ -63,8 +63,8 @@
 
 .add_post svg {
   stroke: var(--stroke_global);
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
 }
 
 .add_post a {
@@ -77,8 +77,8 @@
 
 .notifications svg {
   stroke: var(--stroke_global);
-  width: 21.7px;
-  height: 21.7px;
+  width: 23.7px;
+  height: 23.7px;
 }
 
 .search_icon_hide {
@@ -88,14 +88,14 @@
 .search_icon svg {
   position: relative;
   bottom: 1px;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   stroke: var(--stroke_global);
 }
 
 .messages svg {
-  width: 21px;
-  height: 21px;
+  width: 23px;
+  height: 23px;
   stroke: var(--stroke_global);
 }
 
@@ -104,14 +104,14 @@
 }
 
 .user_avatar {
-  width: 33px;
-  height: 33px;
+  width: 35px;
+  height: 35px;
   position: relative;
 }
 
 .user_avatar img {
-  width: 33px;
-  height: 33px;
+  width: 35px;
+  height: 35px;
   object-fit: cover;
   border-radius: 50%;
   overflow: hidden;
@@ -139,22 +139,17 @@
   align-items: center;
   justify-content: center;
   fill: var(--fill_global);
-  width: 33px;
-  height: 33px;
+  width: 35px;
+  height: 35px;
 }
 
 .user_menu_list {
-  top: 55px;
+  top: 57px;
   margin: auto;
   width: 100%;
   max-width: 185px;
   left: 0;
   right: 0;
-  /* top: 159px;
-  left: 45%;
-  transform: translate(-50%, -50%);
-  margin: 0 10px;
-  width: max-content; */
   border-radius: 5px;
   border: var(--user_menu_list_border);
   position: absolute;
@@ -346,8 +341,8 @@
 
 .side_menu_mobile svg {
   fill: var(--fill_global);
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
 }
 
 @media (max-width: 860px) {

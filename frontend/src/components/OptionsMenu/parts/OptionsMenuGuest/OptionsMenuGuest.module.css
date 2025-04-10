@@ -12,8 +12,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 36px;
-  height: 36px;
+  width: 37px;
+  height: 37px;
 }
 
 .options_menu_guest button:active {
@@ -29,8 +29,8 @@
 
 .add_post svg {
   stroke: var(--stroke_global);
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
 }
 
 .search_icon_hide {
@@ -46,8 +46,8 @@
 .search_icon svg {
   position: relative;
   bottom: 1px;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   stroke: var(--stroke_global);
 }
 
@@ -59,11 +59,11 @@
 
 .guest_menu_button svg {
   fill: var(--fill_global);
-  height: 24px;
+  height: 26px;
 }
 
 .guest_menu_list {
-  top: 140px;
+  top: 142px;
   left: 45%;
   transform: translate(-50%, -50%);
   margin: 0 10px;
@@ -166,8 +166,8 @@
 
 .authorization svg {
   stroke: var(--stroke_global);
-  width: 25px;
-  height: 25px;
+  width: 27px;
+  height: 27px;
 }
 
 @keyframes fadeIn {
