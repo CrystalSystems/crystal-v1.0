@@ -9,17 +9,15 @@ import {
   hashtagRoutes,
   likedRoutes
 } from "./routes/index.js";
-import {
-  productionStatus
-} from "./applicationMode/index.js";
 import bodyParser from "body-parser";
 import cookieParser from 'cookie-parser'
+import { PRODUCTION_STATUS } from "./constants/index.js";
 const app = express();
 // application mode
 app.use(
   cors({
     origin: true,
-    credentials: !productionStatus,
+    credentials: !PRODUCTION_STATUS,
   }))
 // /application mode
 // cookie
