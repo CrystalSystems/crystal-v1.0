@@ -6,7 +6,7 @@ import {
   JWT_SECRET_KEY,
   COOKIE_SECURE_STATUS,
   CREATOR_EMAIL
-} from "../variables/index.js";
+} from "../constants/index.js";
 // Registration
 export const registration = async (req, res) => {
   try {

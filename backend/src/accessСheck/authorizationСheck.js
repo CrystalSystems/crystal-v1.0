@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { JWT_SECRET_KEY } from "../variables/index.js";
+import { JWT_SECRET_KEY } from "../constants/index.js";
 export default (req, res, next) => {
   const token = (req.cookies?.token)?.replace(/Bearer\s?/, '');
   try {
