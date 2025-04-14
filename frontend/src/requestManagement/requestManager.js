@@ -1,6 +1,6 @@
 import axios from "axios";
-import { baseURL } from "./baseURL";
+import { BASE_URL } from "./baseURL";
 export const requestManager = axios.create({
   withCredentials: true,
-  baseURL: baseURL
+  baseURL: BASE_URL
 });

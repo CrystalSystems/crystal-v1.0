@@ -8,7 +8,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestManager } from '../../requestManagement';
-import { baseURL } from '../../requestManagement';
+import { BASE_URL } from '../../requestManagement';
 import { useTranslation } from 'react-i18next';
 import { setShowAccessModal } from '../../features/accessModal/accessModalSlice';
 import {
@@ -29,8 +29,8 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
   const dispatch = useDispatch();
   const { ...postData } = props;
   const LinkToUserProfile = window.location.origin + '/' + postData.userCustomId;
-  const userAvatar = baseURL + postData.userAvatarUrl;
-  const postImage = baseURL + postData.imageUrl;
+  const userAvatar = BASE_URL + postData.userAvatarUrl;
+  const postImage = BASE_URL + postData.imageUrl;
   const queryClient = useQueryClient();
   // Checking user log in
   const logInStatus = useSelector((state) => state.logInStatus)

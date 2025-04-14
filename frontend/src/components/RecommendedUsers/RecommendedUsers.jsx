@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { ThreeDotsIcon } from "../SvgIcons";
 import {
   requestManager,
-  baseURL
+  BASE_URL
 } from "../../requestManagement";
 import { useTranslation } from "react-i18next";
 import {
@@ -76,7 +76,7 @@ export function RecommendedUsers() {
                       className={styles.avatar
                       }
                     >
-                      <img src={baseURL + user.avatarUrl} alt={user.name} />
+                      <img src={BASE_URL + user.avatarUrl} alt={user.name} />
                     </div>
                   ) : (
                     <div

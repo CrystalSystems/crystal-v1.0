@@ -9,7 +9,7 @@ import {
   Link
 } from "react-router-dom";
 import {
-  baseURL,
+  BASE_URL,
   requestManager
 } from "../../../../requestManagement";
 import {
@@ -206,9 +206,9 @@ export function UserInformation() {
   };
   useEffect(() => {
     (userDataQuery.status === "success") && (
-      setDatabaseAvatarUrl(baseURL + userData?.avatarUrl),
+      setDatabaseAvatarUrl(BASE_URL + userData?.avatarUrl),
       setDatabaseHaveAvatar(userData?.avatarUrl),
-      setDatabaseBannerUrl(baseURL + userData?.bannerUrl),
+      setDatabaseBannerUrl(BASE_URL + userData?.bannerUrl),
       setDatabaseHaveBanner(userData?.bannerUrl),
       setUserName(userData?.name),
       setUserСustomId(userData?.customId),

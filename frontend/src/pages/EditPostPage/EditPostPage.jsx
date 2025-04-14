@@ -10,7 +10,7 @@ import {
   useParams
 } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { baseURL } from "../../requestManagement";
+import { BASE_URL } from "../../requestManagement";
 import { requestManager } from "../../requestManagement";
 import imageCompression from "browser-image-compression";
 import TextareaAutosize from "react-textarea-autosize";
@@ -205,10 +205,10 @@ export function EditPostPage() {
     setText(postDataQuery.data?.text);
     setTextValueDatabase(postDataQuery.data?.text);
     setDatabaseImageUrl(
-      postDataQuery.data?.imageUrl && baseURL + postDataQuery.data.imageUrl,
+      postDataQuery.data?.imageUrl && BASE_URL + postDataQuery.data.imageUrl,
     );
     setImagePreviewUrl(
-      postDataQuery.data?.imageUrl && baseURL + postDataQuery.data.imageUrl,
+      postDataQuery.data?.imageUrl && BASE_URL + postDataQuery.data.imageUrl,
     );
     setDatabaseImageUrlEditing(postDataQuery.data?.imageUrl);
   }, [postDataQuery.data]);

@@ -1,2 +1,2 @@
 export { requestManager } from "./requestManager";
-export { baseURL } from "./baseURL";
+export { BASE_URL } from "./baseURL";

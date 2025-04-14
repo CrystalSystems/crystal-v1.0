@@ -10,7 +10,7 @@ import {
   Link,
   Navigate
 } from "react-router-dom";
-import { baseURL, requestManager } from "../../requestManagement";
+import { BASE_URL, requestManager } from "../../requestManagement";
 import {
   useQueryClient,
   useQuery,
@@ -229,7 +229,7 @@ export function EditUserPage() {
       )
     ) {
       await requestManager
-        .delete(baseURL + "/posts/delete/all/by/" + userId)
+        .delete(BASE_URL + "/posts/delete/all/by/" + userId)
         .then((response) => {
           queryClient.invalidateQueries({ queryKey: ["Posts"] });
           setServerPostsDeletedMessage(response.data.message);
@@ -311,7 +311,7 @@ export function EditUserPage() {
                 <div className={styles.avatar}>
                   <img
                     className={styles.avatar}
-                    src={baseURL + User.data?.avatarUrl}
+                    src={BASE_URL + User.data?.avatarUrl}
                     alt={userName}
                   />
                 </div>

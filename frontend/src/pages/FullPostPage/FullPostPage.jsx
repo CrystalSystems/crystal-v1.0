@@ -14,7 +14,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { requestManager } from '../../requestManagement';
-import { baseURL } from '../../requestManagement';
+import { BASE_URL } from '../../requestManagement';
 import { useTranslation } from 'react-i18next';
 import {
   NoAvatarIcon,
@@ -60,8 +60,8 @@ export function FullPostPage() {
       }),
   });
   // Add like and scheck authorized user
-  const userAvatar = baseURL + Post?.data?.user?.avatarUrl;
-  const postImage = baseURL + Post?.data?.imageUrl;
+  const userAvatar = BASE_URL + Post?.data?.user?.avatarUrl;
+  const postImage = BASE_URL + Post?.data?.imageUrl;
   const [userLiked, setUserLiked] = useState();
   const [numberLiked, setNumberLiked] = useState();
   const [userLikedStatus, setUserLikedStatus] = useState();

@@ -21,7 +21,7 @@ import {
 } from "../../../SvgIcons";
 import {
   requestManager,
-  baseURL
+  BASE_URL
 } from "../../../../requestManagement";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -186,7 +186,7 @@ export function OptionsMenuUser() {
           avatarUrl ? (
           <div className={styles.user_avatar}>
             <img
-              src={baseURL + authorizedUser.data.
+              src={BASE_URL + authorizedUser.data.
                 avatarUrl}
               alt="user avatar"
             />
