@@ -313,11 +313,11 @@
 .like_wrap {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 1px;
 }
 
 .like_wrap p {
-  font-size: 20px;
+  font-size: 19px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
