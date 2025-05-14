@@ -42,18 +42,20 @@
     "CreatePost": "Create a post",
     "Text": "Text",
     "Title": "Title",
-    "AddPreviewButton": "Add preview",
-    "ChangePreviewButton": "Change",
-    "DeletePreviewButton": "Delete",
-    "PublishButton": "Publish"
+    "AddPreview": "Add preview",
+    "ChangePreview": "Change",
+    "DeletePreview": "Delete",
+    "Publish": "Publish",
+    "Back": "Back"
   },
   "EditPostPage": {
-    "EditPost": "Edit post",
+    "EditPost": "Editing a post",
     "AddPreview": "Add preview",
     "Change": "Change",
     "Delete": "Delete",
     "Publish": "Publish",
-    "Title": "Title"
+    "Title": "Title",
+    "Back": "Back"
   },
   "EditUserPage": {
     "EditUser": "Editing a user",

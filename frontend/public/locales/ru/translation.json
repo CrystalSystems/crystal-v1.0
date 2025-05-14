@@ -42,19 +42,21 @@
     "CreatePost": "Создать пост",
     "Text": "Текст",
     "Title": "Заголовок",
-    "AddPreviewButton": "Добавить превью",
-    "ChangePreviewButton": "Изменить",
-    "DeletePreviewButton": "Удалить",
-    "PublishButton": "Опубликовать"
+    "AddPreview": "Добавить превью",
+    "ChangePreview": "Изменить",
+    "DeletePreview": "Удалить",
+    "Publish": "Опубликовать",
+    "Back": "Назад"
   },
   "EditPostPage": {
-    "EditPost": "Редактировать пост",
+    "EditPost": "Редактирование поста",
     "AddPreview": "Добавить превью",
     "Change": "Изменить",
     "Delete": "Удалить",
     "Publish": "Опубликовать",
     "Text": "Текст",
-    "Title": "Заголовок"
+    "Title": "Заголовок",
+    "Back": "Назад"
   },
   "EditUserPage": {
     "EditUser": "Редактирование пользователя",

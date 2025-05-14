@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { nanoid } from 'nanoid';
+import { randomBytes } from "node:crypto";
 import UserModel from "../models/User.js";
 import {
   JWT_SECRET_KEY,
@@ -25,7 +25,7 @@ export const registration = async (req, res) => {
     const doc = new UserModel({
       email: req.body.email,
       name: req.body.name,
-      customId: сustomId ? сustomId : nanoid(),
+      customId: сustomId ? сustomId : randomBytes(16).toString("hex"),
       creator: (req.body.email === CREATOR_EMAIL) && true,
       passwordHash: hash,
     });

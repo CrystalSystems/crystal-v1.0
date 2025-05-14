@@ -1,6 +1,6 @@
 import multer from "multer";
 import fs from "fs";
-import { nanoid } from 'nanoid';
+import { randomUUID } from "node:crypto";
 const storage = multer.diskStorage({
   destination: (req, _, cb) => {
     // Get folder name and file type, to create directory name
@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     const postId = req.params.postId;
     const userId = req.params.userId;
-    cb(null, (postId || userId) + '-' + nanoid() + '.webp');
+    cb(null, (postId || userId) + '-' + randomUUID() + '.webp');
   },
 });
 //  filters and limits
