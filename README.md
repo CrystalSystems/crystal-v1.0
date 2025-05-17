@@ -19,9 +19,9 @@ MERN stack (MongoDB, Express.js, React, Node.js).<br/>
 MongoDB v8.0.4.<br/>
 Express.js v4.21.2.<br/>
 React v19.0.0.<br/>
-Node.js v23.6.1.<br/>
+Node.js v24.0.2.<br/>
+NPM v11.3.0.<br/>
 PM2 v5.4.3.<br/>
-PNPM v10.5.2.<br/>
 Vite v6.1.0.<br/>
 
 [Documentation:](https://shedov.top/documentation-crystal/)<br/>

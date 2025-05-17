@@ -36,9 +36,9 @@ export function AccessModal() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const queryClient = useQueryClient();
   // -- reCAPTCHA v3
-  // const recaptchaV3PublicKey = import.meta.env.VITE_RECAPTCHA_V3_PUBLIC_KEY;
+  // const RECAPTCHA_V3_PUBLIC_KEY = import.meta.env.VITE_RECAPTCHA_V3_PUBLIC_KEY;
   // const recaptchaV3 = useRecaptchaV3(
-  //   recaptchaV3PublicKey,
+  //   RECAPTCHA_V3_PUBLIC_KEY,
   //   "Registration"
   // );
   // -- /reCAPTCHA v3
