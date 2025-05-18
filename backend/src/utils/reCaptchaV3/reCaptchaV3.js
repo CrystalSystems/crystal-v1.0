@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { RECAPTCHA_V3_SECRET_KEY } from "../../constants/index.js";
 
 export async function reCaptchaV3(req, res, next) {
@@ -7,23 +6,33 @@ export async function reCaptchaV3(req, res, next) {
   if (!recaptchaV3Token) {
     const UserIpAddress = req.ip;
     const name = req.body.name;
-    res.send({
+    return res.send({
       success: false,
-      msg: 'Recaptcha v3 token, not found',
+      msg: 'Recaptcha v3 token not found',
       UserIpAddress,
       name,
       recaptchaV3Token
     });
-    return;
   }
 
-  const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_V3_SECRET_KEY}&response=${recaptchaV3Token}`;
+  const verifyUrl = 'https://www.google.com/recaptcha/api/siteverify';
+  const formData = new URLSearchParams({
+    secret: RECAPTCHA_V3_SECRET_KEY,
+    response: recaptchaV3Token,
+  });
 
   try {
-    const response = await fetch(verifyUrl, { method: 'POST' });
+    const response = await fetch(verifyUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: formData.toString(),
+    });
+
     const body = await response.json();
 
-    if (!body.success || body.success === undefined) {
+    if (!body.success) {
       return res.status(403).json({ success: false, msg: "Failed reCAPTCHA v3 verification" });
     } else if (body.score < 0.5) {
       return res.status(403).json({
