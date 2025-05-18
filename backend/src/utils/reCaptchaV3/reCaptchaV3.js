@@ -1,8 +1,5 @@
 import fetch from 'node-fetch';
-
-// Secret key
-const SECRET_KEY = process.env.RECAPTCHA_V3_SECRET_KEY;
-// /Secret Key
+import { RECAPTCHA_V3_SECRET_KEY } from "../../constants/index.js";
 
 export async function reCaptchaV3(req, res, next) {
   const recaptchaV3Token = req.body.recaptchaV3Token;
@@ -20,7 +17,7 @@ export async function reCaptchaV3(req, res, next) {
     return;
   }
 
-  const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${recaptchaV3Token}`;
+  const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_V3_SECRET_KEY}&response=${recaptchaV3Token}`;
 
   try {
     const response = await fetch(verifyUrl, { method: 'POST' });

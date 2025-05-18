@@ -30,13 +30,13 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 // -- reCAPTCHA v3
 // import { useRecaptchaV3 } from "../../hooks/useRecaptchaV3";
+// import { RECAPTCHA_V3_PUBLIC_KEY } from "../../constants/index.js";
 // -- /reCAPTCHA v3
 import { setlogInStatus } from "../access/logInStatusSlice";
 export function AccessModal() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const queryClient = useQueryClient();
   // -- reCAPTCHA v3
-  // const RECAPTCHA_V3_PUBLIC_KEY = import.meta.env.VITE_RECAPTCHA_V3_PUBLIC_KEY;
   // const recaptchaV3 = useRecaptchaV3(
   //   RECAPTCHA_V3_PUBLIC_KEY,
   //   "Registration"
