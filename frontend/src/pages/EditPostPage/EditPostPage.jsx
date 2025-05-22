@@ -221,7 +221,7 @@ export function EditPostPage() {
       setChangeImageCheck(false)
     fileImagePreviewRef.current.value = null;
   };
-  if (postDataQuery.error?.response.message === "No access") {
+  if (postDataQuery.error?.response?.message === "No access") {
     return <Navigate to="/" />;
   }
   return (
@@ -232,7 +232,7 @@ export function EditPostPage() {
       <div className={styles.title}>
         <h1>{t("EditPostPage.EditPost")}</h1>
       </div>
-      {(postDataQuery.error?.response.message === "Post not found" ||
+      {(postDataQuery.error?.response?.message === "Post not found" ||
         postDataQuery.error) && <NotFoundPage />}
       {postDataQuery.status === "success" && (
         <>
