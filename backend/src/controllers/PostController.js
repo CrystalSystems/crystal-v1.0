@@ -113,6 +113,8 @@ export const getAllPosts = async (req, res) => {
   const offset = (page - 1) * limit;
   const result = await PostModel.find().sort({ createdAt: -1 }).populate({ path: "user", select: ["name", "customId", 'aboutMe', "creator", "avatarUrl", "createdAt", "updatedAt"] }).skip(offset).limit(limit).exec();
   try {
+    const totalCount = await PostModel.estimatedDocumentCount();
+    res.set('X-Total-Count', totalCount);
     return res.status(200).json(result);
   } catch (error) {
     res.status(500).send(error);
