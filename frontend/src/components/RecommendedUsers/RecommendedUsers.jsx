@@ -33,7 +33,7 @@ export function RecommendedUsers() {
     refetchOnWindowFocus: true,
     queryFn: () =>
       requestManager.get("/users/get/all").then((response) => {
-        return response.data;
+        return response;
       }),
     retry: false,
   });

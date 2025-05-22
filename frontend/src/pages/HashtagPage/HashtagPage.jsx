@@ -12,14 +12,14 @@ import { requestManager } from "../../requestManagement";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import styles from "./HashtagPage.module.css";
 export function HashtagPage() {
-  const link = "post/get/with/specific/hashtag";
+  const link = "/post/get/with/specific/hashtag";
   const { hashtagName } = useParams();
   const getPostsPage = async (pageParam = 1, limitPosts = 5, options = {}) => {
     const response = await requestManager.get(
       `${link}?page=${pageParam}&limit=${limitPosts}&hashtagName=${hashtagName}`,
       options,
     );
-    return response.data;
+    return response;
   };
   const {
     fetchNextPage,

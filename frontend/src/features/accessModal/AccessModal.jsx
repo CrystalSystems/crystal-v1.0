@@ -136,8 +136,8 @@ export function AccessModal() {
         queryKey: ["Authorization"],
       });
     },
-    onError: (error) => {
-      setLogInServerErrors(error.response.data.error);
+    onError: (response) => {
+      setLogInServerErrors(response.error);
     },
   });
   const [logInServerErrors, setLogInServerErrors] = useState();
@@ -180,8 +180,8 @@ export function AccessModal() {
         queryKey: ["Authorization"],
       });
     },
-    onError: (error) => {
-      setRegistrationServerErrors(error.response.data.error);
+    onError: (response) => {
+      setRegistrationServerErrors(response.error);
     },
   });
   const [registrationServerErrors, setRegistrationServerErrors] = useState();

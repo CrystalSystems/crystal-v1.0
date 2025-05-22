@@ -107,48 +107,39 @@ export function AddPostPage() {
   const onClickAddPost = async () => {
     try {
       const fields = {
-        text: text,
-        title: title,
+        text,
+        title,
         imageUrl: fileImagePreviewUrl,
-        //  userId: userId
       };
       fileImagePreview
         ? await requestManager
           .post("/post/add", fields)
           .then((response) => {
-            const postId = response.data._id;
+            const postId = response._id;
             const formData = new FormData();
             const file = fileImagePreview;
-            const fileType = `posts/images`;
             formData.append("image", file);
             return requestManager.post(
               "/post/add/image/" + postId,
-              formData,
-              {
-                params: {
-                  fileType,
-                  postId: postId,
-                },
-              },
-            );
+              formData);
           })
           .then((response) => {
-            const postId = response.data.postId;
-            const imageUrl = response.data.url;
+            const postId = response.postId;
+            const imageUrl = response.url;
             const fields = {
-              imageUrl: imageUrl,
-              text: text,
-              title: title,
+              imageUrl,
+              text,
+              title,
             };
             return requestManager.patch(`/post/edit/${postId}`, fields);
           })
           .then((response) => {
-            const postId = response.data.postId;
+            const postId = response.postId;
             navigate(`/post/${postId}`);
             queryClient.invalidateQueries({ queryKey: ["Posts"] });
           })
         : await requestManager.post("/post/add", fields).then((response) => {
-          const postId = response.data._id;
+          const postId = response._id;
           navigate(`/post/${postId}`);
           queryClient.invalidateQueries({ queryKey: ["Posts"] });
         });

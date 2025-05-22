@@ -16,7 +16,7 @@ export function HomePage() {
     const response = await requestManager.get(
       `/post/get/all?page=${pageParam}&limit=${limitPosts}`,
     );
-    return response.data;
+    return response;
   };
   const {
     fetchNextPage,

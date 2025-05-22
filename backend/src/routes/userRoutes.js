@@ -58,13 +58,12 @@ router.get("/user/get/one/:userId", UserController.getOneUser);
 // /get one user
 //  add a user images
 router.post("/user/add/image/:userId",
+  authorizationСheck,
+  checkingAccessToUserEdit,
   upload.single("image"),
   multerErrorMessages,
   async (req, res) => {
-    authorizationСheck,
-      checkingAccessToUserEdit
     res.json({
-      // imageUrl: `/uploads/users/images/${req.file?.filename}`,
       imageUrl: `/uploads/users/images/${req.file?.filename}`
     });
   });

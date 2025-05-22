@@ -56,7 +56,7 @@ export function FullPostPage() {
     retry: false,
     queryFn: () =>
       requestManager.get('/post/get/one/' + postId).then((response) => {
-        return response.data;
+        return response;
       }),
   });
   // Add like and scheck authorized user

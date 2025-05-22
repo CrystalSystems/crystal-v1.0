@@ -16,12 +16,12 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import styles from "./LikedPage.module.css";
 export function LikedPage() {
   const { userId } = useParams();
-  const link = "liked/posts/get/all/by/" + userId;
+  const link = "/liked/posts/get/all/by/" + userId;
   const getPostsPage = async (pageParam = 1, limitPosts = 5) => {
     const response = await requestManager.get(
       `${link}?page=${pageParam}&limit=${limitPosts}`,
     );
-    return response.data;
+    return response;
   };
   const {
     fetchNextPage,
@@ -84,7 +84,7 @@ export function LikedPage() {
   });
   return (
     <div className={styles.posts_wrap}>
-      {error?.response.data.message === "No access" && <Navigate to="/" />}
+      {error?.response.message === "No access" && <Navigate to="/" />}
       {status === "error" && <NotFoundPage />}
       {status === "success" && posts}
       {/* {isFetchingNextPage &&

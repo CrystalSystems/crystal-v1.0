@@ -187,7 +187,7 @@
 
 .banner_image_loading_error {
   position: absolute;
-  top: 190px;
+  top: 218px;
   right: 24px;
   z-index: 1;
 }
@@ -277,7 +277,7 @@
 
 .avatar_image_loading_error {
   position: absolute;
-  top: 124px;
+  top: 122px;
   z-index: 1;
 }
 
@@ -476,7 +476,7 @@
   }
 
   .banner_image_loading_error {
-    top: 186px;
+    top: 170px;
   }
 }
 
@@ -486,7 +486,7 @@
   }
 
   .banner_image_loading_error {
-    top: 231px;
+    top: 265px;
   }
 
   .user_information_no_posts {

@@ -231,7 +231,7 @@
 .user_id_validation_error p {
   padding-top: 5px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .user_id_server_error {
@@ -243,7 +243,8 @@
 .user_id_server_error p {
   padding-top: 5px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
+  color: red;
 }
 
 .user_about_me {
@@ -411,7 +412,7 @@
 .server_message_all_posts_deleted p {
   padding-top: 5px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   color: rgb(0, 0, 0);
 }
 

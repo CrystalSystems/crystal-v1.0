@@ -86,9 +86,9 @@ export function UserInformation() {
     retry: false,
     queryFn: () =>
       requestManager
-        .get("posts/get/all/by/" + userId)
+        .get("/posts/get/all/by/" + userId)
         .then((response) => {
-          return response.data;
+          return response;
         }),
   });
   useEffect(() => {
@@ -104,45 +104,49 @@ export function UserInformation() {
     retry: false,
     queryFn: () =>
       requestManager.get('/user/get/one/' + userId).then((response) => {
-        return response.data
+        return response
       }
       ),
   })
   const userData = userDataQuery.data;
+
+  // Banner useState()
   const [databaseHaveBanner, setDatabaseHaveBanner] = useState(true);
   const [databaseBannerUrl, setDatabaseBannerUrl] = useState();
   const [fileBannerUrl, setFileBannerUrl] = useState();
   const [fileBanner, setFileBanner] = useState();
   const inputAddFileBannerRef = useRef();
+  // /Banner useState()
+
+  // Avatar useState()
   const [databaseHaveAvatar, setDatabaseHaveAvatar] = useState(true);
   const [databaseAvatarUrl, setDatabaseAvatarUrl] = useState();
   const [fileAvatarUrl, setFileAvatarUrl] = useState();
   const [fileAvatar, setFileAvatar] = useState();
   const inputAddFileAvatarRef = useRef();
+  // /Avatar useState()
+
   const [userName, setUserName] = useState();
   const [userСustomId, setUserСustomId] = useState();
   const [userAbout, setUserAbout] = useState();
   const [creatorСrystalStatus, setCreatorСrystalStatus] = useState();
+
   const [showBannerButtons, setShowBannerButtons] = useState();
   const [showAvatarButtons, setShowAvatarButtons] = useState(false);
+
   const onClickSaveBanner = async () => {
     const fields = {
       bannerUrl: '',
     };
     const formData = new FormData();
     const file = fileBanner;
-    const fileType = `users/images`;
     formData.append("image", file);
     (!databaseHaveBanner && !fileBanner) ? await requestManager.patch('/user/edit/' + userId, fields).then(() => {
       queryClient.invalidateQueries({ queryKey: ['Users'] });
       queryClient.invalidateQueries({ queryKey: ['Posts'] });
-    }) : await requestManager.post('/user/add/image/' + userId, formData, {
-      params: {
-        fileType: fileType,
-      }
-    }).then(response => {
+    }) : await requestManager.post('/user/add/image/' + userId, formData).then(response => {
       const fields = {
-        bannerUrl: response.data.imageUrl,
+        bannerUrl: response.imageUrl,
       };
       return requestManager.patch(`/user/edit/${userId}`, fields);
     }).then(() => {
@@ -167,7 +171,6 @@ export function UserInformation() {
     };
     const formData = new FormData();
     const file = fileAvatar;
-    const fileType = `users/images`;
     formData.append("image", file);
     (!databaseHaveAvatar && !fileAvatar) ? await requestManager.patch('/user/edit/' + userId, fields).then(() => {
       queryClient.invalidateQueries({ queryKey: ['Users'] });
@@ -176,13 +179,9 @@ export function UserInformation() {
       if (userId === authorizedUser?.data?.customId) {
         queryClient.invalidateQueries({ queryKey: ['authorizedUser'] });
       }
-    }) : await requestManager.post('/user/add/image/' + userId, formData, {
-      params: {
-        fileType: fileType,
-      }
-    }).then(response => {
+    }) : await requestManager.post('/user/add/image/' + userId, formData).then(response => {
       const fields = {
-        avatarUrl: response.data.imageUrl,
+        avatarUrl: response.imageUrl,
       };
       return requestManager.patch(`/user/edit/${userId}`, fields);
     }).then(() => {

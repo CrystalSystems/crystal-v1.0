@@ -150,33 +150,28 @@ export function EditPostPage() {
     try {
       const fields = {
         imageUrl: databaseImageUrlEditing,
-        text: text,
-        postId: postId,
-        title: title,
+        text,
+        postId,
+        title,
       };
       const formData = new FormData();
       const fileS = fileImagePreview;
-      const fileType = `posts/images`;
       formData.append("image", fileS);
       fileImagePreview
         ? await requestManager
-          .post("/post/add/image/" + postId, formData, {
-            params: {
-              fileType,
-            },
-          })
+          .post("/post/add/image/" + postId, formData)
           .then((response) => {
-            const postId = response.data.postId;
-            const imageUrl = response.data.url;
+            const postId = response.postId;
+            const imageUrl = response.url;
             const fields = {
-              imageUrl: imageUrl,
-              text: text,
-              title: title,
+              imageUrl,
+              text,
+              title,
             };
             return requestManager.patch("/post/edit/" + postId, fields);
           })
           .then((response) => {
-            const postId = response.data.postId;
+            const postId = response.postId;
             queryClient.invalidateQueries({ queryKey: ["Posts"] });
             navigate("/post/" + postId);
           })
@@ -196,7 +191,7 @@ export function EditPostPage() {
       requestManager
         .get("/post/get/one/from/post/edit/page/" + postId)
         .then((response) => {
-          return response.data;
+          return response;
         }),
   });
   useEffect(() => {
@@ -226,7 +221,7 @@ export function EditPostPage() {
       setChangeImageCheck(false)
     fileImagePreviewRef.current.value = null;
   };
-  if (postDataQuery.error?.response.data.message === "No access") {
+  if (postDataQuery.error?.response.message === "No access") {
     return <Navigate to="/" />;
   }
   return (
@@ -237,7 +232,7 @@ export function EditPostPage() {
       <div className={styles.title}>
         <h1>{t("EditPostPage.EditPost")}</h1>
       </div>
-      {(postDataQuery.error?.response.data.message === "Post not found" ||
+      {(postDataQuery.error?.response.message === "Post not found" ||
         postDataQuery.error) && <NotFoundPage />}
       {postDataQuery.status === "success" && (
         <>

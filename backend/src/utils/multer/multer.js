@@ -1,48 +1,72 @@
 import multer from "multer";
 import fs from "fs";
 import { randomUUID } from "node:crypto";
+
+// Directory mapping based on route parameters
+const directoryMap = {
+  userId: "uploads/users/images",
+  postId: "uploads/posts/images",
+};
+// /Directory mapping based on route parameters
+
+// Setting up file storage
 const storage = multer.diskStorage({
   destination: (req, _, cb) => {
-    // Get folder name and file type, to create directory name
-    const fileType = req.query.fileType;
-    // /Get folder name and file type, to create directory name
-    // Directory name
-    const directory = `uploads/${fileType}`;
-    // /Directory name
-    // Create a directory if it doesn't exist
-    fs.mkdirSync(directory, { recursive: true });
-    return cb(null, directory);
-    // /Create a directory if it doesn't exist
+    // Determine the destination folder using the route parameters
+    const paramKey = Object.keys(req.params).find((key) => directoryMap[key]);
+
+    if (!paramKey || !directoryMap[paramKey]) {
+      return cb(new Error("Invalid upload route."), null);
+    }
+
+    const directory = directoryMap[paramKey];
+    // /Determine the destination folder using the route parameters
+    try {
+      // Create a folder if it doesn't exist
+      fs.mkdirSync(directory, { recursive: true });
+      cb(null, directory);
+      // /Create a folder if it doesn't exist
+    } catch (err) {
+      cb(err, null);
+    }
   },
+
   filename: (req, file, cb) => {
-    const postId = req.params.postId;
-    const userId = req.params.userId;
-    cb(null, (postId || userId) + '-' + randomUUID() + '.webp');
-  },
+    const { userId, postId } = req.params;
+    const id = userId || postId;
+
+    if (!id) {
+      return cb(new Error("Missing ID parameter for filename generation."), null);
+    }
+
+    const uniqueName = `${id}-${randomUUID()}.webp`;
+    cb(null, uniqueName);
+  }
 });
-//  filters and limits
+// /Setting up file storage
+
+// Filters and limits
 export const upload = multer({
-  storage: storage,
+  storage,
   limits: {
-    files: 1, // allow up to 5 files per request,
-    // fileSize: 1 * 1024 * 1024  
+    files: 1, // allow up to 5 files per request
+    fileSize: 314572.8, // 0.3 MB
     // fileSize: 524288,  //0.5 Mb
-    //fileSize: 1048576, //1 Mb
-    fileSize: 314572.8 //0.3 Mb
+    // fileSize: 1048576, //1 Mb
   },
   fileFilter: (_, file, cb) => {
-    // allow images only
-    if (!file.originalname.match(/\.(jpg|jpeg|png|gif|webp)$/)) {
-      return cb(new Error('Only image are allowed.'), false)
-    }
-    cb(null, true)
-  },
-});
-//  /filters and limits
-export const multerErrorMessages = (err, req, res, next) => {
-  if (err instanceof multer.MulterError) {
-    res.status(400).send("Multer error: " + err.message);
-  } else {
-    next();
+    const isImageExtension = /\.(jpe?g|png|gif|webp)$/i.test(file.originalname);
+    const isImageMime = /^image\/(jpeg|png|gif|webp)$/.test(file.mimetype);
+    const isValid = isImageExtension && isImageMime;
+    cb(isValid ? null : new Error("Only image files are allowed."), isValid);
   }
+});
+//  /Filters and limits
+// Error handler
+export const multerErrorMessages = (err, req, res, next) => {
+  if (err instanceof multer.MulterError || /.*(Invalid upload|Only image|Missing ID).*/.test(err?.message)) {
+    return res.status(400).json({ error: err.message });
+  }
+  next(err);
 };
+// /Error handler

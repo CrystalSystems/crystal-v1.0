@@ -22,7 +22,7 @@ export function Authorization() {
     retry: false,
     queryFn: async () =>
       await requestManager.get("/authorization").then((response) => {
-        return response.data;
+        return response;
       }),
   });
   // /Authorization query

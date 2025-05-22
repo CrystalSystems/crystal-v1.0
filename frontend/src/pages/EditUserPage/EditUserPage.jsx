@@ -92,11 +92,11 @@ export function EditUserPage() {
       requestManager
         .get("/user/get/one/from/user/edit/page/" + userIdUseParams)
         .then((response) => {
-          return response.data;
+          return response;
         }),
   });
   useEffect(() => {
-    User.isError && setServerMessage(User.error.response.data.message);
+    User.isError && setServerMessage(User.error.message);
     setUserData(User.data);
   }, [User]);
   // Checking whether the user has posts
@@ -107,9 +107,9 @@ export function EditUserPage() {
     retry: false,
     queryFn: () =>
       requestManager
-        .get("posts/get/all/by/" + userIdUseParams)
+        .get("/posts/get/all/by/" + userIdUseParams)
         .then((response) => {
-          return response.data;
+          return response;
         }),
   });
   useEffect(() => {
@@ -154,7 +154,7 @@ export function EditUserPage() {
       queryClient.invalidateQueries({ queryKey: ["Authorization"] });
     },
     onError: (error) => {
-      setServerMessage(error.response.data.message);
+      setServerMessage(error.message);
     },
   });
   const onClickSaveUserChanges = async () => {
@@ -197,7 +197,7 @@ export function EditUserPage() {
       return requestManager.post("/user/change/password/" + userId, fields);
     },
     onSuccess: (data) => {
-      setServerMessage(data.data.message);
+      setServerMessage(data.message);
       setNewPassword('');
       setOldPassword('');
       setValidatingNewPassword(false);
@@ -205,8 +205,7 @@ export function EditUserPage() {
       oldPasswordInputRef.current.value = '';
     },
     onError: (error) => {
-      console.log(error);
-      setServerMessage(error.response.data.message);
+      setServerMessage(error.message);
     },
   });
   const onClickChangePassword = async () => {
@@ -229,10 +228,10 @@ export function EditUserPage() {
       )
     ) {
       await requestManager
-        .delete(BASE_URL + "/posts/delete/all/by/" + userId)
+        .delete("/posts/delete/all/by/" + userId)
         .then((response) => {
           queryClient.invalidateQueries({ queryKey: ["Posts"] });
-          setServerPostsDeletedMessage(response.data.message);
+          setServerPostsDeletedMessage(response.message);
           setUserHavePost(false);
         });
     }
