@@ -11,16 +11,22 @@ const stripEndingPunctuation = (str = '') => {
 const formatDisplayUrl = (url) => {
   try {
     const parsed = new URL(url);
+    
+    //Remove www.
+    let host = parsed.host.replace(/^www\./, '');
     let pathname = parsed.pathname;
-    // Remove the display of the final slash, but leave it in the link
+
+    // Remove the display of the trailing slash
     if (pathname.endsWith('/')) {
       pathname = pathname.slice(0, -1);
     }
-    return parsed.host + pathname;
+
+    return host + pathname;
   } catch (e) {
     return url;
   }
 };
+
 
 export const formattingLinksInText = (text = '') => {
   const lines = text.split(/\r?\n/);
