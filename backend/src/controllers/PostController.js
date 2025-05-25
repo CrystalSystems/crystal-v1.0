@@ -1,10 +1,11 @@
 import PostModel from '../models/Post.js';
 import UserModel from "../models/User.js";
+import { takeHashtags } from '../helpers/extractHashtagsFromText.js';
 //add post
 export const addPost = async (req, res) => {
   try {
     const combiningTitleAndText = (req.body?.title + ' ' + req.body.text).split(/[\s\n\r]/gmi).filter(v => v.startsWith('#'));
-    const getHashtags = combiningTitleAndText.filter((item, index) => combiningTitleAndText.indexOf(item) === index);
+    const getHashtags = takeHashtags(combiningTitleAndText);
     const doc = new PostModel({
       title: req.body?.title,
       text: req.body.text,
@@ -32,7 +33,7 @@ export const editPost = async (req, res) => {
     const postImage = req.body.imageUrl;
     const postText = req.body.text;
     const combiningTitleAndText = (req.body?.title + ' ' + req.body.text).split(/[\s\n\r]/gmi).filter(v => v.startsWith('#'));
-    const getHashtags = combiningTitleAndText.filter((item, index) => combiningTitleAndText.indexOf(item) === index);
+    const getHashtags = takeHashtags(combiningTitleAndText);
     if (!(postImage || (postText.length >= 1))) {
       return res.status(400).json({ message: "Post should not be empty" });
     }

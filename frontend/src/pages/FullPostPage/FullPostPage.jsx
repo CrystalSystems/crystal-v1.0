@@ -29,6 +29,7 @@ import {
 } from '../../components/SvgIcons';
 import { NotFoundPage } from '../../components';
 import { setShowAccessModal } from '../../features/accessModal/accessModalSlice';
+import { formattingLinksInText } from '../../helpers/formattingLinksInText';
 import styles from './FullPostPage.module.css';
 export function FullPostPage() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
@@ -284,24 +285,7 @@ export function FullPostPage() {
           {Post?.data?.title && (
             <div className={styles.post_title}>
               <h1>
-                {' '}
-                {Post?.data?.title?.split(' ').map((str, index) => {
-                  if (str.startsWith('#')) {
-                    return (
-                      <Link key={index} to={`/hashtag/${str.slice(1)}`}>
-                        {str}{' '}
-                      </Link>
-                    );
-                  }
-                  if (str.startsWith('http')) {
-                    return (
-                      <Link key={index} to={`${str.slice(0)}`} target="_blank">
-                        {str.slice(8) + ' '}
-                      </Link>
-                    );
-                  }
-                  return str + ' ';
-                })}
+                {formattingLinksInText(Post?.data?.title)}
               </h1>
             </div>
           )}
@@ -313,24 +297,7 @@ export function FullPostPage() {
           {Post?.data?.text && (
             <div className={styles.post_text}>
               <p>
-                {' '}
-                {Post?.data?.text?.split(' ').map((str, index) => {
-                  if (str.startsWith('#')) {
-                    return (
-                      <Link key={index} to={`/hashtag/${str.slice(1)}`}>
-                        {str}{' '}
-                      </Link>
-                    );
-                  }
-                  if (str.startsWith('http')) {
-                    return (
-                      <Link key={index} to={`${str.slice(0)}`} target="_blank">
-                        {str.slice(8) + ' '}
-                      </Link>
-                    );
-                  }
-                  return str + ' ';
-                })}
+                {formattingLinksInText(Post?.data?.text)}
               </p>
             </div>
           )}

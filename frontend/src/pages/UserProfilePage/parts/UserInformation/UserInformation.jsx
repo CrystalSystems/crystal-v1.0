@@ -31,6 +31,7 @@ import {
 import { setShowAccessModal } from '../../../../features/accessModal/accessModalSlice';
 import { useTranslation } from 'react-i18next';
 import imageCompression from 'browser-image-compression';
+import { formattingLinksInText } from '../../../../helpers/formattingLinksInText';
 import styles from "./UserInformation.module.css";
 export function UserInformation() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
@@ -536,15 +537,7 @@ export function UserInformation() {
                   ? styles.about
                   : styles.about_without_name
               } >
-                <p> {userAbout?.split(" ").map((str, index) => {
-                  if (str.startsWith("#")) {
-                    return <Link key={index} to={`/hashtag/${str.slice(1)}`}>{str} </Link>;
-                  }
-                  if (str.startsWith('http')) {
-                    return <Link key={index} to={`${str.slice(0)}`} target="_blank" rel="noreferrer noopener">{str.slice(8).replace("/", "") + ' '}</Link>;
-                  }
-                  return str + " ";
-                })}</p>
+                <p>{formattingLinksInText(userAbout)}</p>
               </div>
             </div>)
           }

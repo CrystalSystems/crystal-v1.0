@@ -22,6 +22,7 @@ import {
   LikeIcon,
   MessagesIcon,
 } from '../../components/SvgIcons';
+import { formattingLinksInText } from '../../helpers/formattingLinksInText';
 import styles from './PostPreview.module.css';
 export const PostPreview = forwardRef(function Post(props, lastPostRef) {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
@@ -251,49 +252,13 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
         {postData.post?.title && (
           <div className={styles.post_title}>
             <h2>
-              {' '}
-              {postData.post?.title?.split(' ').map((str, index) => {
-                if (str.startsWith('#')) {
-                  return (
-                    <Link key={index} to={`/hashtag/${str.slice(1)}`}>
-                      {str}{' '}
-                    </Link>
-                  );
-                }
-                if (str.startsWith('http')) {
-                  return (
-                    <Link key={index} to={`${str.slice(0)}`} target="_blank" rel="noreferrer noopener">
-                      {str.slice(8) + ' '}
-                    </Link>
-                  );
-                }
-                return str + ' ';
-              })}
+              {formattingLinksInText(postData.post?.title)}
             </h2>
           </div>
         )}
         {postData.post?.text && (
           <div className={postData.imageUrl ? styles.post_text_preview : styles.post_text_long}>
-            <p>
-              {' '}
-              {postData.post?.text?.split(' ').map((str, index) => {
-                if (str.startsWith('#')) {
-                  return (
-                    <Link key={index} to={`/hashtag/${str.slice(1)}`}>
-                      {str}{' '}
-                    </Link>
-                  );
-                }
-                if (str.startsWith('http')) {
-                  return (
-                    <Link key={index} to={`${str.slice(0)}`} target="_blank" rel="noreferrer noopener">
-                      {str.slice(8) + ' '}
-                    </Link>
-                  );
-                }
-                return str + ' ';
-              })}
-            </p>
+            <p>{formattingLinksInText(postData.post.text)}</p>
           </div>
         )}
         {postData.imageUrl && (
