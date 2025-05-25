@@ -31,7 +31,7 @@ import {
 import { setShowAccessModal } from '../../../../features/accessModal/accessModalSlice';
 import { useTranslation } from 'react-i18next';
 import imageCompression from 'browser-image-compression';
-import { formattingLinksInText } from '../../../../helpers/formattingLinksInText';
+import { formattingLinksInText } from '../../../../helpers/index';
 import styles from "./UserInformation.module.css";
 export function UserInformation() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);

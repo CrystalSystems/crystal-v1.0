@@ -1,6 +1,6 @@
 import PostModel from '../models/Post.js';
 import UserModel from "../models/User.js";
-import { takeHashtags } from '../helpers/extractHashtagsFromText.js';
+import { takeHashtags } from '../helpers/index.js';
 //add post
 export const addPost = async (req, res) => {
   try {

@@ -29,7 +29,7 @@ import {
 } from '../../components/SvgIcons';
 import { NotFoundPage } from '../../components';
 import { setShowAccessModal } from '../../features/accessModal/accessModalSlice';
-import { formattingLinksInText } from '../../helpers/formattingLinksInText';
+import { formattingLinksInText } from '../../helpers/index';
 import styles from './FullPostPage.module.css';
 export function FullPostPage() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);

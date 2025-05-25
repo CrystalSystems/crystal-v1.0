@@ -22,7 +22,7 @@ import {
   LikeIcon,
   MessagesIcon,
 } from '../../components/SvgIcons';
-import { formattingLinksInText } from '../../helpers/formattingLinksInText';
+import { formattingLinksInText } from '../../helpers/index';
 import styles from './PostPreview.module.css';
 export const PostPreview = forwardRef(function Post(props, lastPostRef) {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
