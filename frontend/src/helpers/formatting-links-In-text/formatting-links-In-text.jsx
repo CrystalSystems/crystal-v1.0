@@ -12,11 +12,11 @@ const formatDisplayUrl = (url) => {
   try {
     const parsed = new URL(url);
     
-    // Remove the display of the www.
+    // remove display - www.
     let host = parsed.host.replace(/^www\./, '');
     let pathname = parsed.pathname;
 
-    // Remove the display of the trailing slash
+    // remove trailing slash display
     if (pathname.endsWith('/')) {
       pathname = pathname.slice(0, -1);
     }
