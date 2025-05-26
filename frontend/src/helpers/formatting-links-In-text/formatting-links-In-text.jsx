@@ -12,7 +12,7 @@ const formatDisplayUrl = (url) => {
   try {
     const parsed = new URL(url);
     
-    //Remove www.
+    // Remove the display of the www.
     let host = parsed.host.replace(/^www\./, '');
     let pathname = parsed.pathname;
 
