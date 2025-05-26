@@ -1,1 +1,1 @@
-export * from "./formattingLinksInText";
+export * from "./formatting-links-In-text";

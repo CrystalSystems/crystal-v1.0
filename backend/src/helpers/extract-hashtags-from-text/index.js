@@ -1,1 +1,1 @@
-export * from "./extractHashtagsFromText.js";
+export * from "./extract-hashtags-from-text.js";
