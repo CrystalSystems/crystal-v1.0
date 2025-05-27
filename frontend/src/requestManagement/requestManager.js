@@ -13,14 +13,6 @@ const handleResponse = async (response) => {
 
   if (!response.ok) {
     const error = typeof data === "object" ? data : { message: data };
-
-    // Unauthorized access
-    if (response.status === 401) {
-      console.warn("Unauthorized access");
-      ///...
-    }
-    // /Unauthorized access
-
     throw error;
   }
 

@@ -36,14 +36,17 @@ import { setlogInStatus } from "../access/logInStatusSlice";
 export function AccessModal() {
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const queryClient = useQueryClient();
+
   // -- reCAPTCHA v3
   // const recaptchaV3 = useRecaptchaV3(
   //   RECAPTCHA_V3_PUBLIC_KEY,
   //   "Registration"
   // );
   // -- /reCAPTCHA v3
+
   // yup validationSchema
-  // Log in
+
+  // Log in validation
   const validationSchemaLogIn = Yup.object().shape({
     email: Yup.string()
       .email("AccessModal.InputErrorEmailEmpty")
@@ -56,8 +59,9 @@ export function AccessModal() {
         "AccessModal.InputErrorPasswordMinimumMaximumLengthSymbols"
       ),
   });
-  // /Log in
-  // Registration
+  // /Log in validation
+
+  // Registration validation
   const validationSchemaRegistration = Yup.object().shape({
     name: Yup.string().max(
       200,
@@ -86,12 +90,15 @@ export function AccessModal() {
       "AccessModal.InputErrorAcceptTerms"
     ),
   });
-  // /Registration
+  // /Registration validation
+
   // /yup validationSchema
+  
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [fadeOut, setFadeOut] = useState(false);
   const { showAccessModal, switchAccessModal } = useSelector((state) => state.accessModal);
+
   // Click tracking outside the modal
   const modalRef = useRef();
   useEffect(() => {
@@ -108,6 +115,7 @@ export function AccessModal() {
     }
   });
   // /Click tracking outside the modal
+
   // useForm logIn
   const {
     register: logIn,
@@ -148,6 +156,7 @@ export function AccessModal() {
     LogIn.mutate(values);
   };
   // /useForm logIn
+
   // useForm Registration
   const {
     register: registration,
@@ -196,6 +205,7 @@ export function AccessModal() {
     Registration.mutate(values);
   };
   // /useForm Registration
+
   // hide body scroll when modal is open
   useEffect(() => {
     showAccessModal ?
@@ -204,6 +214,7 @@ export function AccessModal() {
       (document.body.style.overflow = "auto");
   }, [showAccessModal]);
   // /hide body scroll when modal is open
+
   const [showLoginPassword, setShowLoginPassword] = useState(false);
   const [showRegistrationPassword, setShowRegistrationPassword] = useState(false);
   return (
