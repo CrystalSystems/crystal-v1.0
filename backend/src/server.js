@@ -1,18 +1,20 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-mongoose.set('strictQuery', true);
-const port = 3000;
-import {
-  postRoutes,
-  userRoutes,
-  hashtagRoutes,
-  likedRoutes
-} from "./routes/index.js";
 import cookieParser from 'cookie-parser';
+import { registeredRoutes } from "./routes/index.js";
 import { PRODUCTION_STATUS } from "./constants/index.js";
 
+mongoose.set('strictQuery', true);
+
 const app = express();
+const port = 3000;
+
+app.listen(port, (error) => {
+  error ?
+    console.log("Server error -", error) :
+    console.log("Server is running");
+});
 
 // application mode
 app.use(
@@ -29,18 +31,9 @@ app.use(express.json());
 app.use(cookieParser());
 // /parsers
 
-app.listen(port, (error) => {
-  error ?
-    console.log("Server error -", error) :
-    console.log("Server is running");
-});
-
-app.use(
-  postRoutes,
-  userRoutes,
-  hashtagRoutes,
-  likedRoutes
-);
+// Routes
+registeredRoutes(app);
+// /Routes
 
 // express.static
 app.use("/uploads/", express.static("uploads/"));

@@ -125,7 +125,7 @@ export function AccessModal() {
   const LogIn = useMutation({
     mutationKey: ["LogIn"],
     mutationFn: async (values) => {
-      return requestManager.post("/login", values);
+      return requestManager.post("/user/login", values);
     },
     onSuccess: () => {
       dispatch(setShowAccessModal(false));
@@ -165,7 +165,7 @@ export function AccessModal() {
   const Registration = useMutation({
     mutationKey: ["Registration"],
     mutationFn: async (values) => {
-      return requestManager.post("/registration", values);
+      return requestManager.post("/user/registration", values);
     },
     onSuccess: () => {
       dispatch(setShowAccessModal(false));

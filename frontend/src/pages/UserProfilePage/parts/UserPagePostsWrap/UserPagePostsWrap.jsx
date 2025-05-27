@@ -12,7 +12,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import styles from "./UserPagePostsWrap.module.css";
 export function UserPagePostsWrap() {
   const { userId } = useParams();
-  const link = "/posts/get/all/by/" + userId;
+  const link = "/post/get/all/by/" + userId;
   const getPostsPage = async (pageParam = 1, limitPosts = 5, options = {}) => {
     const response = await requestManager.get(
       `${link}?page=${pageParam}&limit=${limitPosts}`,

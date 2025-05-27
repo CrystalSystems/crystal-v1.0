@@ -87,7 +87,7 @@ export function UserInformation() {
     retry: false,
     queryFn: () =>
       requestManager
-        .get("/posts/get/all/by/" + userId)
+        .get("/post/get/all/by/" + userId)
         .then((response) => {
           return response;
         }),

@@ -68,7 +68,7 @@
     "deleteAccount": "Удалить аккаунт",
     "deleteAccountQuestion": "Удалить аккаунт пользователя ?",
     "deleteUserAccount": "Удалить аккаунт пользователя",
-    "SaveСhanges": "Сохранить изменения",
+    "SaveChanges": "Сохранить изменения",
     "Save": "Сохранить",
     "IdErrorMinimumMaximumLengthSymbols": "Минимальная длина id - 1 символ, максимальная - 35, допускаются латинские буквы, цифры, нижние подчеркивания и тире",
     "IdAlreadyExists": "Этот Id уже существует",

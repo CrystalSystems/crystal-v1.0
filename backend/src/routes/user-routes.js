@@ -1,5 +1,4 @@
 import express from "express";
-const router = express.Router();
 import {
   // -- reCAPTCHA v3 
   // reCaptchaV3,
@@ -13,10 +12,13 @@ import {
   logInValidation,
 } from "../validations/index.js";
 import {
-  authorizationСheck,
+  authorizationCheck,
   checkingAccessToUserEdit
-} from "../accessСheck/index.js";
-import { UserController } from "../controllers/index.js";
+} from "../access-check/index.js";
+import { userController } from "../controllers/index.js";
+
+const router = express.Router();
+
 // registration
 router.post(
   "/registration",
@@ -25,40 +27,46 @@ router.post(
   // -- /reCAPTCHA v3
   registrationValidation,
   handleValidationErrors,
-  UserController.registration
+  userController.registration
 );
 // /registration
+
 // log In
 router.post(
   "/login",
   logInValidation,
   handleValidationErrors,
-  UserController.logIn,
+  userController.logIn,
 );
 // /log In  
+
 // log Out
 router.post(
   "/logout",
-  UserController.logOut,
+  userController.logOut,
 );
 // /log Out
+
 // authorization
 router.get("/authorization",
-  authorizationСheck,
-  UserController.authorization);
+  authorizationCheck,
+  userController.authorization);
 // /authorization
+
 // get one user, from user edit page 
-router.get("/user/get/one/from/user/edit/page/:userId",
-  authorizationСheck,
+router.get("/get/one/from/user/edit/page/:userId",
+  authorizationCheck,
   checkingAccessToUserEdit,
-  UserController.getOneUserFromUserEditPage);
-// /get one user, from user edit page 
+  userController.getOneUserFromUserEditPage);
+// /get one user, from user edit page
+
 // get one user
-router.get("/user/get/one/:userId", UserController.getOneUser);
+router.get("/get/one/:userId", userController.getOneUser);
 // /get one user
+
 //  add a user images
-router.post("/user/add/image/:userId",
-  authorizationСheck,
+router.post("/add/image/:userId",
+  authorizationCheck,
   checkingAccessToUserEdit,
   upload.single("image"),
   multerErrorMessages,
@@ -68,29 +76,34 @@ router.post("/user/add/image/:userId",
     });
   });
 //  /add a user images
+
 // edit user
 router.patch(
-  "/user/edit/:userId",
-  authorizationСheck,
+  "/edit/:userId",
+  authorizationCheck,
   checkingAccessToUserEdit,
-  UserController.editUser
+  userController.editUser
 );
 // /edit user
+
 // change user password
 router.post(
-  "/user/change/password/:userId",
-  authorizationСheck,
+  "/change/password/:userId",
+  authorizationCheck,
   checkingAccessToUserEdit,
-  UserController.changeUserPassword
+  userController.changeUserPassword
 );
 // /change user password
+
 // delete user account
-router.delete("/user/delete/account/:userId",
-  authorizationСheck,
+router.delete("/delete/account/:userId",
+  authorizationCheck,
   checkingAccessToUserEdit,
-  UserController.deleteUserAccount);
+  userController.deleteUserAccount);
 // /delete user account
+
 // get all users
-router.get("/users/get/all", UserController.getAllUsers);
+router.get("/get/all", userController.getAllUsers);
 // /get all users
+
 export const userRoutes = router

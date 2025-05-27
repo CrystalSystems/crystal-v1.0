@@ -1,5 +1,4 @@
 import express from "express";
-const router = express.Router();
 import {
   upload,
   multerErrorMessages
@@ -9,24 +8,28 @@ import {
   postCreateValidation
 } from "../validations/index.js";
 import {
-  authorizationСheck,
+  authorizationCheck,
   checkingAccessToPostEdit,
   checkingAccessToUserEdit
-} from "../accessСheck/index.js";
-import { PostController } from "../controllers/index.js";
+} from "../access-check/index.js";
+import { postController } from "../controllers/index.js";
+
+const router = express.Router();
+
 //add post
 router.post(
-  "/post/add",
-  authorizationСheck,
+  "/add",
+  authorizationCheck,
   postCreateValidation,
   handleValidationErrors,
-  PostController.addPost,
+  postController.addPost,
 );
 // /add post
+
 //  add a post image
 router.post(
-  "/post/add/image/:postId",
-  authorizationСheck,
+  "/add/image/:postId",
+  authorizationCheck,
   checkingAccessToPostEdit,
   upload.single("image"),
   multerErrorMessages,
@@ -37,53 +40,63 @@ router.post(
     });
   });
 //  /add a post image
+
 // edit post
 router.patch(
-  "/post/edit/:postId",
-  authorizationСheck,
+  "/edit/:postId",
+  authorizationCheck,
   checkingAccessToPostEdit,
   postCreateValidation,
   handleValidationErrors,
-  PostController.editPost
+  postController.editPost
 );
 // /edit post
+
 // get one post
-router.get("/post/get/one/:postId", PostController.getOnePost);
+router.get("/get/one/:postId", postController.getOnePost);
 // /get one post
+
 // get one post, from post edit page 
-router.get("/post/get/one/from/post/edit/page/:postId",
-  authorizationСheck,
+router.get("/get/one/from/post/edit/page/:postId",
+  authorizationCheck,
   checkingAccessToPostEdit,
-  PostController.getOnePostFromPostEditPage);
+  postController.getOnePostFromPostEditPage);
 // /get one post, from post edit page 
+
 //  get all posts by a specific user id
-router.get("/posts/get/all/by/:userId",
-  PostController.getAllPostsBySpecificUserId);
+router.get("/get/all/by/:userId",
+  postController.getAllPostsBySpecificUserId);
 // /get all posts by a specific user id
+
 //  get posts with a specific hashtag
-router.get("/post/get/with/specific/hashtag", PostController.getPostsWithSpecificHashtag);
+router.get("/get/with/specific/hashtag", postController.getPostsWithSpecificHashtag);
 // /get posts with a specific hashtag
+
 // get all posts
-router.get("/post/get/all",
-  PostController.getAllPosts);
+router.get("/get/all",
+  postController.getAllPosts);
 // /get all posts
+
 // delete post
-router.delete("/post/delete/:postId",
-  authorizationСheck,
+router.delete("/delete/:postId",
+  authorizationCheck,
   checkingAccessToPostEdit,
-  PostController.deletePost);
+  postController.deletePost);
 // /delete post
+
 // delete all posts of the current user
-router.delete("/posts/delete/all/by/:userId",
-  authorizationСheck,
+router.delete("/delete/all/by/:userId",
+  authorizationCheck,
   checkingAccessToUserEdit,
-  PostController.deleteAllPostsCurrentUser);
+  postController.deleteAllPostsCurrentUser);
 // /delete all posts of the current user
+
 // add like
 router.patch(
-  "/post/add/like/:postId",
-  authorizationСheck,
-  PostController.addLike
+  "/add/like/:postId",
+  authorizationCheck,
+  postController.addLike
 );
 // /add like
+
 export const postRoutes = router

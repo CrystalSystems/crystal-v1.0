@@ -1,6 +1,6 @@
-import UserModel from "../models/User.js";
-import PostModel from '../models/Post.js';
-export default async (req, res, next) => {
+import { UserModel, PostModel } from "../models/index.js";
+
+export async function checkingAccessToPostEdit(req, res, next) {
   try {
     const post = await PostModel.findById(req.params.postId);
     const authorizedUserId = req.userId._id;

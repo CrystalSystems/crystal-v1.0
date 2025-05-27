@@ -89,19 +89,19 @@ export function AddPostPage() {
   // Title
   const titleRef = useRef();
   const [title, setTitle] = useState("");
-  const [titleСharacterСounter, setTitleСharacterСounter] = useState();
+  const [titleCharacterCounter, setTitleCharacterCounter] = useState();
   const onChangeTitle = (event) => {
     setTitle(event.target.value);
-    setTitleСharacterСounter(event.target.value.length);
+    setTitleCharacterCounter(event.target.value.length);
   };
   // /Title
   // Text
   const textRef = useRef();
   const [text, setText] = useState("");
-  const [textСharacterСounter, setTextСharacterСounter] = useState();
+  const [textCharacterCounter, setTextCharacterCounter] = useState();
   const onChangeText = (event) => {
     setText(event.target.value);
-    setTextСharacterСounter(event.target.value.length);
+    setTextCharacterCounter(event.target.value.length);
   };
   // /Text
   const onClickAddPost = async () => {
@@ -209,7 +209,7 @@ export function AddPostPage() {
       </div>
       {title && (
         <div className={styles.post_title_letter_counter}>
-          <p>{titleСharacterСounter}/220</p>
+          <p>{titleCharacterCounter}/220</p>
         </div>
       )}
       <div className={styles.text}>
@@ -226,7 +226,7 @@ export function AddPostPage() {
         />
         {text && (
           <div className={styles.text_letter_counter}>
-            <p>{textСharacterСounter}/75000</p>
+            <p>{textCharacterCounter}/75000</p>
           </div>
         )}
       </div>
@@ -237,7 +237,7 @@ export function AddPostPage() {
               {t("AddPostPage.Back")}
             </button>
           </div>
-          {(fileImagePreview || textСharacterСounter >= 1) && (
+          {(fileImagePreview || textCharacterCounter >= 1) && (
             <div className={styles.publish_post}>
               <button onClick={onClickAddPost}>
                 {t("AddPostPage.Publish")}

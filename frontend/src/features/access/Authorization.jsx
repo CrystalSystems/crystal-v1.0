@@ -21,7 +21,7 @@ export function Authorization() {
     refetchOnWindowFocus: true,
     retry: false,
     queryFn: async () =>
-      await requestManager.get("/authorization").then((response) => {
+      await requestManager.get("/user/authorization").then((response) => {
         return response;
       }),
   });

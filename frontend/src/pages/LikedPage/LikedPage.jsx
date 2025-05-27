@@ -53,6 +53,7 @@ export function LikedPage() {
     },
     [isFetchingNextPage, fetchNextPage, hasNextPage],
   );
+
   const posts = data?.pages?.map((page) => {
     return page.map((post, index) => {
       if (page.length === index + 1) {
@@ -84,7 +85,7 @@ export function LikedPage() {
   });
   return (
     <div className={styles.posts_wrap}>
-      {error?.response.message === "No access" && <Navigate to="/" />}
+      {error?.message === "No access" && <Navigate to="/" />}
       {status === "error" && <NotFoundPage />}
       {status === "success" && posts}
       {/* {isFetchingNextPage &&

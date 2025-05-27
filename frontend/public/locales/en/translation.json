@@ -67,7 +67,7 @@
     "deleteAccount": "Delete account",
     "deleteAccountQuestion": "Delete user account?",
     "deleteUserAccount": "Delete user account",
-    "SaveСhanges": "Save changes",
+    "SaveChanges": "Save changes",
     "Save": "Save",
     "IdErrorMinimumMaximumLengthSymbols": "Minimum length of id is 1 character, maximum 35, Latin letters, numbers, underscores and dashes are allowed",
     "IdAlreadyExists": "This Id already exists",

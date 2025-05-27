@@ -71,13 +71,13 @@ export function OptionsMenuUser() {
   // Authorized user
   const authorizedUser = queryClient.getQueryState(['Authorization'])
   // /Authorized user
-  // Сhange avatar in another browser, if it is updated, in the current browser
+  // Change avatar in another browser, if it is updated, in the current browser
   useEffect(() => {
     if (authorizedUser.status === 'success') {
       queryClient.invalidateQueries({ queryKey: ['authorizedUser'] });
     }
   }, [queryClient, authorizedUser?.data, authorizedUser.status]);
-  // /Сhange avatar in another browser, if it is updated, in the current browser
+  // /Change avatar in another browser, if it is updated, in the current browser
   const [showSearchIcon, setShowSearchIcon] = useState(false);
   const [fadeOutUserMenuList, setFadeOutUserMenuList] = useState(false);
   const [showUserMenuList, setShowUserMenuList] = useState(false);
@@ -96,7 +96,7 @@ export function OptionsMenuUser() {
   const Logout = useMutation({
     mutationKey: ["Logout"],
     mutationFn: () => {
-      return requestManager.post("/logout");
+      return requestManager.post("/user/logout");
     },
     onSuccess: () => {
       dispatch(setlogInStatus(false));

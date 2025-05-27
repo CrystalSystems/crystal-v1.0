@@ -107,7 +107,7 @@ export function EditUserPage() {
     retry: false,
     queryFn: () =>
       requestManager
-        .get("/posts/get/all/by/" + userIdUseParams)
+        .get("/post/get/all/by/" + userIdUseParams)
         .then((response) => {
           return response;
         }),
@@ -129,9 +129,9 @@ export function EditUserPage() {
     setUserCreatorStatus(userData?.creator);
   }, [userData]);
   // user authorization check
-  const userAuthorizationСheck =
+  const userAuthorizationCheck =
     (authorizedUser?.data?.creator && userId) !== authorizedUser?.data?.customId;
-  const userAuthorizationСheckToChangePassword =
+  const userAuthorizationCheckToChangePassword =
     authorizedUser?.data?.customId === userId;
   // /user authorization check
   const { t } = useTranslation();
@@ -164,7 +164,7 @@ export function EditUserPage() {
       customId: userIdValue,
       aboutMe: userAboutMe,
     };
-    if (window.confirm(t("EditUserPage.SaveСhanges"))) {
+    if (window.confirm(t("EditUserPage.SaveChanges"))) {
       SaveUserChanges.mutate(fields);
     }
   };
@@ -213,7 +213,7 @@ export function EditUserPage() {
       oldPassword: oldPassword,
       newPassword: newPassword,
     };
-    if (window.confirm(t("EditUserPage.SaveСhanges"))) {
+    if (window.confirm(t("EditUserPage.SaveChanges"))) {
       ChangePassword.mutate(fields);
     }
   };
@@ -222,7 +222,7 @@ export function EditUserPage() {
     event.preventDefault();
     if (
       window.confirm(
-        userAuthorizationСheck
+        userAuthorizationCheck
           ? t("EditUserPage.deleteAllUserPosts")
           : t("EditUserPage.deleteAllYourPosts"),
       )
@@ -254,7 +254,7 @@ export function EditUserPage() {
         window.localStorage.removeItem("logIn");
         queryClient.invalidateQueries({ queryKey: ["Posts"] });
         queryClient.invalidateQueries({ queryKey: ["Users"] });
-        requestManager.post("/logout");
+        requestManager.post("/user/logout");
       }
       else {
         queryClient.invalidateQueries({ queryKey: ["Posts"] });
@@ -400,7 +400,7 @@ export function EditUserPage() {
               <p>{numberCharactersInUserAboutMe}/175</p>
             </div>
           )}
-          {userAuthorizationСheckToChangePassword && (
+          {userAuthorizationCheckToChangePassword && (
             <div
               className={styles.change_password_wrap}
             >
@@ -498,14 +498,14 @@ export function EditUserPage() {
               </div>
             </div >
           )}
-          {(userAuthorizationСheck !== undefined) && (
+          {(userAuthorizationCheck !== undefined) && (
             <>
               {userHavePosts && (
                 <div
                   className={styles.delete_all_user_posts}
                 >
                   <button onClick={onClickDeleteAllUserPosts}>
-                    {userAuthorizationСheck
+                    {userAuthorizationCheck
                       ? t("EditUserPage.deleteAllUserPosts")
                       : t("EditUserPage.deleteAllYourPosts")}
                   </button>

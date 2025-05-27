@@ -1,5 +1,6 @@
-import UserModel from "../models/User.js";
-export default async (req, res, next) => {
+import { UserModel } from "../models/index.js";
+
+export async function checkingAccessToLikedPostsPage(req, res, next) {
   const userId = await UserModel.findOne({ customId: req.params.userId }).collation({ locale: "en", strength: 2 });
   if (!userId) {
     return res.status(404).json({

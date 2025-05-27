@@ -1,5 +1,5 @@
-import UserModel from "../models/User.js";
-export default async (req, res, next) => {
+import { UserModel } from "../models/index.js";
+export async function checkingAccessToUserEdit(req, res, next) {
   const authorizedUserId = req.userId?._id;
   const editableUserSearchByCustomId = await UserModel.findOne({ customId: req.params.userId, }).collation({ locale: "en", strength: 2 });
   const checkAuthorizedUser = await UserModel.findById(authorizedUserId);

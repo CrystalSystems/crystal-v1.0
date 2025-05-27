@@ -32,7 +32,7 @@ export function RecommendedUsers() {
     queryKey: ["Users", "RecommendedUsers"],
     refetchOnWindowFocus: true,
     queryFn: () =>
-      requestManager.get("/users/get/all").then((response) => {
+      requestManager.get("/user/get/all").then((response) => {
         return response;
       }),
     retry: false,

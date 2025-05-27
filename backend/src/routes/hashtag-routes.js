@@ -1,9 +1,12 @@
 import express from "express";
+import { postController } from "../controllers/index.js";
+
 const router = express.Router();
-import { PostController } from "../controllers/index.js";
+
 // get all hashtags
-router.get("/hashtag/get/all",
-    PostController.getAllHashtags
+router.get("/get/all",
+    postController.getAllHashtags
 );
 // /get all hashtags
+
 export const hashtagRoutes = router
