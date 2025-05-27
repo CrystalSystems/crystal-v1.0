@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import cookieParser from 'cookie-parser';
-import { registeredRoutes } from "./routes/index.js";
+import { registerRoutes } from "./routes/index.js";
 import { PRODUCTION_STATUS } from "./constants/index.js";
 
 mongoose.set('strictQuery', true);
@@ -32,7 +32,7 @@ app.use(cookieParser());
 // /parsers
 
 // Routes
-registeredRoutes(app);
+registerRoutes(app);
 // /Routes
 
 // express.static

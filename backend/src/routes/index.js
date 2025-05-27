@@ -3,7 +3,7 @@ import { postRoutes } from './post-routes.js';
 import { hashtagRoutes } from './hashtag-routes.js';
 import { likedRoutes } from './liked-routes.js';
 
-export const registeredRoutes = (app) => {
+export const registerRoutes = (app) => {
     app.use('/user', userRoutes);
     app.use('/post', postRoutes);
     app.use('/hashtag', hashtagRoutes);
