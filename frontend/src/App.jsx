@@ -7,7 +7,7 @@ import {
 import { useSelector } from "react-redux";
 import styles from "./App.module.css";
 import {
-  Authorization,
+  useAuthorization,
   AccessModal,
   SideMenuMobile,
   SideMenuMobileBackground,
@@ -38,10 +38,13 @@ import {
   UpButton
 } from "./components";
 export default function App() {
+  // authorization
+  useAuthorization();
+  // /authorization
   const location = useLocation()
   const defineFullPostPage = location.pathname.includes('/post/')
-  Authorization();
-  // Dark theme
+
+  // dark theme
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   useEffect(() => {
     const html = document.getElementsByTagName('html')[0];
@@ -50,7 +53,8 @@ export default function App() {
       :
       html.classList.remove('dark-mode')
   }, [darkThemeStatus]);
-  // /Dark theme
+  // /dark theme
+
   return (
     <div className={styles.app} data-dark-theme={darkThemeStatus}>
       <div className={styles.left_center_right_parts_wrap}>

@@ -93,7 +93,7 @@ export function AccessModal() {
   // /Registration validation
 
   // /yup validationSchema
-  
+
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [fadeOut, setFadeOut] = useState(false);

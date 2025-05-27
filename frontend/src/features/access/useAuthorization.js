@@ -9,11 +9,13 @@ import {
 } from "@tanstack/react-query";
 import { requestManager } from "../../requestManagement";
 import { setlogInStatus } from "../access/logInStatusSlice";
-export function Authorization() {
+
+export function useAuthorization() {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const AuthorizationQuery = queryClient.getQueryState(["Authorization"]);
   const logInStatus = useSelector((state) => state.logInStatus);
+
   // Authorization query
   useQuery({
     queryKey: ["Authorization"],
@@ -26,6 +28,7 @@ export function Authorization() {
       }),
   });
   // /Authorization query
+
   // Check for loss of localStorage and cookie data, and log out if data is lost
   useEffect(() => {
     if (!logInStatus
