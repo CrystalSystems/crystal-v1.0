@@ -39,9 +39,9 @@ registerRoutes(app);
 app.use("/uploads/", express.static("uploads/"));
 // /express.static
 
-// database Connection
+// database connection
 mongoose
   .connect("mongodb://127.0.0.1:27017/crystal")
   .then(() => console.log("DB connected"))
   .catch((error) => console.log("DB error -", error));
-// /database Connection
+// /database connection
