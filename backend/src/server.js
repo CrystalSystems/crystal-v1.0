@@ -31,13 +31,13 @@ app.use(express.json());
 app.use(cookieParser());
 // /parsers
 
-// routes
-registerRoutes(app);
-// /routes
-
 // static
 app.use("/uploads/", express.static("uploads/"));
 // /static
+
+// routes
+registerRoutes(app);
+// /routes
 
 // database connection
 mongoose
