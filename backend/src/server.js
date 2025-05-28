@@ -31,9 +31,9 @@ app.use(express.json());
 app.use(cookieParser());
 // /parsers
 
-// Routes
+// routes
 registerRoutes(app);
-// /Routes
+// /routes
 
 // express.static
 app.use("/uploads/", express.static("uploads/"));
