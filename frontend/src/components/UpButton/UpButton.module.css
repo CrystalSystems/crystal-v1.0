@@ -1,0 +1,26 @@
+.up_button {
+  bottom: 0;
+  right: 20px;
+  cursor: pointer;
+  position: fixed;
+  z-index: 4;
+}
+
+.up_button svg {
+  fill: var(--up_button_fill);
+  width: 60px;
+  height: 60px;
+}
+
+/* variables */
+/* theme colors */
+[data-up-button-dark-theme="true"] {
+  --up_button_fill: #a4a4a422;
+}
+
+[data-up-button-dark-theme="false"] {
+  --up_button_fill: rgb(0 0 0 / 7%);
+}
+
+/* /theme colors */
+/* /variables */

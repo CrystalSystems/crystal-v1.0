@@ -1,0 +1,58 @@
+.about_crystal {
+  padding: 25px 15px 15px 15px;
+  margin-bottom: 50px;
+  background-color: var(--filling_background-color_global);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-top: none !important;
+  border: var(--border_disappears_in_dark_theme_global);
+}
+
+@media (max-width: 860px) {
+  .about_crystal {
+    margin-bottom: 60px;
+    border-left: none;
+    border-right: none;
+  }
+}
+
+.about_crystal h1 {
+  padding-bottom: 15px;
+  font-size: 21px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  text-align: center;
+  line-height: 31px;
+  white-space: pre-line;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.about_crystal p {
+  font-size: 19px;
+  line-height: 31px;
+  font-family: Arial, Helvetica, sans-serif;
+  white-space: pre-line;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.about_crystal a {
+  color: var(--color_global);
+  text-underline-offset: 2px;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  transition: var(--transition_text-decoration_global);
+}
+
+@media (min-width: 1000px) {
+  .about_crystal a:hover {
+    text-decoration-color: rgba(255, 255, 255, 0);
+    transition: var(--transition_text-decoration_global);
+  }
+}
+
+.about_crystal a:active {
+  text-decoration-color: rgba(255, 255, 255, 0);
+  transition: var(--transition_text-decoration_global);
+}

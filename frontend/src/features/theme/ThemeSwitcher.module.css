@@ -1,0 +1,13 @@
+.sun svg {
+  display: flex;
+  width: 23.5px;
+  height: 23.5px;
+  stroke: var(--stroke_global);
+}
+
+.half_moon svg {
+  display: flex;
+  width: 25px;
+  height: 25px;
+  stroke: var(--stroke_global);
+}
