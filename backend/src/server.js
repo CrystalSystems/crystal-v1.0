@@ -35,9 +35,9 @@ app.use(cookieParser());
 registerRoutes(app);
 // /routes
 
-// express.static
+// static
 app.use("/uploads/", express.static("uploads/"));
-// /express.static
+// /static
 
 // database connection
 mongoose
