@@ -235,7 +235,7 @@ export function EditPostPage() {
     fileImagePreviewRef.current.value = null;
   };
 
-  if (postDataQuery.error?.response?.message === "No access") {
+  if (postDataQuery.error?.message === "No access") {
     return <Navigate to="/" />;
   }
 

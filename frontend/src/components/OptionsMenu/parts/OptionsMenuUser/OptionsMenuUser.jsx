@@ -96,13 +96,13 @@ export function OptionsMenuUser() {
 
   const onClickLogout = async () => {
     if (window.confirm(t("OptionsMenuUser.LogOut"))) {
-      logout.mutate();
+      logOut.mutate();
     };
   };
 
-  // logout
-  const logout = useMutation({
-    mutationKey: ["logout"],
+  // logOut
+  const logOut = useMutation({
+    mutationKey: ["logOut"],
     mutationFn: () => {
       return requestManager.post("/user/logout");
     },
@@ -123,7 +123,7 @@ export function OptionsMenuUser() {
     },
 
   });
-  // /logout
+  // /logOut
 
   // closing a menu when clicking outside its field
   useEffect(() => {
