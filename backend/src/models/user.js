@@ -1,24 +1,24 @@
 import mongoose from 'mongoose';
 const UserSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      default: ''
-    },
     customId: {
       type: String,
       unique: true,
       collation: { locale: "en", strength: 2 }
-    },
-    aboutMe: {
-      type: String,
-      default: ''
     },
     email: {
       type: String,
       required: true,
       unique: true,
       collation: { locale: "en", strength: 2 }
+    },
+    name: {
+      type: String,
+      default: ''
+    },
+    aboutMe: {
+      type: String,
+      default: ''
     },
     passwordHash: {
       type: String,
@@ -27,7 +27,6 @@ const UserSchema = new mongoose.Schema(
     avatarUrl: String,
     bannerUrl: String,
     creator: Boolean,
-    admin: Boolean,
   },
   {
     timestamps: true,
