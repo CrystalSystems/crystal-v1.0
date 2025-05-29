@@ -6,7 +6,7 @@
 
 
 This is a fully functional and complete code - [CRYSTAL v1.0](https://shedov.top/description-and-capabilities-of-crystal-v1-0/), in the stack - MERN.<br/>
-This version has basic social network functions and you can deploy and test it on your [local PC](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-a-local-pc/) or on [VPC](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-vpc-and-setting-up-access-to-the-site-via-public-ip/) by following the relevant instructions from the documentation.<br/>
+This version has basic social network functions and you can deploy and test it on your [local PC](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-a-local-pc/) or on [VPC](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-vpc-and-setting-up-access-to-the-site-via-public-ip/) by following the relevant instructions from the documentation(https://shedov.top/documentation-crystal/).<br/>
 
 #### Architecture:<br/>
 SPA, REST API.
