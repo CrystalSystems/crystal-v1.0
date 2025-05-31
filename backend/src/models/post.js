@@ -1,14 +1,15 @@
 import mongoose from 'mongoose';
 const PostSchema = new mongoose.Schema(
   {
-    text: {
-      type: String,
-      default: ''
-    },
     title: {
       type: String,
       default: ''
     },
+    text: {
+      type: String,
+      default: ''
+    },
+    imageUrl: String,
     hashtags: {
       type: Array,
       default: [],
@@ -26,7 +27,6 @@ const PostSchema = new mongoose.Schema(
       ref: 'User',
       required: true,
     },
-    imageUrl: String,
   },
   {
     timestamps: true,
