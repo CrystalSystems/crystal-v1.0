@@ -1,27 +1,17 @@
 import express from "express";
-import {
-  upload,
-  multerErrorMessages
-} from "../utils/index.js";
-import {
-  handleValidationErrors,
-  postCreateValidation
-} from "../validations/index.js";
-import {
-  authorizationCheck,
-  checkingAccessToPostEdit,
-  checkingAccessToUserEdit
-} from "../access-check/index.js";
 import { postController } from "../controllers/index.js";
+import { accessCheck } from "../access-check/index.js";
+import { validation } from "../validation/index.js";
+import { multer } from "../utils/index.js";
 
 const router = express.Router();
 
 //add post
 router.post(
   "/add",
-  authorizationCheck,
-  postCreateValidation,
-  handleValidationErrors,
+  accessCheck.authorization,
+  validation.postCreate,
+  validation.errors,
   postController.addPost,
 );
 // /add post
@@ -29,10 +19,10 @@ router.post(
 //  add a post image
 router.post(
   "/add/image/:postId",
-  authorizationCheck,
-  checkingAccessToPostEdit,
-  upload.single("image"),
-  multerErrorMessages,
+  accessCheck.authorization,
+  accessCheck.toPostEdit,
+  multer.upload.single("image"),
+  multer.errors,
   async (req, res) => {
     res.json({
       url: `/uploads/posts/images/${req.file?.filename}`,
@@ -44,10 +34,10 @@ router.post(
 // edit post
 router.patch(
   "/edit/:postId",
-  authorizationCheck,
-  checkingAccessToPostEdit,
-  postCreateValidation,
-  handleValidationErrors,
+  accessCheck.authorization,
+  accessCheck.toPostEdit,
+  validation.postCreate,
+  validation.errors,
   postController.editPost
 );
 // /edit post
@@ -58,8 +48,8 @@ router.get("/get/one/:postId", postController.getOnePost);
 
 // get one post, from post edit page 
 router.get("/get/one/from/post/edit/page/:postId",
-  authorizationCheck,
-  checkingAccessToPostEdit,
+  accessCheck.authorization,
+  accessCheck.toPostEdit,
   postController.getOnePostFromPostEditPage);
 // /get one post, from post edit page 
 
@@ -79,22 +69,22 @@ router.get("/get/all",
 
 // delete post
 router.delete("/delete/:postId",
-  authorizationCheck,
-  checkingAccessToPostEdit,
+  accessCheck.authorization,
+  accessCheck.toPostEdit,
   postController.deletePost);
 // /delete post
 
 // delete all posts of the current user
 router.delete("/delete/all/by/:userId",
-  authorizationCheck,
-  checkingAccessToUserEdit,
+  accessCheck.authorization,
+  accessCheck.toUserEdit,
   postController.deleteAllPostsCurrentUser);
 // /delete all posts of the current user
 
 // add like
 router.patch(
   "/add/like/:postId",
-  authorizationCheck,
+  accessCheck.authorization,
   postController.addLike
 );
 // /add like

@@ -1,2 +1,2 @@
- export { upload, multerErrorMessages } from './multer.js';
+ export { upload, errors } from './multer.js';
  

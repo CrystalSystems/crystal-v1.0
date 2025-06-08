@@ -1,21 +1,13 @@
 import express from "express";
+import { userController } from "../controllers/index.js";
+import { accessCheck } from "../access-check/index.js";
+import { validation } from "../validation/index.js";
 import {
   // -- reCAPTCHA v3 
   // reCaptchaV3,
   // -- /reCAPTCHA v3
-  upload,
-  multerErrorMessages
+  multer
 } from "../utils/index.js";
-import {
-  handleValidationErrors,
-  registrationValidation,
-  logInValidation,
-} from "../validations/index.js";
-import {
-  authorizationCheck,
-  checkingAccessToUserEdit
-} from "../access-check/index.js";
-import { userController } from "../controllers/index.js";
 
 const router = express.Router();
 
@@ -25,38 +17,38 @@ router.post(
   // -- reCAPTCHA v3
   // reCaptchaV3,
   // -- /reCAPTCHA v3
-  registrationValidation,
-  handleValidationErrors,
+  validation.registration,
+  validation.errors,
   userController.registration
 );
 // /registration
 
-// log In
+// log in
 router.post(
   "/login",
-  logInValidation,
-  handleValidationErrors,
+  validation.logIn,
+  validation.errors,
   userController.logIn,
 );
-// /log In  
+// /log in  
 
-// log Out
+// log out
 router.post(
   "/logout",
   userController.logOut,
 );
-// /log Out
+// /log out
 
 // authorization
 router.get("/authorization",
-  authorizationCheck,
+  accessCheck.authorization,
   userController.authorization);
 // /authorization
 
 // get one user, from user edit page 
 router.get("/get/one/from/user/edit/page/:userId",
-  authorizationCheck,
-  checkingAccessToUserEdit,
+  accessCheck.authorization,
+  accessCheck.toUserEdit,
   userController.getOneUserFromUserEditPage);
 // /get one user, from user edit page
 
@@ -66,10 +58,10 @@ router.get("/get/one/:userId", userController.getOneUser);
 
 //  add a user images
 router.post("/add/image/:userId",
-  authorizationCheck,
-  checkingAccessToUserEdit,
-  upload.single("image"),
-  multerErrorMessages,
+  accessCheck.authorization,
+  accessCheck.toUserEdit,
+  multer.upload.single("image"),
+  multer.errors,
   async (req, res) => {
     res.json({
       imageUrl: `/uploads/users/images/${req.file?.filename}`
@@ -80,8 +72,8 @@ router.post("/add/image/:userId",
 // edit user
 router.patch(
   "/edit/:userId",
-  authorizationCheck,
-  checkingAccessToUserEdit,
+  accessCheck.authorization,
+  accessCheck.toUserEdit,
   userController.editUser
 );
 // /edit user
@@ -89,16 +81,16 @@ router.patch(
 // change user password
 router.post(
   "/change/password/:userId",
-  authorizationCheck,
-  checkingAccessToUserEdit,
+  accessCheck.authorization,
+  accessCheck.toUserEdit,
   userController.changeUserPassword
 );
 // /change user password
 
 // delete user account
 router.delete("/delete/account/:userId",
-  authorizationCheck,
-  checkingAccessToUserEdit,
+  accessCheck.authorization,
+  accessCheck.toUserEdit,
   userController.deleteUserAccount);
 // /delete user account
 

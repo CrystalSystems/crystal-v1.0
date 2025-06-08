@@ -2,14 +2,14 @@ import multer from "multer";
 import fs from "fs";
 import { randomUUID } from "node:crypto";
 
-// Directory mapping based on route parameters
+// directory mapping based on route parameters
 const directoryMap = {
   userId: "uploads/users/images",
   postId: "uploads/posts/images",
 };
-// /Directory mapping based on route parameters
+// /directory mapping based on route parameters
 
-// Setting up file storage
+// setting up file storage
 const storage = multer.diskStorage({
   destination: (req, _, cb) => {
     // Determine the destination folder using the route parameters
@@ -43,9 +43,9 @@ const storage = multer.diskStorage({
     cb(null, uniqueName);
   }
 });
-// /Setting up file storage
+// /setting up file storage
 
-// Filters and limits
+// filters and limits
 export const upload = multer({
   storage,
   limits: {
@@ -61,12 +61,13 @@ export const upload = multer({
     cb(isValid ? null : new Error("Only image files are allowed."), isValid);
   }
 });
-//  /Filters and limits
-// Error handler
-export const multerErrorMessages = (err, req, res, next) => {
+//  /filters and limits
+
+// error handler
+export const errors = (err, req, res, next) => {
   if (err instanceof multer.MulterError || /.*(Invalid upload|Only image|Missing ID).*/.test(err?.message)) {
     return res.status(400).json({ error: err.message });
   }
   next(err);
 };
-// /Error handler
+// /error handler
