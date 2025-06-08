@@ -13,12 +13,12 @@ import { setlogInStatus } from "../access/logInStatusSlice";
 export function useAuthorization() {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
-  const authorizationGetQueryState = queryClient.getQueryState(["authorization"]);
+  const authorizationGetQueryState = queryClient.getQueryState(['authorization']);
   const logInStatus = useSelector((state) => state.logInStatus);
 
   // authorization
   useQuery({
-    queryKey: ["authorization"],
+    queryKey: ['authorization'],
     enabled: logInStatus,
     refetchOnWindowFocus: true,
     retry: false,
@@ -32,10 +32,10 @@ export function useAuthorization() {
   // check for loss of localStorage and cookie data, and log out if data is lost
   useEffect(() => {
     if (!logInStatus
-      || authorizationGetQueryState?.status === "error"
+      || authorizationGetQueryState?.status === 'error'
     ) {
-      window.localStorage.removeItem("logIn");
-      queryClient.resetQueries({ queryKey: ["authorization"], exact: true });
+      window.localStorage.removeItem('logIn');
+      queryClient.resetQueries({ queryKey: ['authorization'], exact: true });
       dispatch(setlogInStatus(false));
     }
   }, [authorizationGetQueryState, dispatch, queryClient, logInStatus]);
