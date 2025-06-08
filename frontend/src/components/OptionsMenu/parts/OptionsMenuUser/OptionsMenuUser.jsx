@@ -36,9 +36,15 @@ import {
   setShowSideMenuMobileBackground,
   setSideMenuMobileFadeOut,
 } from "../../../../features/sideMenuMobile/sideMenuMobileSlice";
+import {
+  useAuthorization
+} from "../../../../features";
 import styles from "./OptionsMenuUser.module.css";
 
 export function OptionsMenuUser() {
+  // authorized user
+  const authorizedUser = useAuthorization();
+  // /authorized user
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const dispatch = useDispatch();
   const { showSideMenuMobile } = useSelector(
@@ -69,11 +75,6 @@ export function OptionsMenuUser() {
   };
   const queryClient = useQueryClient();
   const userMenuListRef = useRef();
-
-  // authorized user
-  const authorizedUser = queryClient.getQueryState(['authorization'])
-  // /authorized user
-
   const [showSearchIcon, setShowSearchIcon] = useState(false);
   const [fadeOutUserMenuList, setFadeOutUserMenuList] = useState(false);
   const [showUserMenuList, setShowUserMenuList] = useState(false);
@@ -152,7 +153,7 @@ export function OptionsMenuUser() {
     }
   };
 
-  if (!authorizedUser.data) {
+  if (!authorizedUser) {
     return null
   }
 
@@ -191,12 +192,10 @@ export function OptionsMenuUser() {
       <button className={styles.user_menu}
         onClick={() => onClickShowUserMenuList(!showUserMenuList)}
       >
-        {authorizedUser.data.
-          avatarUrl ? (
+        {authorizedUser.avatarUrl ? (
           <div className={styles.user_avatar}>
             <img
-              src={BASE_URL + authorizedUser.data.
-                avatarUrl}
+              src={BASE_URL + authorizedUser.avatarUrl}
               alt="user avatar"
             />
           </div>
@@ -225,17 +224,17 @@ export function OptionsMenuUser() {
             onClick={() => setFadeOutUserMenuList(true)}
             className={styles.user_menu_list_user_name_user_custom_id_wrap}
           >
-            {authorizedUser.data.name && (
+            {authorizedUser.name && (
               <div className={styles.user_menu_list_user_name}>
-                <p>{authorizedUser.data.name}</p>
-                {authorizedUser.data.creator && <CrystalIcon />}
+                <p>{authorizedUser.name}</p>
+                {authorizedUser.creator && <CrystalIcon />}
               </div>
             )
             }
             <div className={styles.user_menu_list_user_custom_id}>
-              <p>@{authorizedUser.data.customId}</p>
+              <p>@{authorizedUser.customId}</p>
             </div>
-            <Link to={`/${authorizedUser.data.customId}`}></Link>
+            <Link to={`/${authorizedUser.customId}`}></Link>
           </div>
           <nav>
             <ul>
@@ -246,7 +245,7 @@ export function OptionsMenuUser() {
               >
                 <UserIcon />
                 {t("OptionsMenuUser.MyProfile")}
-                <Link to={`/${authorizedUser.data.customId}`}></Link>
+                <Link to={`/${authorizedUser.customId}`}></Link>
               </li>
               <li className={styles.user_menu_list_item_lang} onClick={() => changeLang()}>
                 <LanguageIcon />

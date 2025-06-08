@@ -32,9 +32,17 @@ import { setShowAccessModal } from '../../../../features/accessModal/accessModal
 import { useTranslation } from 'react-i18next';
 import imageCompression from 'browser-image-compression';
 import { formattingLinksInText } from '../../../../helpers/index';
+import {
+  useAuthorization
+} from "../../../../features";
 import styles from "./UserInformation.module.css";
 
 export function UserInformation() {
+
+  // authorized user
+  const authorizedUser = useAuthorization();
+  // /authorized user
+
   const dispatch = useDispatch();
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
 
@@ -43,10 +51,6 @@ export function UserInformation() {
   // /checking user log in
 
   const queryClient = useQueryClient();
-
-  // authorized user
-  const authorizedUser = queryClient.getQueryState(['authorization'])
-  // /authorized user
 
   const { t } = useTranslation();
 
@@ -85,7 +89,7 @@ export function UserInformation() {
   const { userId } = useParams();
 
   // checking the access rights of an authorized user
-  const authorizedUserAccessCheck = (authorizedUser?.data?.creator || (authorizedUser?.data?.customId === userId));
+  const authorizedUserAccessCheck = (authorizedUser?.creator || (authorizedUser?.customId === userId));
   // /checking the access rights of an authorized user
 
   // checking whether the user has posts
@@ -288,7 +292,7 @@ export function UserInformation() {
     bannerImageLoadingStatusError,
     setBannerImageLoadingStatusError
   ] = useState(false);
-  
+
   useEffect(() => {
     if (bannerImageLoadingStatus == 100) {
       setTimeout(() => {

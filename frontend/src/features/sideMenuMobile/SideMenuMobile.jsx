@@ -1,4 +1,3 @@
-import styles from "./SideMenuMobile.module.css";
 import {
   useEffect,
   useRef
@@ -7,9 +6,6 @@ import {
   useDispatch,
   useSelector
 } from "react-redux";
-import {
-  useQueryClient
-} from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import {
   setShowSideMenuMobile,
@@ -30,12 +26,14 @@ import {
   CrystalIcon,
   DocumentationIcon,
 } from "../../components/SvgIcons";
-
+import {
+  useAuthorization
+} from "../../features";
+import styles from "./SideMenuMobile.module.css";
 export function SideMenuMobile() {
-  const queryClient = useQueryClient();
 
   // authorized user
-  const authorizedUser = queryClient.getQueryState(['authorization'])
+  const authorizedUser = useAuthorization();
   // /authorized user
 
   const { t } = useTranslation();
@@ -69,7 +67,7 @@ export function SideMenuMobile() {
   }, [showSideMenuMobile]);
   // /hide body scroll when opening menu
 
-  if (!authorizedUser.data) {
+  if (!authorizedUser) {
     return null
   }
 
@@ -99,42 +97,42 @@ export function SideMenuMobile() {
               <li className={styles.user}>
                 <UserIcon />
                 {t("SideMenuMobile.MyProfile")}
-                <Link to={"/" + authorizedUser.data.customId}></Link>
+                <Link to={"/" + authorizedUser.customId}></Link>
               </li>
               <li className={styles.messages}>
                 <MessagesIcon />
                 {t("SideMenuMobile.Messages")}
-                <Link to={"/" + authorizedUser.data.customId}></Link>
+                <Link to={"/" + authorizedUser.customId}></Link>
               </li>
               <li className={styles.friends}>
                 <FriendsIcon />
                 {t("SideMenuMobile.Friends")}
-                <Link to={"/" + authorizedUser.data.customId}></Link>
+                <Link to={"/" + authorizedUser.customId}></Link>
               </li>
               <li className={styles.groups}>
                 <GroupsIcon />
                 {t("SideMenuMobile.Communities")}
-                <Link to={"/" + authorizedUser.data.customId}></Link>
+                <Link to={"/" + authorizedUser.customId}></Link>
               </li>
               <li className={styles.photo}>
                 <PhotosIcon />
                 {t("SideMenuMobile.Photo")}
-                <Link to={"/" + authorizedUser.data.customId}></Link>
+                <Link to={"/" + authorizedUser.customId}></Link>
               </li>
               <li className={styles.video}>
                 <VideosIcon />
                 {t("SideMenuMobile.Video")}
-                <Link to={"/" + authorizedUser.data.customId}></Link>
+                <Link to={"/" + authorizedUser.customId}></Link>
               </li>
               <li className={styles.bookmark}>
                 <BookmarkIcon />
                 {t("SideMenuMobile.Bookmarks")}
-                <Link to={"/" + authorizedUser.data.customId}></Link>
+                <Link to={"/" + authorizedUser.customId}></Link>
               </li>
               <li className={styles.like}>
                 <LikeIcon />
                 {t("SideMenuMobile.Liked")}
-                <Link to={"/liked/" + authorizedUser.data.customId}></Link>
+                <Link to={"/liked/" + authorizedUser.customId}></Link>
               </li>
               <li className={styles.crystal}>
                 <CrystalIcon />

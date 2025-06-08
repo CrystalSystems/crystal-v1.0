@@ -1,8 +1,5 @@
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
-import {
-  useQueryClient
-} from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import {
   UserIcon,
@@ -17,19 +14,21 @@ import {
   LikeIcon,
   DocumentationIcon,
 } from "../../components/SvgIcons";
+import {
+  useAuthorization
+} from "../../features";
 import styles from "./SideMenuDesktop.module.css";
 
 export function SideMenuDesktop() {
-  const queryClient = useQueryClient();
 
   // authorized user
-  const authorizedUser = queryClient.getQueryState(['authorization'])
+  const authorizedUser = useAuthorization();
   // /authorized user
 
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const { t } = useTranslation();
 
-  if (!authorizedUser.data) {
+  if (!authorizedUser) {
     return null
   }
 
@@ -42,42 +41,42 @@ export function SideMenuDesktop() {
         <li className={styles.user}>
           <UserIcon />
           <p>{t("SideMenuDesktop.MyProfile")}</p>
-          <Link to={"/" + authorizedUser.data.customId}></Link>
+          <Link to={"/" + authorizedUser.customId}></Link>
         </li>
         <li className={styles.messages}>
           <MessagesIcon />
           <p>{t("SideMenuDesktop.Messages")}</p>
-          <Link to={`/${authorizedUser.data.customId}`}></Link>
+          <Link to={`/${authorizedUser.customId}`}></Link>
         </li>
         <li className={styles.friends}>
           <FriendsIcon />
           <p>{t("SideMenuDesktop.Friends")}</p>
-          <Link to={`/${authorizedUser.data.customId}`}></Link>
+          <Link to={`/${authorizedUser.customId}`}></Link>
         </li>
         <li className={styles.groups}>
           <GroupsIcon />
           <p>{t("SideMenuDesktop.Communities")}</p>
-          <Link to={`/${authorizedUser.data.customId}`}></Link>
+          <Link to={`/${authorizedUser.customId}`}></Link>
         </li>
         <li className={styles.photo}>
           <PhotosIcon />
           <p>{t("SideMenuDesktop.Photo")}</p>
-          <Link to={`/${authorizedUser.data.customId}`}></Link>
+          <Link to={`/${authorizedUser.customId}`}></Link>
         </li>
         <li className={styles.video}>
           <VideosIcon />
           <p>{t("SideMenuDesktop.Video")}</p>
-          <Link to={`/${authorizedUser.data.customId}`}></Link>
+          <Link to={`/${authorizedUser.customId}`}></Link>
         </li>
         <li className={styles.bookmark}>
           <BookmarkIcon />
           <p>{t("SideMenuDesktop.Bookmarks")}</p>
-          <Link to={`/${authorizedUser.data.customId}`}></Link>
+          <Link to={`/${authorizedUser.customId}`}></Link>
         </li>
         <li className={styles.like}>
           <LikeIcon />
           <p>{t("SideMenuDesktop.Liked")}</p>
-          <Link to={"/liked/" + authorizedUser.data.customId}></Link>
+          <Link to={"/liked/" + authorizedUser.customId}></Link>
         </li>
         <li className={styles.crystal}>
           <CrystalIcon />

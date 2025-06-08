@@ -13,22 +13,23 @@ import {
   NoAvatarIcon,
   CrystalIcon
 } from "../../components/SvgIcons";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { setShowAccessModal } from '../../features/accessModal/accessModalSlice';
+import {
+  useAuthorization
+} from "../../features";
 import styles from "./RecommendedUsers.module.css";
 
 export function RecommendedUsers() {
-  const queryClient = useQueryClient();
+  // authorized user
+  const authorizedUser = useAuthorization();
+  // /authorized user
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const dispatch = useDispatch();
 
   // checking user log in
   const logInStatus = useSelector((state) => state.logInStatus)
   // /checking user log in
-
-  // authorized user
-  const authorizedUser = queryClient.getQueryState(['authorization'])
-  // /authorized user
 
   const users = useQuery({
     queryKey: ['user', 'recommendedUsers'],
@@ -42,8 +43,8 @@ export function RecommendedUsers() {
 
   const { t } = useTranslation();
   const dataUsers = logInStatus
-    ? users.data?.filter((user) => user.customId !== authorizedUser?.data?.customId).toReversed().slice(0, 4)
-    : users.data?.filter((user) => user.customId !== authorizedUser?.data?.customId).toReversed().slice(0, 4);
+    ? users.data?.filter((user) => user.customId !== authorizedUser?.customId).toReversed().slice(0, 4)
+    : users.data?.filter((user) => user.customId !== authorizedUser?.customId).toReversed().slice(0, 4);
 
   if (users.status === "pending") {
     return null;

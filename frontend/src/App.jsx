@@ -7,7 +7,6 @@ import {
 import { useSelector } from "react-redux";
 import styles from "./App.module.css";
 import {
-  useAuthorization,
   AccessModal,
   SideMenuMobile,
   SideMenuMobileBackground,
@@ -39,10 +38,6 @@ import {
 } from "./components";
 
 export default function App() {
-  // authorization
-  useAuthorization();
-  // /authorization
-
   const location = useLocation()
   const defineFullPostPage = location.pathname.includes('/post/')
 

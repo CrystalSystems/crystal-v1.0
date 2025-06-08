@@ -23,10 +23,15 @@ import {
   MessagesIcon,
 } from '../../components/SvgIcons';
 import { formattingLinksInText } from '../../helpers/index';
+import {
+  useAuthorization
+} from "../../features";
 import styles from './PostPreview.module.css';
 
 export const PostPreview = forwardRef(function Post(props, lastPostRef) {
-
+  // authorized user
+  const authorizedUser = useAuthorization();
+  // /authorized user
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -39,10 +44,6 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
   // checking user log in
   const logInStatus = useSelector((state) => state.logInStatus)
   // /checking user log in
-
-  // authorized user
-  const authorizedUser = queryClient.getQueryState(['authorization'])
-  // /authorized user
 
   // menu - post options
   const menuPostOptions = useRef();
@@ -132,13 +133,13 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
 
   useEffect(() => {
     setNumberLiked(postData.post?.liked?.length);
-    setUserLiked(postData.post?.liked?.find((like) => like === authorizedUser?.data?._id));
+    setUserLiked(postData.post?.liked?.find((like) => like === authorizedUser?._id));
     setUserLikedStatus(true);
-    if (!authorizedUser?.data?._id) {
+    if (!authorizedUser?._id) {
       setUserLikedStatus(true);
       setUserLiked(false);
     }
-  }, [postData.post, authorizedUser?.data?._id]);
+  }, [postData.post, authorizedUser?._id]);
 
   const onClickAddLike = async () => {
     if (userLiked) {
@@ -149,7 +150,7 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
       setUserLiked(true);
     }
     const fields = {
-      userId: authorizedUser?.data?._id,
+      userId: authorizedUser?._id,
     };
     await requestManager.patch(`/post/add/like/${postData.postId}`, fields);
   };
@@ -239,8 +240,8 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
               }}
             >
               <ul>
-                {((postData.post.user?._id === authorizedUser?.data?._id && postData.post?.user?._id !== undefined) ||
-                  authorizedUser?.data?.creator) && (
+                {((postData.post.user?._id === authorizedUser?._id && postData.post?.user?._id !== undefined) ||
+                  authorizedUser?.creator) && (
                     <>
                       <li>
                         {t('PostPreview.EditPost')}
@@ -249,7 +250,7 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
                       <li onClick={onClickDeletePost}>{t('PostPreview.DeletePost')}</li>
                     </>
                   )}
-                {(postData.post.user?._id !== authorizedUser?.data?._id && authorizedUser?.data?.creator) && (
+                {(postData.post.user?._id !== authorizedUser?._id && authorizedUser?.creator) && (
                   <>
                     <li onClick={onClickDeleteAllPosts}>
                       {t('PostPreview.DeleteAllUserPosts')}
@@ -314,7 +315,7 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
                   </button>
                   <div className={styles.like_wrap}>
                     <button
-                      onClick={authorizedUser?.data ?
+                      onClick={authorizedUser ?
                         onClickAddLike
                         :
                         null}

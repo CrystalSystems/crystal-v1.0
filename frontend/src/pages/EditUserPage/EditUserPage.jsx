@@ -26,18 +26,21 @@ import {
 } from "../../components/SvgIcons";
 import TextareaAutosize from "react-textarea-autosize";
 import { setlogInStatus } from "../../features/access/logInStatusSlice";
+import {
+  useAuthorization
+} from "../../features";
 import styles from "./EditUserPage.module.css";
 
 export function EditUserPage() {
+
+  // authorized user
+  const authorizedUser = useAuthorization();
+  // /authorized user
+
   const [serverMessage, setServerMessage] = useState();
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
-
-  // authorized user
-  const authorizedUser = queryClient.getQueryState(['authorization'])
-  // /authorized user
-
   const navigate = useNavigate();
   const { userId } = useParams();
   const [userIdUseParams, setUserIdUseParams] = useState(userId);
@@ -145,9 +148,9 @@ export function EditUserPage() {
 
   // user authorization check
   const userAuthorizationCheck =
-    (authorizedUser?.data?.creator && userId) !== authorizedUser?.data?.customId;
+    (authorizedUser?.creator && userId) !== authorizedUser?.customId;
   const userAuthorizationCheckToChangePassword =
-    authorizedUser?.data?.customId === userId;
+    authorizedUser?.customId === userId;
   // /user authorization check
 
   const { t } = useTranslation();
@@ -241,7 +244,7 @@ export function EditUserPage() {
     }
   };
   // /change password
-  
+
   const onClickDeleteAllUserPosts = async (event) => {
     event.preventDefault();
     if (
@@ -276,7 +279,7 @@ export function EditUserPage() {
 
     onSuccess: () => {
       navigate("/");
-      if (authorizedUser?.data?.customId === userId) {
+      if (authorizedUser?.customId === userId) {
         dispatch(setlogInStatus(false));
         window.localStorage.removeItem('logIn');
         queryClient.invalidateQueries({ queryKey: ['post'] });
