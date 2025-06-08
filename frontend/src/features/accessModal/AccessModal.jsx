@@ -46,7 +46,7 @@ export function AccessModal() {
   // -- /reCAPTCHA v3
 
   // yup validationSchema
-  // Log in validation
+  // log in validation
   const validationSchemaLogIn = Yup.object().shape({
     email: Yup.string()
       .email("AccessModal.InputErrorEmailEmpty")
@@ -59,9 +59,9 @@ export function AccessModal() {
         "AccessModal.InputErrorPasswordMinimumMaximumLengthSymbols"
       ),
   });
-  // /Log in validation
+  // /log in validation
 
-  // Registration validation
+  // registration validation
   const validationSchemaRegistration = Yup.object().shape({
     name: Yup.string().max(
       200,
@@ -90,7 +90,7 @@ export function AccessModal() {
       "AccessModal.InputErrorAcceptTerms"
     ),
   });
-  // /Registration validation
+  // /registration validation
 
   // /yup validationSchema
 
@@ -99,7 +99,7 @@ export function AccessModal() {
   const [fadeOut, setFadeOut] = useState(false);
   const { showAccessModal, switchAccessModal } = useSelector((state) => state.accessModal);
 
-  // Click tracking outside the modal
+  // click tracking outside the modal
   const modalRef = useRef();
   useEffect(() => {
     if (modalRef.current) {
@@ -114,7 +114,7 @@ export function AccessModal() {
       };
     }
   });
-  // /Click tracking outside the modal
+  // /click tracking outside the modal
 
   // useForm logIn
   const {
