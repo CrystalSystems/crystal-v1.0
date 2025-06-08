@@ -163,9 +163,6 @@ export function EditUserPage() {
     },
 
     onSuccess: () => {
-      if (userId === authorizedUser?.data.customId) {
-        queryClient.invalidateQueries({ queryKey: ['authorizedUser'] });
-      }
       navigate("/user/edit/" + userIdValue);
       queryClient.invalidateQueries({ queryKey: ['user'] });
       queryClient.invalidateQueries({ queryKey: ['post'] });

@@ -187,9 +187,6 @@ export function UserInformation() {
       queryClient.invalidateQueries({ queryKey: ['user'] });
       queryClient.invalidateQueries({ queryKey: ['post'] });
       queryClient.invalidateQueries({ queryKey: ['authorization'] });
-      if (userId === authorizedUser?.data?.customId) {
-        queryClient.invalidateQueries({ queryKey: ['authorizedUser'] });
-      }
     }) : await requestManager.post('/user/add/image/' + userId, formData).then(response => {
       const fields = {
         avatarUrl: response.imageUrl,
@@ -202,9 +199,6 @@ export function UserInformation() {
       queryClient.invalidateQueries({ queryKey: ['user'] });
       queryClient.invalidateQueries({ queryKey: ['post'] });
       queryClient.invalidateQueries({ queryKey: ['authorization'] });
-      if (userId === authorizedUser?.data?.customId) {
-        queryClient.invalidateQueries({ queryKey: ['authorizedUser'] });
-      }
     });
   };
 

@@ -13,11 +13,12 @@ import { setlogInStatus } from "../access/logInStatusSlice";
 export function useAuthorization() {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
+  const authorizationGetQueryState = queryClient.getQueryState(["authorization"]);
   const logInStatus = useSelector((state) => state.logInStatus);
 
   // authorization
-  const { status } = useQuery({
-    queryKey: ['authorization'],
+  useQuery({
+    queryKey: ["authorization"],
     enabled: logInStatus,
     refetchOnWindowFocus: true,
     retry: false,
@@ -26,15 +27,17 @@ export function useAuthorization() {
         return response;
       }),
   });
-  // /authorization 
+  // /authorization
 
-  // Check for loss of localStorage and cookie data, and log out if data is lost
+  // check for loss of localStorage and cookie data, and log out if data is lost
   useEffect(() => {
-    if (!logInStatus || status === "error") {
-      window.localStorage.removeItem('logIn');
-      queryClient.resetQueries({ queryKey: ['authorization'], exact: true });
+    if (!logInStatus
+      || authorizationGetQueryState?.status === "error"
+    ) {
+      window.localStorage.removeItem("logIn");
+      queryClient.resetQueries({ queryKey: ["authorization"], exact: true });
       dispatch(setlogInStatus(false));
     }
-  }, [status, dispatch, queryClient, logInStatus]);
-  // /Check for loss of localStorage and cookie data, and log out if data is lost
+  }, [authorizationGetQueryState, dispatch, queryClient, logInStatus]);
+  // /check for loss of localStorage and cookie data, and log out if data is lost
 }

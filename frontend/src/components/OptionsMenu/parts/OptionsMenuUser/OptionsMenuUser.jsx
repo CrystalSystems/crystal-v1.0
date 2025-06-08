@@ -74,14 +74,6 @@ export function OptionsMenuUser() {
   const authorizedUser = queryClient.getQueryState(['authorization'])
   // /authorized user
 
-  // change avatar in another browser, if it is updated, in the current browser
-  useEffect(() => {
-    if (authorizedUser.status === 'success') {
-      queryClient.invalidateQueries({ queryKey: ['authorizedUser'] });
-    }
-  }, [queryClient, authorizedUser?.data, authorizedUser.status]);
-  // /change avatar in another browser, if it is updated, in the current browser
-
   const [showSearchIcon, setShowSearchIcon] = useState(false);
   const [fadeOutUserMenuList, setFadeOutUserMenuList] = useState(false);
   const [showUserMenuList, setShowUserMenuList] = useState(false);
