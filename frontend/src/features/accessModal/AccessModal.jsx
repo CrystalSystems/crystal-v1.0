@@ -116,7 +116,7 @@ export function AccessModal() {
   });
   // /click tracking outside the modal
 
-  // useForm logIn
+  // useForm log in
   const {
     register: useFormLogin,
     reset: logInFormReset,
@@ -131,7 +131,7 @@ export function AccessModal() {
     }
   );
 
-  // logIn
+  // log in
   const logIn = useMutation({
     mutationKey: ['logIn'],
     mutationFn: async (values) => {
@@ -153,7 +153,7 @@ export function AccessModal() {
     },
 
   });
-  // /logIn
+  // /log in
 
   const [logInServerErrors, setLogInServerErrors] = useState();
 
@@ -163,7 +163,7 @@ export function AccessModal() {
     });
     logIn.mutate(values);
   };
-  // /useForm logIn
+  // /useForm log in
 
   // useForm registration
   const {
