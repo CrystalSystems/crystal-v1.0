@@ -42,9 +42,11 @@ import {
 import styles from "./OptionsMenuUser.module.css";
 
 export function OptionsMenuUser() {
+  
   // authorized user
   const authorizedUser = useAuthorization();
   // /authorized user
+
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const dispatch = useDispatch();
   const { showSideMenuMobile } = useSelector(
@@ -93,7 +95,7 @@ export function OptionsMenuUser() {
     };
   };
 
-  // logOut
+  // log out
   const logOut = useMutation({
     mutationKey: ["logOut"],
     mutationFn: () => {
@@ -116,7 +118,7 @@ export function OptionsMenuUser() {
     },
 
   });
-  // /logOut
+  // /log out
 
   // closing a menu when clicking outside its field
   useEffect(() => {
