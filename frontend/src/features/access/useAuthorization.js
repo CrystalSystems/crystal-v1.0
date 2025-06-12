@@ -28,6 +28,7 @@ export function useAuthorization() {
   });
   // /authorization
 
+  // Check for loss of localStorage and cookie data, and log out if data is lost
   useEffect(() => {
     if (!logInStatus || status === 'error') {
       window.localStorage.removeItem('logIn');
@@ -35,6 +36,7 @@ export function useAuthorization() {
       dispatch(setlogInStatus(false));
     }
   }, [status, logInStatus, dispatch, queryClient]);
+  // /Check for loss of localStorage and cookie data, and log out if data is lost
 
   return data;
 }
