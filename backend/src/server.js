@@ -23,25 +23,20 @@ app.use(
     credentials: !PRODUCTION_STATUS,
   })
 );
-// /application mode
 
 // parsers
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-// /parsers
 
 // static
 app.use("/uploads/", express.static("uploads/"));
-// /static
 
 // routes
 registerRoutes(app);
-// /routes
 
 // DB connection
 mongoose
   .connect("mongodb://127.0.0.1:27017/crystal")
   .then(() => console.log("DB connected"))
   .catch((error) => console.log("DB error -", error));
-// /DB connection
