@@ -148,10 +148,9 @@ export const getAllPostsBySpecificUserId = async (req, res) => {
 //  /get all posts by a specific user id
 
 // get all hashtags
-export const getAllHashtags = async (_, res) => {
-  const page = 1;
-  const limit = 10;
-  const offset = (page - 1) * limit;
+export const getAllHashtags = async (req, res) => {
+  const { limit } = req.query;
+  const max = parseInt(limit) || 6;
   let result = await PostModel.aggregate([
     {
       $unwind: "$hashtags"
@@ -178,7 +177,7 @@ export const getAllHashtags = async (_, res) => {
         "_id": false
       }
     }
-  ]).collation({ locale: 'en', strength: 2 }).skip(offset).limit(limit).exec();
+  ]).collation({ locale: 'en', strength: 2 }).limit(max).exec();
   try {
     return res.status(200).json(result);
   } catch (error) {

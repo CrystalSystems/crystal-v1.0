@@ -5,7 +5,7 @@ import {
 import { useParams } from "react-router-dom";
 import {
   PostPreview,
-  // Loader
+  Loader
 } from "../../../../components";
 import { requestManager } from "../../../../requestManagement";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -88,16 +88,25 @@ export function UserPagePostsWrap() {
 
   return (
     <div className={styles.posts_wrap}>
-      {/* {status === "pending" &&
-        <div className={styles.loader}>
+      {status === "pending" &&
+        <div
+          className={
+            `${styles.loader}
+                             ${styles.loader_first_loading}`
+          }>
           <Loader />
         </div>
-      } */}
+      }
       {status === "success" && posts}
-      {/* {isFetchingNextPage &&
-        <div className={styles.loader}>
+      {isFetchingNextPage &&
+        <div
+          className={
+            `${styles.loader}
+                             ${styles.loader_infinite_scroll}`
+          }>
           <Loader />
-        </div>} */}
+        </div>
+      }
     </div>
   );
 }

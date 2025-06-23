@@ -81,23 +81,16 @@ ul {
   visibility: hidden;
 }
 
-/* Variables*/
+/* variables */
 :root {
   --transition_opening_global: 150ms;
   --transition_all_global: all 170ms ease;
   --transition_background-color_hover_global: background-color 200ms ease;
   --transition_background-color_active_global: background-color 250ms ease;
   --transition_text-decoration_global: text-decoration 200ms ease;
-  /* --scrollbar_color_global: #65656544 #f1f1f1ec; */
-  --scrollbar_color_global: #65656544 #ffffff;
 }
 
-/* Dark theme*/
-.dark-mode {
-  /* --scrollbar_color_global: #262626 #191919; */
-   --scrollbar_color_global: #1d1d1d #000000;
-}
-
+/* dark theme*/
 [data-dark-theme="true"] {
   --fill_global: #a1a1a1;
   --stroke_global: #a1a1a1;
@@ -129,6 +122,5 @@ ul {
   --hashtag_color_hover_global: rgb(11, 98, 156);
   --item_hover_global: rgba(233, 236, 239, 0.563);
 }
-
-/* /Dark theme*/
-/* /Variables*/
+/* /dark theme*/
+/* /variables */

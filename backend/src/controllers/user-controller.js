@@ -203,9 +203,17 @@ export const deleteUserAccount = (req, res) => {
 // /delete user account
 
 // get all users
-export const getAllUsers = async (_, res) => {
+export const getAllUsers = async (req, res) => {
   try {
-    const users = await UserModel.find({}, "-email -passwordHash");
+    const { exclude, limit } = req.query;
+    const query = exclude ? { customId: { $ne: exclude } } : {};
+    const max = parseInt(limit) || 4;
+
+    const users = await UserModel
+      .find(query, "-email -passwordHash")
+      .limit(max)
+      .sort({ createdAt: -1 });
+
     res.status(200).json(users);
   } catch (error) {
     res.status(500).send(error);

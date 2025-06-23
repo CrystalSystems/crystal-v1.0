@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import { ThreeDotsIcon } from "../SvgIcons";
 import { useQuery } from "@tanstack/react-query";
 import { setShowAccessModal } from '../../features/accessModal/accessModalSlice';
+import { Loader } from "../../components";
 import styles from "./CurrentTopics.module.css";
 
 export function CurrentTopics() {
@@ -25,15 +26,15 @@ export function CurrentTopics() {
 
   const topics = useQuery({
     queryKey: ['post', 'currentTopics', changesAddressBar],
+    queryFn: () => {
+      const params =
+        logInStatus ? { limit: 6 } : { limit: 6 };
+      return requestManager.get('/hashtag/get/all', params);
+    },
     refetchOnWindowFocus: true,
-    queryFn: () =>
-      requestManager.get("/hashtag/get/all").then((response) => {
-        return response;
-      }),
-    retry: false,
+    retry: false
   });
 
-  const hashtagsData = logInStatus ? topics.data?.slice(0, 6) : topics.data?.slice(0, 6);
   const { t } = useTranslation();
 
   // Formatting a long number
@@ -42,17 +43,24 @@ export function CurrentTopics() {
   });
   // /Formatting a long number
 
-  if (topics.status === "pending") {
-    return null;
-  }
+  // if (topics.status === "pending") {
+  //   return null;
+  // }
 
   return (
     <div className={styles.current_topics} data-current-topics-dark-theme={darkThemeStatus}>
       <div className={styles.title}>
         <p>{t("CurrentTopics.CurrentTopics")}</p>
       </div>
+
+      {topics.status === "pending" &&
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      }
+
       {topics.status === "success" && (
-        hashtagsData?.map((post) => (
+        topics.data?.map((post) => (
           <div
             key={post.hashtagName}
             className={styles.topic}

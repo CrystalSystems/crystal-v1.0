@@ -11,8 +11,9 @@ import {
 import { useTranslation } from "react-i18next";
 import {
   NoAvatarIcon,
-  CrystalIcon
-} from "../../components/SvgIcons";
+  CrystalIcon,
+  Loader
+} from "../../components";
 import { useQuery } from "@tanstack/react-query";
 import { setShowAccessModal } from '../../features/accessModal/accessModalSlice';
 import {
@@ -21,9 +22,11 @@ import {
 import styles from "./RecommendedUsers.module.css";
 
 export function RecommendedUsers() {
+
   // authorized user
   const authorizedUser = useAuthorization();
   // /authorized user
+
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const dispatch = useDispatch();
 
@@ -32,23 +35,23 @@ export function RecommendedUsers() {
   // /checking user log in
 
   const users = useQuery({
-    queryKey: ['user', 'recommendedUsers'],
+     queryKey: ['user', 'recommendedUsers', authorizedUser?.customId || 'guest'],
+    queryFn: () => {
+      const params =
+        logInStatus && authorizedUser?.customId
+          ? { exclude: authorizedUser?.customId, limit: 4 }
+          : { limit: 4 };
+      return requestManager.get('/user/get/all', params);
+    },
     refetchOnWindowFocus: true,
-    queryFn: () =>
-      requestManager.get("/user/get/all").then((response) => {
-        return response;
-      }),
-    retry: false,
+    retry: false
   });
 
   const { t } = useTranslation();
-  const dataUsers = logInStatus
-    ? users.data?.filter((user) => user.customId !== authorizedUser?.customId).toReversed().slice(0, 4)
-    : users.data?.filter((user) => user.customId !== authorizedUser?.customId).toReversed().slice(0, 4);
 
-  if (users.status === "pending") {
-    return null;
-  }
+  // if (users.status === "pending") {
+  //   return null;
+  // }
 
   return (
     <div className={
@@ -59,8 +62,15 @@ export function RecommendedUsers() {
       <div className={styles.title}>
         <p>{t("RecommendedUsers.YouMightLike")}</p>
       </div>
+
+      {users.status === "pending" &&
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      }
+
       {users.status === "success" &&
-        dataUsers?.map((user, index) => {
+        users.data?.map((user, index) => {
           return (
             <div
               key={index}

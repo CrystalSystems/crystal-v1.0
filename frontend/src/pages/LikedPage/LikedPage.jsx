@@ -9,7 +9,7 @@ import {
 import {
   PostPreview,
   NotFoundPage,
-  // Loader
+  Loader
 } from "../../components";
 import { requestManager } from "../../requestManagement";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -88,11 +88,24 @@ export function LikedPage() {
     <div className={styles.posts_wrap}>
       {error?.message === "No access" && <Navigate to="/" />}
       {status === "error" && <NotFoundPage />}
-      {status === "success" && posts}
-      {/* {isFetchingNextPage &&
-        <div className={styles.loader}>
+      {status === "pending" &&
+        <div
+          className={
+            `${styles.loader}
+                       ${styles.loader_first_loading}`
+          }>
           <Loader />
-        </div>} */}
+        </div>
+      }
+      {status === "success" && posts}
+      {isFetchingNextPage &&
+        <div
+          className={
+            `${styles.loader}
+                       ${styles.loader_infinite_scroll}`
+          }>
+          <Loader />
+        </div>}
     </div>
   );
 }

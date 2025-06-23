@@ -43,17 +43,15 @@ export default function App() {
 
   // dark theme
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
+
   useEffect(() => {
-    const html = document.getElementsByTagName('html')[0];
-    darkThemeStatus ?
-      html.classList.add('dark-mode')
-      :
-      html.classList.remove('dark-mode')
+    const html = document.documentElement;
+    html.setAttribute('data-dark-theme', String(darkThemeStatus));
   }, [darkThemeStatus]);
   // /dark theme
 
   return (
-    <div className={styles.app} data-dark-theme={darkThemeStatus}>
+    <div className={styles.app}>
       <div className={styles.left_center_right_parts_wrap}>
         <div className={styles.left_center_right_parts}>
           <div className={styles.left_side_wrap}>

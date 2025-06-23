@@ -206,6 +206,14 @@
   background-color: var(--show_more_hover);
 }
 
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 80px;
+}
+
 /* variables */
 /* theme colors */
 [data-recommended-users-dark-theme="true"] {

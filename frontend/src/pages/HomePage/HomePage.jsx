@@ -4,7 +4,7 @@ import {
 } from "react";
 import {
   PostPreview,
-  // Loader
+  Loader
 } from "../../components";
 import { PostSourceMenu } from "../../components/";
 import { requestManager } from "../../requestManagement";
@@ -80,16 +80,24 @@ export function HomePage() {
   return (
     <div className={styles.posts_wrap}>
       <PostSourceMenu />
-      {/* {status === "pending" &&
-        <div className={styles.loader}>
+      {status === "pending" &&
+        <div
+          className={
+            `${styles.loader}
+                 ${styles.loader_first_loading}`
+          }>
           <Loader />
         </div>
-      } */}
+      }
       {status === "success" && posts}
-      {/* {isFetchingNextPage &&
-        <div className={styles.loader}>
+      {isFetchingNextPage &&
+        <div
+          className={
+            `${styles.loader}
+                 ${styles.loader_infinite_scroll}`
+          }>
           <Loader />
-        </div>} */}
+        </div>}
     </div>
   );
 }
