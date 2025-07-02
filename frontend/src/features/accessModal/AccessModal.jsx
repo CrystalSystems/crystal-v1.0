@@ -221,11 +221,9 @@ export function AccessModal() {
   // /register
 
   const [
-    watchNameRegForm,
-    watchCustomIdRegForm,
     watchEmailRegForm,
     watchPasswordRegForm,
-  ] = watchRegisterForm(["name", "customId", "email", "password", "acceptTerms"]);
+  ] = watchRegisterForm(["email", "password"]);
 
   const [registerServerErrors, setRegisterServerErrors] = useState();
 
@@ -538,7 +536,6 @@ export function AccessModal() {
                       {/* -- /reCAPTCHA v3 */}
                     </div>
                     {(
-                      watchNameRegForm && watchCustomIdRegForm &&
                       watchEmailRegForm && watchPasswordRegForm) && (
                         <button className={styles.enter} type="submit">
                           <EnterIcon />
