@@ -8,9 +8,9 @@
   "homepage": "https://github.com/CrystalSystems/crystal-v1.0",
   "license": "MIT",
   "type": "module",
-  "main": "./src/server.js",
+  "main": "./src/core/main.js",
   "scripts": {
-    "startDev": "node --watch --env-file=./env/.env.dev --env-file=./env/.env ./src/server.js",
+    "startDev": "node --watch --env-file=./env/.env.dev --env-file=./env/.env ./src/core/main.js",
     "startProdDomain": "pm2 start ecosystem.config.cjs --only prodDomain",
     "startProdIP": "pm2 start ecosystem.config.cjs --only prodIP"
   },

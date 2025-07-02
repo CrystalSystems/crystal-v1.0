@@ -10,14 +10,17 @@ import {
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { requestManager } from "../../requestManagement";
-import { setShowAccessModal } from "../../features/accessModal/accessModalSlice";
-import TextareaAutosize from "react-textarea-autosize";
 import imageCompression from "browser-image-compression";
-import { LoadingBar } from "../../components";
+import TextareaAutosize from "react-textarea-autosize";
+
+import { httpClient } from "../../shared/api";
+import { setShowAccessModal } from "../../features/accessModal/accessModalSlice";
+import { LoadingBar } from "../../shared/ui";
+
 import styles from "./AddPostPage.module.css";
 
 export function AddPostPage() {
+
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
 
   // checking user log in
@@ -121,15 +124,15 @@ export function AddPostPage() {
         imageUrl: fileImagePreviewUrl,
       };
       fileImagePreview
-        ? await requestManager
-          .post("/post/add", fields)
+        ? await httpClient
+          .post("/posts/", fields)
           .then((response) => {
             const postId = response._id;
             const formData = new FormData();
             const file = fileImagePreview;
             formData.append("image", file);
-            return requestManager.post(
-              "/post/add/image/" + postId,
+            return httpClient.post(
+              `/posts/${postId}/image`,
               formData);
           })
           .then((response) => {
@@ -140,17 +143,17 @@ export function AddPostPage() {
               text,
               title,
             };
-            return requestManager.patch(`/post/edit/${postId}`, fields);
+            return httpClient.patch(`/posts/${postId}`, fields);
           })
           .then((response) => {
             const postId = response.postId;
-            navigate(`/post/${postId}`);
-            queryClient.invalidateQueries({ queryKey: ['post'] });
+            navigate(`/posts/${postId}`);
+            queryClient.invalidateQueries({ queryKey: ['posts'] });
           })
-        : await requestManager.post("/post/add", fields).then((response) => {
+        : await httpClient.post("/posts/", fields).then((response) => {
           const postId = response._id;
-          navigate(`/post/${postId}`);
-          queryClient.invalidateQueries({ queryKey: ['post'] });
+          navigate(`/posts/${postId}`);
+          queryClient.invalidateQueries({ queryKey: ['posts'] });
         });
     } catch (err) {
       console.warn(err);

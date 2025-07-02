@@ -1,1 +1,0 @@
-export * as accessCheck from './access-check.js';

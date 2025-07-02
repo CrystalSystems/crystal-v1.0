@@ -3,44 +3,44 @@ import {
   useEffect,
   useRef
 } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {
+  useDispatch,
+  useSelector
+} from "react-redux";
 import {
   useParams,
   Link
 } from "react-router-dom";
 import {
-  BASE_URL,
-  requestManager
-} from "../../../../requestManagement";
-import {
   useQuery,
   useQueryClient
 } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+import imageCompression from 'browser-image-compression';
+
+import { httpClient } from '../../../../shared/api';
+import { API_BASE_URL } from '../../../../shared/constants';
 import {
+  LoadingBar,
   NoAvatarIcon,
   DeleteIcon,
   CameraIcon,
   AcceptIcon,
   CrystalIcon,
-  ThreeDotsIcon
-} from "../../../../components/SvgIcons";
-import {
-  NotFoundPage,
-  LoadingBar
-} from "../../../../components";
+  ThreeDotsIcon,
+  Loader
+} from '../../../../shared/ui';
 import { setShowAccessModal } from '../../../../features/accessModal/accessModalSlice';
-import { useTranslation } from 'react-i18next';
-import imageCompression from 'browser-image-compression';
-import { formattingLinksInText } from '../../../../helpers/index';
-import {
-  useAuthorization
-} from "../../../../features";
+import { useAuthData } from "../../../../features";
+import { NotFoundPage } from '../../../../pages';
+import { formattingLinksInText } from '../../../../shared/helpers';
+
 import styles from "./UserInformation.module.css";
 
 export function UserInformation() {
 
   // authorized user
-  const authorizedUser = useAuthorization();
+  const { authorizedUser } = useAuthData();
   // /authorized user
 
   const dispatch = useDispatch();
@@ -96,12 +96,12 @@ export function UserInformation() {
   const [userHavePosts, setUserHavePost] = useState(false);
 
   const userPosts = useQuery({
-    queryKey: ['post', 'userInformationUserHavePosts', userId],
+    queryKey: ['posts', 'userInformationUserHavePosts', userId],
     refetchOnWindowFocus: true,
     retry: false,
     queryFn: () =>
-      requestManager
-        .get("/post/get/all/by/" + userId)
+      httpClient
+        .get(`/posts/user/${userId}`)
         .then((response) => {
           return response;
         }),
@@ -115,11 +115,11 @@ export function UserInformation() {
   // /checking whether the user has posts
 
   const user = useQuery({
-    queryKey: ['user', 'userProfilePageUserData', userId],
+    queryKey: ['users', 'userProfilePageUserData', userId],
     refetchOnWindowFocus: true,
     retry: false,
     queryFn: () =>
-      requestManager.get('/user/get/one/' + userId).then((response) => {
+      httpClient.get(`/users/${userId}`).then((response) => {
         return response
       }
       ),
@@ -156,20 +156,21 @@ export function UserInformation() {
     const formData = new FormData();
     const file = fileBanner;
     formData.append("image", file);
-    (!databaseHaveBanner && !fileBanner) ? await requestManager.patch('/user/edit/' + userId, fields).then(() => {
-      queryClient.invalidateQueries({ queryKey: ['user'] });
-      queryClient.invalidateQueries({ queryKey: ['post'] });
-    }) : await requestManager.post('/user/add/image/' + userId, formData).then(response => {
+    (!databaseHaveBanner && !fileBanner) ? await httpClient.patch(`/users/${userId}`, fields).then(() => {
+      queryClient.invalidateQueries({ queryKey: ['users'] });
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
+      queryClient.invalidateQueries({ queryKey: ['me'] });
+    }) : await httpClient.post(`/users/${userId}/image`, formData).then(response => {
       const fields = {
         bannerUrl: response.imageUrl,
       };
-      return requestManager.patch(`/user/edit/${userId}`, fields);
+      return httpClient.patch(`/users/${userId}`, fields);
     }).then(() => {
       setFileBannerUrl();
       setFileBanner("");
       if (inputAddFileBannerRef.current?.value) { inputAddFileBannerRef.current.value = "" }
-      queryClient.invalidateQueries({ queryKey: ['user'] });
-      queryClient.invalidateQueries({ queryKey: ['post'] });
+      queryClient.invalidateQueries({ queryKey: ['users'] });
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
     });
   };
   const onClickDeleteUserBanner = () => {
@@ -187,22 +188,22 @@ export function UserInformation() {
     const formData = new FormData();
     const file = fileAvatar;
     formData.append("image", file);
-    (!databaseHaveAvatar && !fileAvatar) ? await requestManager.patch('/user/edit/' + userId, fields).then(() => {
-      queryClient.invalidateQueries({ queryKey: ['user'] });
-      queryClient.invalidateQueries({ queryKey: ['post'] });
-      queryClient.invalidateQueries({ queryKey: ['authorization'] });
-    }) : await requestManager.post('/user/add/image/' + userId, formData).then(response => {
+    (!databaseHaveAvatar && !fileAvatar) ? await httpClient.patch(`/users/${userId}`, fields).then(() => {
+      queryClient.invalidateQueries({ queryKey: ['users'] });
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
+      queryClient.invalidateQueries({ queryKey: ['me'] });
+    }) : await httpClient.post(`/users/${userId}/image`, formData).then(response => {
       const fields = {
         avatarUrl: response.imageUrl,
       };
-      return requestManager.patch(`/user/edit/${userId}`, fields);
+      return httpClient.patch(`/users/${userId}`, fields);
     }).then(() => {
       setFileAvatarUrl();
       setFileAvatar("");
       if (inputAddFileAvatarRef.current?.value) { inputAddFileAvatarRef.current.value = "" };
-      queryClient.invalidateQueries({ queryKey: ['user'] });
-      queryClient.invalidateQueries({ queryKey: ['post'] });
-      queryClient.invalidateQueries({ queryKey: ['authorization'] });
+      queryClient.invalidateQueries({ queryKey: ['users'] });
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
+      queryClient.invalidateQueries({ queryKey: ['me'] });
     });
   };
 
@@ -215,10 +216,10 @@ export function UserInformation() {
   };
 
   useEffect(() => {
-    (user.status === "success") && (
-      setDatabaseAvatarUrl(BASE_URL + user.data?.avatarUrl),
+    user.isSuccess && (
+      setDatabaseAvatarUrl(API_BASE_URL + user.data?.avatarUrl),
       setDatabaseHaveAvatar(user.data?.avatarUrl),
-      setDatabaseBannerUrl(BASE_URL + user.data?.bannerUrl),
+      setDatabaseBannerUrl(API_BASE_URL + user.data?.bannerUrl),
       setDatabaseHaveBanner(user.data?.bannerUrl),
       setUserName(user.data?.name),
       setUserCustomId(user.data?.customId),
@@ -336,10 +337,15 @@ export function UserInformation() {
 
   return (
     <>
-      {user.error && (
+      {user.isPending &&
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      }
+      {user.isError && (
         <NotFoundPage />
       )}
-      {user.status === "success" && (
+      {user.isSuccess && (
         <div className={
           userHavePosts ?
             styles.user_information
@@ -419,7 +425,7 @@ export function UserInformation() {
               >
                 <ul>
                   {authorizedUserAccessCheck &&
-                    <li><Link to={'/user/edit/' + userId}>{t('UserProfilePage.EditUser')}</Link></li>
+                    <li><Link to={`/users/${userId}/edit`}>{t('UserProfilePage.EditUser')}</Link></li>
                   }
                 </ul>
               </nav>

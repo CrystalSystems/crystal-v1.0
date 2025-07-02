@@ -13,9 +13,11 @@ import {
 } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { requestManager } from '../../requestManagement';
-import { BASE_URL } from '../../requestManagement';
 import { useTranslation } from 'react-i18next';
+
+import { httpClient } from '../../shared/api';
+import { API_BASE_URL } from '../../shared/constants';
+import { useAuthData } from "../../features";
 import {
   NoAvatarIcon,
   ThreeDotsIcon,
@@ -26,26 +28,25 @@ import {
   LinkIcon,
   LikeIcon,
   MessagesIcon,
-} from '../../components/SvgIcons';
-import { NotFoundPage } from '../../components';
+  Loader
+} from '../../shared/ui';
+import { NotFoundPage } from '../../pages';
 import { setShowAccessModal } from '../../features/accessModal/accessModalSlice';
-import { formattingLinksInText } from '../../helpers/index';
-import {
-  useAuthorization
-} from "../../features";
+import { formattingLinksInText } from '../../shared/helpers';
+
 import styles from './FullPostPage.module.css';
 
 export function FullPostPage() {
 
   // authorized user
-  const authorizedUser = useAuthorization();
+  const { authorizedUser } = useAuthData();
   // /authorized user
-
-  const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
 
   // checking user log in
   const logInStatus = useSelector((state) => state.logInStatus)
   // /checking user log in
+
+  const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
 
   const queryClient = useQueryClient();
   const navigateTo = useNavigate();
@@ -62,24 +63,24 @@ export function FullPostPage() {
   // /Formatting a long number
 
   const post = useQuery({
-    queryKey: ['post', 'fullPostPage', postId],
+    queryKey: ['posts', 'fullPostPage', postId],
     refetchOnWindowFocus: true,
     retry: false,
     queryFn: () =>
-      requestManager.get('/post/get/one/' + postId).then((response) => {
+      httpClient.get(`/posts/${postId}`).then((response) => {
         return response;
       }),
   });
 
-  const userAvatar = BASE_URL + post?.data?.user?.avatarUrl;
-  const postImage = BASE_URL + post?.data?.imageUrl;
+  const userAvatar = API_BASE_URL + post?.data?.user?.avatarUrl;
+  const postImage = API_BASE_URL + post?.data?.imageUrl;
   const [userLiked, setUserLiked] = useState();
   const [numberLiked, setNumberLiked] = useState();
   const [userLikedStatus, setUserLikedStatus] = useState();
 
   useEffect(() => {
     setUserId(post?.data?.user?.customId);
-    if (post.status === 'success') {
+    if (post.isSuccess) {
       setNumberLiked(post?.data?.liked?.length);
       setUserLiked(post?.data?.liked?.find((like) => like === authorizedUser?._id));
       setUserLikedStatus(true);
@@ -101,16 +102,16 @@ export function FullPostPage() {
     const fields = {
       userId: authorizedUser?._id,
     };
-    await requestManager.patch(`/post/add/like/${postId}`, fields);
+    await httpClient.patch(`/posts/${postId}/like`, fields);
   };
 
   const onClickDeletePost = async (event) => {
     event.preventDefault();
     if (window.confirm(t("FullPostPage.DeletePostQuestion"))) {
-      await requestManager.delete('/post/delete/' + postId);
+      await httpClient.delete(`/posts/${postId}`);
       navigateTo('/');
       queryClient.invalidateQueries({
-        queryKey: ['post'],
+        queryKey: ['posts'],
       });
     }
   };
@@ -118,13 +119,13 @@ export function FullPostPage() {
   const onClickDeleteAllPosts = async (event) => {
     event.preventDefault();
     if (window.confirm(t("FullPostPage.DeleteAllUserPostsQuestion"))) {
-      await requestManager.delete('/post/delete/all/by/' + userId);
+      await httpClient.delete(`/posts/user/${userId}`);
       navigateTo('/');
       queryClient.invalidateQueries({
-        queryKey: ['post']
+        queryKey: ['posts']
       });
       queryClient.invalidateQueries({
-        queryKey: ['user']
+        queryKey: ['users']
       });
     }
   };
@@ -133,12 +134,12 @@ export function FullPostPage() {
     event.preventDefault();
     if (window.confirm(t('FullPostPage.DeleteAccountQuestion'))) {
       setFadeOutMenuPostOptions(true);
-      await requestManager.delete('/user/delete/account/' + userId);
+      await httpClient.delete(`/users/${userId}`);
       queryClient.invalidateQueries({
-        queryKey: ['post'],
+        queryKey: ['posts'],
       });
       queryClient.invalidateQueries({
-        queryKey: ['user'],
+        queryKey: ['users'],
       });
     }
   };
@@ -173,14 +174,15 @@ export function FullPostPage() {
   // /Closing a menu when clicking outside its field
   // /post options, menu
 
-  if (post.status === 'pending') {
-    return null;
-  }
-
   return (
     <>
-      {post.status === 'error' && <NotFoundPage />}
-      {post.status === 'success' && (
+      {post.isPending &&
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      }
+      {post.isError && <NotFoundPage />}
+      {post.isSuccess && (
         <div
           className={styles.post}
           data-full-post-page-dark-theme={darkThemeStatus}
@@ -269,7 +271,7 @@ export function FullPostPage() {
                       <>
                         <li>
                           {t('FullPostPage.EditPost')}
-                          <Link to={'/post/edit/' + post?.data?._id}></Link>
+                          <Link to={`/posts/${post?.data?._id}/edit`}></Link>
                         </li>
                         <li onClick={onClickDeletePost}>{t('FullPostPage.DeletePost')}</li>
                       </>

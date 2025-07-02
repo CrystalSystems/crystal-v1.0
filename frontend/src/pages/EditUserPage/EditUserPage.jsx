@@ -2,39 +2,41 @@ import {
   useState,
   useRef,
   useEffect
-} from "react";
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   useNavigate,
   useParams,
   Link,
   Navigate
-} from "react-router-dom";
-import { BASE_URL, requestManager } from "../../requestManagement";
+} from 'react-router-dom';
 import {
   useQueryClient,
   useQuery,
   useMutation
-} from "@tanstack/react-query";
-import { useTranslation } from "react-i18next";
-import { NotFoundPage } from "../../components";
+} from '@tanstack/react-query';
+import TextareaAutosize from 'react-textarea-autosize';
+import { useTranslation } from 'react-i18next';
+
+import { httpClient } from '../../shared/api';
+import { API_BASE_URL } from '../../shared/constants';
+import { useAuthData } from "../../features";
+import { setlogInStatus } from '../../features/auth/logInStatusSlice';
+import { NotFoundPage } from '../../pages';
 import {
   NoAvatarIcon,
   CrystalIcon,
   ClosedEyeSecondVersionIcon,
-  EyeIconSecondVersionIcon
-} from "../../components/SvgIcons";
-import TextareaAutosize from "react-textarea-autosize";
-import { setlogInStatus } from "../../features/access/logInStatusSlice";
-import {
-  useAuthorization
-} from "../../features";
+  EyeIconSecondVersionIcon,
+  Loader
+} from '../../shared/ui';
+
 import styles from "./EditUserPage.module.css";
 
 export function EditUserPage() {
 
   // authorized user
-  const authorizedUser = useAuthorization();
+  const { authorizedUser } = useAuthData();
   // /authorized user
 
   const [serverMessage, setServerMessage] = useState();
@@ -97,12 +99,12 @@ export function EditUserPage() {
   const [userData, setUserData] = useState(false);
 
   const user = useQuery({
-    queryKey: ['user', "EditUserPage_User", userId],
+    queryKey: ['users', "editUserPageUser", userId],
     refetchOnWindowFocus: false,
     retry: false,
     queryFn: () =>
-      requestManager
-        .get("/user/get/one/from/user/edit/page/" + userIdUseParams)
+      httpClient
+        .get(`/users/${userIdUseParams}/edit`)
         .then((response) => {
           return response;
         }),
@@ -117,12 +119,12 @@ export function EditUserPage() {
   const [userHavePosts, setUserHavePost] = useState(false);
 
   const userPosts = useQuery({
-    queryKey: ['post', "EditUserPage_UserHavePosts", userId],
+    queryKey: ['posts', "editUserPageUserHavePosts", userId],
     refetchOnWindowFocus: true,
     retry: false,
     queryFn: () =>
-      requestManager
-        .get("/post/get/all/by/" + userIdUseParams)
+      httpClient
+        .get(`/posts/user/${userIdUseParams}`)
         .then((response) => {
           return response;
         }),
@@ -162,14 +164,14 @@ export function EditUserPage() {
   const saveUserChanges = useMutation({
     mutationKey: ['saveUserChanges'],
     mutationFn: (fields) => {
-      return requestManager.patch("/user/edit/" + userId, fields);
+      return httpClient.patch(`/users/${userId}`, fields);
     },
 
     onSuccess: () => {
-      navigate("/user/edit/" + userIdValue);
-      queryClient.invalidateQueries({ queryKey: ['user'] });
-      queryClient.invalidateQueries({ queryKey: ['post'] });
-      queryClient.invalidateQueries({ queryKey: ['authorization'] });
+      navigate(`/users/${userIdValue}/edit`);
+      queryClient.invalidateQueries({ queryKey: ['users'] });
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
+      queryClient.invalidateQueries({ queryKey: ['me'] });
     },
 
     onError: (error) => {
@@ -219,7 +221,7 @@ export function EditUserPage() {
   const changePassword = useMutation({
     mutationKey: ['changePassword'],
     mutationFn: (fields) => {
-      return requestManager.post("/user/change/password/" + userId, fields);
+      return httpClient.post(`/users/${userId}/password/`, fields);
     },
     onSuccess: (data) => {
       setServerMessage(data.message);
@@ -245,6 +247,7 @@ export function EditUserPage() {
   };
   // /change password
 
+  // delete all posts by user
   const onClickDeleteAllUserPosts = async (event) => {
     event.preventDefault();
     if (
@@ -254,16 +257,18 @@ export function EditUserPage() {
           : t("EditUserPage.DeleteAllYourPosts"),
       )
     ) {
-      await requestManager
-        .delete("/post/delete/all/by/" + userId)
+      await httpClient
+        .delete(`/posts/user/${userId}`)
         .then((response) => {
-          queryClient.invalidateQueries({ queryKey: ['post'] });
+          queryClient.invalidateQueries({ queryKey: ['posts'] });
           setServerPostsDeletedMessage(response.message);
           setUserHavePost(false);
         });
     }
   };
+  // /delete all posts by user
 
+  // delete user account
   const onClickDeleteUserAccount = async () => {
     if (window.confirm(t("EditUserPage.DeleteAccountQuestion"))) {
       deleteUserAccount.mutate();
@@ -273,8 +278,8 @@ export function EditUserPage() {
   const deleteUserAccount = useMutation({
     mutationKey: ['deleteUserAccount'],
     mutationFn: () => {
-      return requestManager
-        .delete("/user/delete/account/" + userId);
+      return httpClient
+        .delete(`/users/${userId}`);
     },
 
     onSuccess: () => {
@@ -282,14 +287,14 @@ export function EditUserPage() {
       if (authorizedUser?.customId === userId) {
         dispatch(setlogInStatus(false));
         window.localStorage.removeItem('logIn');
-        queryClient.invalidateQueries({ queryKey: ['post'] });
-        queryClient.invalidateQueries({ queryKey: ['user'] });
-        requestManager.post("/user/logout");
+        queryClient.invalidateQueries({ queryKey: ['posts'] });
+        queryClient.invalidateQueries({ queryKey: ['users'] });
+        httpClient.post("/auth/logout");
       }
       else {
-        queryClient.invalidateQueries({ queryKey: ['post'] });
-        queryClient.invalidateQueries({ queryKey: ['user'] });
-        queryClient.invalidateQueries({ queryKey: ['authorization'] });
+        queryClient.invalidateQueries({ queryKey: ['posts'] });
+        queryClient.invalidateQueries({ queryKey: ['users'] });
+        queryClient.invalidateQueries({ queryKey: ['me'] });
       }
     },
 
@@ -298,6 +303,7 @@ export function EditUserPage() {
     },
 
   });
+  // /delete user account
 
   useEffect(() => {
     if (userNameValueDatabase === userName) {
@@ -329,8 +335,13 @@ export function EditUserPage() {
 
   return (
     <>
-      {user.status === "error" && <NotFoundPage />}
-      {user.status === "success" && (
+      {user.isPending &&
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      }
+      {user.isError && <NotFoundPage />}
+      {user.isSuccess && (
         <div
           className={styles.edit_user}
           data-edit-user-page-dark-theme={darkThemeStatus}
@@ -345,7 +356,7 @@ export function EditUserPage() {
                 <div className={styles.avatar}>
                   <img
                     className={styles.avatar}
-                    src={BASE_URL + user.data?.avatarUrl}
+                    src={API_BASE_URL + user.data?.avatarUrl}
                     alt={userName}
                   />
                 </div>

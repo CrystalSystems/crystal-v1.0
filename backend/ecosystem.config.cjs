@@ -4,7 +4,7 @@ module.exports = {
     env: {
       NODE_ENV: "production",
     },
-    script: "./src/server.js",
+    script: "./src/core/main.js",
     node_args: '--env-file=./env/.env.prodDomain --env-file=./env/.env',
   },
   {
@@ -12,7 +12,7 @@ module.exports = {
     env: {
       NODE_ENV: "production",
     },
-    script: "./src/server.js",
+    script: "./src/core/main.js",
     node_args: '--env-file=./env/.env.prodIP --env-file=./env/.env',
   }
   ]

@@ -413,7 +413,6 @@
   padding-top: 5px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
-  color: rgb(0, 0, 0);
 }
 
 .delete_user_account {
@@ -464,6 +463,14 @@
     background-color: var(--user_info_hover);
     transition: var(--transition_background-color_hover_global);
   }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 500px;
 }
 
 /* variables */

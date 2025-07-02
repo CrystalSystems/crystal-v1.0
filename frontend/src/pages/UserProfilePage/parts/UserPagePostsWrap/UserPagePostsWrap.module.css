@@ -10,12 +10,12 @@
 }
 
 .loader_first_loading {
-  top: 250px;
+  height: 500px;
 }
 
 @media (max-width: 1000px) {
   .loader_first_loading {
-    top: 260px;
+    height: 500px;
   }
 }
 

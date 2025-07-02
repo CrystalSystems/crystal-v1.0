@@ -1,1 +1,0 @@
-export { Terms } from "./Terms";

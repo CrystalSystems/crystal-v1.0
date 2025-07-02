@@ -1,11 +1,18 @@
-import { useDispatch, useSelector } from "react-redux";
-import { setDarkTheme } from "./theme-slice";
-import styles from "./ThemeSwitcher.module.css";
-import { SunIcon, HalfMoonIcon } from "../../components/SvgIcons";
+import { useDispatch, useSelector } from 'react-redux';
+
+import { setDarkTheme } from './theme-slice';
+import {
+  SunIcon,
+  HalfMoonIcon
+} from '../../shared/ui';
+
+import styles from './ThemeSwitcher.module.css';
 
 export function ThemeSwitcher() {
-  const dispatch = useDispatch();
+
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
+
+  const dispatch = useDispatch();
 
   const changeTheme = () => {
     dispatch(setDarkTheme(!darkThemeStatus));

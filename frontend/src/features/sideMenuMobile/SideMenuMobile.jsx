@@ -1,18 +1,20 @@
 import {
   useEffect,
   useRef
-} from "react";
+} from 'react';
 import {
   useDispatch,
   useSelector
-} from "react-redux";
-import { Link } from "react-router-dom";
+} from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
+import { useAuthData } from "../../features";
 import {
   setShowSideMenuMobile,
   setShowSideMenuMobileBackground,
   setSideMenuMobileFadeOut,
-} from "./sideMenuMobileSlice";
-import { useTranslation } from "react-i18next";
+} from './sideMenuMobileSlice';
 import {
   UserIcon,
   MessagesIcon,
@@ -25,15 +27,14 @@ import {
   HelpIcon,
   CrystalIcon,
   DocumentationIcon,
-} from "../../components/SvgIcons";
-import {
-  useAuthorization
-} from "../../features";
+} from '../../shared/ui';
+
 import styles from "./SideMenuMobile.module.css";
+
 export function SideMenuMobile() {
 
   // authorized user
-  const authorizedUser = useAuthorization();
+  const { authorizedUser } = useAuthData();
   // /authorized user
 
   const { t } = useTranslation();
@@ -131,8 +132,8 @@ export function SideMenuMobile() {
               </li>
               <li className={styles.like}>
                 <LikeIcon />
-                {t("SideMenuMobile.Liked")}
-                <Link to={"/liked/" + authorizedUser.customId}></Link>
+                {t("SideMenuMobile.Likes")}
+                <Link to={"/likes/" + authorizedUser.customId}></Link>
               </li>
               <li className={styles.crystal}>
                 <CrystalIcon />

@@ -1,22 +1,23 @@
 import {
   useRef,
   useCallback
-} from "react";
-import { useParams } from "react-router-dom";
-import {
-  PostPreview,
-  Loader
-} from "../../../../components";
-import { requestManager } from "../../../../requestManagement";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import styles from "./UserPagePostsWrap.module.css";
+} from 'react';
+import { useParams } from 'react-router-dom';
+import { useInfiniteQuery } from '@tanstack/react-query';
+
+import { Loader } from '../../../../shared/ui';
+import { PostPreview } from '../../../../widgets';
+import { httpClient } from '../../../../shared/api';
+
+import styles from './UserPagePostsWrap.module.css';
 
 export function UserPagePostsWrap() {
+
   const { userId } = useParams();
-  const link = "/post/get/all/by/" + userId;
+  const link = `/posts/user/${userId}`;
 
   const getPostsPage = async (pageParam = 1, limitPosts = 5, options = {}) => {
-    const response = await requestManager.get(
+    const response = await httpClient.get(
       `${link}?page=${pageParam}&limit=${limitPosts}`,
       options,
     );
@@ -28,10 +29,11 @@ export function UserPagePostsWrap() {
     hasNextPage,
     isFetchingNextPage,
     data,
-    status
+    isPending,
+    isSuccess
   } =
     useInfiniteQuery({
-      queryKey: ['post', 'userPagePostsWrap', userId],
+      queryKey: ['posts', 'userPagePostsWrap', userId],
       queryFn: ({ pageParam = 1 }) => getPostsPage(pageParam),
       refetchOnWindowFocus: true,
       retry: false,
@@ -88,7 +90,7 @@ export function UserPagePostsWrap() {
 
   return (
     <div className={styles.posts_wrap}>
-      {status === "pending" &&
+      {isPending &&
         <div
           className={
             `${styles.loader}
@@ -97,7 +99,7 @@ export function UserPagePostsWrap() {
           <Loader />
         </div>
       }
-      {status === "success" && posts}
+      {isSuccess && posts}
       {isFetchingNextPage &&
         <div
           className={

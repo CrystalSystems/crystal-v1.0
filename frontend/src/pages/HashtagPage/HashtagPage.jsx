@@ -3,22 +3,23 @@ import {
   useCallback
 } from "react";
 import { useParams } from "react-router-dom";
-import {
-  PostPreview,
-  NotFoundPage,
-  Loader
-} from "../../components";
-import { requestManager } from "../../requestManagement";
 import { useInfiniteQuery } from "@tanstack/react-query";
+
+import { Loader } from "../../shared/ui";
+import { NotFoundPage } from "../../pages";
+import { PostPreview } from "../../widgets";
+import { httpClient } from "../../shared/api";
+
 import styles from "./HashtagPage.module.css";
 
 export function HashtagPage() {
-  const link = "/post/get/with/specific/hashtag";
-  const { hashtagName } = useParams();
+
+  const link = "/posts/hashtags";
+  const { tag } = useParams();
 
   const getPostsPage = async (pageParam = 1, limitPosts = 5, options = {}) => {
-    const response = await requestManager.get(
-      `${link}?page=${pageParam}&limit=${limitPosts}&hashtagName=${hashtagName}`,
+    const response = await httpClient.get(
+      `${link}?tag=${tag}&page=${pageParam}&limit=${limitPosts}`,
       options,
     );
     return response;
@@ -29,10 +30,11 @@ export function HashtagPage() {
     hasNextPage,
     isFetchingNextPage,
     data,
-    status
+    isPending,
+    isSuccess
   } =
     useInfiniteQuery({
-      queryKey: ['post', 'hashtagPagePosts', hashtagName],
+      queryKey: ['posts', 'hashtagPagePosts', tag],
       queryFn: ({ pageParam = 1 }) => getPostsPage(pageParam),
       refetchOnWindowFocus: true,
       retry: false,
@@ -57,31 +59,31 @@ export function HashtagPage() {
   );
 
   const posts = data?.pages.map((page) => {
-    return page.map((obj, index) => {
+    return page.map((post, index) => {
       if (page.length === index + 1) {
         return (
           <PostPreview
             ref={lastPostRef}
-            key={obj._id}
-            post={obj}
-            imageUrl={obj.imageUrl ? obj.imageUrl : ""}
-            userId={obj.user?._id}
-            userCustomId={obj.user?.customId}
-            userAvatarUrl={obj.user?.avatarUrl}
-            postId={obj._id}
+            key={post._id}
+            post={post}
+            imageUrl={post.imageUrl ? post.imageUrl : ""}
+            userId={post.user?._id}
+            userCustomId={post.user?.customId}
+            userAvatarUrl={post.user?.avatarUrl}
+            postId={post._id}
           />
         );
       }
 
       return (
         <PostPreview
-          key={obj._id}
-          post={obj}
-          imageUrl={obj.imageUrl ? obj.imageUrl : ""}
-          userId={obj.user?._id}
-          userCustomId={obj.user?.customId}
-          userAvatarUrl={obj.user?.avatarUrl}
-          postId={obj._id}
+          key={post._id}
+          post={post}
+          imageUrl={post.imageUrl ? post.imageUrl : ""}
+          userId={post.user?._id}
+          userCustomId={post.user?.customId}
+          userAvatarUrl={post.user?.avatarUrl}
+          postId={post._id}
         />
       );
     });
@@ -89,10 +91,10 @@ export function HashtagPage() {
 
   return (
     <div className={styles.posts_wrap}>
-      {status === "success" && data.pages[0].length === 0 && (
+      {isSuccess && data.pages[0].length === 0 && (
         <NotFoundPage />
       )}
-      {status === "pending" &&
+      {isPending &&
         <div
           className={
             `${styles.loader}
@@ -101,7 +103,7 @@ export function HashtagPage() {
           <Loader />
         </div>
       }
-      {status === "success" && posts}
+      {isSuccess && posts}
       {isFetchingNextPage &&
         <div
           className={

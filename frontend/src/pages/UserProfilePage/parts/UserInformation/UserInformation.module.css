@@ -522,6 +522,14 @@
   }
 }
 
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 250px;
+}
+
 /* variables */
 /* theme colors */
 [data-user-information-dark-theme="true"] {

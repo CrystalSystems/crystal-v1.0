@@ -1,47 +1,52 @@
-import { Link } from "react-router-dom";
-import styles from "./AccessModal.module.css";
 import {
   useState,
   useEffect,
   useRef
 } from "react";
+import { Link } from "react-router-dom";
 import {
   useDispatch,
   useSelector
 } from "react-redux";
 import { useForm } from "react-hook-form";
 import {
-  useTranslation,
-  Trans
-} from "react-i18next";
-import { requestManager } from "../../requestManagement";
-import {
   useMutation,
   useQueryClient
 } from "@tanstack/react-query";
 import {
+  useTranslation,
+  Trans
+} from "react-i18next";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import { httpClient } from "../../shared/api";
+import {
   EnterIcon,
   ClosedEyeSecondVersionIcon,
   EyeIconSecondVersionIcon
-} from "../../components/SvgIcons";
+} from '../../shared/ui';
 import { setShowAccessModal } from "./accessModalSlice";
 import { setSwitchAccessModal } from "./accessModalSlice";
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { setlogInStatus } from "../../features/auth/logInStatusSlice";
+
 // -- reCAPTCHA v3
-// import { useRecaptchaV3 } from "../../hooks/useRecaptchaV3";
-// import { RECAPTCHA_V3_PUBLIC_KEY } from "../../constants/index.js";
+// import { useRecaptchaV3 } from "../../shared/hooks/useRecaptchaV3";
+// import { RECAPTCHA_V3_PUBLIC_KEY } from "../../shared/constants";
 // -- /reCAPTCHA v3
-import { setlogInStatus } from "../access/logInStatusSlice";
+
+import styles from "./AccessModal.module.css";
 
 export function AccessModal() {
+
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
+
   const queryClient = useQueryClient();
 
   // -- reCAPTCHA v3
   // const recaptchaV3 = useRecaptchaV3(
   //   RECAPTCHA_V3_PUBLIC_KEY,
-  //   "registration"
+  //   "register"
   // );
   // -- /reCAPTCHA v3
 
@@ -61,8 +66,8 @@ export function AccessModal() {
   });
   // /log in validation
 
-  // registration validation
-  const validationSchemaRegistration = Yup.object().shape({
+  // register validation
+  const validationSchemaRegister = Yup.object().shape({
     name: Yup.string().max(
       200,
       "AccessModal.InputErrorNameMaximumLength"
@@ -90,7 +95,7 @@ export function AccessModal() {
       "AccessModal.InputErrorAcceptTerms"
     ),
   });
-  // /registration validation
+  // /register validation
 
   // /yup validationSchema
 
@@ -118,9 +123,10 @@ export function AccessModal() {
 
   // useForm log in
   const {
-    register: useFormLogin,
+    register: useFormLogIn,
     reset: logInFormReset,
     handleSubmit: handleSubmitLogIn,
+    watch: watchLogInForm,
     formState: { errors: errorsLogIn },
   } = useForm(
     {
@@ -135,7 +141,7 @@ export function AccessModal() {
   const logIn = useMutation({
     mutationKey: ['logIn'],
     mutationFn: async (values) => {
-      return requestManager.post("/user/login", values);
+      return httpClient.post("/auth/login", values);
     },
 
     onSuccess: () => {
@@ -144,7 +150,7 @@ export function AccessModal() {
       window.localStorage.setItem('logIn', true);
       logInFormReset();
       queryClient.invalidateQueries({
-        queryKey: ['authorization'],
+        queryKey: ['me'],
       });
     },
 
@@ -155,72 +161,85 @@ export function AccessModal() {
   });
   // /log in
 
+  const [
+    watchEmailLogForm,
+    watchPasswordLogForm
+  ] = watchLogInForm(["email", "password"]);
+
   const [logInServerErrors, setLogInServerErrors] = useState();
 
   const onSubmitLogIn = async (values) => {
     queryClient.invalidateQueries({
-      queryKey: ['authorization'],
+      queryKey: ['me'],
     });
     logIn.mutate(values);
   };
   // /useForm log in
 
-  // useForm registration
+  // useForm register
   const {
-    register: useFormRegistration,
-    reset: registrationFormReset,
-    handleSubmit: handleSubmitRegistration,
-    formState: { errors: errorsRegistration },
+    register: useFormRegister,
+    reset: registerFormReset,
+    handleSubmit: handleSubmitRegister,
+    watch: watchRegisterForm,
+    formState: { errors: errorsRegister },
   } = useForm(
     {
-      resolver: yupResolver(validationSchemaRegistration),
+      resolver: yupResolver(validationSchemaRegister),
     },
     {
       mode: "onChange",
     }
   );
 
-  // registration
-  const registration = useMutation({
-    mutationKey: ["registration"],
+  // register
+  const register = useMutation({
+    mutationKey: ['register'],
     mutationFn: async (values) => {
-      return requestManager.post("/user/registration", values);
+      return httpClient.post("/auth/register", values);
     },
 
     onSuccess: () => {
       dispatch(setShowAccessModal(false));
       dispatch(setSwitchAccessModal(true));
-      registrationFormReset();
+      registerFormReset();
       dispatch(setlogInStatus(true));
       window.localStorage.setItem('logIn', true);
       queryClient.invalidateQueries({
-        queryKey: ['user'],
+        queryKey: ['users'],
       });
       queryClient.invalidateQueries({
-        queryKey: ['authorization'],
+        queryKey: ['me'],
       });
     },
 
     onError: (response) => {
-      setRegistrationServerErrors(response.error);
+      setRegisterServerErrors(response.error);
     },
 
   });
-  // /registration
+  // /register
 
-  const [registrationServerErrors, setRegistrationServerErrors] = useState();
+  const [
+    watchNameRegForm,
+    watchCustomIdRegForm,
+    watchEmailRegForm,
+    watchPasswordRegForm,
+  ] = watchRegisterForm(["name", "customId", "email", "password", "acceptTerms"]);
 
-  const onSubmitRegistration = async (values) => {
+  const [registerServerErrors, setRegisterServerErrors] = useState();
+
+  const onSubmitRegister = async (values) => {
     // -- reCAPTCHA v3
-    // const recaptchaV3Token = await recaptchaV3("registration");
+    // const recaptchaV3Token = await recaptchaV3("register");
     // values["recaptchaV3Token"] = recaptchaV3Token;
     // -- /reCAPTCHA v3
     queryClient.invalidateQueries({
-      queryKey: ['authorization'],
+      queryKey: ['me'],
     });
-    registration.mutate(values);
+    register.mutate(values);
   };
-  // /useForm registration
+  // /useForm register
 
   // hide body scroll when modal is open
   useEffect(() => {
@@ -232,7 +251,7 @@ export function AccessModal() {
   // /hide body scroll when modal is open
 
   const [showLoginPassword, setShowLoginPassword] = useState(false);
-  const [showRegistrationPassword, setShowRegistrationPassword] = useState(false);
+  const [showRegisterPassword, setShowRegisterPassword] = useState(false);
 
   return (
     <>
@@ -260,7 +279,7 @@ export function AccessModal() {
             <div
               onClick={() => {
                 setLogInServerErrors("");
-                setRegistrationServerErrors("");
+                setRegisterServerErrors("");
               }}
               ref={modalRef}
               className={styles.modal}
@@ -301,7 +320,7 @@ export function AccessModal() {
                         label="email"
                         type="email"
                         placeholder="Email"
-                        {...useFormLogin("email")}
+                        {...useFormLogIn("email")}
                       />
                       <div className={styles.access_input_errors}>
                         {errorsLogIn.email && (
@@ -320,7 +339,7 @@ export function AccessModal() {
                           placeholder={t(
                             "AccessModal.InputPasswordLogIn"
                           )}
-                          {...useFormLogin("password")}
+                          {...useFormLogIn("password")}
                         />
                         <div
                           onClick={() => { setShowLoginPassword(!showLoginPassword) }}
@@ -344,21 +363,23 @@ export function AccessModal() {
                         </div>
                       )}
                     </div>
-                    <button className={styles.enter} type="submit">
-                      <EnterIcon />
-                    </button>
+                    {(watchEmailLogForm && watchPasswordLogForm) && (
+                      <button className={styles.enter} type="submit">
+                        <EnterIcon />
+                      </button>
+                    )}
                   </form>
                 ) : (
                   // /logIn form
-                  // Registration form
-                  <form onSubmit={handleSubmitRegistration(
-                    onSubmitRegistration
+                  // Register form
+                  <form onSubmit={handleSubmitRegister(
+                    onSubmitRegister
                   )}
                   >
                     <div className={styles.access_input_errors_wrap}>
                       <input
-                        key='nameRegistration'
-                        {...useFormRegistration("name")}
+                        key='nameRegister'
+                        {...useFormRegister("name")}
                         label={t(
                           "AccessModal.InputNameSignUp"
                         )}
@@ -368,25 +389,25 @@ export function AccessModal() {
                         )}
                       />
                       <div className={styles.access_input_errors}>
-                        {errorsRegistration.name && (
-                          <p>{t(errorsRegistration.name.message)}</p>
+                        {errorsRegister.name && (
+                          <p>{t(errorsRegister.name.message)}</p>
                         )}
                       </div>
                     </div>
                     <div className={styles.access_input_errors_wrap}>
                       <input
-                        key='idRegistration'
-                        {...useFormRegistration("customId")}
+                        key='idRegister'
+                        {...useFormRegister("customId")}
                         label="Id"
                         type="text"
                         placeholder="Id"
                       />
                       <div className={styles.access_input_errors}>
-                        {errorsRegistration.customId && (
-                          <p>{t(errorsRegistration.customId.message)}</p>
+                        {errorsRegister.customId && (
+                          <p>{t(errorsRegister.customId.message)}</p>
                         )}
                       </div>
-                      {registrationServerErrors ===
+                      {registerServerErrors ===
                         "This Id already exists" && (
                           <div className={styles.access_input_errors_server}>
                             <p>
@@ -400,18 +421,18 @@ export function AccessModal() {
                     <div className={styles.access_input_errors_wrap}>
                       <input
                         autoComplete="off"
-                        key='emailRegistration'
-                        {...useFormRegistration("email")}
+                        key='emailRegister'
+                        {...useFormRegister("email")}
                         label="* Email"
                         type="email"
                         placeholder="* Email"
                       />
                       <div className={styles.access_input_errors}>
-                        {errorsRegistration.email && (
-                          <p>{t(errorsRegistration.email.message)}</p>
+                        {errorsRegister.email && (
+                          <p>{t(errorsRegister.email.message)}</p>
                         )}
                       </div>
-                      {registrationServerErrors ===
+                      {registerServerErrors ===
                         "This email already exists" && (
                           <div className={styles.access_input_errors_server}>
                             <p>
@@ -427,26 +448,26 @@ export function AccessModal() {
                         <input
                           autoComplete="off"
                           className={styles.password}
-                          key='passwordRegistration'
-                          {...useFormRegistration("password")}
+                          key='passwordRegister'
+                          {...useFormRegister("password")}
                           label={t(
                             "AccessModal.InputPasswordSignUp"
                           )}
-                          type={showRegistrationPassword ? "text" : "password"}
+                          type={showRegisterPassword ? "text" : "password"}
                           placeholder={t(
                             "AccessModal.InputPasswordSignUp"
                           )}
                         />
                         <div
-                          onClick={() => { setShowRegistrationPassword(!showRegistrationPassword) }}
+                          onClick={() => { setShowRegisterPassword(!showRegisterPassword) }}
                           className={styles.show_password}
                         >
-                          {showRegistrationPassword ? <EyeIconSecondVersionIcon /> : <ClosedEyeSecondVersionIcon />}
+                          {showRegisterPassword ? <EyeIconSecondVersionIcon /> : <ClosedEyeSecondVersionIcon />}
                         </div>
                       </div>
                       <div className={styles.access_input_errors}>
-                        {errorsRegistration.password && (
-                          <p>{t(errorsRegistration.password.message)}</p>
+                        {errorsRegister.password && (
+                          <p>{t(errorsRegister.password.message)}</p>
                         )}
                       </div>
                     </div>
@@ -457,7 +478,7 @@ export function AccessModal() {
                           name="acceptTerms"
                           defaultChecked={true}
                           type="checkbox"
-                          {...useFormRegistration("acceptTerms")}
+                          {...useFormRegister("acceptTerms")}
                         />
                         <label
                           className={styles.access_terms}
@@ -486,8 +507,8 @@ export function AccessModal() {
                         </label>
                       </div>
                       <div className={styles.access_input_errors}>
-                        {errorsRegistration.acceptTerms && (
-                          <p>{t(errorsRegistration.acceptTerms.message)}</p>
+                        {errorsRegister.acceptTerms && (
+                          <p>{t(errorsRegister.acceptTerms.message)}</p>
                         )}
                       </div>
                       {/* -- reCAPTCHA v3 */}
@@ -516,11 +537,15 @@ export function AccessModal() {
                       </div> */}
                       {/* -- /reCAPTCHA v3 */}
                     </div>
-                    <button className={styles.enter} type="submit">
-                      <EnterIcon />
-                    </button>
+                    {(
+                      watchNameRegForm && watchCustomIdRegForm &&
+                      watchEmailRegForm && watchPasswordRegForm) && (
+                        <button className={styles.enter} type="submit">
+                          <EnterIcon />
+                        </button>
+                      )}
                   </form>
-                  // /Registration form
+                  // /Register form
                 )}
               </div>
             </div>

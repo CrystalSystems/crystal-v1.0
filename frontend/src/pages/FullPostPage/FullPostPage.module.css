@@ -585,6 +585,14 @@
   }
 }
 
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 290px;
+}
+
 /* variables */
 /* theme colors */
 [data-full-post-page-dark-theme="true"] {

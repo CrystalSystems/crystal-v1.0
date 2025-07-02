@@ -1,32 +1,36 @@
 import {
   useRef,
   useCallback
-} from "react";
+} from 'react';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
+
+import { Loader } from '../../shared/ui';
 import {
   PostPreview,
-  Loader
-} from "../../components";
-import { PostSourceMenu } from "../../components/";
-import { requestManager } from "../../requestManagement";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
-import styles from "./HomePage.module.css";
+  PostSourceMenu
+} from '../../widgets';
+import { httpClient } from '../../shared/api';
+
+import styles from './HomePage.module.css';
 
 export function HomePage() {
   const getPostsPage = async (pageParam = 1, limitPosts = 5) => {
-    const response = await requestManager.get(
-      `/post/get/all?page=${pageParam}&limit=${limitPosts}`,
+    const response = await httpClient.get(
+      `/posts?page=${pageParam}&limit=${limitPosts}`,
     );
     return response;
   };
+  
   const {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
     data,
-    status } =
+    isPending,
+    isSuccess } =
     useInfiniteQuery({
-      queryKey: ['post', "HomePagePosts", useParams],
+      queryKey: ['posts', "homePagePosts", useParams],
       queryFn: ({ pageParam = 1 }) => getPostsPage(pageParam),
       retry: false,
       refetchOnWindowFocus: true,
@@ -49,30 +53,30 @@ export function HomePage() {
     [isFetchingNextPage, fetchNextPage, hasNextPage],
   );
   const posts = data?.pages.map((page) => {
-    return page.map((obj, index) => {
+    return page.map((post, index) => {
       if (page.length === index + 1) {
         return (
           <PostPreview
             ref={lastPostRef}
-            key={obj._id}
-            post={obj}
-            imageUrl={obj.imageUrl ? obj.imageUrl : ""}
-            userId={obj.user?._id}
-            userCustomId={obj.user?.customId}
-            userAvatarUrl={obj.user?.avatarUrl}
-            postId={obj._id}
+            key={post._id}
+            post={post}
+            imageUrl={post.imageUrl ? post.imageUrl : ""}
+            userId={post.user?._id}
+            userCustomId={post.user?.customId}
+            userAvatarUrl={post.user?.avatarUrl}
+            postId={post._id}
           />
         );
       }
       return (
         <PostPreview
-          key={obj._id}
-          post={obj}
-          imageUrl={obj.imageUrl ? obj.imageUrl : ""}
-          userId={obj.user?._id}
-          userCustomId={obj.user?.customId}
-          userAvatarUrl={obj.user?.avatarUrl}
-          postId={obj._id}
+          key={post._id}
+          post={post}
+          imageUrl={post.imageUrl ? post.imageUrl : ""}
+          userId={post.user?._id}
+          userCustomId={post.user?.customId}
+          userAvatarUrl={post.user?.avatarUrl}
+          postId={post._id}
         />
       );
     });
@@ -80,7 +84,7 @@ export function HomePage() {
   return (
     <div className={styles.posts_wrap}>
       <PostSourceMenu />
-      {status === "pending" &&
+      {isPending &&
         <div
           className={
             `${styles.loader}
@@ -89,7 +93,7 @@ export function HomePage() {
           <Loader />
         </div>
       }
-      {status === "success" && posts}
+      {isSuccess && posts}
       {isFetchingNextPage &&
         <div
           className={

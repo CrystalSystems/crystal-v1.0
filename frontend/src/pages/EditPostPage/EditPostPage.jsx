@@ -10,21 +10,22 @@ import {
   useParams
 } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { BASE_URL } from "../../requestManagement";
-import { requestManager } from "../../requestManagement";
 import imageCompression from "browser-image-compression";
 import TextareaAutosize from "react-textarea-autosize";
 import {
   useQuery,
   useQueryClient
 } from "@tanstack/react-query";
-import {
-  NotFoundPage,
-  LoadingBar
-} from "../../components";
+
+import { httpClient } from "../../shared/api";
+import { API_BASE_URL } from '../../shared/constants';
+import { LoadingBar, Loader } from "../../shared/ui";
+import { NotFoundPage } from "../../pages";
+
 import styles from "./EditPostPage.module.css";
 
 export function EditPostPage() {
+
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -168,8 +169,8 @@ export function EditPostPage() {
       const file = fileImagePreview;
       formData.append("image", file);
       fileImagePreview
-        ? await requestManager
-          .post("/post/add/image/" + postId, formData)
+        ? await httpClient
+          .post(`/posts/${postId}/image`, formData)
           .then((response) => {
             const postId = response.postId;
             const imageUrl = response.url;
@@ -178,47 +179,47 @@ export function EditPostPage() {
               text,
               title,
             };
-            return requestManager.patch("/post/edit/" + postId, fields);
+            return httpClient.patch(`/posts/${postId}`, fields);
           })
           .then((response) => {
             const postId = response.postId;
-            queryClient.invalidateQueries({ queryKey: ['post'] });
-            navigate("/post/" + postId);
+            queryClient.invalidateQueries({ queryKey: ['posts'] });
+            navigate("/posts/" + postId);
           })
-        : await requestManager.patch("/post/edit/" + postId, fields);
-      navigate("/post/" + postId);
-      queryClient.invalidateQueries({ queryKey: ['post'] });
+        : await httpClient.patch(`/posts/${postId}`, fields);
+      navigate("/posts/" + postId);
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
     } catch (err) {
       console.warn(err);
     }
   };
 
-  const postDataQuery = useQuery({
-    queryKey: ['post', "EditPostPage", postId],
+  const post = useQuery({
+    queryKey: ['posts', "editPostPage", postId],
     refetchOnWindowFocus: false,
     // refetchOnMount: false,
     retry: false,
     queryFn: () =>
-      requestManager
-        .get("/post/get/one/from/post/edit/page/" + postId)
+      httpClient
+        .get(`/posts/${postId}/edit`)
         .then((response) => {
           return response;
         }),
   });
 
   useEffect(() => {
-    setTitle(postDataQuery.data?.title);
-    setTitleValueDatabase(postDataQuery.data?.title);
-    setText(postDataQuery.data?.text);
-    setTextValueDatabase(postDataQuery.data?.text);
+    setTitle(post.data?.title);
+    setTitleValueDatabase(post.data?.title);
+    setText(post.data?.text);
+    setTextValueDatabase(post.data?.text);
     setDatabaseImageUrl(
-      postDataQuery.data?.imageUrl && BASE_URL + postDataQuery.data.imageUrl,
+      post.data?.imageUrl && API_BASE_URL + post.data.imageUrl,
     );
     setImagePreviewUrl(
-      postDataQuery.data?.imageUrl && BASE_URL + postDataQuery.data.imageUrl,
+      post.data?.imageUrl && API_BASE_URL + post.data.imageUrl,
     );
-    setDatabaseImageUrlEditing(postDataQuery.data?.imageUrl);
-  }, [postDataQuery.data]);
+    setDatabaseImageUrlEditing(post.data?.imageUrl);
+  }, [post.data]);
 
   const onClickRemoveImage = () => {
     setDatabaseImageUrlEditing(null);
@@ -235,115 +236,124 @@ export function EditPostPage() {
     fileImagePreviewRef.current.value = null;
   };
 
-  if (postDataQuery.error?.message === "No access") {
+  if (post.error?.message === "No access") {
     return <Navigate to="/" />;
   }
 
   return (
-    <div
-      className={styles.edit_post}
-      data-edit-post-page-dark-theme={darkThemeStatus}
-    >
-      <div className={styles.title}>
-        <h1>{t("EditPostPage.EditPost")}</h1>
-      </div>
-      {(postDataQuery.error?.response?.message === "Post not found" ||
-        postDataQuery.error) && <NotFoundPage />}
-      {postDataQuery.status === "success" && (
-        <>
-          {(imagePreviewUrl || fileImagePreview) && (
-            <div className={styles.image_preview}>
-              <img alt="" src={imagePreviewUrl || fileImagePreviewUrl} />
-            </div>
-          )}
-          {imagePreviewLoadingStatus && (
-            <div className={styles.image_preview_loading_bar_wrap}>
-              <div className={styles.image_preview_loading_bar}>
-                <LoadingBar value={imagePreviewLoadingStatus} />
-              </div>
-            </div>
-          )}
-          {imagePreviewLoadingStatusError && (
-            <div
-              className={styles.image_preview_loading_status_error_wrap}
-            >
-              <div className={styles.image_preview_loading_status_error}>
-                <p>{t("SystemMessages.Error")}</p>
-              </div>
-            </div>
-          )}
-          <div className={styles.add_delete_preview_buttons_wrap}>
-            <button onClick={() => fileImagePreviewRef.current.click()}>
-              {databaseImageUrl || fileImagePreviewUrl
-                ? t("EditPostPage.Change")
-                : t("EditPostPage.AddPreview")}
-            </button>
+    <>
+      {post.isPending &&
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      }
+      <div
+        className={styles.edit_post}
+        data-edit-post-page-dark-theme={darkThemeStatus}
+      >
+        <div className={styles.title}>
+          <h1>{t("EditPostPage.EditPost")}</h1>
+        </div>
+
+        {(post.error?.response?.message === "Post not found" || post.isError) && <NotFoundPage />}
+
+        {post.isSuccess && (
+          <>
             {(imagePreviewUrl || fileImagePreview) && (
-              <button onClick={onClickRemoveImage}>{t("EditPostPage.Delete")}</button>
-            )}
-          </div>
-          <div className={styles.post_title}>
-            <TextareaAutosize
-              type="text"
-              maxLength={220}
-              ref={titleRef}
-              value={title}
-              variant="standard"
-              placeholder={t("EditPostPage.Title")}
-              onChange={onChangeTitle}
-            />
-          </div>
-          {numberCharactersInTitle > 0 && (
-            <div className={styles.post_title_letter_counter}>
-              <p>{numberCharactersInTitle}/220</p>
-            </div>
-          )}
-          <div className={styles.text}>
-            <TextareaAutosize
-              // minRows={1}
-              type="text"
-              // maxRows={3}
-              maxLength={75000}
-              value={text}
-              ref={textRef}
-              onChange={onChangeText}
-              variant="standard"
-              placeholder={
-                (imagePreviewUrl || fileImagePreviewUrl ? "" : "* ") +
-                t("EditPostPage.Text")
-              }
-            />
-          </div>
-          {numberCharactersInText > 0 && (
-            <div className={styles.text_letter_counter}>
-              <p>{numberCharactersInText}/75000</p>
-            </div>
-          )}
-          <div className={styles.publish_post_back_buttons_wrap}>
-            <div className={styles.publish_post_back_buttons}>
-              <div className={styles.back}>
-                <button onClick={() => navigate(-1)}>
-                  {t("EditPostPage.Back")}
-                </button>
+              <div className={styles.image_preview}>
+                <img alt="" src={imagePreviewUrl || fileImagePreviewUrl} />
               </div>
-              {(changeTitleCheck || changeTextCheck || changeImageCheck) && (
-                <div className={styles.publish_post}>
-                  <button onClick={onClickChangePost}>
-                    {t("EditPostPage.Publish")}
-                  </button>
+            )}
+            {imagePreviewLoadingStatus && (
+              <div className={styles.image_preview_loading_bar_wrap}>
+                <div className={styles.image_preview_loading_bar}>
+                  <LoadingBar value={imagePreviewLoadingStatus} />
                 </div>
+              </div>
+            )}
+            {imagePreviewLoadingStatusError && (
+              <div
+                className={styles.image_preview_loading_status_error_wrap}
+              >
+                <div className={styles.image_preview_loading_status_error}>
+                  <p>{t("SystemMessages.Error")}</p>
+                </div>
+              </div>
+            )}
+            <div className={styles.add_delete_preview_buttons_wrap}>
+              <button onClick={() => fileImagePreviewRef.current.click()}>
+                {databaseImageUrl || fileImagePreviewUrl
+                  ? t("EditPostPage.Change")
+                  : t("EditPostPage.AddPreview")}
+              </button>
+              {(imagePreviewUrl || fileImagePreview) && (
+                <button onClick={onClickRemoveImage}>{t("EditPostPage.Delete")}</button>
               )}
             </div>
-          </div>
-          <input
-            ref={fileImagePreviewRef}
-            type="file"
-            accept="image/*"
-            onChange={(event) => onChangeCompressedFileImagePreview(event)}
-            hidden
-          />
-        </>
-      )}
-    </div>
+            <div className={styles.post_title}>
+              <TextareaAutosize
+                type="text"
+                maxLength={220}
+                ref={titleRef}
+                value={title}
+                variant="standard"
+                placeholder={t("EditPostPage.Title")}
+                onChange={onChangeTitle}
+              />
+            </div>
+            {numberCharactersInTitle > 0 && (
+              <div className={styles.post_title_letter_counter}>
+                <p>{numberCharactersInTitle}/220</p>
+              </div>
+            )}
+            <div className={styles.text}>
+              <TextareaAutosize
+                // minRows={1}
+                type="text"
+                // maxRows={3}
+                maxLength={75000}
+                value={text}
+                ref={textRef}
+                onChange={onChangeText}
+                variant="standard"
+                placeholder={
+                  (imagePreviewUrl || fileImagePreviewUrl ? "" : "* ") +
+                  t("EditPostPage.Text")
+                }
+              />
+            </div>
+            {numberCharactersInText > 0 && (
+              <div className={styles.text_letter_counter}>
+                <p>{numberCharactersInText}/75000</p>
+              </div>
+            )}
+            <div className={styles.publish_post_back_buttons_wrap}>
+              <div className={styles.publish_post_back_buttons}>
+                <div className={styles.back}>
+                  <button onClick={() => navigate(-1)}>
+                    {t("EditPostPage.Back")}
+                  </button>
+                </div>
+                {(changeTitleCheck || changeTextCheck || changeImageCheck) && (
+                  <div className={styles.publish_post}>
+                    <button onClick={onClickChangePost}>
+                      {t("EditPostPage.Publish")}
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+            <input
+              ref={fileImagePreviewRef}
+              type="file"
+              accept="image/*"
+              onChange={(event) => onChangeCompressedFileImagePreview(event)}
+              hidden
+            />
+          </>
+        )}
+
+      </div>
+    </>
   );
 }

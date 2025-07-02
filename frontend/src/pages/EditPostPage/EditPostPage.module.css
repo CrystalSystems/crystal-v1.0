@@ -235,6 +235,14 @@
    }
  }
 
+ .loader {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+   height: 500px;
+ }
+
  /* variables */
  /* theme colors */
  [data-edit-post-page-dark-theme="true"] {
