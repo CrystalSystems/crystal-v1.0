@@ -2,10 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { initRoutes } from "./routes/initRoutes.js";
-import {
-  CORS_ORIGIN,
-  CORS_CREDENTIALS
-} from "../../../shared/constants/index.js";
+import { CORS_ORIGIN } from "../../../shared/constants/index.js";
 
 export async function createApp() {
 
@@ -14,7 +11,7 @@ export async function createApp() {
   // cors
   app.use(cors({
     origin: CORS_ORIGIN === "true" ? true : CORS_ORIGIN,
-    credentials: CORS_CREDENTIALS && true
+    credentials: true
   }));
 
   // parsers
