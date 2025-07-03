@@ -27,7 +27,7 @@ Vite v6.1.0.<br/>
 [Documentation:](https://shedov.top/documentation-crystal/)<br/>
 [1. Description and capabilities.](https://shedov.top/description-and-capabilities-of-crystal-v1-0/)<br/>
 [2. Instructions for deployment on a local PC.](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-a-local-pc/)<br/>
-[3. Instructions for deployment on VPC and setting up access to the site via public IP.](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-vpc-and-setting-up-access-to-the-site-via-public-ip/)<br/>
+[3. Instructions for deployment on VPC and setting up access to the site via public IP.](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-vpc-and-setting-up-access-to-the-website-via-public-ip/)<br/>
 [4. Connecting a domain.](https://shedov.top/connecting-a-domain-to-the-crystal-v1-0-project/)<br/>
 [5. Install a free Let's Encrypt SSL certificate and set up automatic renewal.](https://shedov.top/install-a-free-lets-encrypt-ssl-certificate-and-set-up-automatic-renewal-for-a-domain-on-the-crystal-v1-0-project/)<br/>
 [6. Configuring Nginx with security in mind.](https://shedov.top/configuring-nginx-server-with-security-in-mind-on-the-crystal-v1-0-project//)<br/>
