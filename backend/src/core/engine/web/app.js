@@ -11,7 +11,7 @@ export async function createApp() {
   // cors
   app.use(cors({
     origin: CLIENT_ORIGIN ? true : CLIENT_ORIGIN,
-    credentials: true,
+    credentials: true
   }));
 
   // parsers
