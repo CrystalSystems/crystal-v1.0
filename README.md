@@ -30,8 +30,9 @@ Vite v6.1.0.<br/>
 [3. Instructions for deployment on VPC and setting up access to the website via public IP.](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-vpc-and-setting-up-access-to-the-website-via-public-ip/)<br/>
 [4. Connecting a domain.](https://shedov.top/connecting-a-domain-to-the-crystal-v1-0-project/)<br/>
 [5. Installation of a free Let's Encrypt SSL certificate with automatic renewal.](https://shedov.top/installation-of-a-free-lets-encrypt-ssl-certificate-with-automatic-renewal-for-the-domain-of-the-crystal-v1-0-project/)<br/>
-[6. Configuring Nginx with security in mind.](https://shedov.top/configuring-nginx-server-with-security-in-mind-on-the-crystal-v1-0-project//)<br/>
-[7. Installing reCAPTCHA v3.](https://shedov.top/installing-recaptcha-v3-on-the-crystal-v1-0-project/)<br/>
+[6. Enabling HTTP/2 protocol support in Nginx.](https://shedov.top/enabling-http-2-protocol-support-in-nginx-on-the-crystal-v1-0-project/)<br/>
+[7. Configuring Nginx with security in mind.](https://shedov.top/configuring-nginx-server-with-security-in-mind-on-the-crystal-v1-0-project//)<br/>
+[8. Installing reCAPTCHA v3.](https://shedov.top/installing-recaptcha-v3-on-the-crystal-v1-0-project/)<br/>
 
 
 https://github.com/user-attachments/assets/7d5421db-4af1-48b0-8819-6120c2a55e6b
