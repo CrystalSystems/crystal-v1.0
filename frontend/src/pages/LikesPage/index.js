@@ -1,1 +1,0 @@
-export { LikesPage } from "./LikesPage";
