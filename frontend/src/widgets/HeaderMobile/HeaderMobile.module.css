@@ -1,0 +1,44 @@
+.header_mobile {
+  background-color: var(--filling_background-color_global);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  padding: 0 15px;
+  top: 0px;
+  border-bottom: var(--border_global);
+  height: 45px;
+}
+
+.logo {
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+}
+
+@media (max-width: 355px) {
+  .logo p {
+    display: none;
+  }
+}
+
+.logo p {
+  font-size: 25px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  font-family: OpenSans, Arial, Helvetica, sans-serif;
+}
+
+.logo svg {
+  display: flex;
+  fill: var(--fill_global);
+  stroke: var(--stroke_global);
+  stroke-width: 3;
+  position: relative;
+  bottom: 0.5px;
+  margin-right: 1px;
+  width: 32px;
+  height: 32px;
+}

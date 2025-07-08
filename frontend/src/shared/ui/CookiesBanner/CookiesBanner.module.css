@@ -1,0 +1,128 @@
+.cookies_wrap {
+  box-shadow: var(--cookies_wrap_box-shadow);
+  bottom: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  background-color: var(--cookies_wrap_background-color);
+  backdrop-filter: saturate(180%) blur(2px);
+  -webkit-backdrop-filter: saturate(180%) blur(2px);
+  z-index: 4;
+}
+
+.cookies_visible {
+  display: flex;
+}
+
+.cookies {
+  width: 100%;
+  max-width: 1025px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+}
+
+.cookies_information {
+  width: 70%;
+}
+
+.cookies_information p {
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 25px;
+}
+
+.cookies_buttons {
+  width: 30%;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.cookies_buttons button {
+  white-space: nowrap;
+  padding: 10px 12px;
+  font-size: 16px;
+  color: var(--cookies_buttons_button_color);
+  font-family: Arial, Helvetica, sans-serif;
+  border: none;
+  background-color: var(--cookies_buttons_button_background_color);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.cookies_button_link {
+  position: relative;
+}
+
+.cookies_button_link a {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+@media (max-width: 1100px) {
+  .cookies {
+    gap: 0px;
+    flex-direction: column;
+  }
+
+  .cookies_information {
+    width: 100%;
+  }
+
+  .cookies_buttons {
+    justify-content: center;
+    width: 100%;
+    padding-top: 10px;
+  }
+}
+
+.cookies_button_link:active button {
+  background-color: var(--cookies_buttons_button_background_color_hover);
+  transition: var(--transition_background-color_active_global);
+}
+
+.cookies_buttons button:active {
+  background-color: var(--cookies_buttons_button_background_color_hover);
+  transition: var(--transition_background-color_active_global);
+}
+
+@media (min-width: 1000px) {
+  .cookies_button_link:hover button {
+    background-color: var(--cookies_buttons_button_background_color_hover);
+    transition: var(--transition_background-color_hover_global);
+  }
+
+  .cookies_buttons button:hover {
+    background-color: var(--cookies_buttons_button_background_color_hover);
+    transition: var(--transition_background-color_hover_global);
+  }
+}
+
+/* variables */
+/* theme colors */
+[data-cookies-banner-dark-theme="true"] {
+  --cookies_wrap_background-color: rgba(16, 16, 16, 0.718);
+  --cookies_wrap_box-shadow: none;
+  --cookies_buttons_button_color: #8f8f8f;
+  --cookies_buttons_button_background_color: #181818;
+  --cookies_buttons_button_background_color_hover: #1d1d1d;
+}
+
+[data-cookies-banner-dark-theme="false"] {
+  --cookies_wrap_background-color: rgba(255, 255, 255, 0.449);
+  --cookies_wrap_box-shadow: 0 10px 16px rgb(132 134 136 / 9%),
+    0 2px 10px rgb(138 140 143 / 16%);
+  --cookies_buttons_button_color: #ffffff;
+  --cookies_buttons_button_background_color: black;
+  --cookies_buttons_button_background_color_hover: #212121;
+}
+
+/* /theme colors */
+/* /variables */

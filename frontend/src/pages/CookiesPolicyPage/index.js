@@ -1,0 +1,1 @@
+export { CookiesPolicyPage } from "./CookiesPolicyPage";

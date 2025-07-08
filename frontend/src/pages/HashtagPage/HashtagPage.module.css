@@ -1,0 +1,37 @@
+.posts_wrap {
+  margin-bottom: 50px;
+}
+
+@media (max-width: 860px) {
+  .posts_wrap {
+    margin-bottom: 0px;
+    border-bottom: none;
+  }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.loader_first_loading {
+  top: 250px;
+}
+
+@media (max-width: 1000px) {
+  .loader_first_loading {
+    top: 260px;
+  }
+}
+
+.loader_infinite_scroll {
+  top: 25px;
+}
+
+@media (max-width: 860px) {
+  .loader_infinite_scroll {
+    top: 20px;
+    }
+}

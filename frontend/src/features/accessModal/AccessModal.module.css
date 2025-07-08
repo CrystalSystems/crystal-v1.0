@@ -1,0 +1,367 @@
+.modal_background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--modal_background_background-color);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  animation: fadeInModalWrap var(--transition_opening_global) forwards;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  z-index: 5;
+}
+
+.modal_background_fade_out {
+  animation: fadeOut var(--transition_opening_global) forwards;
+  opacity: 1;
+}
+
+@keyframes fadeInModalWrap {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.modal_wrap {
+  display: grid;
+  width: 100%;
+  max-width: 290px;
+  animation: fadeInModal var(--transition_opening_global) forwards;
+  height: 100%;
+  scrollbar-color: var(--scrollbar_color_global);
+  scrollbar-width: thin;
+  overflow-y: auto;
+  margin: 0 15px;
+}
+
+.modal_wrap_fade_out {
+  animation: fadeOut var(--transition_opening_global) forwards;
+}
+
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  position: relative;
+  place-self: center normal;
+  margin: 15px 0;
+  border: var(--modal_border);
+  border-radius: 6px;
+}
+
+.switch_modal {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display: flex;
+  gap: 1px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--filling_background-color_global);
+}
+
+.switch_modal button {
+  background-color: var(--filling_background-color_global);
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19px;
+  cursor: pointer;
+  padding: 5px;
+  border: none;
+  color: var(--color_global);
+  margin: 9px 9px 5px 9px;
+}
+
+.switch_modal_active {
+  border-bottom: var(--switch_modal_active_border-bottom) !important;
+}
+
+.access_form_wrap {
+  display: flex;
+  justify-content: center;
+  padding: 18px;
+  background-color: var(--filling_background-color_global);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.access_form_wrap form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.access_form_wrap form input {
+  background-color: var(--access_form_wrap_form_input_background-color);
+  border: var(--access_form_wrap_form_input_border);
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 7px;
+  font-size: 17px;
+  color: var(--color_global);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.access_form_wrap form input::placeholder {
+  font-size: 17px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--access_form_wrap_form_input_placeholder_color);
+}
+
+.access_input_errors_wrap {
+  width: 100%;
+  position: relative;
+}
+
+.password_wrap {
+  position: relative;
+}
+
+.password {
+  padding-right: 33px !important;
+}
+
+.show_password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 35px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.show_password svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--stroke_global);
+}
+
+.access_input_errors {
+  z-index: 1;
+  position: relative;
+}
+
+.access_input_errors p {
+  padding-top: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+
+.access_input_errors_server {
+  z-index: 1;
+  position: relative;
+}
+
+.access_input_errors_server p {
+  padding-top: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+
+.enter {
+  border: none;
+  color: #000;
+  display: flex;
+  align-items: center;
+  padding: 5px 17px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: var(--enter_background-color);
+  box-shadow: var(--enter_box-shadow);
+  margin-top: 3px;
+}
+
+.enter svg {
+  fill: var(--fill_global);
+  width: 21px;
+  height: 21px;
+}
+
+@media (min-width: 1000px) {
+  .access_form_wrap form button:hover {
+    background-color: var(--enter_background-color_hover);
+    transition: var(--transition_background-color_hover_global);
+  }
+}
+
+.access_form_wrap form button:active {
+  background-color: var(--enter_background-color_hover);
+  transition: var(--transition_background-color_active_global);
+}
+
+.access_terms_errors_wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.access_terms_wrap {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.access_terms p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  padding: 2px 6px;
+  line-height: 18px;
+}
+
+.access_terms a {
+  color: var(--color_global);
+  text-underline-offset: 2px;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  transition: var(--transition_text-decoration_global);
+}
+
+@media (min-width: 1000px) {
+  .access_terms a:hover {
+    text-decoration-color: rgba(255, 255, 255, 0);
+    transition: var(--transition_text-decoration_global);
+  }
+}
+
+.access_terms a:active {
+  text-decoration-color: rgba(255, 255, 255, 0);
+  transition: var(--transition_text-decoration_global);
+}
+
+/* checkbox*/
+.access_form_wrap form input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--access_form_wrap_form_input_type_checkbox_background);
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--access_form_wrap_form_input_type_checkbox_border);
+  padding: 5.5px;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+
+.access_form_wrap form input[type="checkbox"]::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
+  transform-origin: center;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--color_global);
+  ;
+  /* Windows High Contrast Mode */
+  /* background-color: red; */
+}
+
+.access_form_wrap form input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+.access_form_wrap form input[type="checkbox"]:focus {
+  outline: max(2px, 0.15em) solid currentColor;
+  outline-offset: max(2px, 0.15em);
+}
+
+/* /checkbox*/
+/* Recaptcha v3*/
+.recaptcha_protected_message p {
+  margin-top: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  line-height: 14px;
+}
+
+.recaptcha_protected_message a {
+  font-size: 9px;
+  color: var(--color_global);
+  text-underline-offset: 1px;
+  text-decoration: underline;
+  transition: var(--transition_text-decoration_global);
+}
+
+@media (min-width: 1000px) {
+  .recaptcha_protected_message a:hover {
+    text-decoration-color: rgba(255, 255, 255, 0);
+    transition: var(--transition_text-decoration_global);
+  }
+}
+
+.recaptcha_protected_message a:active {
+  text-decoration-color: rgba(255, 255, 255, 0);
+  transition: var(--transition_text-decoration_global);
+}
+
+/* /Recaptcha v3*/
+/* variables */
+/* theme colors */
+[data-access-modal-dark-theme="true"] {
+  --access_form_wrap_form_input_type_checkbox_border: rgb(29, 29, 29);
+  --modal_border: 1.2px solid rgb(25, 25, 25);
+  --modal_background_background-color: rgba(0, 0, 0, 0.516);
+  --enter_background-color: #1e1e1e;
+  --enter_background-color_hover: #222222;
+  --switch_modal_active_border-bottom: 2px solid rgb(54, 54, 54);
+  --access_form_wrap_form_input_background-color: #1a1a1a;
+  --access_form_wrap_form_input_border: 1.5px solid transparent;
+  --access_form_wrap_form_input_placeholder_color: #656565;
+  --enter_box-shadow: none;
+  --access_form_wrap_form_input_type_checkbox_background: rgb(29, 29, 29);
+}
+
+[data-access-modal-dark-theme="false"] {
+  --access_form_wrap_form_input_type_checkbox_border: black;
+  --access_form_wrap_form_input_type_checkbox_background: rgb(255, 255, 255);
+  --enter_box-shadow: 0 4px 16px rgb(132 134 136 / 9%),
+    0 2px 2px rgb(138 140 143 / 16%);
+  --access_form_wrap_form_input_placeholder_color: #989898;
+  --access_form_wrap_form_input_border: 1.5px solid rgb(230, 230, 230);
+  --access_form_wrap_form_input_background-color: #ffffff;
+  --switch_modal_active_border-bottom: 2px solid black;
+  --modal_border: 1.1px solid rgba(229, 229, 229, 0.776);
+  --modal_background_background-color: rgba(248, 249, 250, 0.13);
+  --enter_background-color: white;
+  --enter_background-color_hover: rgba(245, 245, 245, 0.739);
+}
+
+/* /theme colors */
+/* /variables */

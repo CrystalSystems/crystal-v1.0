@@ -1,0 +1,90 @@
+.left_side {
+  scrollbar-color: var(--scrollbar_color_global);
+  scrollbar-width: thin;
+  overflow: hidden;
+  height: 100%;
+  position: fixed;
+  overflow-y: auto;
+  padding-left: 10px;
+  max-width: 210px;
+}
+
+.left_side_not_authorized_user {
+  padding-right: 5px;
+}
+
+.logo_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 7px;
+  position: sticky;
+  top: 0;
+  background-color: var(--logo_wrap_background-color);
+  border-radius: 5px;
+  backdrop-filter: saturate(180%) blur(2px);
+  -webkit-backdrop-filter: saturate(180%) blur(2px);
+  cursor: pointer;
+  z-index: 2;
+  width: 100%;
+}
+
+.logo_wrap_user_not_authorized {
+  justify-content: center;
+}
+
+.logo_wrap a {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  margin-left: 5px;
+}
+
+.logo_user_not_authorized {
+  margin-left: 0px;
+}
+
+.logo p {
+  font-size: 27px;
+  letter-spacing: 2.6px;
+  font-weight: 700;
+  font-family: OpenSans, Arial, Helvetica, sans-serif;
+}
+
+@media (max-width: 500px) {
+  .logo p {
+    display: none;
+  }
+}
+
+.crystal_icon svg {
+  display: flex;
+  fill: var(--fill_global);
+  stroke: var(--stroke_global);
+  stroke-width: 3;
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+
+/* variables */
+[data-left-side-dark-theme="true"] {
+  --logo_wrap_background-color: #0000004b;
+}
+
+[data-left-side-dark-theme="false"] {
+  --logo_wrap_background-color: rgba(255, 255, 255, 0.449);
+}
+
+/* /variables */

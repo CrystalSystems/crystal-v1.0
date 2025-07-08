@@ -1,0 +1,220 @@
+.options_menu_guest {
+  display: flex;
+  padding: 4px 0;
+  gap: 8px;
+}
+
+.options_menu_guest button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 37px;
+  height: 37px;
+}
+
+.options_menu_guest button:active {
+  transition: var(--transition_background-color_active_global);
+  background-color: var(--options_menu_guest_button_background-color_hover);
+}
+
+@media (max-width: 1000px) {
+  .options_menu_guest {
+    gap: 5px;
+  }
+}
+
+.add_post svg {
+  stroke: var(--stroke_global);
+  width: 28px;
+  height: 28px;
+}
+
+.search_icon_hide {
+  display: none !important;
+}
+
+@media (min-width: 860px) {
+  .search_icon {
+    display: none !important;
+  }
+}
+
+.search_icon svg {
+  position: relative;
+  bottom: 1px;
+  width: 30px;
+  height: 30px;
+  stroke: var(--stroke_global);
+}
+
+.guest_menu_button {
+  display: flex;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.guest_menu_button svg {
+  fill: var(--fill_global);
+  height: 26px;
+}
+
+.guest_menu_list {
+  top: 142px;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  margin: 0 10px;
+  overflow: hidden;
+  border: var(--guest_menu_list_border);
+  border-radius: 5px;
+  position: absolute;
+  animation: fadeIn var(--transition_opening_global) forwards;
+  opacity: 0;
+  background-color: var(--filling_background-color_global);
+  box-shadow: rgb(0 0 0 / 18%) 0.2px 0.2px 4px;
+}
+
+@media (max-width: 860px) {
+  .guest_menu_list {
+    box-shadow: 4px 4px 4px -3px rgba(0, 0, 0, 0.164);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    top: 44px;
+    left: auto;
+    right: 15px;
+    transform: none;
+  }
+}
+
+.guest_menu_list ul li {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  white-space: nowrap;
+  cursor: pointer;
+  text-align: center;
+  overflow: hidden;
+  padding: 12px;
+  gap: 11px;
+  position: relative;
+}
+
+.guest_menu_list ul li a {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.guest_menu_list ul li:active {
+  background-color: var(--item_hover_global);
+  transition: var(--transition_background-color_active_global);
+}
+
+.guest_menu_list ul li svg {
+  cursor: pointer;
+}
+
+.guest_menu_list_lang {
+  user-select: none;
+}
+
+.guest_menu_list_lang svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--stroke_global);
+}
+
+.guest_menu_list_help svg {
+  width: 19px;
+  height: 19px;
+  stroke: var(--stroke_global);
+}
+
+.guest_menu_list_about_crystal {
+  display: flex;
+}
+
+.guest_menu_list_about_crystal svg {
+  fill: var(--fill_global);
+  stroke: var(--stroke_global);
+  stroke-width: 3;
+  max-width: 20px;
+  max-height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+}
+
+.guest_menu_list_fade_out {
+  animation: fadeOut var(--transition_opening_global) forwards;
+  opacity: 1;
+}
+
+.guest_menu_list_agreements svg {
+  fill: var(--fill_global);
+  width: 19px;
+  height: 19px;
+}
+
+.authorization svg {
+  stroke: var(--stroke_global);
+  width: 27px;
+  height: 27px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@media (min-width: 1000px) {
+  .options_menu_guest button:hover {
+    transition: var(--transition_background-color_hover_global);
+    background-color: var(--options_menu_guest_button_background-color_hover);
+  }
+
+  .guest_menu_list ul li:hover {
+    transition: var(--transition_background-color_hover_global);
+    background-color: var(--item_hover_global);
+  }
+}
+
+/* variables */
+/* theme colors */
+[data-options-menu-guest-dark-theme="true"] {
+  --guest_menu_list_border: 1.1px solid rgb(29, 29, 29);
+  --options_menu_guest_button_background-color_hover: rgba(42, 42, 42, 0.609);
+  --guest_menu_list_border: 1.1px solid rgb(30, 30, 30);
+}
+
+[data-options-menu-guest-dark-theme="false"] {
+  --guest_menu_list_border: none;
+  --options_menu_guest_button_background-color_hover: rgba(233, 236, 239, 0.563);
+  --guest_menu_list_border: 1.1px solid rgba(229, 229, 229, 0.703);
+}
+
+/* /theme colors */
+/* /variables */
