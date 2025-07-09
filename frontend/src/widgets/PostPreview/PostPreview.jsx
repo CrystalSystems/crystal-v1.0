@@ -298,14 +298,14 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
         {/* post publication date   */}
         <div className={styles.post_date_wrap}>
           <div className={styles.post_date_creation}>
-            {!isSamePostDate(postData.post?.createdAt, postData.post?.updatedAt) && <p>add:</p>}
+            {!isSamePostDate(postData.post?.createdAt, postData.post?.updatedAt) && <p>{t('PostPreview.add')}:</p>}
             {created.element}
           </div>
           {!isSamePostDate(postData.post?.createdAt, postData.post?.updatedAt) &&
             <div className={styles.post_date_update_wrap}>
               <div className={styles.post_date_separator}><PulseLineIcon /></div>
               <div className={styles.post_date_update}>
-                <p>upd:</p>
+                <p>{t('PostPreview.upd')}:</p>
                 {updated.element}
               </div>
             </div>

@@ -318,14 +318,14 @@ export function FullPostPage() {
             <div className={styles.post_date_views}>
               <div className={styles.post_date_wrap}>
                 <div className={styles.post_date_creation}>
-                  {!isSamePostDate(post?.data.createdAt, post?.data.updatedAt) && <p>add:</p>}
+                  {!isSamePostDate(post?.data.createdAt, post?.data.updatedAt) && <p>{t('FullPostPage.add')}:</p>}
                   {created.element}
                 </div>
                 {!isSamePostDate(post?.data.createdAt, post?.data.updatedAt) &&
                   <div className={styles.post_date_update_wrap}>
                     <div className={styles.post_date_separator}><PulseLineIcon /></div>
                     <div className={styles.post_date_update}>
-                      <p>upd:</p>
+                      <p>{t('FullPostPage.upd')}:</p>
                       {updated.element}
                     </div>
                   </div>

@@ -152,7 +152,9 @@
     "EditPost": "Редактировать пост",
     "DeletePost": "Удалить пост",
     "DeleteAllUserPosts": "Удалить все посты пользователя",
-    "DeleteUser": "Удалить пользователя"
+    "DeleteUser": "Удалить пользователя",
+    "add": "доб",
+    "upd": "обн"
   },
   "FullPostPage": {
     "DeleteAccountQuestion": "Удалить аккаунт пользователя ?",
@@ -162,6 +164,8 @@
     "EditPost": "Редактировать пост",
     "DeletePost": "Удалить пост",
     "DeleteAllUserPosts": "Удалить все посты пользователя",
-    "DeleteUser": "Удалить пользователя"
+    "DeleteUser": "Удалить пользователя",
+    "add": "доб",
+    "upd": "обн"
   }
 }
