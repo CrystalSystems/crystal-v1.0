@@ -1,0 +1,17 @@
+.search_and_sort_wrap {
+  display: flex;
+  z-index: 4;
+  position: sticky;
+  top: 0;
+  border-bottom: var(--border_global);
+  border-right: var(--border_disappears_in_dark_theme_global);
+  border-left: var(--border_disappears_in_dark_theme_global);
+  background-color: var(--filling_background-color_global);
+}
+
+@media (max-width: 860px) {
+  .search_and_sort_wrap {
+    border-right: none;
+    border-left: none;
+  }
+}

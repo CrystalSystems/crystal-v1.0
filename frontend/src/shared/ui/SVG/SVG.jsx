@@ -123,7 +123,7 @@ export function AcceptIcon() {
     </svg>
   );
 };
-export function SortingIcon() {
+export function SortIcon() {
   return (
     <svg
       width="25px"
@@ -149,31 +149,23 @@ export function SortingIcon() {
     </svg>
   );
 };
-export function SortingLeftIcon() {
+export function SortLeftIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g strokeWidth="0" />
       <g strokeLinecap="round" strokeLinejoin="round" />
       <g>
         {" "}
-        <g clipPath="url(#clip0_429_11060)">
+        <g>
           {" "}
           <path
-            d="M4 5.99994H20M4 11.9999H14M4 17.9999H8"
-            stroke="#000000"
-            strokeWidth="1.6"
+            d="M4 5.4H20M4 10.9H14M4 16.7H8"
+            strokeWidth="1.2"
             strokeLinecap="round"
             strokeLinejoin="round"
           />{" "}
         </g>{" "}
-        <defs>
-          {" "}
-          <clipPath>
-            {" "}
-            <rect width="24" height="24" fill="white" />{" "}
-          </clipPath>{" "}
-        </defs>{" "}
-      </g>
+     </g>
     </svg>
   );
 };

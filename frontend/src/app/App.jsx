@@ -30,7 +30,7 @@ import {
   HelpPage
 } from '../pages';
 import {
-  Search,
+  SearchAndSort,
   CookiesBanner,
   UpButton
 } from '../shared/ui';
@@ -76,7 +76,7 @@ export default function App() {
               <HeaderMobile />
               <SideMenuMobile />
             </div>
-            <Search />
+            <SearchAndSort />
 
             <Routes>
               <Route path="/" element={<HomePage />} />

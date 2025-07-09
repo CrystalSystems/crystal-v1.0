@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
-
 import { SearchIcon } from '../../../shared/ui';
 
 import styles from './Search.module.css';
 
 export function Search() {
+
   const darkThemeStatus = useSelector((state) => state.darkThemeStatus);
   
   return (
