@@ -21,7 +21,7 @@
   --hashtag_color_global: rgb(24, 97, 145);
   --hashtag_color_hover_global: rgb(32, 109, 161);
   --item_hover_global: rgb(23 23 23);
-  --separator_background-color_global: #a0acb6;
+  --separator_background-color_global: #5f727f;
 }
 
 [data-dark-theme="false"] {
