@@ -15,7 +15,7 @@ export const useFormattedPostDate = (dateString, fullPost) => {
   const date = new Date(dateString);
   const now = new Date();
   const lang = i18n.language;
-  const sameYear = date.getFullYear() === now.getFullYear();
+  const isCurrentYear = date.getFullYear() === now.getFullYear();
 
   let datePart = '';
   let timePart = '';
@@ -24,7 +24,7 @@ export const useFormattedPostDate = (dateString, fullPost) => {
     datePart = date.toLocaleDateString('ru-RU', {
       day: 'numeric',
       month: 'long',
-      ...(sameYear ? {} : { year: 'numeric' }),
+      ...(isCurrentYear ? {} : { year: 'numeric' }),
     }).replace(/\s?г\.$/, '');
 
     timePart = date.toLocaleTimeString('ru-RU', {
@@ -35,7 +35,7 @@ export const useFormattedPostDate = (dateString, fullPost) => {
     datePart = date.toLocaleDateString('en-US', {
       month: 'long',
       day: 'numeric',
-      ...(sameYear ? {} : { year: 'numeric' }),
+      ...(isCurrentYear ? {} : { year: 'numeric' }),
     });
 
     timePart = date.toLocaleTimeString('en-US', {
@@ -45,20 +45,20 @@ export const useFormattedPostDate = (dateString, fullPost) => {
     });
   }
 
-  return (
-    <div className={styles.formatted_post_date_wrap}>
-      <p>{datePart}</p>
-      <div className={
-        fullPost ?
-          `${styles.separator}
-          ${styles.separator_full_post}`
-          :
-          `${styles.separator}
-          ${styles.separator_post_preview}`
-      }>
+  return {
+    isCurrentYear,
+    element: (
+      <div className={styles.formatted_post_date_wrap}>
+        <p>{datePart}</p>
+        <div className={
+          fullPost
+            ? `${styles.separator}
+             ${styles.separator_full_post}`
+            : `${styles.separator} ${styles.separator_post_preview}`
+        }></div>
+        <p>{timePart}</p>
       </div>
-      <p>{timePart}</p>
-    </div>
-  );
+    )
+  };
 };
 

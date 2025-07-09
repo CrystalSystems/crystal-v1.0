@@ -178,8 +178,8 @@ export function FullPostPage() {
   // /post options, menu
 
   // format post date
-  const formattedPostDateCreated = useFormattedPostDate(post?.data?.createdAt, true);
-  const formattedPostDateUpdated = useFormattedPostDate(post?.data?.updatedAt, true);
+  const created = useFormattedPostDate(post?.data?.createdAt, true);
+  const updated = useFormattedPostDate(post?.data?.updatedAt, true);
   // /format post date
 
   return (
@@ -307,19 +307,26 @@ export function FullPostPage() {
           )}
 
           {/* post publication date   */}
-          <div className={styles.post_date_views_wrap}>
+          <div className={
+            (created.isCurrentYear
+              & updated.isCurrentYear) ?
+              `${styles.post_date_views_wrap}
+               ${styles.post_date_views_wrap_current_year}`
+              :
+              styles.post_date_views_wrap
+          }>
             <div className={styles.post_date_views}>
               <div className={styles.post_date_wrap}>
                 <div className={styles.post_date_creation}>
                   {!isSamePostDate(post?.data.createdAt, post?.data.updatedAt) && <p>add:</p>}
-                  {formattedPostDateCreated}
+                  {created.element}
                 </div>
                 {!isSamePostDate(post?.data.createdAt, post?.data.updatedAt) &&
                   <div className={styles.post_date_update_wrap}>
                     <div className={styles.post_date_separator}><PulseLineIcon /></div>
                     <div className={styles.post_date_update}>
                       <p>upd:</p>
-                      {formattedPostDateUpdated}
+                      {updated.element}
                     </div>
                   </div>
                 }
@@ -390,8 +397,9 @@ export function FullPostPage() {
               <div className={styles.post_info_bottom_part_1_2_loader}></div>
             )}
           </div>
-        </div>
-      )}
+        </div >
+      )
+      }
     </>
   );
 }

@@ -165,8 +165,8 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
   // /add like and scheck authorized user
 
   // format post date
-  const formattedPostDateCreated = useFormattedPostDate(postData.post?.createdAt, false);
-  const formattedPostDateUpdated = useFormattedPostDate(postData.post?.updatedAt, false);
+  const created = useFormattedPostDate(postData.post?.createdAt, false);
+  const updated = useFormattedPostDate(postData.post?.updatedAt, false);
   // /format post date
 
   return (
@@ -299,14 +299,14 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
         <div className={styles.post_date_wrap}>
           <div className={styles.post_date_creation}>
             {!isSamePostDate(postData.post?.createdAt, postData.post?.updatedAt) && <p>add:</p>}
-            {formattedPostDateCreated}
+            {created.element}
           </div>
           {!isSamePostDate(postData.post?.createdAt, postData.post?.updatedAt) &&
             <div className={styles.post_date_update_wrap}>
               <div className={styles.post_date_separator}><PulseLineIcon /></div>
               <div className={styles.post_date_update}>
                 <p>upd:</p>
-                {formattedPostDateUpdated}
+                {updated.element}
               </div>
             </div>
           }

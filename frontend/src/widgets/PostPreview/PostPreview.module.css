@@ -526,8 +526,8 @@
     opacity: 0;
   }
 }
-
 /* /Menu - post options */
+
 /* @media */
 @media (max-width: 1250px) {
   .post_date_wrap {
@@ -624,8 +624,8 @@
     transition: var(--transition_background-color_hover_global);
   }
 }
-
 /* /@media */
+
 /* variables */
 /* theme colors */
 [data-post-preview-dark-theme="true"] {
