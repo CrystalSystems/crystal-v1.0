@@ -1,7 +1,8 @@
 import {
   SERVER_PORT,
   APP_MODE,
-  CORS_ORIGIN
+  CORS_ORIGIN,
+  COOKIE_SECURE_STATUS
 } from "../../../shared/constants/index.js";
 
 const redBox = (text) => `\x1b[41m\x1b[38;2;255;255;255m${text}\x1b[0m`;
@@ -19,7 +20,10 @@ export async function startServer(app) {
   Mode: ${orangeBox(` ${APP_MODE} `)}
 
   ${orangeBox(`   CORS   `)}
-  origin: ${CORS_ORIGIN}
+  Origin: ${CORS_ORIGIN}
+
+  ${orangeBox(`   Cookie   `)}
+  Secure: ${COOKIE_SECURE_STATUS}
     `
       )
   );
