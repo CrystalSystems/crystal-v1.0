@@ -397,7 +397,6 @@
 .post_date_separator svg {
   position: relative;
   bottom: 1px;
-  /* fill: var(--separator_svg_fill); */
   stroke: var(--separator_svg_stroke);
 }
 
@@ -634,10 +633,9 @@
   --like_liked_svg_fill: rgb(136, 39, 39);
   --like_liked_svg_stroke: rgb(136, 39, 39);
   --options_menu_border: 1.1px solid rgb(29, 29, 29);
-  --separator_svg_fill: #a1a1a1;
-  --separator_svg_stroke: #959ea4;
-  --post_date_wrap_color: #959ea4;
-  --post_views_fill: #959ea4;
+  --separator_svg_stroke: #5f727f;
+  --post_date_wrap_color: #5f727f;
+  --post_views_fill: #5f727f;
 }
 
 [data-post-preview-dark-theme="false"] {
@@ -646,7 +644,6 @@
   --post_button_hover: rgba(228, 231, 234, .563);
   --post_wrap_background-color_hover: rgba(242, 244, 245, 0.723);
   --options_menu_border: none;
-  --separator_svg_fill: rgb(0, 0, 0);
   --separator_svg_stroke: #929ba3;
   --post_date_wrap_color: #929ba3;
   --post_views_fill: #929ba3;
