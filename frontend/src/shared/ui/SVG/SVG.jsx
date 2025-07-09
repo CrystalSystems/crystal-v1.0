@@ -159,8 +159,8 @@ export function SortLeftIcon() {
         <g>
           {" "}
           <path
-            d="M4 5.4H20M4 10.9H14M4 16.7H8"
-            strokeWidth="1.2"
+            d="M4 5.6H20M4 11.3H14M4 17H8"
+            strokeWidth="1.1"
             strokeLinecap="round"
             strokeLinejoin="round"
           />{" "}
