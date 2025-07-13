@@ -44,9 +44,9 @@ import styles from './App.module.css';
 
 export default function App() {
 
-  // Auth
+  // auth
   useAuth()
-  // /Auth
+  // /auth
 
   const location = useLocation()
   const defineFullPostPage = location.pathname.includes('/posts/')
