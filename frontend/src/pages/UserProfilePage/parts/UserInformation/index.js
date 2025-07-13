@@ -1,1 +1,0 @@
-export { UserInformation } from "./UserInformation";

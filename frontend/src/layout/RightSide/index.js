@@ -1,1 +1,0 @@
-export { RightSide } from "./RightSide";

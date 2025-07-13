@@ -1,1 +1,0 @@
-export { AgreementsPage } from "./AgreementsPage";
