@@ -1,0 +1,1 @@
+export { UserPagePostsWrap } from "./UserPagePostsWrap";

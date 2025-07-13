@@ -1,0 +1,171 @@
+{
+  "SystemMessages": {
+    "Error": "Ошибка"
+  },
+  "AccessModal": {
+    "SwitchLogIn": "Войти",
+    "SwitchSignUp": "Регистрация",
+    "InputNameLogIn": "Имя",
+    "InputNameSignUp": "Имя",
+    "InputErrorNameEmpty": "Введите имя",
+    "InputErrorNameMinimumLength": "Минимальная длина имени - 1 символ",
+    "InputErrorNameMaximumLength": "Максимальная длина имени - 200 символов",
+    "InputErrorIdAlreadyExists": "Этот Id уже существует",
+    "InputErrorIdMinimumLength": "Минимальная длина Id - 1 символ",
+    "InputErrorIdMaximumLength": "Максимальная длина Id - 35 символов",
+    "InputErrorIdMinimumMaximumLengthSymbols": "Минимальная длина id - 1 символ, максимальная - 35, допускаются латинские буквы, цифры, нижние подчеркивания и тире",
+    "InputEmail": "* Email",
+    "InputErrorEmailEmpty": "Введите email",
+    "InputErrorEmailMaximumLength": "Максимальная длина email - 100 символов",
+    "InputErrorEmailAlreadyExists": "Этот email уже существует",
+    "InputPasswordLogIn": "Пароль",
+    "InputPasswordSignUp": "* Пароль",
+    "InputErrorPasswordEmpty": "Введите пароль",
+    "InputErrorPasswordMinimumMaximumLengthSymbols": "Минимальная длина пароля - 8 символов, максимальная - 30, допускаются латинские буквы, цифры и специальные символы",
+    "InputErrorEmailPasswordWrong": "Неверная почта или пароль",
+    "InputErrorAcceptTerms": "Необходимо принять условия",
+    "Terms": "Я принимаю <1>условия пользовательского соглашения</1>, <2>политику конфиденциальности</2> и <3>политику использования файлов cookies</3>."
+  },
+  "ListPosts": {
+    "PostOptionsMenuEditPost": "Редактировать пост",
+    "PostOptionsMenuDeletePost": "Удалить пост",
+    "PostOptionsMenuDeleteAllUserPosts": "Удалить все посты пользователя",
+    "PostOptionsMenuDeleteUser": "Удалить пользователя"
+  },
+  "User": {
+    "UserDeleted": "Пользователь удалён"
+  },
+  "UserProfilePage": {
+    "EditUser": "Редактировать пользователя"
+  },
+  "AddPostPage": {
+    "CreatePost": "Создать пост",
+    "Text": "Текст",
+    "Title": "Заголовок",
+    "AddPreview": "Добавить превью",
+    "ChangePreview": "Изменить",
+    "DeletePreview": "Удалить",
+    "Publish": "Опубликовать",
+    "Back": "Назад"
+  },
+  "EditPostPage": {
+    "EditPost": "Редактирование поста",
+    "AddPreview": "Добавить превью",
+    "Change": "Изменить",
+    "Delete": "Удалить",
+    "Publish": "Опубликовать",
+    "Text": "Текст",
+    "Title": "Заголовок",
+    "Back": "Назад"
+  },
+  "EditUserPage": {
+    "EditUser": "Редактирование пользователя",
+    "UserName": "Имя",
+    "UserAboutMe": "О себе",
+    "DeleteAllYourPosts": "Удалить все свои посты",
+    "DeleteAllUserPosts": "Удалить все посты пользователя",
+    "AllPostsDeleted": "Все посты удалены",
+    "DeleteAccount": "Удалить аккаунт",
+    "DeleteAccountQuestion": "Удалить аккаунт пользователя ?",
+    "DeleteUserAccount": "Удалить аккаунт пользователя",
+    "SaveChanges": "Сохранить изменения",
+    "Save": "Сохранить",
+    "IdErrorMinimumMaximumLengthSymbols": "Минимальная длина id - 1 символ, максимальная - 35, допускаются латинские буквы, цифры, нижние подчеркивания и тире",
+    "IdAlreadyExists": "Этот Id уже существует",
+    "ChangePassword": "Изменить пароль",
+    "Hide": "Скрыть",
+    "OldPassword": "Старый пароль",
+    "NewPassword": "Новый пароль",
+    "OldPasswordIncorrect": "Старый пароль - неверный",
+    "PasswordRequirements": "Минимальная длина пароля - 8 символов, максимальная - 30, допускаются латинские буквы, цифры и специальные символы.",
+    "PasswordSuccessfullyChanged": "Пароль успешно изменён"
+  },
+  "CookiesBanner": {
+    "Text": "Этот сайт использует файлы cookies. Нажимая кнопку 'Принять' или продолжая пользоваться сайтом, вы соглашаетесь на использование файлов cookies.",
+    "ButtonMoreDetails": "Подробнее",
+    "ButtonAccept": "Принять"
+  },
+  "SideMenuDesktop": {
+    "MyProfile": "Мой профиль",
+    "Messages": "Сообщения",
+    "Friends": "Друзья",
+    "Communities": "Сообщества",
+    "Photo": "Фото",
+    "Video": "Видео",
+    "Likes": "Понравилось",
+    "Bookmarks": "Закладки",
+    "AboutCrystal": "О Crystal",
+    "Agreements": "Соглашения",
+    "Help": "Помощь"
+  },
+  "SideMenuMobile": {
+    "MyProfile": "Мой профиль",
+    "Messages": "Сообщения",
+    "Friends": "Друзья",
+    "Communities": "Сообщества",
+    "Photo": "Фото",
+    "Video": "Видео",
+    "Likes": "Понравилось",
+    "Bookmarks": "Закладки",
+    "AboutCrystal": "О Crystal",
+    "Agreements": "Соглашения",
+    "Help": "Помощь"
+  },
+  "CurrentTopics": {
+    "CurrentTopics": "Актуальные темы",
+    "ShowMore": "Посмотреть еще",
+    "Post": "Пост",
+    "PostsAverage": "Поста",
+    "Posts": "постов",
+    "key_one": "пост",
+    "key_few": "поста",
+    "key_many": "постов"
+  },
+  "RecommendedUsers": {
+    "YouMightLike": "Вам может понравиться",
+    "Subscribe": "Подписаться",
+    "ShowMore": "Посмотреть еще"
+  },
+  "OptionsMenuGuest": {
+    "AboutCrystal": "О CRYSTAL",
+    "Agreements": "Соглашения",
+    "Help": "Помощь"
+  },
+  "PostSourceMenu": {
+    "Subscriptions": "Подписки",
+    "Preferences": "Предпочтения",
+    "Mine": "Мои",
+    "World": "Мир"
+  },
+  "OptionsMenuUser": {
+    "MyProfile": "Мой профиль",
+    "Agreements": "Соглашения",
+    "Help": "Помощь",
+    "Exit": "Выход",
+    "LogOut": "Выйти из аккаунта ?"
+  },
+  "PostPreview": {
+    "DeleteAccountQuestion": "Удалить аккаунт пользователя ?",
+    "DeleteAllUserPostsQuestion": "Удалить все посты пользователя ?",
+    "DeletePostQuestion": "Удалить пост ?",
+    "UserDeleted": "Пользователь удален",
+    "EditPost": "Редактировать пост",
+    "DeletePost": "Удалить пост",
+    "DeleteAllUserPosts": "Удалить все посты пользователя",
+    "DeleteUser": "Удалить пользователя",
+    "add": "доб",
+    "upd": "обн"
+  },
+  "FullPostPage": {
+    "DeleteAccountQuestion": "Удалить аккаунт пользователя ?",
+    "DeleteAllUserPostsQuestion": "Удалить все посты пользователя ?",
+    "DeletePostQuestion": "Удалить пост ?",
+    "UserDeleted": "Пользователь удален",
+    "EditPost": "Редактировать пост",
+    "DeletePost": "Удалить пост",
+    "DeleteAllUserPosts": "Удалить все посты пользователя",
+    "DeleteUser": "Удалить пользователя",
+    "add": "доб",
+    "upd": "обн"
+  }
+}

@@ -1,0 +1,40 @@
+.sort_wrap {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  background-color: var(--filling_background-color_global);
+}
+
+.sort {
+  border: var(--sort_border);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sort svg {
+  width: 30.2px;
+  height: 30.2px;
+  position: relative;
+  top: 3px;
+  stroke: var(--stroke_global);
+}
+
+@media (max-width: 860px) {
+  .sort_wrap {
+    border-left: none;
+    border-right: none;
+  }
+}
+
+/* variables */
+/* theme colors */
+[data-sort-wrap-dark-theme="true"] {
+  --sort_border: 1.3px solid rgb(39, 39, 39);
+}
+
+[data-sort-wrap-dark-theme="false"] {
+  --sort_border: 1.3px solid rgba(229, 229, 229, 0.703);
+}
+
+/* /theme colors */
+/* /variables */

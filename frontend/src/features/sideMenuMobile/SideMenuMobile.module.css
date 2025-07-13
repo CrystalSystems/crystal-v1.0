@@ -1,0 +1,145 @@
+ .side_menu_mobile_wrap {
+   position: fixed;
+   animation: fadeIn 300ms forwards;
+   top: 44px;
+   right: -1px;
+   z-index: 6;
+   background-color: var(--filling_background-color_global);
+   overflow-y: auto;
+   border-top: var(--border_global);
+   height: 100%;
+   scrollbar-color: var(--scrollbar_color_global);
+   scrollbar-width: thin;
+ }
+
+ .side_menu_mobile {
+   margin-bottom: 45px;
+ }
+
+ .side_menu_mobile_fade_out {
+   animation: fadeOut 300ms forwards;
+   opacity: 1;
+ }
+
+ @keyframes fadeIn {
+   from {
+     transform: translate(180px);
+   }
+ }
+
+ @keyframes fadeOut {
+   to {
+     transform: translate(190px);
+   }
+ }
+
+ .side_menu_mobile ul li {
+   gap: 15px;
+   padding: 12px 15px;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 18px;
+   line-height: 22px;
+   font-weight: 400;
+   text-wrap: nowrap;
+   position: relative;
+ }
+
+ .side_menu_mobile ul li a {
+   position: absolute;
+   left: 0;
+   top: 0;
+   bottom: 0;
+   right: 0;
+ }
+
+ .help svg {
+   stroke: var(--stroke_global);
+   width: 24px;
+   height: 24px;
+   position: relative;
+   right: 1.7px;
+ }
+
+ .crystal svg {
+   fill: var(--fill_global);
+   stroke: var(--stroke_global);
+  stroke-width: 3;
+   width: 24px;
+   height: 24px;
+ }
+
+ .like svg {
+   width: 23px;
+   height: 23px;
+   stroke: var(--stroke_global);
+   fill: none;
+ }
+
+ .photo svg {
+   width: 23px;
+   height: 23px;
+   fill: var(--fill_global);
+ }
+
+ .video svg {
+   stroke: var(--stroke_global);
+   width: 24px;
+   height: 24px;
+   position: relative;
+   right: 1px;
+ }
+
+ .messages svg {
+   width: 24px;
+   height: 24px;
+   stroke: var(--stroke_global);
+ }
+
+ .user svg {
+   width: 24px;
+   height: 24px;
+   position: relative;
+   right: 1px;
+   stroke: var(--stroke_global);
+ }
+
+ .friends svg {
+   width: 24px;
+   height: 24px;
+   stroke: var(--stroke_global);
+ }
+
+ .groups svg {
+   width: 24px;
+   height: 24px;
+   stroke: var(--stroke_global);
+ }
+
+ .bookmark svg {
+   width: 24px;
+   height: 24px;
+   stroke: var(--stroke_global);
+ }
+
+ .agreements svg {
+   fill: var(--fill_global);
+   width: 22px;
+   height: 22px;
+ }
+
+ @media (max-width: 1000px) {
+   .side_menu_mobile ul li:active {
+     background-color: var(--item_hover_global);
+     transition: var(--transition_background-color_active_global);
+   }
+ }
+
+ @media (min-width: 1000px) {
+   .side_menu_mobile ul li:hover {
+     background-color: var(--item_hover_global);
+     transition: var(--transition_background-color_hover_global);
+   }
+ }

@@ -1,0 +1,504 @@
+.edit_user {
+  background-color: var(--filling_background-color_global);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  margin-bottom: 50px;
+  padding: 0 15px 25px 15px;
+  border-top: none !important;
+  border: var(--border_disappears_in_dark_theme_global);
+}
+
+.edit_user button {
+  background-color: var(--button_background-color);
+  border: var(--button_border);
+  box-shadow:
+    var(--button_box-shadow);
+  padding: 11px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--button_color);
+  letter-spacing: 0.5px;
+}
+
+.edit_user button:active {
+  background-color: var(--button_hover);
+  transition: var(--transition_background-color_active_global);
+}
+
+.title {
+  padding-top: 25px
+}
+
+.title h1 {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 32px;
+}
+
+.user_info_wrap {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 22px;
+}
+
+.user_info {
+  display: flex;
+  align-items: center;
+  border-radius: 35px;
+  padding-right: 10px;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  padding: 4px 10px 4px 0;
+}
+
+.user_info a {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 6px;
+  margin: 0px;
+}
+
+.avatar img {
+  width: 49px;
+  height: 49px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar img[alt] {
+  font-size: 0;
+}
+
+/*hide icon - 'no image'*/
+.avatar img::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+/* /hide icon - 'no image'*/
+.no_avatar_icon svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  fill: var(--fill_global);
+  width: 49px;
+  height: 49px;
+}
+
+.user_info_user_name_custom_id_wrap {
+  display: grid;
+  gap: 3px;
+}
+
+.user_info_user_name_wrap {
+  display: flex;
+}
+
+.user_info_user_name {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 310px;
+}
+
+.user_info_user_name p {
+  font-size: 19px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+.crystal_icon {
+  display: flex;
+  align-items: center;
+}
+
+.crystal_icon svg {
+  fill: var(--fill_global);
+  stroke: var(--stroke_global);
+  stroke-width: 3;
+  margin-left: 4.7px;
+  width: 17.5px;
+  height: 17.5px;
+}
+
+.user_info_custom_id {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  max-width: 310px;
+}
+
+.user_info_custom_id p {
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+.user_name {
+  margin-top: 20px;
+}
+
+.user_name textarea {
+  transition-property: color, background-color;
+  background-color: var(--filling_background-color_global);
+  width: 100%;
+  resize: none;
+  border: none;
+  border-radius: 7px;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-weight: 400;
+  font-size: 19px;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 30px;
+  line-height: 32px;
+  resize: none;
+}
+
+.user_name textarea::placeholder {
+  color: rgba(116, 116, 116, 0.806);
+  font-weight: 400;
+  font-size: 19px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.letter_counter p {
+  text-align: right;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.user_id {
+  margin-top: 10px;
+}
+
+.user_id textarea {
+  transition-property: color, background-color;
+  background-color: var(--filling_background-color_global);
+  width: 100%;
+  resize: none;
+  border: none;
+  border-radius: 7px;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-size: 19px;
+  line-height: 32px;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 30px;
+  resize: none;
+  font-weight: 400;
+}
+
+.user_id textarea::placeholder {
+  color: rgba(116, 116, 116, 0.806);
+  font-weight: 400;
+  font-size: 19px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.user_id_validation_error {
+  z-index: 1;
+  position: relative;
+  margin-top: 5px;
+}
+
+.user_id_validation_error p {
+  padding-top: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+.user_id_server_error {
+  z-index: 1;
+  position: relative;
+  margin-top: 10px;
+}
+
+.user_id_server_error p {
+  padding-top: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: red;
+}
+
+.user_about_me {
+  margin-top: 10px;
+}
+
+.user_about_me textarea {
+  transition-property: color, background-color;
+  background-color: var(--filling_background-color_global);
+  width: 100%;
+  resize: none;
+  border: none;
+  border-radius: 7px;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-size: 19px;
+  line-height: 32px;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 30px;
+  resize: none;
+  font-weight: 400;
+}
+
+.user_about_me textarea::placeholder {
+  color: rgba(116, 116, 116, 0.806);
+  font-weight: 400;
+  font-size: 19px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.change_password_wrap {
+  margin-top: 20px;
+}
+
+.change_password_form {
+  display: none;
+  margin-top: 25px;
+}
+
+.change_password {
+  margin: 23px 0 5px;
+}
+
+.change_password_show {
+  display: block;
+}
+
+.change_password_input_errors_wrap {
+  width: 100%;
+  position: relative;
+}
+
+.old_password {
+  padding-right: 33px !important;
+}
+
+.new_password {
+  padding-right: 33px !important;
+}
+
+.show_password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 35px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.show_password svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--stroke_global);
+}
+
+.change_password_form_wrap {
+  display: flex;
+  justify-content: center;
+  background-color: var(--filling_background-color_global);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.change_password_form_wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.change_password_form_wrap input {
+  background-color: var(--change_password_form_wrap_form_input_background-color);
+  border: var(--change_password_form_wrap_form_input_border);
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  font-size: 19px;
+  color: var(--color_global);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.change_password_form_wrap input::placeholder {
+  font-size: 19px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--change_password_form_wrap_form_input_placeholder_color);
+}
+
+.change_password_input_wrap {
+  position: relative;
+  max-width: 310px;
+  width: 100%;
+}
+
+.change_password_input_errors_server {
+  z-index: 1;
+  position: relative;
+}
+
+.change_password_input_errors_server p {
+  padding-top: 9px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: red;
+}
+
+.change_password_success {
+  z-index: 1;
+  position: relative;
+}
+
+.change_password_success p {
+  padding-top: 9px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: #007200;
+}
+
+.password_requirements {
+  z-index: 1;
+  position: relative;
+}
+
+.password_requirements p {
+  padding-top: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.delete_all_user_posts {
+  margin-top: 24px;
+}
+
+.server_message_all_posts_deleted {
+  z-index: 1;
+  position: relative;
+  margin-top: 10px;
+}
+
+.server_message_all_posts_deleted p {
+  padding-top: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+.delete_user_account {
+  margin-top: 22px;
+}
+
+.save_user_changes_back_buttons_wrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.save_user_changes_back_buttons {
+  display: flex;
+  gap: 17px;
+}
+
+.user_info:active {
+  background-color: var(--user_info_hover);
+  transition: var(--transition_background-color_active_global);
+}
+
+@media (max-width: 860px) {
+  .edit_user {
+    margin-bottom: 60px;
+    border-left: none;
+    border-right: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .user_info_user_name {
+    max-width: 190px;
+  }
+
+  .user_info_custom_id {
+    max-width: 190px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .edit_user button:hover {
+    background-color: var(--button_hover);
+    transition: var(--transition_background-color_hover_global);
+  }
+
+  .user_info:hover {
+    background-color: var(--user_info_hover);
+    transition: var(--transition_background-color_hover_global);
+  }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 500px;
+}
+
+/* variables */
+/* theme colors */
+[data-edit-user-page-dark-theme="true"] {
+  --button_background-color: #1e1e1e;
+  --button_hover: #222222;
+  --button_color: #8f8f8f;
+  --button_border: 1.1px solid rgb(29, 29, 29);
+  --button_box-shadow: none;
+  --user_info_hover: rgba(42, 42, 42, 0.322);
+  --change_password_form_wrap_form_input_background-color: #1a1a1a;
+  --change_password_form_wrap_form_input_border: 1.5px solid transparent;
+  --change_password_form_wrap_form_input_placeholder_color: #656565;
+}
+
+[data-edit-user-page-dark-theme="false"] {
+  --button_background-color: #ffffff;
+  --button_color: #000000;
+  --button_border: 1px solid rgb(225 223 223 / 34%);
+  --button_box-shadow: 0 1px 6px rgb(132 134 136 / 9%),
+    0 0px 2px rgb(138 140 143 / 16%);
+  --button_hover: rgba(233, 236, 239, 0.437);
+  --user_info_hover: rgba(228, 231, 234, 0.347);
+  --change_password_form_wrap_form_input_placeholder_color: #989898;
+  --change_password_form_wrap_form_input_border: 1.5px solid rgb(230, 230, 230);
+  --change_password_form_wrap_form_input_background-color: #ffffff;
+}
+
+/* /theme colors */
+/* /variables */

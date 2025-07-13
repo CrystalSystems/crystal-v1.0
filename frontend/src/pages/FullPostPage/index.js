@@ -1,0 +1,1 @@
+export { FullPostPage } from "./FullPostPage";

@@ -1,0 +1,39 @@
+.side_menu_mobile_background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.448);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  animation: fadeIn 300ms forwards;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  z-index: 4;
+}
+
+.side_menu_mobile_background_fade_out {
+  animation: fadeOut 300ms forwards;
+  opacity: 1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

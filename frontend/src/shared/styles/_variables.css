@@ -1,0 +1,44 @@
+:root {
+  --transition_opening_global: 150ms;
+  --transition_all_global: all 170ms ease;
+  --transition_background-color_hover_global: background-color 200ms ease;
+  --transition_background-color_active_global: background-color 250ms ease;
+  --transition_text-decoration_global: text-decoration 200ms ease;
+}
+
+/* dark theme*/
+[data-dark-theme="true"] {
+  --fill_global: #a1a1a1;
+  --stroke_global: #a1a1a1;
+  /* --scrollbar_color_global: #262626 #191919; */
+  --scrollbar_color_global: #1d1d1d #000000;
+  --background-color_global: black;
+  --filling_background-color_global: #121212;
+  --fill_no_avatar_global: #666666;
+  --color_global: #a1a1a1;
+  --border_disappears_in_dark_theme_global: transparent;
+  --border_global: 1.1px solid rgb(29, 29, 29);
+  --hashtag_color_global: rgb(24, 97, 145);
+  --hashtag_color_hover_global: rgb(32, 109, 161);
+  --item_hover_global: rgb(23 23 23);
+  --separator_background-color_global: #5f727f;
+}
+
+[data-dark-theme="false"] {
+  --fill_global: #000000;
+  --stroke_global: #000000;
+  /* --scrollbar_color_global: #65656544 #f1f1f1ec; */
+  --scrollbar_color_global: #65656544 #ffffff;
+  --filling_background-color_global: #ffffff;
+  --background-color_global: white;
+  --fill_no_avatar_global: #000000;
+  --color_global: #000000;
+  --border_disappears_in_dark_theme_global: 1.1px solid rgba(229, 229, 229, 0.703);
+  --border_global: 1.1px solid rgba(229, 229, 229, 0.703);
+  --hashtag_color_global: rgb(15, 130, 208);
+  --hashtag_color_hover_global: rgb(11, 98, 156);
+  --item_hover_global: rgba(233, 236, 239, 0.563);
+  --separator_background-color_global: #929ba3;
+}
+
+/* /dark theme*/

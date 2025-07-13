@@ -1,0 +1,15 @@
+export { HomePage } from "./HomePage";
+export { FullPostPage } from "./FullPostPage";
+export { AddPostPage } from "./AddPostPage";
+export { EditPostPage } from "./EditPostPage";
+export { UserProfilePage } from "./UserProfilePage";
+export { EditUserPage } from "./EditUserPage";
+export { HashtagPage } from "./HashtagPage";
+export { LikesPage } from "./LikesPage";
+export { NotFoundPage } from "./NotFoundPage";
+export { TermsPage } from "./TermsPage";
+export { PrivacyPage } from "./PrivacyPage";
+export { CookiesPolicyPage } from "./CookiesPolicyPage";
+export { AboutCrystalPage } from "./AboutCrystalPage";
+export { AgreementsPage } from "./AgreementsPage";
+export { HelpPage } from "./HelpPage";

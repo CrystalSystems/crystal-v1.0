@@ -1,0 +1,171 @@
+{
+  "SystemMessages": {
+    "Error": "Error"
+  },
+  "AccessModal": {
+    "SwitchLogIn": "Log In",
+    "SwitchSignUp": "Sign Up",
+    "InputNameLogIn": "Name",
+    "InputNameSignUp": "Name",
+    "InputErrorNameEmpty": "Enter a name",
+    "InputErrorNameMinimumLength": "The minimum length of the name is 1 character",
+    "InputErrorNameMaximumLength": "The maximum length of the name is 200 characters",
+    "InputErrorIdAlreadyExists": "This Id already exists",
+    "InputErrorIdMinimumLength": "Minimum length of Id - 1 character",
+    "InputErrorIdMaximumLength": "Maximum length of Id - 35 characters",
+    "InputErrorIdMinimumMaximumLengthSymbols": "Minimum length of id is 1 character, maximum 35, Latin letters, numbers, underscores and dashes are allowed",
+    "InputEmail": "Email",
+    "InputErrorEmailMaximumLength": "The maximum length of an email is 100 characters",
+    "InputErrorEmailAlreadyExists": "This email already exists",
+    "InputPasswordLogIn": "Password",
+    "InputPasswordSignUp": "* Password",
+    "InputErrorEmailEmpty": "Enter email",
+    "InputErrorPasswordEmpty": "Enter password",
+    "InputErrorPasswordMinimumMaximumLengthSymbols": "The minimum password length is 8 characters, the maximum is 30, Latin letters, numbers and special characters are allowed",
+    "InputErrorEmailPasswordWrong": "Invalid email or password",
+    "InputErrorAcceptTerms": "It is necessary to accept the conditions",
+    "Terms": "I accept the <1>terms of user agreement</1>, <2>privacy policy</2> and <3>cookies policy</3>."
+  },
+  "ListPosts": {
+    "PostOptionsMenuEditPost": "Edit post",
+    "PostOptionsMenuDeletePost": "Delete post",
+    "PostOptionsMenuDeleteAllUserPosts": "Delete all user posts",
+    "PostOptionsMenuDeleteUser": "Delete user"
+  },
+  "User": {
+    "UserDeleted": "User deleted"
+  },
+  "UserProfilePage": {
+    "EditUser": "Edit user"
+  },
+  "AddPostPage": {
+    "CreatePost": "Create a post",
+    "Text": "Text",
+    "Title": "Title",
+    "AddPreview": "Add preview",
+    "ChangePreview": "Change",
+    "DeletePreview": "Delete",
+    "Publish": "Publish",
+    "Back": "Back"
+  },
+  "EditPostPage": {
+    "EditPost": "Editing a post",
+    "AddPreview": "Add preview",
+    "Change": "Change",
+    "Delete": "Delete",
+    "Publish": "Publish",
+    "Text": "Text",
+    "Title": "Title",
+    "Back": "Back"
+  },
+  "EditUserPage": {
+    "EditUser": "Editing a user",
+    "UserName": "Name",
+    "UserAboutMe": "About me",
+    "DeleteAllYourPosts": "Delete all your posts",
+    "DeleteAllUserPosts": "Delete all user posts",
+    "AllPostsDeleted": "All posts deleted",
+    "DeleteAccount": "Delete account",
+    "DeleteAccountQuestion": "Delete user account?",
+    "DeleteUserAccount": "Delete user account",
+    "SaveChanges": "Save changes",
+    "Save": "Save",
+    "IdErrorMinimumMaximumLengthSymbols": "Minimum length of id is 1 character, maximum 35, Latin letters, numbers, underscores and dashes are allowed",
+    "IdAlreadyExists": "This Id already exists",
+    "ChangePassword": "Change password",
+    "Hide": "Hide",
+    "OldPassword": "Old password",
+    "NewPassword": "New password",
+    "OldPasswordIncorrect": "Old password is incorrect",
+    "PasswordRequirements": "The minimum password length is 8 characters, the maximum is 30, Latin letters, numbers and special characters are allowed.",
+    "PasswordSuccessfullyChanged": "Password successfully changed"
+  },
+
+  "CookiesBanner": {
+    "Text": "This website uses cookies. By clicking the 'Accept' button or continuing to use the website, you agree to the use of cookies.",
+    "ButtonMoreDetails": "More details",
+    "ButtonAccept": "Accept"
+  },
+  "SideMenuDesktop": {
+    "MyProfile": "My profile",
+    "Messages": "Messages",
+    "Friends": "Friends",
+    "Communities": "Communities",
+    "Photo": "Photo",
+    "Video": "Video",
+    "Likes": "Likes",
+    "Bookmarks": "Bookmarks",
+    "AboutCrystal": "About Crystal",
+    "Agreements": "Agreements",
+    "Help": "Help"
+  },
+  "SideMenuMobile": {
+    "MyProfile": "My profile",
+    "Messages": "Messages",
+    "Friends": "Friends",
+    "Communities": "Communities",
+    "Photo": "Photo",
+    "Video": "Video",
+    "Likes": "Likes",
+    "Bookmarks": "Bookmarks",
+    "AboutCrystal": "About Crystal",
+    "Agreements": "Agreements",
+    "Help": "Help"
+  },
+  "CurrentTopics": {
+    "CurrentTopics": "Current topics",
+    "ShowMore": "Show more",
+    "Post": "Post",
+    "PostsAverage": "Posts",
+    "Posts": "posts",
+    "key_one": "post",
+    "key_other": "posts"
+  },
+  "RecommendedUsers": {
+    "YouMightLike": "You might like",
+    "Subscribe": "Subscribe",
+    "ShowMore": "Show more"
+  },
+  "OptionsMenuGuest": {
+    "AboutCrystal": "About CRYSTAL",
+    "Agreements": "Agreements",
+    "Help": "Help"
+  },
+  "PostSourceMenu": {
+    "Subscriptions": "Subscriptions",
+    "Preferences": "Preferences",
+    "Mine": "Mine",
+    "World": "World"
+  },
+  "OptionsMenuUser": {
+    "MyProfile": "My profile",
+    "Agreements": "Agreements",
+    "Help": "Help",
+    "Exit": "Exit",
+    "LogOut": "Log out of your account ?"
+  },
+  "PostPreview": {
+    "DeleteAccountQuestion": "Delete user account ?",
+    "DeleteAllUserPostsQuestion": "Delete all posts by user?",
+    "DeletePostQuestion": "Delete post ?",
+    "UserDeleted": "User deleted",
+    "EditPost": "Edit post",
+    "DeletePost": "Delete post",
+    "DeleteAllUserPosts": "Delete all user posts",
+    "DeleteUser": "Delete user",
+    "add": "add",
+    "upd": "upd"
+  },
+  "FullPostPage": {
+    "DeleteAccountQuestion": "Delete user account ?",
+    "DeleteAllUserPostsQuestion": "Delete all posts by user?",
+    "DeletePostQuestion": "Delete post ?",
+    "UserDeleted": "User deleted",
+    "EditPost": "Edit post",
+    "DeletePost": "Delete post",
+    "DeleteAllUserPosts": "Delete all user posts",
+    "DeleteUser": "Delete user",
+    "add": "add",
+    "upd": "upd"
+  }
+}
