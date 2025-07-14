@@ -13,7 +13,7 @@ SPA, REST API, FSD.
 
 #### Building:<br/>
 MERN stack (MongoDB, Express.js, React, Node.js).<br/>
-[Full code](https://github.com/CrystalSystems/crystal-v1.0/) | Package.json: [Frontend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/frontend/package.json) | [Backend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/backend/package.json)<br/>
+[Full code](https://github.com/CrystalSystems/crystal-v1.0/) | Package.json: [frontend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/frontend/package.json) | [backend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/backend/package.json)<br/>
 
 #### Structure:<br/>
 MongoDB v8.0.4.<br/>
