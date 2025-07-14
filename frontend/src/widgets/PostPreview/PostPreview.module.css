@@ -118,7 +118,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  margin-top: 15px;
+  margin: 16px 0;
   border-radius: 9px;
   background-size: 100%;
   border: var(--border_global);
@@ -358,7 +358,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 11px;
+  margin-top: 7px;
 }
 
 .post_date_wrap p {
