@@ -10,9 +10,9 @@
   "type": "module",
   "main": "./src/core/main.js",
   "scripts": {
-    "startDev": "node --watch --env-file=./env/.env.dev --env-file=./env/.env ./src/core/main.js",
-    "startProdDomain": "pm2 start ecosystem.config.cjs --only prodDomain",
-    "startProdIP": "pm2 start ecosystem.config.cjs --only prodIP"
+    "dev": "node --watch --env-file=./env/.env.dev --env-file=./env/.env ./src/core/main.js",
+    "start:prod:ip": "pm2 start ecosystem.config.cjs --only prodIP",
+    "start:prod:domain": "pm2 start ecosystem.config.cjs --only prodDomain"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

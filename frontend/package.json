@@ -10,8 +10,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --mode dev",
-    "buildProdDomain": "vite build --mode prodDomain",
-    "buildProdIP": "vite build --mode prodIP",
+    "build:prod:domain": "vite build --mode prodDomain",
+    "build:prod:ip": "vite build --mode prodIP",
     "preview": "vite preview",
     "lint": "eslint"
   },
