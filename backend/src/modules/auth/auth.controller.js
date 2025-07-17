@@ -3,6 +3,9 @@ import bcrypt from "bcrypt";
 import { randomBytes } from "node:crypto";
 import { UserModel } from "../user/index.js";
 import {
+  handleServerError
+} from "../../shared/helpers/index.js";
+import {
   JWT_SECRET_KEY,
   COOKIE_SECURE_STATUS,
   CREATOR_EMAIL
@@ -40,7 +43,7 @@ export const register = async (req, res) => {
     res.cookie('token', token, { httpOnly: true, secure: COOKIE_SECURE_STATUS, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 365 * 10 });
     res.status(200).send('Registration OK');
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 // /register  
@@ -68,7 +71,7 @@ export const logIn = async (req, res) => {
     res.cookie('token', token, { httpOnly: true, secure: COOKIE_SECURE_STATUS, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 365 * 10 });
     res.status(200).send('log in OK');
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 // /log in
@@ -83,7 +86,7 @@ export const getMe = async (req, res) => {
     const { passwordHash, email, ...userData } = user._doc;
     res.status(200).json(userData);
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 // /get me
@@ -94,7 +97,7 @@ export const logOut = async (_, res) => {
     res.clearCookie('token', { httpOnly: true, secure: COOKIE_SECURE_STATUS });
     res.status(200).send('log out OK');
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 // log out

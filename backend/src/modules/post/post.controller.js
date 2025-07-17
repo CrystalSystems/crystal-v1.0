@@ -1,6 +1,9 @@
 import { PostModel } from "./post.model.js";
 import { UserModel } from "../user/index.js";
-import { takeHashtags } from '../../shared/helpers/index.js';
+import {
+  handleServerError,
+  takeHashtags
+} from '../../shared/helpers/index.js';
 
 // create post
 export const createPost = async (req, res) => {
@@ -22,7 +25,7 @@ export const createPost = async (req, res) => {
     const post = await doc.save();
     res.status(200).json(post);
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 // create post
@@ -57,7 +60,7 @@ export const updatePost = async (req, res) => {
       postId: req.params.postId,
     });
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 // /update post
@@ -90,7 +93,7 @@ export const getPost = (req, res) => {
       });
     });
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 }
 // /get post 
@@ -108,7 +111,7 @@ export const getPostForPostEditPage = async (req, res) => {
     }
     return res.status(200).json(post);
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 // /get post, for post edit page 
@@ -136,7 +139,7 @@ export const getPosts = async (req, res) => {
     res.set('X-Total-Count', totalCount);
     return res.status(200).json(result);
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 
@@ -157,7 +160,7 @@ export const getPostsByUser = async (req, res) => {
   try {
     return res.status(200).json(result);
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 //  /get posts by user
@@ -172,7 +175,7 @@ export const getPostsByHashtag = async (req, res) => {
   try {
     return res.status(200).json(result);
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 // /get posts by hashtag
@@ -198,7 +201,7 @@ export const deletePost = async (req, res) => {
       });
     });
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 // /delete post
@@ -226,7 +229,7 @@ export const deleteAllPostsByUser = async (req, res) => {
       });
     });
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 // /delete all posts by user
@@ -254,7 +257,7 @@ export const addLike = async (req, res) => {
       postId: req.params.postId,
     });
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 // /add like

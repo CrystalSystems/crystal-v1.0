@@ -1,4 +1,7 @@
 import { PostModel } from "../../modules/post/index.js";
+import {
+    handleServerError
+} from "../../shared/helpers/index.js";
 
 export const getHashtags = async (req, res) => {
     const { limit } = req.query;
@@ -33,6 +36,6 @@ export const getHashtags = async (req, res) => {
     try {
         return res.status(200).json(result);
     } catch (error) {
-        res.status(500).send(error);
+        handleServerError(res, error);
     }
 };

@@ -1,5 +1,6 @@
 import { PostModel } from "../../../modules/post/index.js";
 import { UserModel } from "../../../modules/user/index.js";
+import { handleServerError } from "../../../shared/helpers/index.js";
 
 // can update user
 export const canUpdateUser = async (req, res, next) => {
@@ -15,7 +16,7 @@ export const canUpdateUser = async (req, res, next) => {
         };
         next();
     } catch (error) {
-        res.status(500).send(error);
+        handleServerError(res, error, "canUpdateUser middleware");
     }
 };
 // /can update user
@@ -34,7 +35,7 @@ export const canUpdatePost = async (req, res, next) => {
         }
         next();
     } catch (error) {
-        res.status(500).send(error);
+        handleServerError(res, error, "canUpdatePost middleware");
     }
 };
 // /can update post
@@ -54,7 +55,7 @@ export const canViewLikedPosts = async (req, res, next) => {
         };
         next();
     } catch (error) {
-        res.status(500).send(error);
+        handleServerError(res, error, "canViewLikedPosts middleware");
     }
 };
 // /can view liked posts

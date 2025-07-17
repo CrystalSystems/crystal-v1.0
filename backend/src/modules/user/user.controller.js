@@ -1,5 +1,8 @@
 import bcrypt from "bcrypt";
 import { UserModel } from "./user.model.js";
+import {
+  handleServerError
+} from '../../shared/helpers/index.js';
 
 // get user
 export const getUser = async (req, res) => {
@@ -11,7 +14,7 @@ export const getUser = async (req, res) => {
     }
     return res.status(200).json(user);
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 // /get user
@@ -30,7 +33,7 @@ export const getUsers = async (req, res) => {
 
     res.status(200).json(users);
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 // /get users
@@ -45,7 +48,7 @@ export const getUserForUserEditPage = async (req, res) => {
     }
     return res.status(200).json(user);
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 
@@ -81,7 +84,7 @@ export const updateUser = async (req, res) => {
       return res.status(500).send('Error changing user');
     });
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 // /update user
@@ -123,7 +126,7 @@ export const changePassword = async (req, res) => {
       return res.status(500).send('Error changing password');
     });
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 // /change user password
@@ -147,7 +150,7 @@ export const deleteAccount = (req, res) => {
       return res.status(500).send('Error deleting user');
     });
   } catch (error) {
-    res.status(500).send(error);
+    handleServerError(res, error);
   }
 };
 // /delete user account

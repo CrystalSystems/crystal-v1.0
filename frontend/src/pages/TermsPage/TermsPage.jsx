@@ -64,8 +64,8 @@ export function TermsPage() {
             образом нарушает действующее законодательство РФ.
           </p>
           <p>
-            2.4. Администрации оставляет за собой право удалить аккаунт
-            пользователя и его личные данные, либо заблокировать аккаунт на
+            2.4. Администрация сайта оставляет за собой право удалить аккаунт
+            пользователя и его личные данные, а также любые материалы, которые были опубликованы пользователем на сайте, либо заблокировать аккаунт на
             любое время, а также удалить, либо ограничить доступ к постам и
             различным материалам пользователя, без объяснения причин.
           </p>
@@ -365,10 +365,7 @@ export function TermsPage() {
             violates the current legislation of the Russian Federation.
           </p>
           <p>
-            2.4. The administration reserves the right to delete the user’s
-            account and personal data, or block the account for any time, as
-            well as delete or limit access to posts and various user
-            materials, without giving any reason.
+            2.4. The site administration reserves the right to delete the user's account and their personal data, as well as any materials that were published by the user on the site, or to block the account for any time, as well as to delete or restrict access to the user's posts and various materials, without explanation.
           </p>
           <h2>3. User&#39;s personal information</h2>
           <p>

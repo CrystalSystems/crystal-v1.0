@@ -1,7 +1,9 @@
 import { UserModel } from "../user/index.js";
 import { PostModel } from "../post/index.js";
+import {
+    handleServerError
+} from "../../shared/helpers/index.js";
 
-// get user liked posts
 export const getUserLikedPosts = async (req, res) => {
     const userId = await UserModel.findOne({ customId: req.params.userId }).collation({ locale: "en", strength: 2 });
     if (!userId) {
@@ -16,6 +18,6 @@ export const getUserLikedPosts = async (req, res) => {
         const result = await PostModel.find({ "liked": userId._id.toString() }).sort({ createdAt: -1 }).populate({ path: "user", select: ["name", "customId", 'aboutMe', "creator", "avatarUrl", "createdAt", "updatedAt"] }).skip(offset).limit(limit).exec();
         return res.json(result);
     } catch (error) {
-        res.status(500).send(error);
+        handleServerError(res, error);
     }
 }
