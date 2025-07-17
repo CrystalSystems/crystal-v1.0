@@ -298,7 +298,7 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
         {/* post publication date   */}
         <div className={styles.post_date_wrap}>
           <div className={styles.post_date_creation}>
-            {!isSamePostDate(postData.post?.createdAt, postData.post?.updatedAt) && <p>{t('PostPreview.add')}:</p>}
+            {!isSamePostDate(postData.post?.createdAt, postData.post?.updatedAt)}
             {created.element}
           </div>
           {!isSamePostDate(postData.post?.createdAt, postData.post?.updatedAt) &&

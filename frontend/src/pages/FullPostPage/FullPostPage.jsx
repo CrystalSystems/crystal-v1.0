@@ -318,7 +318,7 @@ export function FullPostPage() {
             <div className={styles.post_date_views}>
               <div className={styles.post_date_wrap}>
                 <div className={styles.post_date_creation}>
-                  {!isSamePostDate(post?.data.createdAt, post?.data.updatedAt) && <p>{t('FullPostPage.add')}:</p>}
+                  {!isSamePostDate(post?.data.createdAt, post?.data.updatedAt)}
                   {created.element}
                 </div>
                 {!isSamePostDate(post?.data.createdAt, post?.data.updatedAt) &&
