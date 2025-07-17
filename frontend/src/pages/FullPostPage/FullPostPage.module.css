@@ -505,11 +505,16 @@
   }
 
   .post_date_separator {
-    /* display: none; */
-    margin: 0 7px 0 0;
+    display: none;
+    /* margin: 0 7px 0 0;
     width: 16px;
-    height: 16px;
+    height: 16px; */
   }
+
+  .post_date_update_wrap {
+    justify-content: center;
+  }
+
 }
 
 @media (max-width: 1000px) {

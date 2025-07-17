@@ -525,6 +525,7 @@
     opacity: 0;
   }
 }
+
 /* /Menu - post options */
 
 /* @media */
@@ -535,9 +536,14 @@
   }
 
   .post_date_separator {
-    /* display: none; */
-    margin: 0 8px 0 0;
+    display: none;
+    /* margin: 0 8px 0 0; */
   }
+
+  .post_date_update_wrap {
+    justify-content: center;
+  }
+
 }
 
 @media (max-width: 860px) {
@@ -623,6 +629,7 @@
     transition: var(--transition_background-color_hover_global);
   }
 }
+
 /* /@media */
 
 /* variables */
