@@ -40,7 +40,7 @@ https://github.com/user-attachments/assets/7d5421db-4af1-48b0-8819-6120c2a55e6b
 [More](https://shedov.top/about-the-crystal-project/) about the CRYSTAL project.<br/>
 
 <p align="center">
-  <strong>⚠️ Important</strong><br/>
+  <strong>⚠️ Important</strong>
 </p>
 
 **Before using [CRYSTAL v1.0](https://github.com/CrystalSystems/crystal-v1.0) or its code in a production environment, it is strongly recommended to carefully review the implementation and assess any potential cybersecurity risks.**<br/>
