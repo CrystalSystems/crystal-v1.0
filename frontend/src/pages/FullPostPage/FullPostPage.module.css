@@ -105,7 +105,7 @@
   justify-content: center;
   width: 100%;
   overflow: hidden;
-  margin-top: 15px;
+  margin-top: 20px;
   border-radius: 9px;
   background-size: 100%;
   border: var(--border_global);
@@ -140,7 +140,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 .post_title h1 {
@@ -162,7 +162,7 @@
 }
 
 .post_text {
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 .post_text p {
@@ -187,7 +187,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-top: 16px;
+  margin-top: 20px;
 }
 
 .post_date_views_wrap p {
