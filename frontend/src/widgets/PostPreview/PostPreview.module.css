@@ -532,7 +532,7 @@
 @media (max-width: 1250px) {
   .post_date_wrap {
     display: grid;
-    gap: 5px;
+    gap: 3px;
   }
 
   .post_date_separator {
