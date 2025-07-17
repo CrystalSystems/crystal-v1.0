@@ -481,6 +481,7 @@
     opacity: 0;
   }
 }
+
 /* /Menu - post options */
 
 /* @media */
@@ -543,19 +544,14 @@
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 410px) {
   .post_date_views_wrap p {
-    font-size: 14.5px;
-  }
-
-  .post_date_views_wrap {
-    justify-content: flex-start;
+    font-size: 15px;
   }
 
   .post_date_views_wrap_current_year {
-    justify-content: center;
+    justify-content: center !important;
   }
-
 
   .post_views {
     gap: 6px;
@@ -645,6 +641,7 @@
     transition: var(--transition_background-color_hover_global);
   }
 }
+
 /* /@media */
 
 /* variables */
