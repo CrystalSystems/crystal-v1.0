@@ -41,4 +41,7 @@ https://github.com/user-attachments/assets/7d5421db-4af1-48b0-8819-6120c2a55e6b
 
 **⚠️ Before using [CRYSTAL v1.0](https://github.com/CrystalSystems/crystal-v1.0) or its code in a production environment, it is strongly recommended to carefully review the implementation and assess any potential cybersecurity risks.**<br/>
 
+[<img src="https://shedov.top/wp-content/images/bstack-logo-global.svg" width="120">](https://shedov.top/)
+
+
 [CRYSTAL](https://crysty.ru/) | [Shedov.top](https://shedov.top/) | [Discord](https://discord.gg/ENB7RbxVZE) | [Telegram](https://t.me/ShedovChannel) | [X](https://x.com/AndrewShedov) | [VK](https://vk.com/shedovclub) | [VK Video](https://vkvideo.ru/@shedovclub) | [YouTube](https://www.youtube.com/@AndrewShedov)
