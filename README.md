@@ -47,8 +47,7 @@ https://github.com/user-attachments/assets/7d5421db-4af1-48b0-8819-6120c2a55e6b
   <strong>The project is being tested in
 </strong><br/>
 </p>
-<p align="center">
-<a href="https://www.browserstack.com">
+
+ 
 [<img src="https://shedov.top/wp-content/images/bstack-logo-global.svg" width="450">](https://shedov.top/)
- </a>
-</p>
+ 
