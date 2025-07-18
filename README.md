@@ -48,4 +48,4 @@ https://github.com/user-attachments/assets/7d5421db-4af1-48b0-8819-6120c2a55e6b
 </strong><br/>
 </p>
 
-[<img src="https://shedov.top/wp-content/images/bstack-logo-global.svg" width="450">](https://shedov.top/)
+[<img align="center" src="https://shedov.top/wp-content/images/bstack-logo-global.svg" width="450">](https://shedov.top/)
