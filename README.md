@@ -43,9 +43,7 @@ https://github.com/user-attachments/assets/7d5421db-4af1-48b0-8819-6120c2a55e6b
 
 [CRYSTAL](https://crysty.ru/) | [Shedov.top](https://shedov.top/) | [Discord](https://discord.gg/ENB7RbxVZE) | [Telegram](https://t.me/ShedovChannel) | [X](https://x.com/AndrewShedov) | [VK](https://vk.com/shedovclub) | [VK Video](https://vkvideo.ru/@shedovclub) | [YouTube](https://www.youtube.com/@AndrewShedov)
 
-<p align="center">
-  <strong>### The project is being tested in</strong>
-</p>
+<h3 align="center"><strong>The project is being tested in</strong></h3>
 
 <p align="center">
   <a href="https://www.browserstack.com/">
