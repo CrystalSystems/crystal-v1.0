@@ -43,13 +43,6 @@ Vite v6.1.0.<br/>
 </a>
 </p>
 
-<h3 align="center">Video showing the capabilities of CRYSTAL v1.0</h3>
-<p align="center">
-  <a href="https://www.youtube.com/watch?v=c56AkM3ms4o" target="_blank">
-    <img src="https://shedov.top/wp-content/images/crystal.v1.0-presentation-video-preview1.webp" alt="CRYSTAL v1.0 features">
-  </a>
-</p>
-
 **⚠️ Before using [CRYSTAL v1.0](https://github.com/CrystalSystems/crystal-v1.0) or its code in a production environment, it is strongly recommended to carefully review the implementation and assess any potential cybersecurity risks.**<br/>
 
 [CRYSTAL](https://crysty.ru/) | [Shedov.top](https://shedov.top/) | [Discord](https://discord.gg/ENB7RbxVZE) | [Telegram](https://t.me/ShedovChannel) | [X](https://x.com/AndrewShedov) | [VK](https://vk.com/shedovclub) | [VK Video](https://vkvideo.ru/@shedovclub) | [YouTube](https://www.youtube.com/@AndrewShedov)
