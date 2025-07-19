@@ -35,8 +35,13 @@ Vite v6.1.0.<br/>
 [8. Installing reCAPTCHA v3.](https://shedov.top/installing-recaptcha-v3-on-the-crystal-v1-0-project/)<br/>
 
 
-### Video showing the capabilities of CRYSTAL v1.0:
-[![CRYSTAL v1.0 features](https://img.youtube.com/vi/c56AkM3ms4o/hqdefault.jpg)](https://www.youtube.com/watch?v=c56AkM3ms4o)
+<h3 align="center">Video showing the capabilities of CRYSTAL v1.0</h3>
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=c56AkM3ms4o" target="_blank">
+    <img src="https://img.youtube.com/vi/c56AkM3ms4o/hqdefault.jpg" alt="CRYSTAL v1.0 features">
+  </a>
+</p>
+
 
 
 [More](https://shedov.top/about-the-crystal-project/) about the CRYSTAL project.<br/>
