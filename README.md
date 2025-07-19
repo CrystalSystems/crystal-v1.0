@@ -51,7 +51,7 @@ Vite v6.1.0.<br/>
 
 <p align="center">
   <a href="https://www.browserstack.com/">
-    <img src="https://shedov.top/wp-content/images/browserstack-logo-global.svg" width="300" />
+    <img src="https://shedov.top/wp-content/images/browserstack-logo-global.svg" width="320" />
   </a>
 </p>
  
