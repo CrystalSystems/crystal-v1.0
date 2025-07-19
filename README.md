@@ -47,11 +47,11 @@ Vite v6.1.0.<br/>
 
 [CRYSTAL](https://crysty.ru/) | [shedov.top](https://shedov.top/) | [Discord](https://discord.gg/ENB7RbxVZE) | [Telegram](https://t.me/ShedovChannel) | [X](https://x.com/AndrewShedov) | [VK](https://vk.com/shedovclub) | [VK Video](https://vkvideo.ru/@shedovclub) | [YouTube](https://www.youtube.com/@AndrewShedov)
 
-<h2 align="center">CRYSTAL is tested on</h2>
+<h3 align="center">CRYSTAL is tested on</h3>
 
 <p align="center">
   <a href="https://www.browserstack.com/">
-    <img src="https://shedov.top/wp-content/images/browserstack-logo-global.svg" width="350" />
+    <img src="https://shedov.top/wp-content/images/browserstack-logo-global.svg" width="300" />
   </a>
 </p>
  
