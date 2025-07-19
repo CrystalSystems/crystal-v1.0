@@ -37,10 +37,11 @@ Vite v6.1.0.<br/>
 [More](https://shedov.top/about-the-crystal-project/) about the CRYSTAL project.<br/>
 
 <h3 align="center">Video showing the capabilities of CRYSTAL v1.0</h3>
+<p align="center">
 <a href="https://www.youtube.com/watch?v=c56AkM3ms4o" target="_blank">
   <img src="https://shedov.top/wp-content/images/crystal.v1.0-presentation-video-preview1.webp" style="width: 650px; max-width: 100%; height: 380px;" alt="CRYSTAL v1.0 features"/>
 </a>
-
+</p>
 
 <h3 align="center">Video showing the capabilities of CRYSTAL v1.0</h3>
 <p align="center">
