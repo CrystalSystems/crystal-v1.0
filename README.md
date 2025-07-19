@@ -38,7 +38,7 @@ Vite v6.1.0.<br/>
 
 <p align="center">
 <a href="https://www.youtube.com/watch?v=c56AkM3ms4o" target="_blank">
-  <img src="https://shedov.top/wp-content/images/crystal.v1.0-presentation-video-preview-3.webp" style="width: 650px; max-width: 100%;" alt="CRYSTAL v1.0 features"/>
+  <img src="https://shedov.top/wp-content/images/crystal.v1.0-presentation-video-preview-3.webp" style="width: 100%; max-width: 100%;" alt="CRYSTAL v1.0 features"/>
 </a>
 </p>
 
