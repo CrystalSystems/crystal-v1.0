@@ -42,10 +42,7 @@ Vite v6.1.0.<br/>
   </a>
 </p>
 
-<p align="center">
-  <a href="https://shedov.top/about-the-crystal-project/">More</a> about the CRYSTAL project.<br/>
-</p>
-
+[More](https://shedov.top/about-the-crystal-project/) about the CRYSTAL project.<br/>
 
 **⚠️ Before using [CRYSTAL v1.0](https://github.com/CrystalSystems/crystal-v1.0) or its code in a production environment, it is strongly recommended to carefully review the implementation and assess any potential cybersecurity risks.**<br/>
 
