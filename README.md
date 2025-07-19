@@ -37,6 +37,9 @@ Vite v6.1.0.<br/>
 
 https://github.com/user-attachments/assets/7d5421db-4af1-48b0-8819-6120c2a55e6b
 
+[![CRYSTAL v1.0 features](https://img.youtube.com/vi/c56AkM3ms4o/hqdefault.jpg)](https://www.youtube.com/watch?v=c56AkM3ms4o)
+
+
 [Video review](https://www.youtube.com/watch?v=c56AkM3ms4o) in better quality.<br/>
 
 [More](https://shedov.top/about-the-crystal-project/) about the CRYSTAL project.<br/>
