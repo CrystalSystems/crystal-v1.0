@@ -37,6 +37,8 @@ Vite v6.1.0.<br/>
 
 https://github.com/user-attachments/assets/7d5421db-4af1-48b0-8819-6120c2a55e6b
 
+[Video review](https://www.youtube.com/watch?v=c56AkM3ms4o) in better quality.<br/>
+
 [More](https://shedov.top/about-the-crystal-project/) about the CRYSTAL project.<br/>
 
 **⚠️ Before using [CRYSTAL v1.0](https://github.com/CrystalSystems/crystal-v1.0) or its code in a production environment, it is strongly recommended to carefully review the implementation and assess any potential cybersecurity risks.**<br/>
