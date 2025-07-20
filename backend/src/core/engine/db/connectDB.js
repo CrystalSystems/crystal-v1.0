@@ -9,10 +9,10 @@ export async function connectDB() {
     mongoose.set("strictQuery", true);
     /* ⚠️ Important: MongoDB security.
     In a production environment, you need to enable authorization and create an administrator with a password to close access to the database for outsiders. */
-    const fullUri = `${MONGO_BASE_URI}/${MONGO_DB_NAME}`;
+    const mongoUri = `${MONGO_BASE_URI}/${MONGO_DB_NAME}`;
 
     try {
-        await mongoose.connect(fullUri);
+        await mongoose.connect(mongoUri);
         console.log("\n   🔥 DB connected");
     } catch (error) {
         console.error("  ❌ DB error -", error);
