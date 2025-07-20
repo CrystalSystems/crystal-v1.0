@@ -1,5 +1,5 @@
 export const SERVER_PORT = process.env.SERVER_PORT;
-export const MONGO_URI_BASE = process.env.MONGO_URI_BASE;
+export const MONGO_BASE_URI = process.env.MONGO_BASE_URI;
 export const MONGO_DB_NAME = process.env.MONGO_DB_NAME;
 export const CORS_ORIGIN = process.env.CORS_ORIGIN;
 export const APP_MODE = process.env.APP_MODE;
