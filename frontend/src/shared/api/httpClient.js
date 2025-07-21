@@ -34,7 +34,7 @@ const makeRequest = async (method, url, body = null, customHeaders = {}, queryPa
 
   const options = {
     method,
-    credentials: "include", // save cookies
+    credentials: "include",
     headers: {
       ...defaultHeaders,
       ...customHeaders
