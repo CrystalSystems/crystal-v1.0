@@ -11,7 +11,7 @@ This version has basic social network functions and you can deploy and test it o
 #### Architecture:<br/>  
 SPA, REST API, FSD.
 
-#### Building:<br/>
+#### Composition:<br/>
 Stack: MERN<br/>
 [Full code](https://github.com/CrystalSystems/crystal-v1.0/) | Package.json: [frontend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/frontend/package.json) | [backend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/backend/package.json)<br/>
 
