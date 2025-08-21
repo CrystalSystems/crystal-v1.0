@@ -1,4 +1,4 @@
-[<img src="https://shedov.top/ru/wp-content/images/logo_crystal-v1.0_github_25.png">](https://shedov.top/description-and-capabilities-of-crystal-v1-0/)
+[<img src="https://raw.githubusercontent.com/CrystalSystems/crystal-v1.0/refs/heads/main/assets/crystal-v1.0_logo.png">](https://shedov.top/description-and-capabilities-of-crystal-v1-0/)
 
 [![Discord](https://img.shields.io/discord/1006372235172384849?style=for-the-badge&logo=5865F2&logoColor=black&labelColor=black&color=%23f3f3f3
 )](https://discord.gg/ENB7RbxVZE)
@@ -38,7 +38,7 @@ Vite v6.1.0.<br/>
 
 <p align="center">
 <a href="https://www.youtube.com/watch?v=c56AkM3ms4o" target="_blank">
-  <img src="https://shedov.top/wp-content/images/crystal.v1.0-presentation-video-preview-3.webp" style="width: 100%; max-width: 100%;" alt="CRYSTAL v1.0 features"/>
+  <img src="https://raw.githubusercontent.com/CrystalSystems/crystal-v1.0/refs/heads/main/assets/crystal.v1.0_presentation_video_preview.webp" style="width: 100%; max-width: 100%;" alt="CRYSTAL v1.0 features"/>
 </a>
 </p>
 
@@ -50,7 +50,7 @@ Vite v6.1.0.<br/>
 
 <p align="center">
   <a href="https://www.browserstack.com/">
-    <img src="https://shedov.top/wp-content/images/browserstack-logo-global.svg" width="290" />
+    <img src="https://raw.githubusercontent.com/CrystalSystems/crystal-v1.0/b753d0d08a3630720d92dc139ee6255f0375cad3/assets/browserstack_logo.svg" width="290" />
   </a>
 </p>
  
