@@ -318,8 +318,8 @@ export const PostPreview = forwardRef(function Post(props, lastPostRef) {
             <div className={styles.post_info_bottom_part_1_1}>
               <div className={styles.eye}>
                 <EyeIcon />
-                {postData.post?.viewsCount > 0 &&
-                  <p>{formatLongNumber(postData.post?.viewsCount)}</p>}
+                {postData.post?.views > 0 &&
+                  <p>{formatLongNumber(postData.post?.views)}</p>}
               </div>
             </div>
             {userLikedStatus ? (

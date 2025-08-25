@@ -334,8 +334,8 @@ export function FullPostPage() {
               <div className={styles.post_views_wrap}>
                 <div className={styles.post_views}>
                   <EyeIcon />
-                  {post?.data?.viewsCount > 0 &&
-                    <p>{formatLongNumber(post?.data?.viewsCount)}</p>}
+                  {post?.data?.views > 0 &&
+                    <p>{formatLongNumber(post?.data?.views)}</p>}
                 </div>
               </div>
             </div>
