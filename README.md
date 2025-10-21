@@ -4,14 +4,14 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge&logo=5865F2&logoColor=black&labelColor=black&color=%23f3f3f3)](https://github.com/CrystalSystems/crystal-v1.0/blob/main/LICENSE)
 
 
-This is a fully functional and complete code - [CRYSTAL v1.0](https://shedov.top/description-and-capabilities-of-crystal-v1-0/), in the stack - MERN.<br/>
+This is a fully functional and complete code - [CRYSTAL v1.0](https://shedov.top/description-and-capabilities-of-crystal-v1-0/), in the stack - MERN (MongoDB, Express.js, React, Node.js).<br/>
 This version has basic social network functions and you can deploy and test it on your [local PC](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-a-local-pc/) or on [VPC](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-vpc-and-setting-up-access-to-the-site-via-public-ip/) by following the relevant instructions from the [documentation](https://shedov.top/documentation-crystal/).<br/>
 
 #### Architecture:<br/>  
 SPA, REST API, FSD.
 
 #### Composition:<br/>
-Stack: MERN<br/>
+Stack: MERN (MongoDB, Express.js, React, Node.js)<br/>
 [Full code](https://github.com/CrystalSystems/crystal-v1.0/) | Package.json: [frontend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/frontend/package.json) | [backend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/backend/package.json)<br/>
 
 #### Structure:<br/>
