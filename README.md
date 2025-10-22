@@ -1,7 +1,7 @@
 [<img src="https://raw.githubusercontent.com/CrystalSystems/crystal-v1.0/refs/heads/main/assets/crystal-v1.0_logo.png">](https://shedov.top/description-and-capabilities-of-crystal-v1-0/)
 
-[![Discord](https://img.shields.io/discord/1006372235172384849?style=for-the-badge&logo=discord&logoColor=white&labelColor=black&color=%23f3f3f3&label=)](https://discord.gg/ENB7RbxVZE)
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge&logo=5865F2&logoColor=black&labelColor=black&color=%23f3f3f3)](https://github.com/CrystalSystems/crystal-v1.0/blob/main/LICENSE)
+
+[![Members](https://img.shields.io/badge/dynamic/json?style=for-the-badge&label=&logo=discord&logoColor=white&labelColor=black&color=%23f3f3f3&query=$.approximate_member_count&url=https%3A%2F%2Fdiscord.com%2Fapi%2Finvites%2FENB7RbxVZE%3Fwith_counts%3Dtrue)](https://discord.gg/ENB7RbxVZE)&nbsp;[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge&logo=5865F2&logoColor=black&labelColor=black&color=%23f3f3f3)](https://github.com/CrystalSystems/crystal-v1.0/blob/main/LICENSE)
 
 
 This is a fully functional and complete code - [CRYSTAL v1.0](https://shedov.top/description-and-capabilities-of-crystal-v1-0/), in the stack - MERN (MongoDB, Express.js, React, Node.js).<br/>
