@@ -12,7 +12,6 @@ This version has basic social network functions and you can deploy and test it o
 SPA, REST API, FSD.
 
 #### Composition:<br/>
-Stack: MERN (MongoDB, Express.js, React, Node.js)<br/>
 [Full code](https://github.com/CrystalSystems/crystal-v1.0/) | Package.json: [frontend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/frontend/package.json) | [backend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/backend/package.json)<br/>
 
 #### Structure:<br/>
