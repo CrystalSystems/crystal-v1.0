@@ -6,7 +6,7 @@
 
 
 This is a fully functional and complete code - [CRYSTAL v1.0](https://shedov.top/description-and-capabilities-of-crystal-v1-0/), in the stack - MERN (MongoDB, Express.js, React, Node.js).<br/>
-This version has basic social network functions and you can deploy and test it on your [local PC](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-a-local-pc/) or on [VPC](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-vpc-and-setting-up-access-to-the-site-via-public-ip/) by following the relevant instructions from the [documentation](https://shedov.top/documentation-crystal/).<br/>
+This version has basic social network functions and you can deploy and test it on your [local PC](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-a-local-pc/) or on [VPC](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-vpc-and-setting-up-access-to-the-site-via-public-ip/) by following the relevant instructions from the [documentation](https://shedov.top/documentation-crystal-v1-0/).<br/>
 
 **Architecture:** <br/>
 SPA, REST API, FSD.
@@ -23,7 +23,7 @@ NPM v11.3.0.<br/>
 PM2 v5.4.3.<br/>
 Vite v6.1.0.<br/>
 
-[Documentation:](https://shedov.top/documentation-crystal/)<br/>
+[Documentation:](https://shedov.top/documentation-crystal-v1-0/)<br/>
 [1. Description and capabilities.](https://shedov.top/description-and-capabilities-of-crystal-v1-0/)<br/>
 [2. Instructions for deployment on a local PC.](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-a-local-pc/)<br/>
 [3. Instructions for deployment on VPC and setting up access to the website via public IP.](https://shedov.top/instructions-for-deploying-crystal-v1-0-on-vpc-and-setting-up-access-to-the-website-via-public-ip/)<br/>
