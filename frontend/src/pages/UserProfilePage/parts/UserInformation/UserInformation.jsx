@@ -150,7 +150,8 @@ export function UserInformation() {
   const [showAvatarButtons, setShowAvatarButtons] = useState(false);
 
   // return the image and buttons to their original state when switching to another page
-useEffect(() => {
+
+  useEffect(() => {
 
     // 1. Resetting the states of downloaded files
     setFileBanner(null);
@@ -171,13 +172,13 @@ useEffect(() => {
     if (inputAddFileAvatarRef.current) {
       inputAddFileAvatarRef.current.value = '';
     }
-    
+
     // 4. Close the menus
     setShowBannerButtons(false);
     setShowAvatarButtons(false);
 
   }, [userId]);
-  
+
   // /return the image and buttons to their original state when switching to another page
 
   const onClickSaveBanner = async () => {
