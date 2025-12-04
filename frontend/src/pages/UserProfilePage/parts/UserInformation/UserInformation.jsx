@@ -149,6 +149,37 @@ export function UserInformation() {
   const [showBannerButtons, setShowBannerButtons] = useState();
   const [showAvatarButtons, setShowAvatarButtons] = useState(false);
 
+  // return the image and buttons to their original state when switching to another page
+useEffect(() => {
+
+    // 1. Resetting the states of downloaded files
+    setFileBanner(null);
+    setFileBannerUrl(undefined);
+    setFileAvatar(null);
+    setFileAvatarUrl(undefined);
+
+    // 2. Resetting progress bar states
+    setAvatarImageLoadingStatus(false);
+    setAvatarImageLoadingStatusError(false);
+    setBannerImageLoadingStatus(false);
+    setBannerImageLoadingStatusError(false);
+
+    // 3. Resetting values in inputs
+    if (inputAddFileBannerRef.current) {
+      inputAddFileBannerRef.current.value = '';
+    }
+    if (inputAddFileAvatarRef.current) {
+      inputAddFileAvatarRef.current.value = '';
+    }
+    
+    // 4. Close the menus
+    setShowBannerButtons(false);
+    setShowAvatarButtons(false);
+
+  }, [userId]);
+  
+  // /return the image and buttons to their original state when switching to another page
+
   const onClickSaveBanner = async () => {
     const fields = {
       bannerUrl: '',
