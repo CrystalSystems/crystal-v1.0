@@ -11,7 +11,7 @@ export function TermsPage() {
           <p>
             1.1. Данное пользовательское соглашение (именуемое в дальнейшем
             Соглашение) представляет собой оферту условий по пользованию
-            веб-сайтом - www.crysty.ru (далее – Сайт), в лице Администрации
+            веб-сайтом - www.crystal.you (далее – Сайт), в лице Администрации
             сайта и физическим лицом (в том числе представителями
             юридических лиц) (именуемым в дальнейшем Пользователь), и
             регламентирующее условия предоставления Пользователем информации
@@ -32,7 +32,7 @@ export function TermsPage() {
           </p>
           <p>
             1.4. Настоящее Соглашение находится по адресу -
-            www.crysty.ru/terms, и может быть изменено и/или дополнено
+            www.crystal.you/terms, и может быть изменено и/или дополнено
             Администрацией Сайта в одностороннем порядке, без какого-либо
             специального уведомления. Настоящее Соглашение является открытым
             и общедоступным документом.
@@ -314,7 +314,7 @@ export function TermsPage() {
           <p>
             1.1. This user agreement (hereinafter referred to as the
             Agreement) is an offer of conditions for using the website -
-            www.crysty.ru (hereinafter - Site), represented by the Site
+            www.crystal.you (hereinafter - Site), represented by the Site
             Administration and an individual (including representatives of
             legal entities) (hereinafter referred to as the User), and
             regulating the conditions for the User to provide information
@@ -334,7 +334,7 @@ export function TermsPage() {
             immediately terminated.
           </p>
           <p>
-            1.4. This Agreement is located at www.crysty.ru/terms, and can
+            1.4. This Agreement is located at www.crystal.you/terms, and can
             be changed and/or supplemented by the Site Administration
             unilaterally order, without any special notice. This Agreement
             is an open and publicly available document.

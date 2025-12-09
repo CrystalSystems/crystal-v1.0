@@ -7,7 +7,7 @@ export function CookiesPolicyPage() {
     <div className={styles.cookies_policy}>
       {i18n.language === "ru" ? (
         <>
-          <h1>Политика использования файлов cookies на сайте crysty.ru</h1>
+          <h1>Политика использования файлов cookies на сайте crystal.you</h1>
           <p>
             Файлы cookies представляют собой небольшие текстовые файлы,
             включающие уникальный идентификатор, который посылается
@@ -24,12 +24,12 @@ export function CookiesPolicyPage() {
             средствами помощи и поддержки вашего браузера. Если вы удалите
             файлы cookies данного сайта или отключите возможность загружать
             файлы cookies в будущем, вы можете не получить доступ к
-            определенным областям или функциям сайта www.crysty.ru.
+            определенным областям или функциям сайта www.crystal.you.
           </p>
         </>
       ) : (
         <>
-          <h1>Cookies Policy on the crysty.ru website</h1>
+          <h1>Cookies Policy on the crystal.you website</h1>
           <p>
             A cookies is a small text file containing a unique identifier
             that is sent by the web server to your computer, mobile phone or
@@ -44,7 +44,7 @@ export function CookiesPolicyPage() {
             instructions on blocking, deleting, or disabling cookies. If you
             delete this website&#39;s cookies or disable the ability to download
             cookies in the future, you may not be able to access certain
-            areas or features of the website www.crysty.ru.
+            areas or features of the website www.crystal.you.
           </p>
         </>
       )}

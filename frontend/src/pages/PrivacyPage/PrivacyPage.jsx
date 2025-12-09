@@ -28,7 +28,7 @@ export function PrivacyPage() {
             1.2. Настоящая политика Оператора в отношении обработки
             персональных данных (далее — Политика) применяется ко всей
             информации, которую Оператор может получить о посетителях
-            веб-сайта www.crysty.ru.
+            веб-сайта www.crystal.you.
           </p>
           <h2>2. Основные понятия, используемые в Политике</h2>
           <p>
@@ -45,7 +45,7 @@ export function PrivacyPage() {
             2.3. Веб-сайт — совокупность графических и информационных
             материалов, а также программ для ЭВМ и баз данных,
             обеспечивающих их доступность в сети интернет по сетевому адресу
-            www.crysty.ru.
+            www.crystal.you.
           </p>
           <p>
             2.4. Информационная система персональных данных — совокупность
@@ -80,7 +80,7 @@ export function PrivacyPage() {
           <p>
             2.8. Персональные данные — любая информация, относящаяся прямо
             или косвенно к определенному или определяемому Пользователю
-            веб-сайта www.crysty.ru.
+            веб-сайта www.crystal.you.
           </p>
           <p>
             2.9. Персональные данные, разрешенные субъектом персональных
@@ -93,7 +93,7 @@ export function PrivacyPage() {
             для распространения).
           </p>
           <p>
-            2.10. Пользователь — любой посетитель веб-сайта www.crysty.ru.
+            2.10. Пользователь — любой посетитель веб-сайта www.crystal.you.
           </p>
           <p>
             2.11. Предоставление персональных данных — действия,
@@ -484,7 +484,7 @@ export function PrivacyPage() {
           </p>
           <p>
             12.3. Актуальная версия Политики в свободном доступе расположена
-            в сети Интернет по адресу www.crysty.ru/privacy.
+            в сети Интернет по адресу www.crystal.you/privacy.
           </p>
         </>
       ) : (
@@ -511,7 +511,7 @@ export function PrivacyPage() {
             1.2. This Operator&#39;s policy regarding the processing of personal
             data (hereinafter referred to as the Policy) applies to all
             information that the Operator can obtain about visitors to the
-            website www.crysty.ru.
+            website www.crystal.you.
           </p>
           <h2>2. Basic concepts used in the Policy</h2>
           <p>
@@ -527,7 +527,7 @@ export function PrivacyPage() {
             2.3. Website is a collection of graphic and information
             materials, as well as computer programs and databases that
             ensure their availability on the Internet at the network address
-            www.crysty.ru.
+            www.crystal.you.
           </p>
           <p>
             2.4. Personal data information system is a set of personal data
@@ -560,7 +560,7 @@ export function PrivacyPage() {
           <p>
             2.8. Personal data - any information relating directly or
             indirectly to a specific or identified User of the website
-            www.crysty.ru.
+            www.crystal.you.
           </p>
           <p>
             2.9. Personal data authorized by the subject of personal data
@@ -571,7 +571,7 @@ export function PrivacyPage() {
             prescribed by the Law on Personal Data (hereinafter referred to
             as personal data). data permitted for distribution).
           </p>
-          <p>2.10. User - any visitor to the website www.crysty.ru.</p>
+          <p>2.10. User - any visitor to the website www.crystal.you.</p>
           <p>
             2.11. Providing personal data - actions aimed at disclosing
             personal data to a certain person or a certain circle of
@@ -947,7 +947,7 @@ export function PrivacyPage() {
           </p>
           <p>
             12.3. The current version of the Policy is freely available on
-            the Internet at www.crysty.ru/privacy.
+            the Internet at www.crystal.you/privacy.
           </p>
         </>
       )}
