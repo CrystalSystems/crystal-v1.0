@@ -33,8 +33,8 @@ Vite v6.1.0.<br/>
 [7. Configuring Nginx with security in mind.](https://shedov.top/configuring-nginx-server-with-security-in-mind-on-the-crystal-v1-0-project//)<br/>
 [8. Installing reCAPTCHA v3.](https://shedov.top/installing-recaptcha-v3-on-the-crystal-v1-0-project/)<br/>
 
-[More](https://shedov.top/about-the-crystal-project/) about the CRYSTAL project.<br/>
 
+<br>
 <p align="center">
 <a href="https://www.youtube.com/watch?v=c56AkM3ms4o" target="_blank">
   <img src="https://raw.githubusercontent.com/CrystalSystems/crystal-v1.0/refs/heads/main/assets/screenshot_1.png" style="width: 100%; max-width: 100%;" alt="CRYSTAL v1.0 features"/>
