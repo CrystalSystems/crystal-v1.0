@@ -12,7 +12,7 @@ This version has basic social network functions and you can deploy and test it o
 SPA, REST API, FSD.
 
 **Composition:** <br/>
-[Full code](https://github.com/CrystalSystems/crystal-v1.0/) | Package.json: [frontend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/frontend/package.json) | [backend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/backend/package.json)<br/>
+Package.json: [frontend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/frontend/package.json) | [backend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/backend/package.json)<br/>
 
 **Structure:** <br/>
 **M**ongoDB v8.0.4.<br/>
