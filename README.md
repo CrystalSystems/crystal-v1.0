@@ -15,10 +15,10 @@ SPA, REST API, FSD.
 [Full code](https://github.com/CrystalSystems/crystal-v1.0/) | Package.json: [frontend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/frontend/package.json) | [backend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/backend/package.json)<br/>
 
 **Structure:** <br/>
-MongoDB v8.0.4.<br/>
-Express.js v4.21.2.<br/>
-React v19.0.0.<br/>
-Node.js v24.0.2.<br/>
+**M**ongoDB v8.0.4.<br/>
+**E**xpress.js v4.21.2.<br/>
+**R**eact v19.0.0.<br/>
+**N**ode.js v24.0.2.<br/>
 NPM v11.3.0.<br/>
 PM2 v5.4.3.<br/>
 Vite v6.1.0.<br/>
