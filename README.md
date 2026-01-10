@@ -9,7 +9,7 @@ This is a fully functional and complete code - [CRYSTAL v1.0](https://shedov.top
 This version has basic social network functions and you can deploy and test it on your local PC or VPC by following the relevant instructions from the [documentation](https://shedov.top/documentation-crystal-v1-0/).<br/>
 
 **Architecture:** <br/>
-SPA, REST API, FSD.
+SPA, REST API, FSD
 
 **Composition:** <br/>
 Package.json: [frontend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/frontend/package.json) &#x2234; [backend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/backend/package.json)<br/>
