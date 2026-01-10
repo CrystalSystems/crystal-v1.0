@@ -15,13 +15,13 @@ SPA, REST API, FSD.
 Package.json: [frontend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/frontend/package.json) &#x2234; [backend](https://github.com/CrystalSystems/crystal-v1.0/blob/main/backend/package.json)<br/>
 
 **Structure:** <br/>
-**M**ongoDB v8.0.4<br/>
-**E**xpress.js v4.21.2<br/>
-**R**eact v19.0.0<br/>
-**N**ode.js v24.0.2<br/>
-NPM v11.3.0<br/>
-PM2 v5.4.3<br/>
-Vite v6.1.0<br/>
+**M**ongoDB v8.0.4.<br/>
+**E**xpress.js v4.21.2.<br/>
+**R**eact v19.0.0.<br/>
+**N**ode.js v24.0.2.<br/>
+NPM v11.3.0.<br/>
+PM2 v5.4.3.<br/>
+Vite v6.1.0.<br/>
 
 [Documentation:](https://shedov.top/documentation-crystal-v1-0/)<br/>
 [1. Description and capabilities](https://shedov.top/description-and-capabilities-of-crystal-v1-0/)<br/>
