@@ -36,11 +36,14 @@ export const register = async (req, res) => {
     const user = await doc.save();
     const token = jwt.sign(
       {
-        _id: user._id,
+        _id: user._id
       },
-      JWT_SECRET_KEY
+      JWT_SECRET_KEY,
+      {
+        expiresIn: '70d'
+      }
     );
-    res.cookie('token', token, { httpOnly: true, secure: COOKIE_SECURE_STATUS, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 365 * 10 });
+    res.cookie('token', token, { httpOnly: true, secure: COOKIE_SECURE_STATUS, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 70 });
     res.status(200).send('Registration OK');
   } catch (error) {
     handleServerError(res, error);
@@ -66,9 +69,12 @@ export const logIn = async (req, res) => {
       {
         _id: user._id
       },
-      JWT_SECRET_KEY
+      JWT_SECRET_KEY,
+      {
+        expiresIn: '70d'
+      }
     );
-    res.cookie('token', token, { httpOnly: true, secure: COOKIE_SECURE_STATUS, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 365 * 10 });
+    res.cookie('token', token, { httpOnly: true, secure: COOKIE_SECURE_STATUS, sameSite: 'strict', maxAge: 3600 * 1000 * 24 * 70 });
     res.status(200).send('log in OK');
   } catch (error) {
     handleServerError(res, error);
