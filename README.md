@@ -42,12 +42,16 @@ Vite v6.1.0.<br/>
 
 **⚠️ Before using [CRYSTAL v1.0](https://github.com/CrystalSystems/crystal-v1.0) or its code in a production environment, it is strongly recommended to carefully review the implementation and assess any potential cybersecurity risks.**<br/>
 
+
+<br>
 <h3 align="center">CRYSTAL is tested on</h3>
 <p align="center">
   <a href="https://www.browserstack.com/">
     <img src="https://raw.githubusercontent.com/CrystalSystems/crystal-v1.0/b753d0d08a3630720d92dc139ee6255f0375cad3/assets/browserstack_logo.svg" width="290" />
   </a>
 </p>
+<br>
+<br>
 
 [![SHEDOV.TOP](https://img.shields.io/badge/SHEDOV.TOP-black?style=for-the-badge)](https://shedov.top/) 
 [![CRYSTAL](https://img.shields.io/badge/CRYSTAL-black?style=for-the-badge)](https://crystal.you/AndrewShedov)
